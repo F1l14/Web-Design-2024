@@ -30,7 +30,7 @@ DROP DATABASE IF EXISTS diploma;
 CREATE DATABASE diploma;
 USE diploma;
 
-CREATE TABLE `address` (
+CREATE TABLE IF NOT EXISTS `address` (
   `am` int(7) NOT NULL,
   `city` varchar(255) NOT NULL,
   `street` varchar(255) NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE `address` (
 -- Table structure for table `comission`
 --
 
-CREATE TABLE `comission` (
+CREATE TABLE IF NOT EXISTS `comission` (
   `diploma` int(7) NOT NULL,
   `prof1` varchar(30) NOT NULL,
   `prof2` varchar(30) NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE `comission` (
 -- Table structure for table `comission_app`
 --
 
-CREATE TABLE `comission_app` (
+CREATE TABLE IF NOT EXISTS `comission_app` (
   `diploma` int(7) NOT NULL,
   `professor` varchar(30) NOT NULL,
   `datetime` datetime NOT NULL DEFAULT current_timestamp(),
@@ -69,7 +69,7 @@ CREATE TABLE `comission_app` (
 -- Table structure for table `diploma`
 --
 
-CREATE TABLE `diploma` (
+CREATE TABLE IF NOT EXISTS `diploma` (
   `id` int(7) NOT NULL,
   `title` text NOT NULL,
   `description` text NOT NULL,
@@ -84,7 +84,7 @@ CREATE TABLE `diploma` (
 -- Table structure for table `diploma_app`
 --
 
-CREATE TABLE `diploma_app` (
+CREATE TABLE IF NOT EXISTS `diploma_app` (
   `diploma` int(7) NOT NULL,
   `student` int(7) NOT NULL,
   `datetime` int(11) NOT NULL DEFAULT current_timestamp(),
@@ -97,7 +97,7 @@ CREATE TABLE `diploma_app` (
 -- Table structure for table `evaluation`
 --
 
-CREATE TABLE `evaluation` (
+CREATE TABLE IF NOT EXISTS `evaluation` (
   `diploma` int(7) NOT NULL,
   `datetime` datetime DEFAULT NULL,
   `grade` decimal(4,2) DEFAULT NULL
@@ -109,8 +109,8 @@ CREATE TABLE `evaluation` (
 -- Table structure for table `professor`
 --
 
-CREATE TABLE `professor` (
-  `am` varchar(30) NOT NULL,
+CREATE TABLE IF NOT EXISTS `professor` (
+  `username` varchar(30) NOT NULL,
   `tmhma` varchar(255) NOT NULL,
   `status` enum('available','unavailable') NOT NULL DEFAULT 'available'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -121,8 +121,8 @@ CREATE TABLE `professor` (
 -- Table structure for table `student`
 --
 
-CREATE TABLE `student` (
-  `am` int(7) NOT NULL,
+CREATE TABLE IF NOT EXISTS `student` (
+  `username` varchar(30) NOT NULL,
   `etos_eisagwghs` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -132,14 +132,14 @@ CREATE TABLE `student` (
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `am` int(7) NOT NULL,
-  `username` varchar(255) NOT NULL,
+  `username` varchar(30) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `firstname` varchar(255) NOT NULL,
-  `lastname` varchar(255) NOT NULL,
-  `patrwnumo` varchar(255) NOT NULL,
+  `firstname` varchar(50) NOT NULL,
+  `lastname` varchar(100) NOT NULL,
+  `patrwnumo` varchar(50) NOT NULL,
   `kinito` int(10) NOT NULL,
   `stathero` int(10) NOT NULL,
   `role` enum('professor','student','grammateia') NOT NULL
@@ -194,19 +194,19 @@ ALTER TABLE `evaluation`
 -- Indexes for table `professor`
 --
 ALTER TABLE `professor`
-  ADD PRIMARY KEY (`am`);
+  ADD PRIMARY KEY (`username`);
 
 --
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
-  ADD PRIMARY KEY (`am`);
+  ADD PRIMARY KEY (`username`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`am`);
+  ADD PRIMARY KEY (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -255,6 +255,20 @@ ALTER TABLE `diploma`
 --
 ALTER TABLE `evaluation`
   ADD CONSTRAINT `fk_diploma` FOREIGN KEY (`diploma`) REFERENCES `diploma` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+--
+-- Constraints for table `professor`
+--
+ALTER TABLE `professor`
+  ADD CONSTRAINT `fk_professor_username` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+--
+-- Constraints for table `student`
+--
+ALTER TABLE `evaluation`
+  ADD CONSTRAINT `fk_student_username` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
