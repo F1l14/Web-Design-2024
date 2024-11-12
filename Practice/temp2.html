@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <p>This is the project</p>
+    <button>testing</button>
+
+    <input placeholder="cost of order">
+    <button id="calculate">Calculate</button>
+    <p id="result"></p>
+</body>
+</html>
+
+<script>
+   const butE=document.querySelector('button');
+   butE.addEventListener("click", function (){
+        switch(butE.innerHTML){
+            case "Clicked!": {butE.innerHTML="Click now->"; break;}
+            default: {butE.innerHTML="Clicked!"; break;}
+        }
+    }
+);
+
+    
+    const butC= document.querySelector("#calculate");
+    const inputT=document.querySelector("input");
+    const result = document.querySelector("#result");
+    butC.addEventListener("click", caluclateCost)
+    inputT.addEventListener("keydown", (event)=> {console.log(event.key);if(event.key=="Enter") caluclateCost();});
+
+    function caluclateCost(){
+        let current = Number(inputT.value);
+        console.log(current);
+        console.log(typeof current);
+        if(isNaN(current)){
+            result.innerHTML = "Not a number!";
+        }else{
+            if(current<40){
+                result.innerHTML= current + 10;
+            }
+            else result.innerHTML = current;
+        }
+    }
+</script>

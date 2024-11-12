@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="rock">rock</button>
+    <button id="paper">paper</button>
+    <button id="scissors">scissors</button>
+
+    <p id="result"></p>
+    
+</body>
+</html>
+
+<script>
+    let win=0;
+    let loss=0;
+    let moves=["rock","paper","scissors"];
+
+    document.getElementById("rock").onclick = function(){ game("rock");};
+    document.getElementById("paper").onclick = function(){ game("paper");};
+    document.getElementById("scissors").onclick = function(){ game("scissors");};
+
+    
+
+    
+    function game(user){
+        let flag= null;
+        let pc= moves[Math.floor(Math.random()*moves.length)];
+        console.log("pc chose "+pc);
+        switch(user){
+            case "rock": if(pc=="scissors") flag=1;  break;
+            case "paper": if(pc=="rock") flag=1; break;
+            case "scissors": if(pc=="paper")flag=1; break;
+        }
+
+        if(flag==1){
+            win+=1;
+            alert("YOU WIN"+"\nuser:"+user+" pc:"+pc );
+        }
+        else if(user==pc){
+            alert("DRAW"+"\nuser:"+user+" pc:"+pc );
+        }
+        else{
+            loss+=1;
+            alert("wa wa wa...."+"\nuser:"+user+" pc:"+pc );
+        }
+
+        document.getElementById("result").innerHTML= "Wins:"+win +"\tLosses:"+loss;
+    }
+</script>
