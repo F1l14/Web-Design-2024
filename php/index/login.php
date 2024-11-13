@@ -1,5 +1,16 @@
 <?php
-// Debugging: Check if the form is submitted
+require '../../lib/Create.php';
+use Jstewmc\CreateToken\Create;
+
+
+function createToken(){
+
+$token = (new Create())(64);
+$token = hash("sha256", $token);
+return $token;
+
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = htmlspecialchars($_POST['username']);
     $password = htmlspecialchars($_POST['password']);
@@ -30,6 +41,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             //if(password_verify($pass, mysqli_fetch_assoc($result)["password"])){
             if($password == mysqli_fetch_assoc($result)["password"]){
                 $answer->response= "valid";
+               
+                $token = createToken();
+
+                $insertToken = $conn->prepare("INSERT INTO user_tokens VALUES(?, ?)") ;
+                $insertToken->bind_param("ss", $token, $username);
+                $insertToken->execute();
+                
+                setcookie("token", $token, [
+                    'expires' => time() + 3600,
+                    'path' => "/",
+                    //only over http
+                    'secure' => true,
+                    //javascript cannot access the cookie
+                    'httponly' => true,
+                    'samesite' => 'Strict'  
+                ]);
+
+                
                 echo json_encode($answer);
             }
         }
@@ -43,3 +72,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $answer->response = "wrong";
         echo json_encode($answer);
     }
+
+    
+ 
+
+    
