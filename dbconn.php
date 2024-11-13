@@ -9,8 +9,8 @@
     
     // Check if the connection was successful
     if ($conn) {
-        echo "Connection to Database Successful" . "<br>";
+        //echo "Connection to Database Successful" . "<br>";
     } else {
-        echo "Connection to Database Failed: " . mysqli_connect_error() . "<br>";
+       // echo "Connection to Database Failed: " . mysqli_connect_error() . "<br>";
     }
 ?>
