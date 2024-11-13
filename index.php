@@ -7,7 +7,7 @@
     <script src="bcrypt/dist/bcrypt.js"></script>
 </head>
 <body>
-    <form id="loginForm" action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="POST">
+<form id="loginForm" action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/login.php'); ?>" method="POST">
 
     <label for="username">Username<br></label>
     <input id="userName" type="text" name="username" placeholder="Test Name" maxlength="50">
@@ -15,9 +15,10 @@
 
 
     <label for="pass">Password<br></label>
-    <input id="passWord" type="password" name="pass" placeholder="test" maxlength="50">
+    <input id="passWord" type="password" name="password" placeholder="test" maxlength="50">
 
     <input type="reset" value="Clear">
+    <button type="submit" name="test">test</button>
     <!-- <input id= "login" type="submit" name=login value="Login"> -->
     
 
@@ -32,57 +33,29 @@
 
 <script >
 
-     var bcrypt = dcodeIO.bcrypt;
+    var form = document.getElementById("#loginForm");
+    form.addEventListener("submit", handleLogin());
+    var loginError = getElementById("#loginError");
 
+    async function handleLogin(event){
+        //Do not Redirect after sumbit
+        event.preventDefault();
+        
+        var data = new FormData(event.target);
 
-    
+        fetch(event.target.action, {
+            method: form.method,
+            body: data,
+            //Accepting json response from backend
+            headers: {'Accept': 'application/json'}
+        })
 
-
-
-    const loginError = document.querySelector("#loginError");
-    const login = document.querySelector("#login");
-    login.addEventListener("click", loginUser);
-
-
-    const form = document.querySelector("#loginForm");
-    //form.addEventListener("submit", loginUser)
-
-    function loginUser(){
-        console.log("starting login");
-        const formData = new FormData(form);
-        const username = formData.get("username");
-        let password = formData.get("pass");
-
-        if(username ==="" || password===""){
-            loginError.innerHTML= "Missing Credentials!";
-        }else{
-            loginError.innerHTML= "Katchow!";
-            console.log(password);
-            
-            password = bcrypt.hashSync(password, 8);
-            console.log('Hashed Password:', password);
-            formData.set("pass", password);
-
-            fetch("login.php", {
-                                method: "POST",
-                                body: formData
-                                })
-            .then(response => response.text())  // Parse the response as plain text
-            .then(data => {
-                console.log("Server response:", data);
-                if (data === "correct") {
-                    // If login is successful
-                    window.location.href = "dashboard.php"; // Redirect to a protected page
-                } else {
-                    // If login failed, show error message
-                    document.getElementById("loginError").innerHTML = "Invalid username or password.";
-                }
-                })
-            .catch(error => {
-                console.error("Fetch error:", error);
-                });
+        .then(response => 
+        {
+            if(!response.ok){
                 
         }
-    }
+        )
+     }
   
 </script>
