@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 02, 2024 at 03:42 PM
+-- Host: localhost
+-- Generation Time: Nov 13, 2024 at 09:38 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -147,7 +147,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`username`, `password`, `am`, `email`, `firstname`, `lastname`, `patrwnumo`, `kinito`, `stathero`, `role`) VALUES
-('up0000001', '$2y$10$OVPIOSKt1cltEXqmMTKKzOct.rfFlNYj3I/sKyFmh55ZeS.t0tg06', 1, 'up0000001@ac.upatras.gr', 'Αναστάσιος', 'Παπαδόπουλος', 'Γιώργος', 2147483647, 2109111111, 'professor'),
+('up0000001', '123', 1, 'up0000001@ac.upatras.gr', 'Αναστάσιος', 'Παπαδόπουλος', 'Γιώργος', 2147483647, 2109111111, 'professor'),
 ('up0000002', '$2y$10$juPLpyDdhun3GmYPzPmH3eThszl.dHyIDQ0hZ9dcjYe6GUzsiKvbG', 2, 'up0000002@ac.upatras.gr', 'Μαρία', 'Κωστόπουλος', 'Αλέξανδρος', 2147483647, 2109222222, 'professor'),
 ('up0000003', '$2y$10$ZmoKd8vAOcgvBmWVLUnmdu61cvt.2jWdwUjSp/vX4jPLNY/JyJeoy', 3, 'up0000003@ac.upatras.gr', 'Γιάννης', 'Στασινόπουλος', 'Χρήστος', 2147483647, 2109333333, 'professor'),
 ('up0000004', '$2y$10$djDD62FTDzVWmlCXwtFFXOwGWgRzybusm7qujQtMzysKXOaORv80G', 4, 'up0000004@ac.upatras.gr', 'Δημήτρης', 'Αναγνωστόπουλος', 'Σταύρος', 2147483647, 2109444444, 'professor'),
@@ -177,6 +177,24 @@ INSERT INTO `users` (`username`, `password`, `am`, `email`, `firstname`, `lastna
 ('up0000028', '$2y$10$2n1.xlXcqkIMBdBSlWLCre8N2c1fH8NRG1I1QTFqEdLh2b53P0F9y', 28, 'up0000028@ac.upatras.gr', 'Κωνσταντίνος', 'Αντωνόπουλος', 'Γεώργιος', 2147483647, 2109612345, 'student'),
 ('up0000029', '$2y$10$PIvJ3eJ/xwWw3hbiwyVm9eUcyFR1O8F73EcF8Jt9.CmZSm/J1V0WS', 29, 'up0000029@ac.upatras.gr', 'Γιώργος', 'Κοκκίνης', 'Νικόλαος', 2147483647, 2109712345, 'student'),
 ('up0000030', '$2y$10$eeht7HTGFUPUwMg7il.n5u/WgWlHbBCYo6wwpEMJhPi9dTNRBPC.i', 30, 'up0000030@ac.upatras.gr', 'Αντώνης', 'Μητσούλης', 'Σπύρος', 2147483647, 2109812345, 'student');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_tokens`
+--
+
+CREATE TABLE `user_tokens` (
+  `token` varchar(255) NOT NULL,
+  `user` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_tokens`
+--
+
+INSERT INTO `user_tokens` (`token`, `user`) VALUES
+('032ce715629a4672c8b00f57f8518d71261f5d970b7ecc33c2e70cad8eb93fc1', 'up0000001');
 
 --
 -- Indexes for dumped tables
@@ -244,6 +262,13 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `am` (`am`);
 
 --
+-- Indexes for table `user_tokens`
+--
+ALTER TABLE `user_tokens`
+  ADD PRIMARY KEY (`token`),
+  ADD KEY `fk_user_tokens` (`user`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -309,6 +334,12 @@ ALTER TABLE `professor`
 --
 ALTER TABLE `student`
   ADD CONSTRAINT `fk_student_username` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `user_tokens`
+--
+ALTER TABLE `user_tokens`
+  ADD CONSTRAINT `fk_user_tokens` FOREIGN KEY (`user`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
