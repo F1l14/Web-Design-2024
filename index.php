@@ -18,7 +18,6 @@
 
     <input type="reset" value="Clear">
     <button type="submit" name="login">Login</button>
-    <!-- <input id= "login" type="submit" name=login value="Login"> -->
     
 
     </form>
