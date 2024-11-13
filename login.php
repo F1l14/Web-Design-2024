@@ -2,9 +2,12 @@
 // Debugging: Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = htmlspecialchars($_POST['username']);
-    $password = $_POST['password'];
+    $password = htmlspecialchars($_POST['password']);
+    // stdClass generic empty class with dynamic properties
+    $answer = new stdClass();
     $answer->reponse="";
     $answer->loginError="";
+
     if(!empty($username) && !empty($password)){
         $answer->reponse= "correct";
         echo json_encode($answer);
@@ -14,6 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
 } else {
-    echo "No data received.";
+    echo "no_data";
 }
 ?>

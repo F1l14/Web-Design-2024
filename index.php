@@ -33,9 +33,9 @@
 
 <script >
 
-    var form = document.getElementById("#loginForm");
-    form.addEventListener("submit", handleLogin());
-    var loginError = getElementById("#loginError");
+    var form = document.getElementById("loginForm");
+    form.addEventListener("submit", handleLogin);
+    var loginError = document.getElementById("loginError");
 
     async function handleLogin(event){
         //Do not Redirect after sumbit
@@ -53,9 +53,23 @@
         .then(response => 
         {
             if(!response.ok){
-                
-        }
-        )
-     }
-  
+                throw new Error(`HTTP error! Status: ${response.status} ${response.statusText}`);
+            }
+            return response.json();
+            console.log("finished response promise");
+        })
+
+        .then(data => {
+            console.log(data.loginError);
+            console.log(data.response);
+            if(data.response === "wrong") {loginError.innerHTML = `Wrong Credentials: ${data.loginError}`;}
+            else if(data.response === "do_data") {loginError.innerHTML = `No data`;}
+            else if (data.reponse === "correct") {alert("YESSSS");}
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+    }
 </script>
