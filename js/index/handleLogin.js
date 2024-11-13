@@ -25,10 +25,12 @@ async function handleLogin(event){
 
     .then(data => {
         // console.log(data.loginError);
-        // console.log(data.response);
+         console.log(data.response);
         if(data.response === "wrong") {loginError.innerHTML = `Wrong Credentials: ${data.loginError}`;}
         else if (data.response === "invalid") {alert("Invalid Credentials");}
-        else if (data.response === "valid") {alert("Store token from here");}
+        else if (data.response === "valid") {
+            
+        }
         else{alert("Something went wrong...");}
         
     })
