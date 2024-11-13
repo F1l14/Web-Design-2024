@@ -7,7 +7,7 @@
     <script src="bcrypt/dist/bcrypt.js"></script>
 </head>
 <body>
-<form id="loginForm" action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/login.php'); ?>" method="POST">
+<form id="loginForm" action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/index/login.php'); ?>" method="POST">
 
     <label for="username">Username<br></label>
     <input id="userName" type="text" name="username" placeholder="Test Name" maxlength="50">
@@ -18,12 +18,11 @@
     <input id="passWord" type="password" name="password" placeholder="test" maxlength="50">
 
     <input type="reset" value="Clear">
-    <button type="submit" name="test">test</button>
+    <button type="submit" name="login">Login</button>
     <!-- <input id= "login" type="submit" name=login value="Login"> -->
     
 
     </form>
-    <button id= "login" name=login>Login</button>
     <p id="loginError">test</p>
 
 
@@ -31,45 +30,4 @@
 </html>
 
 
-<script >
-
-    var form = document.getElementById("loginForm");
-    form.addEventListener("submit", handleLogin);
-    var loginError = document.getElementById("loginError");
-
-    async function handleLogin(event){
-        //Do not Redirect after sumbit
-        event.preventDefault();
-        
-        var data = new FormData(event.target);
-
-        fetch(event.target.action, {
-            method: form.method,
-            body: data,
-            //Accepting json response from backend
-            headers: {'Accept': 'application/json'}
-        })
-
-        .then(response => 
-        {
-            if(!response.ok){
-                throw new Error(`HTTP error! Status: ${response.status} ${response.statusText}`);
-            }
-            return response.json();
-            console.log("finished response promise");
-        })
-
-        .then(data => {
-            console.log(data.loginError);
-            console.log(data.response);
-            if(data.response === "wrong") {loginError.innerHTML = `Wrong Credentials: ${data.loginError}`;}
-            else if(data.response === "do_data") {loginError.innerHTML = `No data`;}
-            else if (data.reponse === "correct") {alert("YESSSS");}
-        })
-
-        .catch(error => {
-            console.error("Error Occured:", error);
-        })
-        ;
-    }
-</script>
+<script src="./js/index/handleLogin.js"></script>
