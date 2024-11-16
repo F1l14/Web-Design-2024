@@ -29,7 +29,7 @@ async function handleLogin(event){
         if(data.response === "wrong") {loginError.innerHTML = `Wrong Credentials: ${data.loginError}`;}
         else if (data.response === "invalid") {alert("Invalid Credentials");}
         else if (data.response === "valid") {
-            
+            window.location.href = '/Web-Design-2024/php/protected.php'; //one level up
         }
         else{alert("Something went wrong...");}
         
