@@ -21,6 +21,50 @@ html, body {
   background-color: #f4e5e5;
 } 
 
+#header{
+
+  position:relative;
+  z-index: 1;
+  
+  background-color: #ffffff;
+
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+#websiteTitle{
+  text-align: left;
+  margin-left:5vw;
+}
+
+#websiteTitle h1{
+  font-size: 8vh;
+}
+
+#websiteTitle h3{
+  font-size: 2vh;
+}
+
+
+#headerList{
+  list-style-type:none;
+
+}
+
+#headerList li{
+  /* float: right;   */
+  display: inline-block;
+}
+
+#headerList a{
+  display: block;
+  padding: 8px;
+  background-color: #dddddd;
+}
+
+#headerList ul {
+  background-color: #dddddd;
+}
+
 #accountCircle{
   display: block;
   margin: auto;
@@ -40,11 +84,11 @@ html, body {
     z-index: 1;
     margin: auto;
     margin-top: 50%;
-    /* padding: 2vw 2vh 2vh 2vh; */
-    padding-bottom: 2vh;
+
     background-color: #20272c28;
-    /* width: 20rem; */
-    width: calc(max-content);
+
+    padding-bottom: 2vh;
+    width: 100%;
     height: max-content;
     backdrop-filter: blur(0.5rem);
     box-shadow: 8px 5px 5px rgba(0, 0, 0, 0.468);
