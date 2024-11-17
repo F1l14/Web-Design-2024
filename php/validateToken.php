@@ -7,7 +7,12 @@ function validateToken(): string{
 
         try {
             // Check if the token exists in the database
-            $stmt = $conn->prepare("SELECT user, role FROM user_tokens INNER JOIN users ON users.username = user_tokens.user WHERE token = ?");
+            $stmt = $conn->prepare(
+                "SELECT user, role 
+                FROM user_tokens 
+                INNER JOIN users ON users.username = user_tokens.user 
+                WHERE token = ?"
+            );
             $stmt->bind_param("s", $token);
             $stmt->execute();
             $result = $stmt->get_result();
