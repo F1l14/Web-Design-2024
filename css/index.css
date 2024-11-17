@@ -52,10 +52,10 @@ html,body{
   .darkbox{
 
     background: rgba(128, 128, 128, 0.5);
-    backdrop-filter: blur(3px); /* Apply the blur effect */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
-    border-radius: 12px; /* Smooth rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
  }
 
 
