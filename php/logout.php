@@ -20,5 +20,5 @@ if (isset($_COOKIE['token'])) {
 }
 
 // Redirect to login page
-header("https://localhost/Web-Design-2024/");
+header("Location: https://localhost/Web-Design-2024/");
 exit();
