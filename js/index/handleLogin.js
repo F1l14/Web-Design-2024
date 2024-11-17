@@ -25,13 +25,14 @@ async function handleLogin(event){
 
     .then(data => {
         // console.log(data.loginError);
-         console.log(data.response);
-        if(data.response === "wrong") {loginError.innerHTML = `Wrong Credentials: ${data.loginError}`;}
-        else if (data.response === "invalid") {alert("Invalid Credentials");}
-        else if (data.response === "valid") {
-            window.location.href = '/Web-Design-2024/php/protected.php'; //one level up
+        console.log("js: "+data.response);
+        switch(data.response){
+            case "missing":{ loginError.innerHTML = "Missing Credentials"; break;}
+            case "invalid":{ loginError.innerHTML = `Wrong Credentials: ${data.loginError}`; break;}
+            case "valid":{ window.location.href = '/Web-Design-2024/php/protected.php'; break;}
+            case "no_data":{ alert("Something went wrong..."); break;}
         }
-        else{alert("Something went wrong...");}
+      
         
     })
 

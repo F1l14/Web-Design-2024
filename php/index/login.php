@@ -1,14 +1,15 @@
 <?php
 require '../../lib/Create.php';
+
 use Jstewmc\CreateToken\Create;
 
 
-function createToken(){
+function createToken()
+{
 
-$token = (new Create())(64);
-$token = hash("sha256", $token);
-return $token;
-
+    $token = (new Create())(64);
+    $token = hash("sha256", $token);
+    return $token;
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -16,38 +17,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = htmlspecialchars($_POST['password']);
     // stdClass generic empty class with dynamic properties
     $answer = new stdClass();
-    $answer->response="";
-    $answer->loginError="";
-    $answer -> token="";
-    
-    if(!empty($username) && !empty($password)){
-        
-        $result="";
+    $answer->response = "";
+    $answer->loginError = "";
+    $answer->token = "";
+
+    if (!empty($username) && !empty($password)) {
+
+        $result = "";
         include("../dbconn.php");
-        
-        
+
+
         $compare_pass = $conn->prepare("SELECT password FROM users WHERE username = ?");
         $compare_pass->bind_param("s", $username);
-        try{
+        try {
             $compare_pass->execute();
-            $result= $compare_pass->get_result();
-            
-        }catch (mysqli_sql_exception){
+            $result = $compare_pass->get_result();
+        } catch (mysqli_sql_exception) {
             $answer->loginError = "SQL error";
         }
 
-        if(mysqli_num_rows($result)>0){
-           //================future hashing================
+        if (mysqli_num_rows($result) > 0) {
+            //================future hashing================
             //if(password_verify($pass, mysqli_fetch_assoc($result)["password"])){
-            if($password == mysqli_fetch_assoc($result)["password"]){
-                $answer->response= "valid";
-               
+            if ($password == mysqli_fetch_assoc($result)["password"]) {
+                $answer->response = "valid";
+
                 $token = createToken();
 
-                $insertToken = $conn->prepare("INSERT INTO user_tokens VALUES(?, ?)") ;
+                $insertToken = $conn->prepare("INSERT INTO user_tokens VALUES(?, ?)");
                 $insertToken->bind_param("ss", $token, $username);
                 $insertToken->execute();
-                
+
                 setcookie("token", $token, [
                     'expires' => time() + 3600,
                     'path' => "/",
@@ -55,25 +55,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     'secure' => true,
                     //javascript cannot access the cookie
                     'httponly' => true,
-                    'samesite' => 'Strict'  
+                    'samesite' => 'Strict'
                 ]);
 
-                
+
                 echo json_encode($answer);
+            } else {
+                $answer->response = "invalid";
             }
-        }
-        else{
+        } else {
             $answer->response = "invalid";
             echo json_encode($answer);
         }
-    }
-    }
-    else{
-        $answer->response = "wrong";
+    } else {
+        $answer->response = "missing";
         echo json_encode($answer);
     }
-
-    
- 
-
-    
+} else {
+    $answer->response = "no_data";
+    echo json_encode($answer);
+}
