@@ -1,0 +1,15 @@
+BackEnd
+========================================================
+-login.php
+    -Token expiration date Trigger
+
+-protected.php
+    -convert into function
+    -dynamic call
+
+-url
+    hide full path
+
+
+FrontEnd
+========================================================
