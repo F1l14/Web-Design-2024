@@ -1,14 +1,10 @@
 BackEnd
 ========================================================
 -login.php
-    -Token expiration date Trigger
+    -Disable multiple logins
+    -Token expiration date Trigger!!!
+    
     -redirect if cookie exists from login page
-
-    -table
-        -truncate title when inserting instead of css
--protected.php
-    -convert into function
-    -dynamic call
 
 -url
     hide full path
@@ -16,5 +12,3 @@ BackEnd
 
 FrontEnd
 ========================================================
--title
-    -fix icon color
