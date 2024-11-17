@@ -18,7 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // stdClass generic empty class with dynamic properties
     $answer = new stdClass();
     $answer->response = "";
-    $answer->loginError = "";
     $answer->token = "";
 
     if (!empty($username) && !empty($password)) {
