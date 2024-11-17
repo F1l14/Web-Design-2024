@@ -27,4 +27,5 @@ if ($data->response !== 'valid') {
 // Continue processing...
 echo "Response is " . $data->response . "\n";
 echo "Welcome " . $data->user . "\n";
+echo "My role is " . $data->role . "\n";
 ?>
