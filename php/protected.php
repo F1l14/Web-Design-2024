@@ -19,10 +19,3 @@ if ($data->role == "professor") {
 if ($data->role == "grammateia") {
     header("Location: https://localhost/Web-Design-2024/php/grammateia/grammateiaHome.php");
 }
-
-// Continue processing...
-echo "Response is " . $data->response . "\n";
-echo "Welcome " . $data->user . "\n";
-echo "My role is " . $data->role . "\n";
-
-?>
