@@ -1,5 +1,5 @@
 <?php
- 
+
 function validateToken(): string{
     include("dbconn.php");
     if (isset($_COOKIE['token'])) {
@@ -8,9 +8,9 @@ function validateToken(): string{
         try {
             // Check if the token exists in the database
             $stmt = $conn->prepare(
-                "SELECT user, role 
-                FROM user_tokens 
-                INNER JOIN users ON users.username = user_tokens.user 
+                "SELECT user, role
+                FROM user_tokens
+                INNER JOIN users ON users.username = user_tokens.user
                 WHERE token = ?"
             );
             $stmt->bind_param("s", $token);
@@ -41,4 +41,10 @@ function validateToken(): string{
         ]);
     }
 }
-?>
+
+function roleRedirection($role): void{
+    $data = json_decode(validateToken());
+    if($data->role !== $role){
+        header("Location: https://localhost/Web-Design-2024/php/protected.php");
+    }
+}
