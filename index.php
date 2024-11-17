@@ -119,7 +119,7 @@
 
                   <!-- <label for="pass" class="loginText">Password<br></label> -->
                   <input id="passWord" class="loginText" type="password" name="password" placeholder="Password" maxlength="50">
-                  <p  id="loginError">*Example Error*</p>
+                  <p  id="loginError"></p>
                   <button type="submit" name="login">Login</button>
                   
                 
