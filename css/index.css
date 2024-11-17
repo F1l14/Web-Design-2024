@@ -89,6 +89,7 @@ html, body {
 
     padding-bottom: 2vh;
     width: 100%;
+    min-width: 375px;
     height: max-content;
     backdrop-filter: blur(0.5rem);
     box-shadow: 8px 5px 5px rgba(0, 0, 0, 0.468);
