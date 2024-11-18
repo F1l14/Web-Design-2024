@@ -2,10 +2,11 @@
 require '../../lib/Create.php';
 
 use Jstewmc\CreateToken\Create;
-
+include("../dbconn.php");
 
 function createToken()
 {
+    global $conn;
 
     $token = (new Create())(64);
     $token = hash("sha256", $token);
@@ -23,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($username) && !empty($password)) {
 
         $result = "";
-        include("../dbconn.php");
+  
 
 
         $compare_pass = $conn->prepare("SELECT password FROM users WHERE username = ?");
@@ -42,13 +43,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $answer->response = "valid";
 
                 $token = createToken();
-                $current_time=time()+3600;
+                $expire_time=time()+3600;
                 $insertToken = $conn->prepare("INSERT INTO user_tokens(token,user) VALUES(?, ?)");
                 $insertToken->bind_param("ss", $token, $username);
                 $insertToken->execute();
 
                 setcookie("token", $token, [
-                    'expires' => $current_time,
+                    'expires' => $expire_time,
                     'path' => "/",
                     //only over http
                     'secure' => true,
