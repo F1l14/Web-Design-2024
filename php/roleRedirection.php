@@ -5,7 +5,7 @@ $data = json_decode(validateToken());
 
 if ($data->response !== 'valid') {
     echo "invalid HERE ";
-    include_once "logout.php";
+    logout();
 }
 if ($data->role == "student") {
     header("Location: https://localhost/Web-Design-2024/php/student/studentHome.php");

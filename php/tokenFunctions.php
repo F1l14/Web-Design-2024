@@ -98,12 +98,12 @@ function updateActivity(){
             $updateExp->execute();
         } catch (mysqli_sql_exception) {
            echo "MySQL Error: while updating expiration date on token";
-           include_once "logout.php";
+           logout();
         }
 
     }else{
         echo "Error: Cookie has Expired";
-        include_once "logout.php";
+        logout();
     }
 }
 
@@ -111,9 +111,42 @@ function roleProtected($role): void{
     $data = json_decode(validateToken());
     if(empty($data->role)) {
         echo "EMPTY ROLE";
-        include_once "logout.php";
+        logout();
     }
     if($data->role !== $role){
         header("Location: https://localhost/Web-Design-2024/php/roleRedirection.php");
     }
 }
+
+
+function logout(): void{
+    if (isset($_COOKIE['token'])) {
+        $token = $_COOKIE['token'];
+    
+        deleteToken($token);
+    
+        // Clear the cookie
+        setcookie("token", "", [
+            'expires' => time() - 3600,
+            'path' => "/",
+            'secure' => true,
+            'httponly' => true,
+            'samesite' => 'Strict'
+        ]);
+    }
+    
+    // Redirect to login page
+    header("Location: https://localhost/Web-Design-2024/");
+}
+
+
+/*
+test cases
+==========
+case 1:
+    token  ok
+    cookie no
+case 2:
+    token  no
+    cookie ok
+*/
