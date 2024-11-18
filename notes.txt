@@ -2,13 +2,21 @@ BackEnd
 ========================================================
 -login.php
     -Disable multiple logins
-    -Token expiration date Trigger!!!
-    
     -redirect if cookie exists from login page
+    -refresh token if website is used
 
 -url
     hide full path
 
+||COMPLETED||
+=============
+-login.php
+    -Token expiration date Trigger!!!
 
+    
 FrontEnd
 ========================================================
+
+
+||COMPLETED||
+=============
