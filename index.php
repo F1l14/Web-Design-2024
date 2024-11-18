@@ -20,9 +20,7 @@
 
 
 <body>
-<div class="spinner-border text-primary" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>
+
 
   <div id="mainContainer" class="container align-content-center">
     <div class="row  justify-content-between ">

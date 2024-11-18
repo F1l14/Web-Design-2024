@@ -14,18 +14,23 @@
   <?php include("header.html") ?>
 
 </head>
+
 <body>
 
-
-
-<!-- ======================================================================================== -->
-<canvas class="background"></canvas> 
+  <div class=" text-center">
+    <div id="mainContainer" class="container align-content-center">
+      <div class="spinner-border text-primary spin" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+  <!-- ======================================================================================== -->
+  <canvas class="background"></canvas>
 </body>
 
 <!-- bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
-  <!-- bacgkround lib -->
-  <script src=".\particles.js-master\particles.js-master\dist\particles.min.js"></script>
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<!-- bacgkround lib -->
+<script src=".\particles.js-master\particles.js-master\dist\particles.min.js"></script>
 <script src="./js/backgroundOptions.js"></script>
