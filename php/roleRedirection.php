@@ -1,5 +1,5 @@
 <?php
-require("validateToken.php");
+require("tokenFunctions.php");
 
 $data = json_decode(validateToken());
 
