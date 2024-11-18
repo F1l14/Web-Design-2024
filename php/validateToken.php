@@ -1,7 +1,7 @@
 <?php
-
+include("dbconn.php");
 function validateToken(): string{
-    include("dbconn.php");
+    global $conn;
     if (isset($_COOKIE['token'])) {
         $token = $_COOKIE['token'];
 
@@ -42,7 +42,39 @@ function validateToken(): string{
     }
 }
 
-function roleRedirection($role): void{
+function updateActivity(){
+    global $conn;
+
+    if (isset($_COOKIE['token'])) {
+        $token = $_COOKIE['token'];
+        $expire_time=time()+3600;
+
+        setcookie("token", $token, [
+                        'expires' => $expire_time,
+                        'path' => "/",
+                        //only over http
+                        'secure' => true,
+                        //javascript cannot access the cookie
+                        'httponly' => true,
+                        'samesite' => 'Strict'
+                    ]);
+
+        $updateExp = $conn->prepare("UPDATE user_tokens SET expiration_date=(current_timestamp() + interval 1 hour) WHERE token=?");
+        $updateExp->bind_param("s", $token);
+        try{
+            $updateExp->execute();
+        } catch (mysqli_sql_exception) {
+           echo "MySQL Error: while updating expiration date on token";
+           header("Location: https://localhost/Web-Design-2024/php/logout.php");
+        }
+
+    }else{
+        echo "Error: Cookie has Expired";
+        header("Location: https://localhost/Web-Design-2024/php/logout.php");
+    }
+}
+
+function roleProtected($role): void{
     $data = json_decode(validateToken());
     if($data->role !== $role){
         header("Location: https://localhost/Web-Design-2024/php/protected.php");
