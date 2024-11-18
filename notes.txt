@@ -1,10 +1,10 @@
 BackEnd
 ========================================================
 -login.php
-    -Disable multiple logins
-    -redirect if cookie exists from login page
-    -refresh token if website is used
-    - if token in db but clear cookies
+    
+    
+   
+    
 
 -url
     hide full path
@@ -12,7 +12,11 @@ BackEnd
 ||COMPLETED||
 =============
 -login.php
-    -Token expiration date Trigger!!!
+    -Token expiration date Trigger
+    -Disable multiple logins
+    -redirect if cookie exists from login page
+    -if token in db but clear cookies
+    -refresh token if website is used
 
     
 FrontEnd
