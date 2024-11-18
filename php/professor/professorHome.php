@@ -1,4 +1,5 @@
 <?php
 require("../validateToken.php");
-roleRedirection("professor");
+roleProtected("professor");
+updateActivity();
 echo "Welcome Professor";
