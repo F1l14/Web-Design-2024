@@ -1,7 +1,7 @@
 BackEnd
 ========================================================
 -login.php
-    
+    -calendar search
     
    
     
@@ -21,7 +21,12 @@ BackEnd
     
 FrontEnd
 ========================================================
+-loading spinner
 
+-homepage
+    -navigation buttons
+    -2nd header
+-menu
 
 ||COMPLETED||
 =============
