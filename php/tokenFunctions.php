@@ -1,5 +1,18 @@
 <?php
-include("dbconn.php");
+include_once "dbconn.php";
+
+
+// Create Opaque Token
+function createToken()
+{
+    global $conn;
+    // sufficient randomness -> token_length = hash_output
+    $length = 64;
+    $token = bin2hex(random_bytes($length / 2));
+     
+    return hash("sha256", $token);
+}
+
 function validateToken(): string{
     global $conn;
     if (isset($_COOKIE['token'])) {
