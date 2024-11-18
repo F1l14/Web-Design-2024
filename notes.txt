@@ -4,6 +4,7 @@ BackEnd
     -Disable multiple logins
     -redirect if cookie exists from login page
     -refresh token if website is used
+    - if token in db but clear cookies
 
 -url
     hide full path
