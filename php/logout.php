@@ -1,13 +1,10 @@
 <?php
-include("dbconn.php");
-
+include_once("dbconn.php");
+include_once("tokenFunctions.php");
 if (isset($_COOKIE['token'])) {
     $token = $_COOKIE['token'];
 
-    // Remove token from the database
-    $stmt = $conn->prepare("DELETE FROM user_tokens WHERE token = ?");
-    $stmt->bind_param("s", $token);
-    $stmt->execute();
+    deleteToken($token);
 
     // Clear the cookie
     setcookie("token", "", [
@@ -21,4 +18,4 @@ if (isset($_COOKIE['token'])) {
 
 // Redirect to login page
 header("Location: https://localhost/Web-Design-2024/");
-exit();
+// exit();

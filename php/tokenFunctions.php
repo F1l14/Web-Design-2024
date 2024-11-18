@@ -13,6 +13,26 @@ function createToken()
     return hash("sha256", $token);
 }
 
+function deleteToken($token): void{
+    // Remove token from the database
+    global $conn;
+    try{
+        $stmt = $conn->prepare("DELETE FROM user_tokens WHERE token = ?");
+        $stmt->bind_param("s", $token);
+        $stmt->execute();
+    }catch(mysqli_sql_exception){
+    }
+}
+
+function deleteTokenUsername ($username): void{
+    global $conn;
+    try{
+        $stmt = $conn->prepare("DELETE FROM user_tokens WHERE user = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+    }catch(mysqli_sql_exception){
+    }
+}
 function validateToken(): string{
     global $conn;
     if (isset($_COOKIE['token'])) {
@@ -78,18 +98,22 @@ function updateActivity(){
             $updateExp->execute();
         } catch (mysqli_sql_exception) {
            echo "MySQL Error: while updating expiration date on token";
-           header("Location: https://localhost/Web-Design-2024/php/logout.php");
+           include_once "logout.php";
         }
 
     }else{
         echo "Error: Cookie has Expired";
-        header("Location: https://localhost/Web-Design-2024/php/logout.php");
+        include_once "logout.php";
     }
 }
 
 function roleProtected($role): void{
     $data = json_decode(validateToken());
+    if(empty($data->role)) {
+        echo "EMPTY ROLE";
+        include_once "logout.php";
+    }
     if($data->role !== $role){
-        header("Location: https://localhost/Web-Design-2024/php/protected.php");
+        header("Location: https://localhost/Web-Design-2024/php/roleRedirection.php");
     }
 }

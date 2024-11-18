@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $answer->response = "valid";
 
                 //DELETE OLD TOKEN IF EXISTS
-                // deleteTokenUsername($username);
+                deleteTokenUsername($username);
 
                 $token = createToken();
                 $expire_time=time()+3600;
