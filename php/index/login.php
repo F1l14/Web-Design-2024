@@ -1,17 +1,7 @@
 <?php
-require '../../lib/Create.php';
-
-use Jstewmc\CreateToken\Create;
 include("../dbconn.php");
+include "../tokenFunctions.php";
 
-function createToken()
-{
-    global $conn;
-
-    $token = (new Create())(64);
-    $token = hash("sha256", $token);
-    return $token;
-}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = htmlspecialchars($_POST['username']);
@@ -41,6 +31,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             //if(password_verify($pass, mysqli_fetch_assoc($result)["password"])){
             if ($password == mysqli_fetch_assoc($result)["password"]) {
                 $answer->response = "valid";
+
+                //DELETE OLD TOKEN IF EXISTS
+                // deleteTokenUsername($username);
 
                 $token = createToken();
                 $expire_time=time()+3600;
