@@ -29,7 +29,7 @@ async function handleLogin(event){
         switch(data.response){
             case "missing":{ loginError.innerHTML = "Missing Credentials"; break;}
             case "invalid":{ loginError.innerHTML = "Wrong Credentials"; break;}
-            case "valid":{ window.location.href = '/Web-Design-2024/php/protected.php'; break;}
+            case "valid":{ window.location.href = '/Web-Design-2024/php/roleRedirection.php'; break;}
             case "no_data":{ alert("Something went wrong..."); break;}
         }
       
