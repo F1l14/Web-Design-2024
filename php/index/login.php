@@ -42,13 +42,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $answer->response = "valid";
 
                 $token = createToken();
-
-                $insertToken = $conn->prepare("INSERT INTO user_tokens VALUES(?, ?)");
+                $current_time=time()+3600;
+                $insertToken = $conn->prepare("INSERT INTO user_tokens(token,user) VALUES(?, ?)");
                 $insertToken->bind_param("ss", $token, $username);
                 $insertToken->execute();
 
                 setcookie("token", $token, [
-                    'expires' => time() + 3600,
+                    'expires' => $current_time,
                     'path' => "/",
                     //only over http
                     'secure' => true,

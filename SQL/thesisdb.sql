@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 13, 2024 at 09:38 PM
+-- Generation Time: Nov 18, 2024 at 04:50 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -157,7 +157,7 @@ INSERT INTO `users` (`username`, `password`, `am`, `email`, `firstname`, `lastna
 ('up0000008', '$2y$10$CLjHf1thkRFNeY1zYvtzk.tHnwvvr3TLTx.a7kxPTqJqih8o0W97S', 8, 'up0000008@ac.upatras.gr', 'Κωνσταντίνος', 'Αβραάμ', 'Αντώνιος', 2147483647, 2109888888, 'professor'),
 ('up0000009', '$2y$10$H5cRAKkZ4OdmLyEHW3msDO8Z8A0Cv6N5gYl8U0GXHHbZIsiYzimu2', 9, 'up0000009@ac.upatras.gr', 'Ανδρέας', 'Κυριακίδης', 'Στέφανος', 2147483647, 2109999999, 'professor'),
 ('up0000010', '$2y$10$vnytznuiiAUcD1ig0bSFE.wPxb9Wz460eGKb0DxlmtynMVzYcfoeC', 10, 'up0000010@ac.upatras.gr', 'Νικόλαος', 'Κωσταρίδης', 'Γεώργιος', 2147483647, 2101234567, 'grammateia'),
-('up0000011', '$2y$10$JCToDBIMbLqRBRUvkpu8vufOwUEwFQT0B8j2UJrl090Zid3GUaEHC', 11, 'up0000011@ac.upatras.gr', 'Θεόφιλος', 'Κυριακίδης', 'Χρήστος', 2147483647, 2109112345, 'student'),
+('up0000011', '456', 11, 'up0000011@ac.upatras.gr', 'Θεόφιλος', 'Κυριακίδης', 'Χρήστος', 2147483647, 2109112345, 'student'),
 ('up0000012', '$2y$10$utff.mWuz3UXq2hdUsCbj.YHE7Chv7wPUEsdMTMWWVi7osECUq/d.', 12, 'up0000012@ac.upatras.gr', 'Αντώνιος', 'Παπαθεοδωρίδης', 'Δημήτρης', 2147483647, 2109212345, 'student'),
 ('up0000013', '$2y$10$RP9B7UQZe1A4BT2b5gAqS.4Vf5XpOtQGOiXXotI1yX9/20TJ6ltTe', 13, 'up0000013@ac.upatras.gr', 'Γεώργιος', 'Αδαμίδης', 'Παναγιώτης', 2147483647, 2109312345, 'student'),
 ('up0000014', '$2y$10$vG12Z5wu8xu9MCrsvugb/.SuUFYu.lGe2LuJPyxQtZVmMqWtbGv5m', 14, 'up0000014@ac.upatras.gr', 'Βασίλειος', 'Φωτόπουλος', 'Σωτήρης', 2147483647, 2109412345, 'student'),
@@ -186,15 +186,9 @@ INSERT INTO `users` (`username`, `password`, `am`, `email`, `firstname`, `lastna
 
 CREATE TABLE `user_tokens` (
   `token` varchar(255) NOT NULL,
-  `user` varchar(30) NOT NULL
+  `user` varchar(30) NOT NULL,
+  `expiration_date` datetime NOT NULL DEFAULT (current_timestamp() + interval 1 hour)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `user_tokens`
---
-
-INSERT INTO `user_tokens` (`token`, `user`) VALUES
-('032ce715629a4672c8b00f57f8518d71261f5d970b7ecc33c2e70cad8eb93fc1', 'up0000001');
 
 --
 -- Indexes for dumped tables
@@ -278,68 +272,16 @@ ALTER TABLE `user_tokens`
 ALTER TABLE `diplomatiki`
   MODIFY `id` int(7) NOT NULL AUTO_INCREMENT;
 
+DELIMITER $$
 --
--- Constraints for dumped tables
+-- Events
 --
+CREATE DEFINER=`root`@`localhost` EVENT `CLEAR_TOKENS` ON SCHEDULE EVERY 1 MINUTE STARTS '2024-11-18 17:47:44' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
+DELETE FROM user_tokens
+WHERE expiration_date < CURRENT_TIMESTAMP();
+END$$
 
---
--- Constraints for table `address`
---
-ALTER TABLE `address`
-  ADD CONSTRAINT `fk_address_username` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `diplomatiki`
---
-ALTER TABLE `diplomatiki`
-  ADD CONSTRAINT `fk_diplomatiki_student` FOREIGN KEY (`student`) REFERENCES `student` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `diplomatiki_app`
---
-ALTER TABLE `diplomatiki_app`
-  ADD CONSTRAINT `fk_diplomatiki_app_diplomatiki` FOREIGN KEY (`diplomatiki`) REFERENCES `diplomatiki` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_diplomatiki_app_student` FOREIGN KEY (`student`) REFERENCES `student` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `epitroph`
---
-ALTER TABLE `epitroph`
-  ADD CONSTRAINT `fk_comission_diplomatiki` FOREIGN KEY (`diplomatiki`) REFERENCES `diplomatiki` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_comission_prof1` FOREIGN KEY (`prof1`) REFERENCES `professor` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_comission_prof2` FOREIGN KEY (`prof2`) REFERENCES `professor` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_comission_prof3` FOREIGN KEY (`prof3`) REFERENCES `professor` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `epitroph_app`
---
-ALTER TABLE `epitroph_app`
-  ADD CONSTRAINT `fk_comission_app_diplomatiki` FOREIGN KEY (`diplomatiki`) REFERENCES `diplomatiki` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_comission_app_professor` FOREIGN KEY (`professor`) REFERENCES `professor` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `evaluation`
---
-ALTER TABLE `evaluation`
-  ADD CONSTRAINT `fk_evaluation_diplomatiki` FOREIGN KEY (`diplomatiki`) REFERENCES `diplomatiki` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `professor`
---
-ALTER TABLE `professor`
-  ADD CONSTRAINT `fk_professor_username` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `student`
---
-ALTER TABLE `student`
-  ADD CONSTRAINT `fk_student_username` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `user_tokens`
---
-ALTER TABLE `user_tokens`
-  ADD CONSTRAINT `fk_user_tokens` FOREIGN KEY (`user`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+DELIMITER ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
