@@ -15,7 +15,7 @@
         </ul>
         
         <div id="account" class="align-content-center">
-            <img id="accountCircleHeader" src="../../icons/accountCircle.svg" />
+            <img id="accountCircleHeader" src="/Web-Design-2024/icons/accountCircle.svg" />
             <ul class="dropdown">
                 <li>
                     <a>Settings</a>
@@ -24,7 +24,10 @@
                     <hr>
                 </li>
                 <li>
-                    <a>Logout</a>
+                    <form method="POST" action="/Web-Design-2024/php/logout.php">
+                        <button type="submit" name="logout">Logout</button>
+                    </form>
+
                 </li>
             </ul>
         </div>
