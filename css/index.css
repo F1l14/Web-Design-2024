@@ -127,27 +127,27 @@ html,body{
   font-size: 2vh;
 }
 
-#userHeader{
-  /* background-color: green; */
-  
+#nameContainer{
+  position: relative;
+  background-color: green;
+  width: max-content;
+  display: flex;
+
 }
 
-#user{
-  /* background-color: aqua; */
-
-  display:inline-flex;
+#fullname{
+  background-color: yellow;
   list-style-type: none;
-  
-  margin: 0;
-  padding: 1rem;
-
-}
-
-#user li{
-  background-color: white;
-  padding-right: 1rem;
-  text-transform: uppercase;
   font-weight: bold;
+  text-transform: uppercase;
+  width: max-content;
+  padding:1rem;
+  margin:1rem;
+}
+#fullname li{
+  display: inline;
+  background-color: red;
+
 }
 
 
@@ -171,19 +171,31 @@ html,body{
 }
 
 #account{
-  display: relative;
+  position: relative;
   background-color: green;
-  max-width: max-content;
+
+  float: right;
 }
 
-.dropdown{
-  position: absolute;
-  display: block;
-  list-style-type: none;
-  margin:0;
-  padding:0;
-  text-align: center;
+#account ul{
+  margin: 0;
+  padding: 0;
+  position: relative;
   background-color: yellow;
+  text-align: center;
+  list-style-type: none;
+  border: 1px solid black;
+  border-radius: 12px;
+  float:bottom;
+}
+
+#account li{
+  padding:0.2rem;
+
+}
+#account hr{
+
+  margin: 0;
 }
 
 
