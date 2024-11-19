@@ -23,7 +23,7 @@ html,body{
 .background {
   position:  absolute;
   z-index: -1;
-  display: flex;
+  display:block;
   top: 0;
   left: 0;
 
@@ -101,7 +101,7 @@ html,body{
 
 
 
-#header{
+.header{
   height: 14%;
   position:sticky;
   z-index: 1;
@@ -116,40 +116,75 @@ html,body{
   padding-left: 3rem;
 }
 
-#header h1{
+.header h1{
   display:block;
   width: max-content;
   font-size: 8vh;
 }
-#header h3{
+.header h3{
   display:block;
   width: max-content;
   font-size: 2vh;
 }
 
+#userHeader{
+  /* background-color: green; */
+  
+}
 
+#user{
+  /* background-color: aqua; */
 
-#headerList{
-  list-style-type:none;
+  display:inline-flex;
+  list-style-type: none;
+  
+  margin: 0;
+  padding: 1rem;
 
 }
 
-#headerList li{
-  /* float: right;   */
-  display: inline-block;
+#user li{
+  background-color: white;
+  padding-right: 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
-#headerList a{
+
+
+#accountCircleHeader{
+  /* margin-right: 2rem; */
+  height: 5rem;
+  width: auto;
+  transition: height 0.3s;
+}
+
+#accountCircleHeader:hover{
+  height: 5.6rem;
+  cursor:pointer;
+  
+}
+
+#accountCircleHeader:active{
+  text-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  transform: translateY(2px);
+}
+
+#account{
+  display: relative;
+  background-color: green;
+  max-width: max-content;
+}
+
+.dropdown{
+  position: absolute;
   display: block;
-  padding: 8px;
-  background-color: #dddddd;
+  list-style-type: none;
+  margin:0;
+  padding:0;
+  text-align: center;
+  background-color: yellow;
 }
-
-#headerList ul {
-  background-color: #dddddd;
-}
-
-
 
 
 
