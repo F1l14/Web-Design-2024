@@ -4,40 +4,24 @@
         <h3>Σύστημα Διαχείρισης Διπλωματικής Εργασίας</h3>
     </div>
     <div id="userHeader" class="align-content-center align-text-">
-        <ul id="user">
-            <li>
-                Κωσταντίνος
-            </li>
-            <li>
-                Κουτσομητρόπουλος
-            </li>
-
-        </ul>
-        
-        <div id="account" class="align-content-center">
-            <img id="accountCircleHeader" src="/Web-Design-2024/icons/accountCircle.svg" />
-            <ul class="dropdown">
+        <div class="dropdown">
+            <div id="user">
+                Κωσταντίνος Κουτσομητρόπουλος
+            </div>
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <img src="/Web-Design-2024/icons/accountCircle.svg" />
+            </button>
+            <ul id="dropdown-menu" class="dropdown-menu">
                 <li>
-                    <a>Settings</a>
+                    <a class="dropdown-item" href="#">Settings</a>
                 </li>
                 <li>
-                    <hr>
+                    <hr class="dropdown-divider">
                 </li>
                 <li>
-                    <form method="POST" action="/Web-Design-2024/php/logout.php">
-                        <button type="submit" name="logout">Logout</button>
-                    </form>
-
+                    <a id="logout" class="dropdown-item" href="/Web-Design-2024/php/logout.php">Logout</a>
                 </li>
             </ul>
         </div>
-
-
-    </div>
 </header>
-
-
-
-<script>
-
-</script>
