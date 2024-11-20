@@ -12,8 +12,10 @@ updateActivity();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>ΣΔΔΕ</title>
-    <link rel="stylesheet" href="/Web-Design-2024/css/header.css">
     <link rel="stylesheet" href="/Web-Design-2024/css/styles.css">
+    <link rel="stylesheet" href="/Web-Design-2024/css/header.css">
+    <link rel="stylesheet" href="/Web-Design-2024/css/homepage.css">
+
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -21,10 +23,34 @@ updateActivity();
     <link rel="icon" type="image/svg+xml" href="/Web-Design-2024/icons/websiteIcon.svg ">
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/Web-Design-2024/header2.html' ?>
 </head>
-<body>
 
-    <div id="mainContainer" class="darkbox container align-content-center">
-        
+<body>
+    <div id="mainContainer" class="container align-content-center ">
+        <div class="buttonWindow box align-content-center">
+            <div id="innerContainer" class="container text-center">
+                <div class="row row-cols-3 ">
+                    <div class="col">
+                        <button class="pageButton" onclick="redirect('createThesis.php')">Προβολή/Δημιουργία θεμάτων προς ανάθεση</button>
+                    </div>
+                    <div class="col">
+                        <button class="pageButton" onclick="redirect('assignThesis.php')">Αρχική ανάθεση θέματος σε φοιτητή</button>
+                    </div>
+                    <div class="col">
+                        <button class="pageButton" onclick="redirect('listThesis.php')">Προβολή λίστας διπλωματικών</button>
+                    </div>
+                    <div class="col">
+                        <button class="pageButton" onclick="redirect('invitations.php')">Προβολή προσκλήσεων συμμετοχής σε τριμελή επιτροπή</button>
+                    </div>
+                    <div class="col">
+                        <button class="pageButton" onclick="redirect('stats.php')">Προβολή στατιστικών</button>
+                    </div>
+                    <div class="col">
+                        <button class="pageButton" onclick="redirect('manageThesis.php')">Διαχείριση διπλωματικών εργασιών</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
     <!-- ======================================================================================== -->
@@ -33,7 +59,13 @@ updateActivity();
 
 <!-- bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
 <!-- bacgkround lib -->
 <script src="..\..\particles.js-master\particles.js-master\dist\particles.min.js"></script>
 <script src="../../js/backgroundOptions.js"></script>
+<script>
+    function redirect(url) {
+        window.location.href = url;
+    }
+</script>
