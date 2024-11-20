@@ -127,12 +127,6 @@ html,body{
   font-size: 2vh;
 }
 
-#nameContainer{
-  position: relative;
-  background-color: green;
-  width: max-content;
-  display: flex;
-
 }
 
 #fullname{
@@ -148,6 +142,11 @@ html,body{
   display: inline;
   background-color: red;
 
+#user{
+  background-color: white;
+  padding-right: 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 
@@ -177,26 +176,7 @@ html,body{
   float: right;
 }
 
-#account ul{
-  margin: 0;
-  padding: 0;
-  position: relative;
-  background-color: yellow;
-  text-align: center;
-  list-style-type: none;
-  border: 1px solid black;
-  border-radius: 12px;
-  float:bottom;
-}
 
-#account li{
-  padding:0.2rem;
-
-}
-#account hr{
-
-  margin: 0;
-}
 
 
 
@@ -304,4 +284,46 @@ form button:hover {
 form button:active {
   box-shadow: #D6D6E7 0 3px 7px inset;
   transform: translateY(2px);
+}
+
+#userHeader {
+  padding-right: 5rem;
+}
+
+/* .dropdown-item{
+  color: blue;
+} */
+
+/* #dropdown-menu{
+  max-width: max-content;
+}
+
+#dropdown-menu li{
+  width: max-content;
+} */
+
+.dropdown-item{
+  width: max-content;
+}
+
+#dropdown-menu li a{
+  background-color: #ffffff; /* Light gray */
+}
+
+/* Change background color on hover */
+#dropdown-menu li a:hover{
+  background-color: #007bff; /* Bootstrap's primary color */
+  color: white; /* Optional: change text color */
+}
+
+#dropdown-menu li a #logout:hover{
+  background-color: #cf1e1e; /* Bootstrap's primary color */
+  color: white; /* Optional: change text color */
+}
+
+
+/* Change background color for active state */
+#dropdown-menu li a:active{
+  background-color: #28a745; /* Bootstrap's success color */
+  color: white; /* Optional: change text color */
 }

@@ -1,6 +1,11 @@
 <?php
 require("tokenFunctions.php");
 
+if (isset($_POST['logout'])) {
+    echo "Button was clicked.";
+    logout();
+}
+
 $data = json_decode(validateToken());
 
 if ($data->response !== 'valid') {

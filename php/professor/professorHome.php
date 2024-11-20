@@ -23,7 +23,7 @@ updateActivity();
 
 <body>
 
-    <div id="mainContainer" class="container align-content-center">
+    <div id="mainContainer" class="darkbox container align-content-center">
 
     </div>
 
