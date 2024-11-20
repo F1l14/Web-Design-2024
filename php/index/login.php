@@ -23,7 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $compare_pass->execute();
             $result = $compare_pass->get_result();
         } catch (mysqli_sql_exception) {
-            $answer->loginError = "SQL error";
+            $answer->response = "invalid";
+            echo json_encode($answer);
         }
 
         if (mysqli_num_rows($result) > 0) {
@@ -55,6 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo json_encode($answer);
             } else {
                 $answer->response = "invalid";
+                echo json_encode($answer);
             }
         } else {
             $answer->response = "invalid";
