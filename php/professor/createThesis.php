@@ -39,27 +39,46 @@ updateActivity();
         </div>
         <!-- Modal -->
         <div class="modal" id="createModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Νέα Διπλωματική Εργασία</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="submit">
-                            Τίτλος
-                            <input type="text">
-                            Σύνοψη
-                            <input type="text">
-                        </form>
+                        <div class="container-fluid">
+                            <form action="submit">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="title">Τίτλος</label>
+                                        <textarea class="darkInput " id="title" rows="5" cols="20"></textarea>
+                                    </div>
+
+                                    <div id="descCol" class="col-md-4 ms-auto">
+                                        <label for="description" >Σύνοψη</label>
+                                        <textarea class="darkInput" id="description" rows="10" cols="5"></textarea>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="col-md-8">
+                                    <label for="formFileSm" class="form-label">Αναλυτική Περιγραφή</label>
+                                    <input class="form-control form-control-sm" id="formFileSm" type="file">
+                                </div>
+
+                            </form>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Κλείσιμο</button>
                         <button type="button" class="btn btn-primary">Αποθήκευση</button>
                     </div>
                 </div>
+
             </div>
         </div>
+    </div>
     </div>
     <!-- ======================================================================================== -->
     <canvas class="background"></canvas>
@@ -75,56 +94,4 @@ updateActivity();
 
 </html>
 
-<script defer>
-    window.addEventListener("load", insert2());
-    function insert2(){
-        insert("Αξιοποίηση σύγχρονων τεχνικών για την παραγωγή βιοϊατρικού κειμένου");
-        insert("asdf");
-        insert("fffff");
-    }
-    function insert(title) {
-        const table = document.getElementById("thesisTable");
-        const row = table.insertRow();
-
-        titleCell = row.insertCell(0);
-        titleCell.textContent = title;
-
-        const editIcon = document.createElement("img");
-        editIcon.src="/Web-Design-2024/icons/edit.svg";
-
-        const editButton = document.createElement("button");
-        editButton.appendChild(editIcon)
-        editButton.className="edit optionButton";
-        editButton.addEventListener("click", ()=> alert("CLICKED EDIT"));
-
-        editCell = row.insertCell(1);
-        editCell.className = "optionCell";
-        editCell.appendChild(editButton);
-
-
-        const delIcon = document.createElement("img");
-        delIcon.src="/Web-Design-2024/icons/delete.svg";
-
-      
-
-        const delButton = document.createElement("button");
-        delButton.appendChild(delIcon)
-        delButton.className="delete optionButton";
-        delButton.addEventListener("click", deleteThesis);
-
-        delCell = row.insertCell(2);
-        delCell.className = "optionCell";
-        delCell.appendChild(delButton);
-
-    }
-
-    function deleteThesis(event){
-        const row= event.target.closest("tr");
-        if(row){
-            row.remove();
-        }
-    }
-   
-
-
-</script>
+<script src="/Web-Design-2024/js/professor/createThesis.js" defer></script>

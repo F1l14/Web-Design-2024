@@ -39,7 +39,7 @@
     background-color: white;
 }
 
-.delete{
+.delete {
     background-color: rgb(255, 103, 103);
 }
 
@@ -47,8 +47,40 @@
     margin: 1rem;
 }
 
-.optionCell{
-    padding:0;
-    margin:0;
+.optionCell {
+    padding: 0;
+    margin: 0;
     width: 0.5rem;
+}
+
+/* label{
+    display: flex;
+    flex-direction: column-reverse;
+} */
+
+#title {
+    height: 10vh;
+    width: 32.5vw;
+    font-size: small;
+    resize: both;
+    margin-bottom: 5vh;
+
+}
+
+#descCol{
+    height: 100%;
+}
+
+#description {
+    float: right;
+    height: 30vh;
+    width: 20vw;
+    font-size: small;
+    resize: both;
+    margin:auto;
+    
+}
+
+#formFileSm {
+    width: 50%;
 }
