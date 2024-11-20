@@ -127,7 +127,7 @@ html,body{
   font-size: 2vh;
 }
 
-}
+
 
 #fullname{
   background-color: yellow;
@@ -141,7 +141,7 @@ html,body{
 #fullname li{
   display: inline;
   background-color: red;
-
+}
 #user{
   background-color: white;
   padding-right: 1rem;
