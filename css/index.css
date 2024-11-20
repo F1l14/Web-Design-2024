@@ -285,22 +285,6 @@ form button:active {
   padding-right: 5rem;
 }
 
-/* .dropdown-item{
-  color: blue;
-} */
-
-/* #dropdown-menu{
-  max-width: max-content;
-}
-
-#dropdown-menu li{
-  width: max-content;
-} */
-
-.dropdown-item{
-  width: max-content;
-}
-
 #dropdown-menu li a{
   background-color: #ffffff; /* Light gray */
 }
@@ -311,8 +295,8 @@ form button:active {
   color: white; /* Optional: change text color */
 }
 
-#dropdown-menu li a #logout:hover{
-  background-color: #cf1e1e; /* Bootstrap's primary color */
+#dropdown-menu li #logout:hover{
+  background-color: #ff0000; /* Bootstrap's primary color */
   color: white; /* Optional: change text color */
 }
 
