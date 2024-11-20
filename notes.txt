@@ -17,7 +17,13 @@ BackEnd
     -redirect if cookie exists from login page
     -if token in db but clear cookies
     -refresh token if website is used
-
+-professor
+    -createThesis.php
+        -transfer javascript
+        -add database delete handler
+        -add edit handler
+        -add create window
+        
     
 FrontEnd
 ========================================================
