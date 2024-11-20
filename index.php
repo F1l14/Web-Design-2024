@@ -6,7 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>ΣΔΔΕ</title>
-  <link rel="stylesheet" href="css/index.css">
+
+  <link rel="stylesheet" href="/Web-Design-2024/css/styles.css">
+  <link rel="stylesheet" href="/Web-Design-2024/css/header.css">
+  <link rel="stylesheet" href="/Web-Design-2024/css/index.css">
+
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <!-- icon -->
@@ -153,12 +158,12 @@
 
           <img id="accountCircle" src="icons/accountCircle.svg" />
           <!-- <label for="username" class="loginText">Username<br></label> -->
-          <input id="userName" class="loginText" type="text" name="username" placeholder="Username" maxlength="50">
+          <input id="userName" class="darkInput loginText" type="text" name="username" placeholder="Username" maxlength="50">
           <br>
 
 
           <!-- <label for="pass" class="loginText">Password<br></label> -->
-          <input id="passWord" class="loginText" type="password" name="password" placeholder="Password" maxlength="50">
+          <input id="passWord" class="darkInput loginText" type="password" name="password" placeholder="Password" maxlength="50">
           <p id="loginError"></p>
           <button type="submit" name="login">Login</button>
 

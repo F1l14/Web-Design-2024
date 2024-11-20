@@ -1,0 +1,102 @@
+.header {
+    height: 14%;
+    position: sticky;
+    z-index: 1;
+    display: flex;
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+
+#websiteTitle {
+    padding-left: 3rem;
+}
+
+.header h1 {
+    display: block;
+    width: max-content;
+    font-size: 8vh;
+}
+
+.header h3 {
+    display: block;
+    width: max-content;
+    font-size: 2vh;
+}
+
+
+
+#user {
+    /* background-color: aqua; */
+
+    display: inline-flex;
+    list-style-type: none;
+
+    margin: 0;
+    padding: 1rem;
+    background-color: white;
+    padding-right: 1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+
+}
+
+#accountCircleHeader {
+    /* margin-right: 2rem; */
+    height: 5rem;
+    width: auto;
+    transition: height 0.3s;
+}
+
+#accountCircleHeader:hover {
+    height: 5.6rem;
+    cursor: pointer;
+
+}
+
+#accountCircleHeader:active {
+    text-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    transform: translateY(2px);
+}
+
+#account {
+    display: relative;
+    background-color: green;
+    max-width: max-content;
+}
+
+
+
+#userHeader {
+    padding-right: 5rem;
+}
+
+#dropdown-menu li a {
+    background-color: #ffffff;
+    /* Light gray */
+}
+
+/* Change background color on hover */
+#dropdown-menu li a:hover {
+    background-color: #007bff;
+    /* Bootstrap's primary color */
+    color: white;
+    /* Optional: change text color */
+}
+
+#dropdown-menu li #logout:hover {
+    background-color: #ff0000;
+    /* Bootstrap's primary color */
+    color: white;
+    /* Optional: change text color */
+}
+
+
+/* Change background color for active state */
+#dropdown-menu li a:active {
+    background-color: #28a745;
+    /* Bootstrap's success color */
+    color: white;
+    /* Optional: change text color */
+}

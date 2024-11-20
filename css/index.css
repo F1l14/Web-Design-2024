@@ -1,79 +1,10 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Noto Sans';
-}
-html,body{
-  height: 100%;
-  width: 100%;
-}
-
-
-.spin{
-  position: relative;
-  z-index: 1;
-  
-}
-
-
-.background {
-  position:  absolute;
-  z-index: -1;
-  display:block;
-  top: 0;
-  left: 0;
-
-  background-color: #DCDCDC;
-  width: 100%;
-} 
-
-
-
-
-/* .box{
-  backdrop-filter: blur(0.2rem);
-  box-shadow: 8px 5px 5px hsla(0, 0%, 0%, 0.468);
-  background-color: hsla(0, 0%, 100%, 0.267);
-} */
-
-/* .darkbox{
-  backdrop-filter: blur(0.2rem);
-  box-shadow: 8px 5px 5px rgba(0, 0, 0, 0.468);
-  background-color: hsla(0, 0%, 34%, 0.267);
-} */
-
-
-
- .box{
-
-    background: rgba(255, 255, 255, 0.5); 
-    backdrop-filter: blur(3px); 
-    border: 1px solid rgba(255, 255, 255, 0.2); 
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
- }
-
-  .darkbox{
-
-    background: rgba(128, 128, 128, 0.5);
-    backdrop-filter: blur(3px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
- }
-
-
-#mainContainer{
+#mainContainer {
   height: 86%;
 
 }
 
 
-#calendar{
+#calendar {
   position: relative;
   z-index: 1;
   height: 60vh;
@@ -81,96 +12,17 @@ html,body{
 
 }
 
-#diplomatikiTable{
+#diplomatikiTable {
 
   max-width: 100%;
   max-height: 100%;
-  display:flow-root;
+  display: flow-root;
   border-radius: 12px;
   overflow-y: auto;
   overflow-x: hidden;
 
 }
 
-/* .truncate{
-  max-width: 16rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}  */
-
-
-
-.header{
-  height: 14%;
-  position:sticky;
-  z-index: 1;
-  display:flex;
-  width: 100%;
-  background-color: #ffffff;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-}
-
-
-#websiteTitle{
-  padding-left: 3rem;
-}
-
-.header h1{
-  display:block;
-  width: max-content;
-  font-size: 8vh;
-}
-.header h3{
-  display:block;
-  width: max-content;
-  font-size: 2vh;
-}
-
-
-#user{
-  /* background-color: aqua; */
-
-  display:inline-flex;
-  list-style-type: none;
-  
-  margin: 0;
-  padding: 1rem;
-
-}
-
-#user{
-  background-color: white;
-  padding-right: 1rem;
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
-
-
-#accountCircleHeader{
-  /* margin-right: 2rem; */
-  height: 5rem;
-  width: auto;
-  transition: height 0.3s;
-}
-
-#accountCircleHeader:hover{
-  height: 5.6rem;
-  cursor:pointer;
-  
-}
-
-#accountCircleHeader:active{
-  text-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-  transform: translateY(2px);
-}
-
-#account{
-  display: relative;
-  background-color: green;
-  max-width: max-content;
-}
 
 
 
@@ -178,14 +30,22 @@ html,body{
 
 
 
-#accountCircle{
+
+
+
+
+
+
+
+
+#accountCircle {
   display: block;
   margin: auto;
   height: 8rem;
   width: auto;
 }
 
-#loginError{
+#loginError {
 
   text-align: center;
   color: red;
@@ -194,56 +54,30 @@ html,body{
 
 #loginForm {
   position: relative;
-    z-index: 1;
-    /* margin: auto; */
-
-
-
-    padding-bottom: 2vh;
-    /* width: 100%; */
-    min-width: 375px;
-    height: max-content;
-    
-    
-}
-
-.loginText{
-    display: flex;
-    margin:auto;
-    margin-top: 2vh;
-    height: 6vh;
-    text-align: center;
-}
-
-
-input{
   z-index: 1;
-    background-color: #474747;
-    border-radius: 12px;
-    border: 0;
-    box-sizing: border-box;
-    color: #eee;
-    font-size: 18px;
-    height: 12%;
-    outline: 0;
-    width: 80%;
-
-    transition:border 0.1s ease-out;
+  padding-bottom: 2vh;
+  min-width: 375px;
+  height: max-content;
 }
 
-input:focus{
-  border: 3px solid aqua;
-
-
+.loginText {
+  display: flex;
+  margin: auto;
+  margin-top: 2vh;
+  height: 6vh;
+  text-align: center;
 }
-form button{
+
+
+
+form button {
   display: flow-root;
   align-items: center;
   appearance: none;
   background-color: #5c5c5c;
   border-radius: 4px;
   border-width: 0;
-  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#989898 0 -3px 0 inset;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #989898 0 -3px 0 inset;
   box-sizing: border-box;
   color: white;
 
@@ -258,17 +92,17 @@ form button{
   position: relative;
   text-align: left;
   text-decoration: none;
-  transition: box-shadow .15s,transform .15s;
+  transition: box-shadow .15s, transform .15s;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   white-space: nowrap;
-  will-change: box-shadow,transform;
+  will-change: box-shadow, transform;
   font-size: 18px;
 }
 
 form button:focus {
-  box-shadow:  rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #989898 0 -3px 0 inset;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #989898 0 -3px 0 inset;
 }
 
 form button:hover {
@@ -279,30 +113,4 @@ form button:hover {
 form button:active {
   box-shadow: #D6D6E7 0 3px 7px inset;
   transform: translateY(2px);
-}
-
-#userHeader {
-  padding-right: 5rem;
-}
-
-#dropdown-menu li a{
-  background-color: #ffffff; /* Light gray */
-}
-
-/* Change background color on hover */
-#dropdown-menu li a:hover{
-  background-color: #007bff; /* Bootstrap's primary color */
-  color: white; /* Optional: change text color */
-}
-
-#dropdown-menu li #logout:hover{
-  background-color: #ff0000; /* Bootstrap's primary color */
-  color: white; /* Optional: change text color */
-}
-
-
-/* Change background color for active state */
-#dropdown-menu li a:active{
-  background-color: #28a745; /* Bootstrap's success color */
-  color: white; /* Optional: change text color */
 }

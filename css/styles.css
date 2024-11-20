@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans';
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+
+.background {
+    position: absolute;
+    z-index: -1;
+    display: block;
+    top: 0;
+    left: 0;
+
+    background-color: #DCDCDC;
+    width: 100%;
+}
+
+.box {
+
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.darkbox {
+
+    background: rgba(128, 128, 128, 0.5);
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.darkInput {
+    z-index: 1;
+    background-color: #474747;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    font-size: 18px;
+    height: 12%;
+    outline: 0;
+    width: 80%;
+
+    transition: border 0.1s ease-out;
+}
+
+.darkInput:focus {
+    border: 3px solid aqua;
+}
