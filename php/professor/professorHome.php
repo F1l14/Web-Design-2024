@@ -21,7 +21,10 @@ updateActivity();
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- icon -->
     <link rel="icon" type="image/svg+xml" href="/Web-Design-2024/icons/websiteIcon.svg ">
+    
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/Web-Design-2024/header.html' ?>
+
+    <
 </head>
 
 <body>
@@ -62,8 +65,8 @@ updateActivity();
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
 <!-- bacgkround lib -->
-<script src="..\..\particles.js-master\particles.js-master\dist\particles.min.js"></script>
-<script src="../../js/backgroundOptions.js"></script>
+<script src="/Web-Design-2024/particles.js-master/particles.js-master/dist/particles.min.js"></script>
+<script src="/Web-Design-2024/js/backgroundOptions.js"></script>
 <script>
     function redirect(url) {
         window.location.href = url;

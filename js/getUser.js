@@ -1,5 +1,5 @@
 
-window.onload = getUser;
+document.addEventListener("load", getUser());
 
 async function getUser() {
     var user = document.getElementById("user");

@@ -54,8 +54,8 @@ updateActivity();
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
 <!-- bacgkround lib -->
-<script src="..\..\particles.js-master\particles.js-master\dist\particles.min.js"></script>
-<script src="../../js/backgroundOptions.js"></script>
+<script src="/Web-Design-2024/particles.js-master/particles.js-master/dist/particles.min.js"></script>
+<script src="/Web-Design-2024/js/backgroundOptions.js"></script>
 <script>
     function redirect(url) {
         window.location.href = url;
