@@ -1,0 +1,17 @@
+
+.pageButton{
+    display: inline-block;
+    height: 6em;
+    width: 15em;
+    padding:1rem;
+    margin: 1rem;
+}
+
+.col{
+    align-content: center;
+}
+#innerContainer{
+    margin:0;
+    padding-right:2rem;
+    padding-left: 2rem;
+}
