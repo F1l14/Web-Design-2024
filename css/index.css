@@ -128,20 +128,17 @@ html,body{
 }
 
 
+#user{
+  /* background-color: aqua; */
 
-#fullname{
-  background-color: yellow;
+  display:inline-flex;
   list-style-type: none;
-  font-weight: bold;
-  text-transform: uppercase;
-  width: max-content;
-  padding:1rem;
-  margin:1rem;
+  
+  margin: 0;
+  padding: 1rem;
+
 }
-#fullname li{
-  display: inline;
-  background-color: red;
-}
+
 #user{
   background-color: white;
   padding-right: 1rem;
@@ -170,12 +167,10 @@ html,body{
 }
 
 #account{
-  position: relative;
+  display: relative;
   background-color: green;
-
-  float: right;
+  max-width: max-content;
 }
-
 
 
 
