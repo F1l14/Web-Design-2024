@@ -17,7 +17,7 @@
   <!-- icon -->
   <link rel="icon" type="image/svg+xml" href="icons/websiteIcon.svg ">
 
-  <?php include "header.html";
+  <?php include "headerIndex.html";
         include "./php/index/isConnected.php";
   ?>
 

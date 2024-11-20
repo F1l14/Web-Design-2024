@@ -21,7 +21,7 @@ updateActivity();
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- icon -->
     <link rel="icon" type="image/svg+xml" href="/Web-Design-2024/icons/websiteIcon.svg ">
-    <?php include $_SERVER['DOCUMENT_ROOT'] . '/Web-Design-2024/header2.html' ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/Web-Design-2024/headerHome.html' ?>
 </head>
 
 <body>
