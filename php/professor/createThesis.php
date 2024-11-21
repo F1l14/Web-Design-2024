@@ -47,33 +47,42 @@ updateActivity();
                     </div>
                     <div class="modal-body">
                         <div class="container-fluid">
-                            <form action="submit">
+                            <form id="createThesisForm" action="submit" method="POST">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="title">Τίτλος</label>
-                                        <textarea class="darkInput " id="title" rows="5" cols="20"></textarea>
+                                    <div class="col-lg-6">
+                                        <label for="title" class="form-label">Τίτλος</label>
+                                        <textarea class="form-control" id="title" rows="5" cols="20"></textarea>
                                     </div>
 
-                                    <div id="descCol" class="col-md-4 ms-auto">
-                                        <label for="description" >Σύνοψη</label>
-                                        <textarea class="darkInput" id="description" rows="10" cols="5"></textarea>
+                                    <div id="descCol" class="col-lg-6">
+                                        <label for="description" class="form-label">Σύνοψη</label>
+                                        <textarea class="form-control" id="description" rows="10" cols="5"></textarea>
                                     </div>
 
 
                                 </div>
 
-                                <div class="col-md-8">
+                                <div class="col-lg-12" id="fileInput">
                                     <label for="formFileSm" class="form-label">Αναλυτική Περιγραφή</label>
-                                    <input class="form-control form-control-sm" id="formFileSm" type="file">
+                                    <div class="input-group">
+                                        <input class="form-control " id="formFileSm" type="file">
+                                        <button class="btn btn-outline-secondary" type="button" id="removeFile">
+                                            <img  src="/Web-Design-2024/icons/x.svg" />
+                                        </button>
+
+                                    </div>
+
                                 </div>
 
-                            </form>
+
                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Κλείσιμο</button>
+                            <button type="submit" class="btn btn-primary">Αποθήκευση</button>
+                        </div>
+                        </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Κλείσιμο</button>
-                        <button type="button" class="btn btn-primary">Αποθήκευση</button>
-                    </div>
+
                 </div>
 
             </div>
@@ -94,4 +103,13 @@ updateActivity();
 
 </html>
 
-<script src="/Web-Design-2024/js/professor/createThesis.js" defer></script>
+<script src="/Web-Design-2024/js/professor/insertThesis.js" defer></script>
+<script src="/Web-Design-2024/js/professor/createThesisHandler.js" defer></script>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        var modalElement = document.getElementById("createModal");
+        var modal = new bootstrap.Modal(modalElement);
+        modal.show();
+    });
+</script>
