@@ -47,16 +47,16 @@ updateActivity();
                     </div>
                     <div class="modal-body">
                         <div class="container-fluid">
-                            <form id="createThesisForm" action="submit" method="POST">
+                            <form id="createThesisForm" enctype="multipart/form-data" action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/uploadThesis.php'); ?>" method="POST">
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <label for="title" class="form-label">Τίτλος</label>
-                                        <textarea class="form-control" id="title" rows="5" cols="20"></textarea>
+                                        <textarea class="form-control" name="title" id="title" rows="5" cols="20"></textarea>
                                     </div>
 
                                     <div id="descCol" class="col-lg-6">
                                         <label for="description" class="form-label">Σύνοψη</label>
-                                        <textarea class="form-control" id="description" rows="10" cols="5"></textarea>
+                                        <textarea class="form-control" name="description" id="description" rows="10" cols="5"></textarea>
                                     </div>
 
 
@@ -65,7 +65,7 @@ updateActivity();
                                 <div class="col-lg-12" id="fileInput">
                                     <label for="formFileSm" class="form-label">Αναλυτική Περιγραφή</label>
                                     <div class="input-group">
-                                        <input class="form-control " id="formFileSm" type="file" accept=".pdf,.doc,.docx,.odt">
+                                        <input class="form-control " name="thesisFile" id="formFileSm" type="file" accept=".pdf,.doc,.docx,.odt">
                                         <button class="btn btn-outline-secondary" type="button" id="removeFile">
                                             <img  src="/Web-Design-2024/icons/x.svg" />
                                         </button>
