@@ -3,7 +3,11 @@ BackEnd
 -login.php
     -calendar search
     
-   
+-insertUsers
+    -trigger for username from email
+    -add fields to database
+    -split json to students and professors
+        -insert students, professors
     
 -settings on header
 -url
