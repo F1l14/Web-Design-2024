@@ -65,7 +65,7 @@ updateActivity();
                                 <div class="col-lg-12" id="fileInput">
                                     <label for="formFileSm" class="form-label">Αναλυτική Περιγραφή</label>
                                     <div class="input-group">
-                                        <input class="form-control " id="formFileSm" type="file">
+                                        <input class="form-control " id="formFileSm" type="file" accept=".pdf,.doc,.docx,.odt">
                                         <button class="btn btn-outline-secondary" type="button" id="removeFile">
                                             <img  src="/Web-Design-2024/icons/x.svg" />
                                         </button>

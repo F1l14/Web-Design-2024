@@ -35,10 +35,21 @@ function resetModal(){
 async function save(event){
     // prevent default "submit redirection"
     event.preventDefault();
-
+    // $=end of a string
+    // i= case sensitive
+    let filePattern= /(\.pdf || \.doc || \.docx || \.odt)$/i;
     if(requiredText(title) && requiredText(description) && requiredFile(file)){
         //=======pass to ajax here=============
-        alert("all ok");
+        // filesize in bytes converting to mb with 2 rounding points
+        if((file.files[0].size/1024/1024).toFixed(2)>4) {
+            alert("File too Large");
+            file.value = "";
+        }else if(!filePattern.exec(file.files[0].name)){
+            alert("Wrong file type");
+            file.value = "";
+        }else{
+            alert("all ok");
+        }
     }
 }
 
