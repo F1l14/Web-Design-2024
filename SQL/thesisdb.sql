@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 18, 2024 at 04:50 PM
+-- Generation Time: Nov 22, 2024 at 05:33 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -44,10 +44,18 @@ CREATE TABLE `diplomatiki` (
   `id` int(7) NOT NULL,
   `title` text NOT NULL,
   `description` text NOT NULL,
-  `student` varchar(30) NOT NULL,
+  `student` varchar(30) DEFAULT NULL,
   `url` text DEFAULT NULL,
-  `status` enum('active','processing','closed','cancelled') NOT NULL DEFAULT 'active'
+  `status` enum('energi','epeksergasia','peratomeni','akiromeni','anathesi','diathesimi') NOT NULL DEFAULT 'diathesimi',
+  `filename` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `diplomatiki`
+--
+
+INSERT INTO `diplomatiki` (`id`, `title`, `description`, `student`, `url`, `status`, `filename`) VALUES
+(5, 'asdff', 'asdfa', NULL, NULL, 'diathesimi', 'Diplomatiki Website.pdf');
 
 -- --------------------------------------------------------
 
@@ -156,7 +164,7 @@ INSERT INTO `users` (`username`, `password`, `am`, `email`, `firstname`, `lastna
 ('up0000007', '$2y$10$XDAaaSAWQY7T3wFQu7ydq.o3/QKSzLVCz3r70y1hG3LTChdKgLa1.', 7, 'up0000007@ac.upatras.gr', 'Ευάγγελος', 'Παπακωνσταντίνου', 'Αλέξανδρος', 2147483647, 2109777777, 'professor'),
 ('up0000008', '$2y$10$CLjHf1thkRFNeY1zYvtzk.tHnwvvr3TLTx.a7kxPTqJqih8o0W97S', 8, 'up0000008@ac.upatras.gr', 'Κωνσταντίνος', 'Αβραάμ', 'Αντώνιος', 2147483647, 2109888888, 'professor'),
 ('up0000009', '$2y$10$H5cRAKkZ4OdmLyEHW3msDO8Z8A0Cv6N5gYl8U0GXHHbZIsiYzimu2', 9, 'up0000009@ac.upatras.gr', 'Ανδρέας', 'Κυριακίδης', 'Στέφανος', 2147483647, 2109999999, 'professor'),
-('up0000010', '$2y$10$vnytznuiiAUcD1ig0bSFE.wPxb9Wz460eGKb0DxlmtynMVzYcfoeC', 10, 'up0000010@ac.upatras.gr', 'Νικόλαος', 'Κωσταρίδης', 'Γεώργιος', 2147483647, 2101234567, 'grammateia'),
+('up0000010', '789', 10, 'up0000010@ac.upatras.gr', 'Νικόλαος', 'Κωσταρίδης', 'Γεώργιος', 2147483647, 2101234567, 'grammateia'),
 ('up0000011', '456', 11, 'up0000011@ac.upatras.gr', 'Θεόφιλος', 'Κυριακίδης', 'Χρήστος', 2147483647, 2109112345, 'student'),
 ('up0000012', '$2y$10$utff.mWuz3UXq2hdUsCbj.YHE7Chv7wPUEsdMTMWWVi7osECUq/d.', 12, 'up0000012@ac.upatras.gr', 'Αντώνιος', 'Παπαθεοδωρίδης', 'Δημήτρης', 2147483647, 2109212345, 'student'),
 ('up0000013', '$2y$10$RP9B7UQZe1A4BT2b5gAqS.4Vf5XpOtQGOiXXotI1yX9/20TJ6ltTe', 13, 'up0000013@ac.upatras.gr', 'Γεώργιος', 'Αδαμίδης', 'Παναγιώτης', 2147483647, 2109312345, 'student'),
@@ -189,6 +197,13 @@ CREATE TABLE `user_tokens` (
   `user` varchar(30) NOT NULL,
   `expiration_date` datetime NOT NULL DEFAULT (current_timestamp() + interval 1 hour)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_tokens`
+--
+
+INSERT INTO `user_tokens` (`token`, `user`, `expiration_date`) VALUES
+('81c929ed256c141d0c5142d08781e8e0e006e5cfbe39fbe9eb8509df03dbf280', 'up0000001', '2024-11-22 19:23:18');
 
 --
 -- Indexes for dumped tables
@@ -270,7 +285,7 @@ ALTER TABLE `user_tokens`
 -- AUTO_INCREMENT for table `diplomatiki`
 --
 ALTER TABLE `diplomatiki`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 DELIMITER $$
 --
