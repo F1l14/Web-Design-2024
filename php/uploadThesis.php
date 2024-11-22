@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $resp = new stdClass();
     $resp->state = "";
     
-    
+    $user = json_decode($_COOKIE["user"]);
 
     if ($_FILES['thesisFile']['error'] === UPLOAD_ERR_OK) {
         move_uploaded_file($tempFileName, $_SERVER['DOCUMENT_ROOT']."Web-Design-2024/Data/ThesisDescriptions/" . $fileName);
@@ -25,9 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
     try{
         $stmt = $conn->prepare(
-            "INSERT INTO diplomatiki(title, description, filename) VALUES (?,?,?)"
+            "INSERT INTO diplomatiki(title, description, professor, filename) VALUES (?, ?,?,?)"
         );
-        $stmt->bind_param("sss", $title, $description, $fileName);
+        $stmt->bind_param("ssss", $title, $description, $user->username, $fileName);
         $stmt->execute();
         
         $resp->state= "ok";
