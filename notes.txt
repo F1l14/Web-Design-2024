@@ -5,7 +5,7 @@ BackEnd
     
    
     
-
+-settings on header
 -url
     hide full path
 
@@ -47,5 +47,7 @@ FrontEnd
 -professor
     -createThesis.php / createThesisHandler.js 
         -fixed input position and styling
-        -when user inputs text and saves borders change to green, if input is empty borders change to red
-        -when user uploads file, delete file button appears. if delete file button pressed removes file and itself.
+        -create
+            -when user inputs text and saves borders change to green, if input is empty borders change to red
+            -when user uploads file, delete file button appears. if delete file button pressed removes file and itself.
+            -limit file size and type
