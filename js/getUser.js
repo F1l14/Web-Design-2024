@@ -16,7 +16,7 @@ async function getUser() {
 
         .then(data => {
             if (data.status == "success") {
-                user.innerHTML = `${data.firstname} ${data.lastname}`;
+                user.innerHTML = `${data.username} | ${data.firstname} ${data.lastname}`;
             } else {
                 throw new Error("Error: While fetching Name");
             }

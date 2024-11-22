@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (isset($_COOKIE['token'])) {
         $token = $_COOKIE['token'];
         $stmt = $conn->prepare(
-            "SELECT firstname, lastname 
+            "SELECT username, firstname, lastname 
             FROM users INNER JOIN user_tokens
             ON users.username = user_tokens.user 
             WHERE token = ?"
@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $row = $result->fetch_assoc();
             echo json_encode([
                 "status" => "success",
+                "username" => $row['username'],
                 "firstname" => $row['firstname'],
                 "lastname" => $row['lastname']
             ]);
