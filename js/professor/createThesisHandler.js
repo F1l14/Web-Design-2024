@@ -48,7 +48,7 @@ async function save(event){
             alert("Wrong file type");
             file.value = "";
         }else{
-            alert("all ok");
+            uploadThesis(event);
         }
     }
 }
@@ -72,4 +72,38 @@ function requiredFile(element){
         element.style.border = "3px solid #90ff6e";
         return true;
     }
+}
+
+async function uploadThesis(event){
+    // event.preventDefault();
+    var data = new FormData(event.target);
+
+    
+
+    fetch(event.target.action, {
+        method: "POST",
+        body: data,
+        //Accepting json response from backend
+        headers: {'Accept': 'application/json'}
+    })
+
+    .then(response => 
+    {
+        if(!response.ok){
+            throw new Error(`HTTP error! Status: ${response.status} ${response.statusText}`);
+        }
+        return response.json();
+    })
+
+    .then(data => {
+
+        console.log(`temp: ${data.temp}`);
+        console.log(`name: ${data.name}`);
+    
+    })
+
+    .catch(error => {
+        console.error("Error Occured:", error);
+    })
+    ;
 }
