@@ -97,8 +97,7 @@ async function uploadThesis(event){
 
     .then(data => {
 
-        console.log(`temp: ${data.temp}`);
-        console.log(`name: ${data.name}`);
+        console.log(`state: ${data.state}`);
     
     })
 

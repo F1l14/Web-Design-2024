@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_FILES['thesisFile']['error'] === UPLOAD_ERR_OK) {
         move_uploaded_file($tempFileName, $_SERVER['DOCUMENT_ROOT']."Web-Design-2024/Data/ThesisDescriptions/" . $fileName);
     }else{
-        $resp->temp = $_FILES['thesisFile']['error'];
+        $resp->state = $_FILES['thesisFile']['error'];
         echo json_encode("Upload Error:" .$resp);
     }
    
