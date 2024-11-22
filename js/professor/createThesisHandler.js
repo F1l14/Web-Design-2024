@@ -21,6 +21,8 @@ removeFile.addEventListener("click", function(){
 const modal = document.getElementById("createModal");
 modal.addEventListener("hidden.bs.modal", resetModal);
 
+const Modal = new bootstrap.Modal(modal);
+
 
 
 
@@ -29,6 +31,8 @@ modal.addEventListener("hidden.bs.modal", resetModal);
 function resetModal(){
     form.reset();
     title.style.border = "";
+    description.style.border= "";
+    file.style.border = "";
 }
 
 
@@ -49,6 +53,9 @@ async function save(event){
             file.value = "";
         }else{
             uploadThesis(event);
+            
+            Modal.hide();
+            resetModal();
         }
     }
 }
