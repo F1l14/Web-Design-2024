@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 22, 2024 at 05:33 PM
+-- Generation Time: Nov 23, 2024 at 12:11 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -44,6 +44,7 @@ CREATE TABLE `diplomatiki` (
   `id` int(7) NOT NULL,
   `title` text NOT NULL,
   `description` text NOT NULL,
+  `professor` varchar(30) DEFAULT NULL,
   `student` varchar(30) DEFAULT NULL,
   `url` text DEFAULT NULL,
   `status` enum('energi','epeksergasia','peratomeni','akiromeni','anathesi','diathesimi') NOT NULL DEFAULT 'diathesimi',
@@ -54,8 +55,23 @@ CREATE TABLE `diplomatiki` (
 -- Dumping data for table `diplomatiki`
 --
 
-INSERT INTO `diplomatiki` (`id`, `title`, `description`, `student`, `url`, `status`, `filename`) VALUES
-(5, 'asdff', 'asdfa', NULL, NULL, 'diathesimi', 'Diplomatiki Website.pdf');
+INSERT INTO `diplomatiki` (`id`, `title`, `description`, `professor`, `student`, `url`, `status`, `filename`) VALUES
+(31, 'dfadsf', 'fadsfadsf', 'up0000001', NULL, NULL, 'diathesimi', 'Diplomatiki Website.pdf'),
+(32, 'fadsfadsf', 'fadsfdasf', 'up0000001', NULL, NULL, 'diathesimi', 'Diplomatiki Website.pdf'),
+(33, 'fdasfads', 'fdsafdsf', 'up0000001', NULL, NULL, 'diathesimi', 'Diplomatiki Website.pdf'),
+(34, 'fadsfads', 'fdsfasdfasf', 'up0000001', NULL, NULL, 'diathesimi', 'Diplomatiki Website.pdf'),
+(35, 'fdasfsa', 'fadsfdasf', 'up0000001', NULL, NULL, 'diathesimi', 'Diplomatiki Website.pdf'),
+(36, 'fdasfsa', 'fadsfdasf', 'up0000001', NULL, NULL, 'diathesimi', 'Diplomatiki Website.pdf'),
+(37, 'dasfadsf', 'fadsfsdf', 'up0000001', NULL, NULL, 'diathesimi', 'Diplomatiki Website.pdf'),
+(38, 'fadsfadsf', 'dasfasfdasf', 'up0000001', NULL, NULL, 'diathesimi', 'Diplomatiki Website.pdf'),
+(39, 'gfdsg', 'gsfdg', 'up0000001', NULL, NULL, 'diathesimi', 'Diplomatiki Website.pdf'),
+(40, 'f', 'f', 'up0000001', NULL, NULL, 'diathesimi', 'Diplomatiki Website.pdf'),
+(41, 'fadsfads', 'fadsfadsf', 'up0000001', NULL, NULL, 'diathesimi', 'Diplomatiki Website.pdf'),
+(42, 'fdsafa', 'dasfd', 'up0000001', NULL, NULL, 'diathesimi', 'Diplomatiki Website.pdf'),
+(43, 'fadsfads', 'fadsfasdf', 'up0000001', NULL, NULL, 'diathesimi', 'Diplomatiki Website.pdf'),
+(44, 'dfadsf', 'dsafads', 'up0000001', NULL, NULL, 'diathesimi', 'Diplomatiki Website.pdf'),
+(45, 'fddads', 'fdasf', 'up0000001', NULL, NULL, 'diathesimi', 'Diplomatiki Website.pdf'),
+(46, 'adsf', 'fadsf', 'up0000001', NULL, NULL, 'diathesimi', 'Diplomatiki Website.pdf');
 
 -- --------------------------------------------------------
 
@@ -119,6 +135,13 @@ CREATE TABLE `professor` (
   `tmhma` varchar(255) NOT NULL,
   `status` enum('available','unavailable') NOT NULL DEFAULT 'available'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `professor`
+--
+
+INSERT INTO `professor` (`username`, `tmhma`, `status`) VALUES
+('up0000001', 'CEID', 'available');
 
 -- --------------------------------------------------------
 
@@ -203,7 +226,7 @@ CREATE TABLE `user_tokens` (
 --
 
 INSERT INTO `user_tokens` (`token`, `user`, `expiration_date`) VALUES
-('81c929ed256c141d0c5142d08781e8e0e006e5cfbe39fbe9eb8509df03dbf280', 'up0000001', '2024-11-22 19:23:18');
+('700f5ebde0549a09d7b27c6acb7aa3012b2e36f39abbe488a2590a7640bf316d', 'up0000001', '2024-11-23 00:46:53');
 
 --
 -- Indexes for dumped tables
@@ -220,7 +243,8 @@ ALTER TABLE `address`
 --
 ALTER TABLE `diplomatiki`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_diplomatiki_student` (`student`);
+  ADD KEY `fk_diplomatiki_student` (`student`),
+  ADD KEY `fk_professor_diplomatiki` (`professor`);
 
 --
 -- Indexes for table `diplomatiki_app`
@@ -285,7 +309,17 @@ ALTER TABLE `user_tokens`
 -- AUTO_INCREMENT for table `diplomatiki`
 --
 ALTER TABLE `diplomatiki`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `diplomatiki`
+--
+ALTER TABLE `diplomatiki`
+  ADD CONSTRAINT `fk_professor_diplomatiki` FOREIGN KEY (`professor`) REFERENCES `professor` (`username`);
 
 DELIMITER $$
 --
