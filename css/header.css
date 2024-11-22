@@ -1,3 +1,6 @@
+
+
+
 .header {
     height: 14%;
     position: sticky;
@@ -46,61 +49,58 @@
 
 }
 
-#accountCircleHeader {
-    /* margin-right: 2rem; */
-    height: 5rem;
-    width: auto;
-    transition: height 0.3s;
-}
 
-#accountCircleHeader:hover {
-    height: 5.6rem;
-    cursor: pointer;
-
-}
-
-#accountCircleHeader:active {
-    text-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-    transform: translateY(2px);
-}
 
 #account {
     display: relative;
-    background-color: green;
+    /* background-color: green; */
     max-width: max-content;
 }
 
 
 
 #userHeader {
-    padding-right: 5rem;
+    padding-right: 2rem;
 }
 
 #dropdown-menu li a {
     background-color: #ffffff;
-    /* Light gray */
 }
 
-/* Change background color on hover */
-#dropdown-menu li a:hover {
-    background-color: #007bff;
-    /* Bootstrap's primary color */
+
+#accountButton{
+    outline:none;
+    border: none;
+    /* background-color: yellow; */
+    margin:0;
+}
+
+#circle{
+    height: 4rem;
+    transition: height 0.1s ease-in;
+}
+#circle:hover{
+    height:4.2rem;
+}
+#circle:active{
+    filter: drop-shadow(0px 3px 2px rgb(0 0 0 / 0.4));
+}
+
+#settings:hover {
+    background-color: hsl(211, 100%, 50%);
     color: white;
-    /* Optional: change text color */
+}
+#settings:active{
+    background-color: hsl(211, 100%, 40%);
 }
 
-#dropdown-menu li #logout:hover {
-    background-color: #ff0000;
-    /* Bootstrap's primary color */
+#logout:hover {
+    background-color: hsl(0, 100%, 50%);
     color: white;
-    /* Optional: change text color */
+}
+
+#logout:active{
+    background-color: hsl(0, 100%, 40%);
 }
 
 
-/* Change background color for active state */
-#dropdown-menu li a:active {
-    background-color: #28a745;
-    /* Bootstrap's success color */
-    color: white;
-    /* Optional: change text color */
-}
