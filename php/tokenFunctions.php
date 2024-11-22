@@ -105,6 +105,24 @@ function updateActivity(){
         echo "Error: Cookie has Expired";
         logout();
     }
+
+    if (isset($_COOKIE['user'])) {
+        $user = $_COOKIE['user'];
+        $expire_time=time()+3600;
+
+        setcookie("user", $user, [
+                        'expires' => $expire_time,
+                        'path' => "/",
+                        //only over http
+                        'secure' => true,
+                        //javascript cannot access the cookie
+                        'httponly' => true,
+                        'samesite' => 'Strict'
+                    ]);
+    }else{
+        echo "Error: Cookie has Expired";
+        logout();
+    }
 }
 
 function roleProtected($role): void{
@@ -127,6 +145,14 @@ function logout(): void{
     
         // Clear the cookie
         setcookie("token", "", [
+            'expires' => time() - 3600,
+            'path' => "/",
+            'secure' => true,
+            'httponly' => true,
+            'samesite' => 'Strict'
+        ]);
+
+        setcookie("user", "", [
             'expires' => time() - 3600,
             'path' => "/",
             'secure' => true,

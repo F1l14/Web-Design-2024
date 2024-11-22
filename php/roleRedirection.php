@@ -1,12 +1,17 @@
 <?php
-require("tokenFunctions.php");
-
+require_once("tokenFunctions.php");
+include_once("initUserCookie.php");
 if (isset($_POST['logout'])) {
     echo "Button was clicked.";
     logout();
 }
 
 $data = json_decode(validateToken());
+
+if(!isset($_COOKIE["user"])){
+    initUserCookie();
+}
+
 
 if ($data->response !== 'valid') {
     echo "invalid HERE ";
