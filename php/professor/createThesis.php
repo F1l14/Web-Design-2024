@@ -105,11 +105,3 @@ updateActivity();
 
 <script src="/Web-Design-2024/js/professor/insertThesis.js" defer></script>
 <script src="/Web-Design-2024/js/professor/createThesisHandler.js" defer></script>
-
-<script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", function() {
-        var modalElement = document.getElementById("createModal");
-        var modal = new bootstrap.Modal(modalElement);
-        modal.show();
-    });
-</script>
