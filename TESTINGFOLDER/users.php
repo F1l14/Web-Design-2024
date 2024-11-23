@@ -1,4 +1,5 @@
 <?php
+include_once "../php/dbconn.php";
 $usersFIle = file_get_contents("../Data/modifiedUsers.json");
 // associative array
 $data = json_decode(($usersFIle), true);
@@ -16,14 +17,19 @@ foreach ($data as $category => $items) {
 
 function insertProfessor($profs){
     foreach($profs as $current){
-        echo $current["username"];
+        
+        $insertUser = $conn->prepare("INSERT INTO users(username, password, am , email, firtname, lastname, patrwnumo, kinito, stathero) values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $insertAddress= $conn->prepare("");
+        $insertProfessor= $conn->prepare("");
     }
     echo "<br>";
 }
 
 function insertStudents($students){
     foreach($students as $current){
-        echo $current["username"];
+        $insertUser= $conn->prepare("");
+        $insertAddress= $conn->prepare("");
+        $insertProfessor= $conn->prepare("");
     }
     echo "<br>";
 }

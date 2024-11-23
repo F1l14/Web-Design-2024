@@ -10,7 +10,7 @@
       "patrwnumo": "Γιώργος",
       "kinito": "6901234567",
       "stathero": "2109111111",
-      "role": "Professor",
+      
       "topic": "Artificial Intelligence",
       "department": "Computer Science",
       "university": "University of Patras",
@@ -29,7 +29,7 @@
       "patrwnumo": "Αλέξανδρος",
       "kinito": "6902234567",
       "stathero": "2109222222",
-      "role": "Professor",
+      
       "topic": "Artificial Intelligence",
       "department": "Computer Science",
       "university": "University of Patras",
@@ -48,7 +48,7 @@
       "patrwnumo": "Χρήστος",
       "kinito": "6903234567",
       "stathero": "2109333333",
-      "role": "Professor",
+      
       "topic": "Artificial Intelligence",
       "department": "Computer Science",
       "university": "University of Patras",
@@ -67,7 +67,7 @@
       "patrwnumo": "Σταύρος",
       "kinito": "6904234567",
       "stathero": "2109444444",
-      "role": "Professor",
+      
       "topic": "Artificial Intelligence",
       "department": "Computer Science",
       "university": "University of Patras",
@@ -86,7 +86,7 @@
       "patrwnumo": "Κωνσταντίνος",
       "kinito": "6905234567",
       "stathero": "2109555555",
-      "role": "Professor",
+      
       "topic": "Artificial Intelligence",
       "department": "Computer Science",
       "university": "University of Patras",
@@ -105,7 +105,7 @@
       "patrwnumo": "Πέτρος",
       "kinito": "6906234567",
       "stathero": "2109666666",
-      "role": "Professor",
+      
       "topic": "Artificial Intelligence",
       "department": "Computer Science",
       "university": "University of Patras",
@@ -124,7 +124,7 @@
       "patrwnumo": "Αλέξανδρος",
       "kinito": "6907234567",
       "stathero": "2109777777",
-      "role": "Professor",
+      
       "topic": "Artificial Intelligence",
       "department": "Computer Science",
       "university": "University of Patras",
@@ -143,7 +143,7 @@
       "patrwnumo": "Αντώνιος",
       "kinito": "6908234567",
       "stathero": "2109888888",
-      "role": "Professor",
+      
       "topic": "Artificial Intelligence",
       "department": "Computer Science",
       "university": "University of Patras",
@@ -162,7 +162,7 @@
       "patrwnumo": "Στέφανος",
       "kinito": "6909234567",
       "stathero": "2109999999",
-      "role": "Professor",
+      
       "topic": "Artificial Intelligence",
       "department": "Computer Science",
       "university": "University of Patras",
@@ -183,7 +183,7 @@
       "patrwnumo": "Χρήστος",
       "kinito": "6912234567",
       "stathero": "2109112345",
-      "role": "Student",
+      
       "city": "Patras",
       "street": "Othonos-Amalias",
       "num": "123",
@@ -199,7 +199,7 @@
       "patrwnumo": "Δημήτρης",
       "kinito": "6913234567",
       "stathero": "2109212345",
-      "role": "Student",
+      
       "city": "Patras",
       "street": "Othonos-Amalias",
       "num": "123",
@@ -215,7 +215,7 @@
       "patrwnumo": "Παναγιώτης",
       "kinito": "6914234567",
       "stathero": "2109312345",
-      "role": "Student",
+      
       "city": "Patras",
       "street": "Othonos-Amalias",
       "num": "123",
@@ -231,7 +231,7 @@
       "patrwnumo": "Σωτήρης",
       "kinito": "6915234567",
       "stathero": "2109412345",
-      "role": "Student",
+      
       "city": "Patras",
       "street": "Othonos-Amalias",
       "num": "123",
@@ -247,7 +247,7 @@
       "patrwnumo": "Δημήτρης",
       "kinito": "6916234567",
       "stathero": "2109512345",
-      "role": "Student",
+      
       "city": "Patras",
       "street": "Othonos-Amalias",
       "num": "123",
@@ -263,7 +263,7 @@
       "patrwnumo": "Αριστείδης",
       "kinito": "6917234567",
       "stathero": "2109612345",
-      "role": "Student",
+      
       "city": "Patras",
       "street": "Othonos-Amalias",
       "num": "123",
@@ -279,7 +279,7 @@
       "patrwnumo": "Χρήστος",
       "kinito": "6918234567",
       "stathero": "2109712345",
-      "role": "Student",
+      
       "city": "Patras",
       "street": "Othonos-Amalias",
       "num": "123",
@@ -295,7 +295,7 @@
       "patrwnumo": "Παναγιώτης",
       "kinito": "6919234567",
       "stathero": "2109812345",
-      "role": "Student",
+      
       "city": "Patras",
       "street": "Othonos-Amalias",
       "num": "123",
@@ -311,7 +311,7 @@
       "patrwnumo": "Σπύρος",
       "kinito": "6920234567",
       "stathero": "2109912345",
-      "role": "Student",
+      
       "city": "Patras",
       "street": "Othonos-Amalias",
       "num": "123",
@@ -327,7 +327,7 @@
       "patrwnumo": "Δημήτρης",
       "kinito": "6921234567",
       "stathero": "2109412345",
-      "role": "Student",
+      
       "city": "Patras",
       "street": "Othonos-Amalias",
       "num": "123",
@@ -343,7 +343,7 @@
       "patrwnumo": "Σταύρος",
       "kinito": "6922234567",
       "stathero": "2109512345",
-      "role": "Student",
+      
       "city": "Patras",
       "street": "Othonos-Amalias",
       "num": "123",
@@ -359,7 +359,7 @@
       "patrwnumo": "Γιώργος",
       "kinito": "6923234567",
       "stathero": "2109612345",
-      "role": "Student",
+      
       "city": "Patras",
       "street": "Othonos-Amalias",
       "num": "123",
@@ -375,7 +375,7 @@
       "patrwnumo": "Στέφανος",
       "kinito": "6924234567",
       "stathero": "2109712345",
-      "role": "Student",
+      
       "city": "Patras",
       "street": "Othonos-Amalias",
       "num": "123",
@@ -391,7 +391,7 @@
       "patrwnumo": "Αριστείδης",
       "kinito": "6925234567",
       "stathero": "2109812345",
-      "role": "Student",
+      
       "city": "Patras",
       "street": "Othonos-Amalias",
       "num": "123",
@@ -407,7 +407,7 @@
       "patrwnumo": "Στέφανος",
       "kinito": "6926234567",
       "stathero": "2109912345",
-      "role": "Student",
+      
       "city": "Patras",
       "street": "Othonos-Amalias",
       "num": "123",
@@ -423,7 +423,7 @@
       "patrwnumo": "Δημήτρης",
       "kinito": "6927234567",
       "stathero": "2109912345",
-      "role": "Student",
+      
       "city": "Patras",
       "street": "Othonos-Amalias",
       "num": "123",
@@ -439,7 +439,7 @@
       "patrwnumo": "Αλέξανδρος",
       "kinito": "6928234567",
       "stathero": "2109512345",
-      "role": "Student",
+      
       "city": "Patras",
       "street": "Othonos-Amalias",
       "num": "123",
@@ -455,7 +455,7 @@
       "patrwnumo": "Γεώργιος",
       "kinito": "6929234567",
       "stathero": "2109612345",
-      "role": "Student",
+      
       "city": "Patras",
       "street": "Othonos-Amalias",
       "num": "123",
@@ -471,7 +471,7 @@
       "patrwnumo": "Νικόλαος",
       "kinito": "6930234567",
       "stathero": "2109712345",
-      "role": "Student",
+      
       "city": "Patras",
       "street": "Othonos-Amalias",
       "num": "123",
@@ -487,7 +487,7 @@
       "patrwnumo": "Σπύρος",
       "kinito": "6931234567",
       "stathero": "2109812345",
-      "role": "Student",
+      
       "city": "Patras",
       "street": "Othonos-Amalias",
       "num": "123",
