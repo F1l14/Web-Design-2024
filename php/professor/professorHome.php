@@ -23,8 +23,6 @@ updateActivity();
     <link rel="icon" type="image/svg+xml" href="/Web-Design-2024/icons/websiteIcon.svg ">
     
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/Web-Design-2024/header.html' ?>
-
-    <
 </head>
 
 <body>
