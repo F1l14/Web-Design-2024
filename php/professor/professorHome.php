@@ -26,34 +26,31 @@ updateActivity();
 </head>
 
 <body>
-    <div id="mainContainer" class="container align-content-center ">
-        <div class="buttonWindow box align-content-center">
-            <div id="innerContainer" class="container text-center">
-                <div class="row row-cols-3 ">
-                    <div class="col">
+<div class="d-flex justify-content-center align-items-center vh-100">
+            <div id="innerContainer" class="container">
+                <div class="row">
+                    <div class="col-12 col-md-4 d-flex justify-content-center">
                         <button class="pageButton" onclick="redirect('createThesis.php')">Προβολή/Δημιουργία θεμάτων προς ανάθεση</button>
                     </div>
-                    <div class="col">
+                    <div class="col-12 col-md-4 d-flex justify-content-center">
                         <button class="pageButton" onclick="redirect('assignThesis.php')">Αρχική ανάθεση θέματος σε φοιτητή</button>
                     </div>
-                    <div class="col">
+                    <div class="col-12 col-md-4 d-flex justify-content-center">
                         <button class="pageButton" onclick="redirect('listThesis.php')">Προβολή λίστας διπλωματικών</button>
                     </div>
-                    <div class="col">
+                    <div class="col-12 col-md-4 d-flex justify-content-center">
                         <button class="pageButton" onclick="redirect('invitations.php')">Προβολή προσκλήσεων συμμετοχής σε τριμελή επιτροπή</button>
                     </div>
-                    <div class="col">
+                    <div class="col-12 col-md-4 d-flex justify-content-center">
                         <button class="pageButton" onclick="redirect('stats.php')">Προβολή στατιστικών</button>
                     </div>
-                    <div class="col">
+                    <div class="col-12 col-md-4 d-flex justify-content-center">
                         <button class="pageButton" onclick="redirect('manageThesis.php')">Διαχείριση διπλωματικών εργασιών</button>
                     </div>
                 </div>
 
             </div>
-        </div>
-    </div>
-
+</div>
     <!-- ======================================================================================== -->
     <canvas class="background"></canvas>
 </body>
