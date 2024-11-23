@@ -36,7 +36,13 @@ function insert(title) {
     const table = document.getElementById("thesisTable");
     const row = table.insertRow();
 
+    // const domTitle = document.createElement("p");
+    // titleText = document.createTextNode(title);
+    // domTitle.appendChild(titleText);
+
     titleCell = row.insertCell(0);
+    // titleCell.appendChild(domTitle);
+
     titleCell.textContent = title;
 
     const editIcon = document.createElement("img");
@@ -68,10 +74,50 @@ function insert(title) {
 
 }
 
-function deleteThesis(event) {
+async function deleteThesis(event) {
     const row = event.target.closest("tr");
+    const sib =event.target.closest("td");
+    // 2 cells before delete
+    const title = sib.previousElementSibling.previousElementSibling.innerText;
     if (row) {
-        row.remove();
+    
+
+        const rowTitle = {
+            title: title
+        };
+        console.log(rowTitle);
+        fetch("../../php/deleteThesis.php", {
+            method: "POST",
+            body: JSON.stringify(rowTitle),
+            //Accepting json response from backend
+            headers: {'Content-Type': 'application/json','Accept': 'application/json'}
+        })
+    
+        .then(response => 
+        {
+            if(!response.ok){
+                throw new Error(`HTTP error! Status: ${response.status} ${response.statusText}`);
+            }
+            return response.json();
+        })
+    
+        .then(data => {
+            // console.log(data.loginError);
+            console.log("js: "+data.response);
+            switch(data.response){
+                case "missing":{  row.remove(); alert("Does not Exist"); console.log(data.error); break;}
+                case "valid":{row.remove(); alert("ok"); break;}
+                default: {console.log(data.error); break;}
+            }
+        })
+    
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+
+
+
+        // row.remove();
     }
 }
 
