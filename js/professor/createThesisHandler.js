@@ -1,3 +1,4 @@
+
 const form = document.getElementById("createThesisForm");
 form.addEventListener("submit", save);
 const title = document.getElementById("title");
@@ -36,6 +37,13 @@ function resetModal(){
 }
 
 
+function deleteAllThesis(){
+    const table = document.getElementById("thesisTable");
+    table.innerHTML = "";
+    return true;
+}
+
+
 async function save(event){
     // prevent default "submit redirection"
     event.preventDefault();
@@ -54,8 +62,13 @@ async function save(event){
         }else{
             uploadThesis(event);
             
+
             Modal.hide();
             resetModal();
+            if(deleteAllThesis()){
+                loadThesis();
+            }
+            // 
         }
     }
 }

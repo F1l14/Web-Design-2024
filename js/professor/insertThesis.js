@@ -1,9 +1,37 @@
-window.addEventListener("load", insert2());
-function insert2() {
-    insert("Αξιοποίηση σύγχρονων τεχνικών για την παραγωγή βιοϊατρικού κειμένου");
-    insert("asdf");
-    insert("fffff");
+window.addEventListener("load", loadThesis());
+
+
+ async function loadThesis() {
+    fetch("../loadThesis.php", {
+        method: "POST",
+        //Accepting json response from backend
+        headers: {'Accept': 'application/json'}
+    })
+
+    .then(response => 
+    {
+        if(!response.ok){
+            throw new Error(`HTTP error! Status: ${response.status} ${response.statusText}`);
+        }
+        return response.json();
+    })
+
+    .then(data => {
+
+        Object.entries(data).forEach(([key, value]) => {
+            
+            insert(value.title)
+            // console.log(value.title);
+        });
+    })
+
+    .catch(error => {
+        console.error("Error Occured:", error);
+    })
+    ;
 }
+
+
 function insert(title) {
     const table = document.getElementById("thesisTable");
     const row = table.insertRow();
@@ -46,5 +74,7 @@ function deleteThesis(event) {
         row.remove();
     }
 }
+
+
 
 

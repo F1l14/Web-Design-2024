@@ -104,4 +104,4 @@ updateActivity();
 </html>
 
 <script src="/Web-Design-2024/js/professor/insertThesis.js" defer></script>
-<script src="/Web-Design-2024/js/professor/createThesisHandler.js" defer></script>
+<script type="module" src="/Web-Design-2024/js/professor/createThesisHandler.js" defer></script>
