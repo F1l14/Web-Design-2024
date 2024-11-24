@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bind_param("s", $user->username);
             $stmt->execute();
             $result = $stmt->get_result();
-        } catch (mysqli_error) {
+        } catch (mysqli) {
             echo json_encode((object)[
                 "error" => "Something went wrong. Please try again later."
             ]);

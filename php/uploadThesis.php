@@ -13,13 +13,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $resp = new stdClass();
     $resp->state = "";
+    $resp->error = "";
     
     $user = json_decode($_COOKIE["user"]);
 
     if ($_FILES['thesisFile']['error'] === UPLOAD_ERR_OK) {
-        move_uploaded_file($tempFileName, $_SERVER['DOCUMENT_ROOT']."Web-Design-2024/Data/ThesisDescriptions/" . $fileName);
+       
+        if(! move_uploaded_file($tempFileName, $_SERVER['DOCUMENT_ROOT']."/Web-Design-2024/Data/ThesisDescriptions/" . $fileName)){
+            $resp->error = $tempFileName ."<br>". $_SERVER['DOCUMENT_ROOT']."/Web-Design-2024/Data/ThesisDescriptions/";
+        }
+        
+        
     }else{
-        $resp->state = $_FILES['thesisFile']['error'];
+        // $resp->state = $_FILES['thesisFile']['error'];
+        $resp->state = "File upload Error";
         echo json_encode("Upload Error:" .$resp);
     }
    
@@ -32,10 +39,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         $resp->state= "ok";
         echo json_encode($resp);
-        return;
-    }catch(mysqli_error){
+
+    }catch(mysqli){
         $resp->state = "SQL Error: on Thesis Insert";
         echo json_encode($resp);
-        return;
+
     }
 }

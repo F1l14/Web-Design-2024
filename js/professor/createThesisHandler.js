@@ -98,7 +98,7 @@ async function uploadThesis(event){
     // event.preventDefault();
     var data = new FormData(event.target);
 
-    
+    console.log(data);
 
     fetch(event.target.action, {
         method: "POST",
@@ -109,10 +109,19 @@ async function uploadThesis(event){
 
     .then(response => 
     {
-        if(!response.ok){
-            throw new Error(`HTTP error! Status: ${response.status} ${response.statusText}`);
-        }
-        return response.json();
+        // if(!response.ok){
+        //     throw new Error(`HTTP error! Status: ${response.status} ${response.statusText}`);
+        // }
+        // return response.json();
+        return response.text().then(text => {
+            console.log("Raw Response:", text);
+            try {
+                return JSON.parse(text); // Try parsing the JSON
+            } catch (error) {
+                console.error("JSON Parsing Error:", error);
+                throw error; // Rethrow the error to be caught below
+            }
+        });
     })
 
     .then(data => {

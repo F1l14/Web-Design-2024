@@ -1,4 +1,4 @@
-window.addEventListener("load", loadThesis());
+window.addEventListener("load", loadThesis);
 
 
  async function loadThesis() {

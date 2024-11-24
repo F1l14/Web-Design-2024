@@ -32,6 +32,7 @@ updateActivity();
                 data-bs-target="#createModal">
                 Δημιουργία
             </button>
+            <input class="form-control" id="searchThesis" type="text" placeholder="Search...">
             <table id="thesisTable" class="table">
                 <tbody>
                 </tbody>
@@ -105,3 +106,24 @@ updateActivity();
 
 <script src="/Web-Design-2024/js/professor/insertThesis.js" defer></script>
 <script type="module" src="/Web-Design-2024/js/professor/createThesisHandler.js" defer></script>
+
+
+
+<!-- <script>
+    const search = document.getElementById("searchThesis");
+    const rows = document.querySelectorAll("#thesisTable tr");
+
+    search.addEventListener("keyup", function(){
+        let value = search.value.toLowerCase();
+            
+            rows.forEach(function(row){
+
+                if(row.textContent.toLowerCase().indexOf(value) > -1){
+                    row.style.display = "";
+                }else{
+                    row.style.display = "none";
+                }
+                
+            });
+    });
+</script> -->
