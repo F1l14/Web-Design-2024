@@ -23,6 +23,8 @@ window.addEventListener("load", loadThesis);
             insert(value.title)
             // console.log(value.title);
         });
+        const loadedEvent = new CustomEvent("tableLoaded");
+        window.dispatchEvent(loadedEvent);
     })
 
     .catch(error => {

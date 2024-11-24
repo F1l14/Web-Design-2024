@@ -67,6 +67,7 @@ async function save(event){
             resetModal();
             if(deleteAllThesis()){
                 loadThesis();
+                
             }
             // 
         }
