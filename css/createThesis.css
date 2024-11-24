@@ -3,11 +3,15 @@
     width: 90%;
     padding: 0;
     margin: 0;
-    display: flexbox
+    display: flexbox;
+    overflow-y: auto;
+    
+    
 }
 
 #mainContainer {
     display: flex;
+    
 }
 
 
@@ -59,6 +63,9 @@
     float: right;
     margin: 1rem 1rem 1rem 1rem;
 }
+
+
+
 
 #title {
     /* height: 10vh;
