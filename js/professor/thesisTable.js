@@ -1,3 +1,4 @@
+
 window.addEventListener("load", loadThesis);
 
 
@@ -62,7 +63,10 @@ function insert(title, id) {
     const editButton = document.createElement("button");
     editButton.appendChild(editIcon)
     editButton.className = "edit optionButton";
-    editButton.addEventListener("click", () => alert("CLICKED EDIT"));
+    // editButton.addEventListener("click", () => alert("CLICKED EDIT"));
+    editButton.setAttribute("data-bs-toggle","modal");
+    editButton.setAttribute("data-bs-target","#editModal");
+    editButton.addEventListener("click", window.createEditModal);
 
     editCell = row.insertCell(1);
     editCell.className = "optionCell";
