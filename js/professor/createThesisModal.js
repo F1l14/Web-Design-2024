@@ -63,6 +63,11 @@ async function save(event){
             resetModal();
         }
     }
+    else if (requiredText(title) && requiredText(description)){
+        uploadThesis(event);
+        Modal.hide();
+        resetModal();
+    }
 }
 
 function requiredText(element){
