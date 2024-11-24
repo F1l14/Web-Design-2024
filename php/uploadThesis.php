@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $id = $stmt->get_result()->fetch_assoc()["id"];
 
                 $resp->state = "ok";
-                echo json_encode($resp);
+                // echo json_encode($resp);
             } catch (mysqli) {
                 $resp->state = "SQL Error: on Thesis Insert";
                 echo json_encode($resp);
