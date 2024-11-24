@@ -80,8 +80,10 @@ updateActivity();
                                     </div>
 
                                 </div>
-
-
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Κλείσιμο</button>
+                            <button type="submit" class="btn btn-primary">Αποθήκευση</button>
                         </div>
                     </div>
                 </div>
@@ -104,13 +106,13 @@ updateActivity();
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <label for="editTitle" class="form-label">Τίτλος</label>
-                                        <textarea class="form-control" name="title" id="editTitle" rows="5"
+                                        <textarea class="form-control" name="edit-title" id="editTitle" rows="5"
                                             cols="20"></textarea>
                                     </div>
 
                                     <div id="editDescCol" class="col-lg-6">
                                         <label for="editDescription" class="form-label">Σύνοψη</label>
-                                        <textarea class="form-control" name="description" id="editDescription" rows="10"
+                                        <textarea class="form-control" name="edit-description" id="editDescription" rows="10"
                                             cols="5"></textarea>
                                     </div>
                                 </div>
@@ -118,11 +120,13 @@ updateActivity();
                                 <div class="col-lg-12" id="editFileInput">
                                     <label for="editFormFileSm" class="form-label">Αναλυτική Περιγραφή</label>
                                     <div class="input-group">
-                                        <input class="form-control" name="thesisFile" id="editFormFileSm" type="file"
+                                        <input class="form-control" name="edit-thesisFile" id="editFormFileSm" type="file"
                                             accept=".pdf,.doc,.docx,.odt">
                                         <button class="btn btn-outline-secondary" type="button" id="removeEditFile">
                                             <img src="/Web-Design-2024/icons/x.svg" />
                                         </button>
+                                        <!-- <a href="/Web-Design-2024/Data/ThesisDescriptions/up0000001/110/Diplomatiki Website.pdf"
+                                            id="recentFile" download>test</a> -->
                                     </div>
                                 </div>
                         </div>
