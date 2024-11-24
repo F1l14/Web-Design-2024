@@ -37,11 +37,7 @@ function resetModal(){
 }
 
 
-function deleteAllThesis(){
-    const table = document.getElementById("thesisTable");
-    table.innerHTML = "";
-    return true;
-}
+
 
 
 async function save(event){
@@ -65,11 +61,6 @@ async function save(event){
 
             Modal.hide();
             resetModal();
-            if(deleteAllThesis()){
-                loadThesis();
-                
-            }
-            // 
         }
     }
 }
@@ -99,7 +90,7 @@ async function uploadThesis(event){
     // event.preventDefault();
     var data = new FormData(event.target);
 
-    console.log(data);
+    // console.log(data);
 
     fetch(event.target.action, {
         method: "POST",
@@ -110,12 +101,9 @@ async function uploadThesis(event){
 
     .then(response => 
     {
-        // if(!response.ok){
-        //     throw new Error(`HTTP error! Status: ${response.status} ${response.statusText}`);
-        // }
-        // return response.json();
+        
         return response.text().then(text => {
-            console.log("Raw Response:", text);
+            // console.log("Raw Response:", text);
             try {
                 return JSON.parse(text); // Try parsing the JSON
             } catch (error) {
@@ -127,7 +115,9 @@ async function uploadThesis(event){
 
     .then(data => {
 
-        console.log(`state: ${data.state}`);
+        // console.log(`state: ${data.state}`);
+        deleteAllThesis();
+        loadThesis();
     
     })
 

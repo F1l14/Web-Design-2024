@@ -10,21 +10,30 @@ window.addEventListener("load", loadThesis);
 
     .then(response => 
     {
-        if(!response.ok){
-            throw new Error(`HTTP error! Status: ${response.status} ${response.statusText}`);
-        }
-        return response.json();
+        return response.text().then(text => {
+            // console.log("Raw Response:", text);
+            try {
+                return JSON.parse(text); // Try parsing the JSON
+            } catch (error) {
+                console.error("JSON Parsing Error:", error);
+                throw error; // Rethrow the error to be caught below
+            }
+        });
     })
 
     .then(data => {
-
-        Object.entries(data).forEach(([key, value]) => {
+        if(data.message != "empty") {
+            Object.entries(data.data).forEach(([key, value]) => {
             
-            insert(value.title)
-            // console.log(value.title);
-        });
-        const loadedEvent = new CustomEvent("tableLoaded");
-        window.dispatchEvent(loadedEvent);
+                insert(value.title, value.id);
+                
+            });
+            const loadedEvent = new CustomEvent("tableLoaded");
+            window.dispatchEvent(loadedEvent);
+        }else if(data.message == "sqlError"){
+            console.log("sqlError on insert thesis table");
+        }
+        
     })
 
     .catch(error => {
@@ -34,10 +43,10 @@ window.addEventListener("load", loadThesis);
 }
 
 
-function insert(title) {
+function insert(title, id) {
     const table = document.getElementById("thesisTable");
     const row = table.insertRow();
-
+    row.id = id;
     // const domTitle = document.createElement("p");
     // titleText = document.createTextNode(title);
     // domTitle.appendChild(titleText);
@@ -76,21 +85,28 @@ function insert(title) {
 
 }
 
+
+
+function deleteAllThesis(){
+    const table = document.getElementById("thesisTable");
+    table.innerHTML = "";
+    return true;
+}
+
 async function deleteThesis(event) {
     const row = event.target.closest("tr");
-    const sib =event.target.closest("td");
-    // 2 cells before delete
-    const title = sib.previousElementSibling.previousElementSibling.innerText;
-    if (row) {
     
+    if (row) {
+        
+        const id = row.id;
 
-        const rowTitle = {
-            title: title
+        const rowId = {
+            id: id
         };
-        console.log(rowTitle);
+        
         fetch("../../php/deleteThesis.php", {
             method: "POST",
-            body: JSON.stringify(rowTitle),
+            body: JSON.stringify(rowId),
             //Accepting json response from backend
             headers: {'Content-Type': 'application/json','Accept': 'application/json'}
         })
@@ -105,7 +121,7 @@ async function deleteThesis(event) {
     
         .then(data => {
             // console.log(data.loginError);
-            console.log("js: "+data.response);
+            // console.log("js: "+data.response);
             switch(data.response){
                 case "missing":{  row.remove(); alert("Does not Exist"); console.log(data.error); break;}
                 case "valid":{row.remove(); alert("ok"); break;}
@@ -119,9 +135,12 @@ async function deleteThesis(event) {
 
 
 
-        // row.remove();
+     
     }
 }
+
+
+
 
 
 
