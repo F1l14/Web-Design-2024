@@ -30,7 +30,7 @@ updateActivity();
             <!-- Button trigger modal -->
             <button type="button" id="create" class="btn btn-primary" data-bs-toggle="modal"
                 data-bs-target="#createModal">
-                Δημιουργία
+                Δημιουργία +
             </button>
             <input class="form-control" id="searchThesis" type="text" placeholder="Search...">
             <table id="thesisTable" class="table">
@@ -104,6 +104,6 @@ updateActivity();
 
 </html>
 
-<script src="/Web-Design-2024/js/professor/insertThesis.js" defer></script>
-<script type="module" src="/Web-Design-2024/js/professor/createThesisHandler.js" defer></script>
+<script src="/Web-Design-2024/js/professor/thesisTable.js" defer></script>
+<script type="module" src="/Web-Design-2024/js/professor/createThesisModal.js" defer></script>
 <script src="/Web-Design-2024/js/professor/searchThesis.js"></script>
