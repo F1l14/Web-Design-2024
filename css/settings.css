@@ -1,0 +1,26 @@
+input.form-control {
+    position: relative;
+    
+    width: 20rem;
+    margin: auto;
+    margin-bottom: 1rem;
+}
+
+label.form-control{
+    display: block;
+    margin-left: 2rem;
+   
+}
+
+#testing{
+    display: flexbox;
+    /* background-color: yellow; */
+   background-color: yellow;
+   
+}
+
+#save{
+    width: max-content;
+    margin: auto;
+    margin-bottom: 2rem;
+}
