@@ -103,7 +103,7 @@ async function uploadThesis(event){
     {
         
         return response.text().then(text => {
-            // console.log("Raw Response:", text);
+            //  console.log("Raw Response:", text);
             try {
                 return JSON.parse(text); // Try parsing the JSON
             } catch (error) {
@@ -115,7 +115,6 @@ async function uploadThesis(event){
 
     .then(data => {
 
-        // console.log(`state: ${data.state}`);
         deleteAllThesis();
         loadThesis();
     
