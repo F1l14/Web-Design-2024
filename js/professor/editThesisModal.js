@@ -45,6 +45,7 @@ async function createEditModal(event) {
     let description = document.getElementById("editDescription");
     let filename = document.getElementById("EditFormFileSm");
     let formId = document.getElementById("id");
+    let currentFile = document.getElementById("currentFile");
 
     let thesisId = {
         id: id
@@ -75,6 +76,9 @@ async function createEditModal(event) {
                 title.innerHTML = data.data.title;
                 description.innerHTML = data.data.description;
                 formId.value = id;
+                let filename = data.data.filename;
+                currentFile.innerHTML = filename;
+                currentFile.setAttribute('href', data.filepath + filename);
 
             } else if (data.message == "sqlError") {
                 console.log("sqlError on insert thesis table");

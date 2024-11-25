@@ -121,14 +121,14 @@ updateActivity();
 
                                 <div class="col-lg-12" id="editFileInput">
                                     <label for="editFormFileSm" class="form-label">Αναλυτική Περιγραφή</label>
+                                    <a id="currentFile" target="_blank"></a>
                                     <div class="input-group">
+                                       
                                         <input class="form-control" name="edit-thesisFile" id="editFormFileSm"
                                             type="file" accept=".pdf,.doc,.docx,.odt">
                                         <button class="btn btn-outline-secondary" type="button" id="removeEditFile">
                                             <img src="/Web-Design-2024/icons/x.svg" />
                                         </button>
-                                        <!-- <a href="/Web-Design-2024/Data/ThesisDescriptions/up0000001/110/Diplomatiki Website.pdf"
-                                            id="recentFile" download>test</a> -->
                                     </div>
                                 </div>
                         </div>
