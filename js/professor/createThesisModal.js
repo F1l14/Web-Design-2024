@@ -1,6 +1,6 @@
 
-const form = document.getElementById("createThesisForm");
-form.addEventListener("submit", save);
+const createForm = document.getElementById("createThesisForm");
+createForm.addEventListener("submit", save);
 const title = document.getElementById("title");
 const description = document.getElementById("description")
 const removeFile = document.getElementById("removeFile");
@@ -30,7 +30,7 @@ const Modal = new bootstrap.Modal(modal);
 
 
 function resetModal(){
-    form.reset();
+    createForm.reset();
     title.style.border = "";
     description.style.border= "";
     file.style.border = "";
