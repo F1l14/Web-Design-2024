@@ -22,7 +22,6 @@ updateActivity();
     <!-- icon -->
     <link rel="icon" type="image/svg+xml" href="/Web-Design-2024/icons/websiteIcon.svg">
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/Web-Design-2024/header.html' ?>
-    <script src="/Web-Design-2024/js/professor/createEditModal.js" defer></script>
 </head>
 
 <body>
@@ -80,10 +79,12 @@ updateActivity();
                                     </div>
 
                                 </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Κλείσιμο</button>
-                            <button type="submit" class="btn btn-primary">Αποθήκευση</button>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Κλείσιμο</button>
+                                    <button type="submit" class="btn btn-primary">Αποθήκευση</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -101,10 +102,11 @@ updateActivity();
                     <div class="modal-body">
                         <div class="container-fluid">
                             <form id="editThesisForm" enctype="multipart/form-data"
-                                action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/uploadThesis.php'); ?>"
+                                action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/updateThesis.php'); ?>"
                                 method="POST">
                                 <div class="row">
                                     <div class="col-lg-6">
+                                        <input type="hidden" name="id" id="id">
                                         <label for="editTitle" class="form-label">Τίτλος</label>
                                         <textarea class="form-control" name="edit-title" id="editTitle" rows="5"
                                             cols="20"></textarea>
@@ -112,16 +114,16 @@ updateActivity();
 
                                     <div id="editDescCol" class="col-lg-6">
                                         <label for="editDescription" class="form-label">Σύνοψη</label>
-                                        <textarea class="form-control" name="edit-description" id="editDescription" rows="10"
-                                            cols="5"></textarea>
+                                        <textarea class="form-control" name="edit-description" id="editDescription"
+                                            rows="10" cols="5"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-12" id="editFileInput">
                                     <label for="editFormFileSm" class="form-label">Αναλυτική Περιγραφή</label>
                                     <div class="input-group">
-                                        <input class="form-control" name="edit-thesisFile" id="editFormFileSm" type="file"
-                                            accept=".pdf,.doc,.docx,.odt">
+                                        <input class="form-control" name="edit-thesisFile" id="editFormFileSm"
+                                            type="file" accept=".pdf,.doc,.docx,.odt">
                                         <button class="btn btn-outline-secondary" type="button" id="removeEditFile">
                                             <img src="/Web-Design-2024/icons/x.svg" />
                                         </button>
@@ -156,4 +158,5 @@ updateActivity();
 <script src="/Web-Design-2024/js/professor/thesisTable.js" defer></script>
 
 <script src="/Web-Design-2024/js/professor/createThesisModal.js" defer></script>
+<script src="/Web-Design-2024/js/professor/editThesisModal.js" defer></script>
 <script src="/Web-Design-2024/js/professor/searchThesis.js"></script>
