@@ -1,19 +1,19 @@
-<header id="header" class="justify-content-between header">
-    <div id="websiteTitle">
-        <a title="Homepage" href="https://localhost/Web-Design-2024/">
-            <h1>ΣΔΔΕ</h1>
-            <h3>Σύστημα Διαχείρισης Διπλωματικής Εργασίας</h3>
+<header id="header" class="d-flex justify-content-between align-items-center px-3 py-2 header">
+    <link rel="stylesheet" href="/Web-Design-2024/css/header.css">
+    <div id="websiteTitle" class="d-flex flex-column text-center text-md-start">
+        <a title="Homepage" href="https://localhost/Web-Design-2024/" class="text-decoration-none">
+            <h1 class="mb-0">ΣΔΔΕ</h1>
+            <h3 class="mt-1 fs-6 fs-md-5">Σύστημα Διαχείρισης Διπλωματικής Εργασίας</h3>
         </a>
     </div>
-    <div id="userHeader" class="align-content-center align-text-">
+    <div id="userHeader" class="d-flex align-items-center">
         <div class="dropdown">
             <div id="user"></div>
-            <button id="accountButton" class="btn" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                <img  id="circle" src="/Web-Design-2024/icons/accountCircle.svg" />
+            <button id="accountButton" class="btn" type="button" data-bs-toggle="dropdown" aria="false">
+                <img id="circle" src="/Web-Design-2024/icons/accountCircle.svg" alt="User Icon"/>
             </button>
-            <ul id="dropdown-menu" class="dropdown-menu">
-                <li >
+            <ul id="dropdown-menu" class="dropdown-menu dropdown-menu-end">
+                <li>
                     <a id="settings" class="dropdown-item" href="#">Settings</a>
                 </li>
                 <li>
@@ -24,5 +24,6 @@
                 </li>
             </ul>
         </div>
+    </div>
     <script defer src="/Web-Design-2024/js/getUser.js"></script>
 </header>
