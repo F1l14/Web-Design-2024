@@ -8,15 +8,34 @@ const editTitle = document.getElementById("editTitle");
 const editDescription = document.getElementById("editDescription");
 
 
+const removeEditFile = document.getElementById("removeEditFile");
+const editFile = document.getElementById("editFormFileSm");
+editFile.addEventListener("input", function(){
+    if(editFile.files.length===1){
+        removeEditFile.style.display = "block";
+    }else{
+        removeEditFile.style.display = "none";
+    }
+});
+
+removeEditFile.addEventListener("click", function(){
+    editFile.value="";
+    removeEditFile.style.display = "none";
+})
+
+
+
 function resetEditModal() {
     editForm.reset();
     editTitle.style.border = "";
     editDescription.style.border = "";
+    removeEditFile.style.display = "none";
 }
 
 
 
 async function createEditModal(event) {
+    resetEditModal();
     let row = event.target.closest("tr");
     let id = row.id;
     console.log(id);
