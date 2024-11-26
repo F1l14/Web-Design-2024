@@ -39,7 +39,7 @@ updateActivity();
             </table>
         </div>
         <!-- Modal -->
-        <div class="modal" id="createModal" tabindex="-1" aria-hidden="true">
+        <div class="modal fade" id="createModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -92,7 +92,7 @@ updateActivity();
         </div>
 
 
-        <div class="modal" id="editModal" tabindex="-1" aria-hidden="true">
+        <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
