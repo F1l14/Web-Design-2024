@@ -28,7 +28,7 @@ updateActivity();
 <body>
     <div id="mainContainer" class="container align-items-center justify-content-center">
         <div id="innerContainer" class="container box">
-            <div id="unassignedThesis" class="container">
+            <div id="unassignedThesis">
                 <h3>Προς ανάθεση</h3>
                 <hr>
                 <table id="unassignedTable" class="table">
@@ -41,14 +41,14 @@ updateActivity();
             </div>
 
 
-            <div id="assignedThesis" class="container">
+            <div id="assignedThesis">
                 <h3>Κατοχυρωμένα</h3>
                 <hr>
                 <table id="assignedTable" class="table">
                     <thead>
                         <tr>
-                            <th scope="col" class="text-secondary">Τίτλος</th>
-                            <th scope="col" class="text-secondary">Φοιτητής</th>
+                            <th id="title" scope="col" class="text-secondary">Τίτλος</th>
+                            <th id="student" scope="col" class="text-secondary">Φοιτητής</th>
                             <th scope="col" class="text-secondary"></th>
                         </tr>
                     </thead>
@@ -70,7 +70,24 @@ updateActivity();
                     </div>
                     <div class="modal-body">
                         <div class="container-fluid">
-                            Καλησπέρα!
+                            <div class="row g-3">
+                                <div class="col-lg-5">
+                                    <label for="assignTitle" class="form-label">Τίτλος</label>
+                                    <textarea id="assignTitle" class="form-control" readonly></textarea>
+                                </div>
+                                <div class="col-lg-auto mx-auto my-auto">
+                                    <img id="assignmentArrow" src="/Web-Design-2024/icons/trending_flat_right.svg" />
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="inputStudent" class="form-label">
+                                        Φοιτητής
+                                    </label>
+                                    <input id="inputStudent" list="studentDatalist" class="form-control">
+                                    <datalist id="studentDatalist">
+
+                                    </datalist>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -98,3 +115,11 @@ updateActivity();
 <script src="/Web-Design-2024/js/professor/assignThesis/assignThesis.js" defer></script>
 
 </html>
+
+<!-- <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var modalElement = document.getElementById("assignModal");
+        var modal = new bootstrap.Modal(modalElement);
+        modal.show();
+    });
+</script> -->
