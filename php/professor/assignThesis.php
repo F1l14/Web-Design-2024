@@ -32,8 +32,9 @@ updateActivity();
                 <h3>Προς ανάθεση</h3>
                 <hr>
                 <table id="unassignedTable" class="table">
+
                     <tbody>
-                        
+
                     </tbody>
                 </table>
 
@@ -44,9 +45,39 @@ updateActivity();
                 <h3>Κατοχυρωμένα</h3>
                 <hr>
                 <table id="assignedTable" class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-secondary">Τίτλος</th>
+                            <th scope="col" class="text-secondary">Φοιτητής</th>
+                            <th scope="col" class="text-secondary"></th>
+                        </tr>
+                    </thead>
+
                     <tbody>
                     </tbody>
                 </table>
+            </div>
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="assignModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="assignModalHeader">Ανάθεση Διπλωματικής Εργασίας</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            Καλησπέρα!
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Κλείσιμο</button>
+                        <button type="submit" class="btn btn-primary">Αποθήκευση</button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -64,5 +95,6 @@ updateActivity();
 <script src="/Web-Design-2024/js/backgroundOptions.js"></script>
 
 
-<script src="/Web-Design-2024/js/professor/assignThesis/loadThesisAssignment.js" defer></script>
+<script src="/Web-Design-2024/js/professor/assignThesis/assignThesis.js" defer></script>
+
 </html>
