@@ -68,32 +68,39 @@ updateActivity();
                         <h1 class="modal-title fs-5" id="assignModalHeader">Ανάθεση Διπλωματικής Εργασίας</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            <div class="row g-3">
-                                <div class="col-lg-5">
-                                    <label for="assignTitle" class="form-label">Τίτλος</label>
-                                    <textarea id="assignTitle" class="form-control" readonly></textarea>
-                                </div>
-                                <div class="col-lg-auto mx-auto my-auto">
-                                    <img id="assignmentArrow" src="/Web-Design-2024/icons/trending_flat_right.svg" />
-                                </div>
-                                <div class="col-lg-4">
-                                    <label for="inputStudent" class="form-label">
-                                        Φοιτητής
-                                    </label>
-                                    <input id="inputStudent" list="studentDatalist" class="form-control">
-                                    <datalist id="studentDatalist">
+                    <form id="assignThesisForm" enctype="multipart/form-data"
+                        action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/assignThesisToStudent.php'); ?>"
+                        method="POST">
+                        <div class="modal-body">
+                            <div class="container-fluid">
 
-                                    </datalist>
+                                <div class="row g-3">
+                                    <div class="col-lg-5">
+                                        <input type="hidden" name="id" id="id">
+                                        <label for="assignTitle" class="form-label">Τίτλος</label>
+                                        <textarea id="assignTitle" class="form-control" readonly></textarea>
+                                    </div>
+                                    <div class="col-lg-auto mx-auto my-auto">
+                                        <img id="assignmentArrow"
+                                            src="/Web-Design-2024/icons/trending_flat_right.svg" />
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label for="inputStudent" class="form-label">
+                                            Φοιτητής
+                                        </label>
+                                        <input id="inputStudent" name="inputStudent" list="studentDatalist" class="form-control">
+                                        <datalist id="studentDatalist">
+
+                                        </datalist>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Κλείσιμο</button>
-                        <button type="submit" class="btn btn-primary">Αποθήκευση</button>
-                    </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Κλείσιμο</button>
+                            <button id="" type="submit" class="btn btn-primary">Αποθήκευση</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
