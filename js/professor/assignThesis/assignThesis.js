@@ -45,7 +45,7 @@ async function loadThesis() {
 
 
 function insert(title, id) {
-    
+
     const row = availableThesisTable.insertRow();
     row.id = id;
 
@@ -57,11 +57,11 @@ function insert(title, id) {
 
     const assignButton = document.createElement("button");
     assignButton.appendChild(assignIcon);
-    
+
     assignButton.className = "set edit optionButton";
     assignButton.setAttribute("data-bs-toggle", "modal");
     assignButton.setAttribute("data-bs-target", "#assignModal");
-    assignButton.addEventListener("click", window.createEditModal);
+    // assignButton.addEventListener("click", window.createEditModal);
 
     editCell = row.insertCell(1);
     editCell.className = "optionCell";
@@ -71,7 +71,7 @@ function insert(title, id) {
 }
 
 
-async function loadAssignedThesis(){
+async function loadAssignedThesis() {
     fetch("../loadAssignedThesis.php", {
         method: "POST",
         //Accepting json response from backend
@@ -94,7 +94,7 @@ async function loadAssignedThesis(){
             if (data.message != "empty") {
                 Object.entries(data.data).forEach(([key, value]) => {
 
-                    insertAssigned(value.title,value.student, value.id);
+                    insertAssigned(value.title, value.student, value.id);
 
                 });
                 // const loadedEvent = new CustomEvent("tableLoaded");
@@ -113,11 +113,11 @@ async function loadAssignedThesis(){
 
 
 
-function insertAssigned(title,student, id) {
-    
+function insertAssigned(title, student, id) {
+
     const row = assignedThesisTable.insertRow();
     row.id = id;
-    
+
     titleCell = row.insertCell(0);
     titleCell.className = "assignedTitle";
     titleCell.textContent = title;
@@ -126,7 +126,7 @@ function insertAssigned(title,student, id) {
     studentName.value = student;
     studentName.disabled = true;
     studentName.className = "studentInput";
-    studentCell  = row.insertCell(1);
+    studentCell = row.insertCell(1);
     studentCell.appendChild(studentName);
 
 
@@ -136,22 +136,66 @@ function insertAssigned(title,student, id) {
 
     const deleteButton = document.createElement("button");
     deleteButton.appendChild(deleteIcon);
-    
-    deleteButton.className = "delete edit optionButton";
-    deleteButton.setAttribute("data-bs-toggle", "modal");
-    deleteButton.setAttribute("data-bs-target", "#editModal");
-    deleteButton.addEventListener("click", window.createEditModal);
 
-    editCell = row.insertCell(2);
-    editCell.className = "optionCell";
-    editCell.appendChild(deleteButton);
+    deleteButton.className = "delete edit optionButton";
+    deleteButton.addEventListener("click", unassign);
+
+    deleteCell = row.insertCell(2);
+    deleteCell.className = "optionCell";
+    deleteCell.appendChild(deleteButton);
 
 
 }
 
 
+async function unassign(event) {
+    const row = event.target.closest("tr");
+    const id = row.id;
+    const rowId = {
+        id: id
+    };
+    const userConfirmation = confirm("Αναίρεση ανάθεσης?");
+    if (userConfirmation) {
+        fetch("../unassignThesis.php", {
+            method: "POST",
+            body: JSON.stringify(rowId),
+            //Accepting json response from backend
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
+        })
 
-function deleteAllThesis() {
-    availableThesisTable.innerHTML = "";
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status} ${response.statusText}`);
+                }
+                return response.json();
+            })
+
+            .then(data => {
+                // console.log(data.loginError);
+                // console.log("js: "+data.response);
+                switch (data.state) {
+                    case "missing": { row.remove(); alert("Does not Exist"); console.log(data.error); break; }
+                    case "valid": {
+                        row.remove();
+                        alert("Ακύρωση");
+                        deleteAllThesis(availableThesisTable);
+                        loadThesis();
+                        // alert(data.data);
+                        break;
+                    }
+                    default: { console.log(data.error); break; }
+                }
+            })
+
+            .catch(error => {
+                console.error("Error Occured:", error);
+            })
+
+    }
+}
+
+
+function deleteAllThesis(table) {
+    table.innerHTML = "";
     return true;
 }
