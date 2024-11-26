@@ -47,10 +47,10 @@ updateActivity();
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="container-fluid">
-                            <form id="createThesisForm" enctype="multipart/form-data"
-                                action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/uploadThesis.php'); ?>"
-                                method="POST">
+                        <form id="createThesisForm" enctype="multipart/form-data"
+                            action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/uploadThesis.php'); ?>"
+                            method="POST">
+                            <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <label for="title" class="form-label">Τίτλος</label>
@@ -77,15 +77,14 @@ updateActivity();
                                         </button>
 
                                     </div>
-
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Κλείσιμο</button>
-                                    <button type="submit" class="btn btn-primary">Αποθήκευση</button>
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Κλείσιμο</button>
+                                <button type="submit" class="btn btn-primary">Αποθήκευση</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -100,10 +99,10 @@ updateActivity();
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="container-fluid">
-                            <form id="editThesisForm" enctype="multipart/form-data"
-                                action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/updateThesis.php'); ?>"
-                                method="POST">
+                        <form id="editThesisForm" enctype="multipart/form-data"
+                            action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/updateThesis.php'); ?>"
+                            method="POST">
+                            <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <input type="hidden" name="id" id="id">
@@ -123,7 +122,7 @@ updateActivity();
                                     <label for="editFormFileSm" class="form-label">Αναλυτική Περιγραφή</label>
                                     <a id="currentFile" target="_blank"></a>
                                     <div class="input-group">
-                                       
+
                                         <input class="form-control" name="edit-thesisFile" id="editFormFileSm"
                                             type="file" accept=".pdf,.doc,.docx,.odt">
                                         <button class="btn btn-outline-secondary" type="button" id="removeEditFile">
@@ -131,11 +130,12 @@ updateActivity();
                                         </button>
                                     </div>
                                 </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Κλείσιμο</button>
-                            <button type="submit" class="btn btn-primary">Αποθήκευση</button>
-                        </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Κλείσιμο</button>
+                                <button type="submit" class="btn btn-primary">Αποθήκευση</button>
+                            </div>
                         </form>
                     </div>
                 </div>
