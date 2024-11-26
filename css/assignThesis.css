@@ -1,31 +1,48 @@
 #mainContainer {
-    display: flex;
+  display: flex;
 }
 
 #innerContainer {
-    height: 100%;
-    width: 90%;
-    padding: 0;
-    display: flexbox;
-    overflow-y: auto;
+  height: 100%;
+  width: 90%;
+  padding: 0;
+  display: flexbox;
+  overflow-y: auto;
 }
 
 h3 {
-    text-align: center;
+  text-align: center;
 }
 
 .set {
-    background-color: #0a6bff;
-    color: white;
+  background-color: #0a6bff;
+  color: white;
 }
 
 .studentInput {
-    border-radius: 12px;
-    text-align: center;
-    
+  border-radius: 12px;
+  text-align: center;
+
 }
 
-.assignedTitle{
-    width: 50%;
+.assignedTitle {
+  width: 50%;
+}
+
+#student {
+  padding-left: 3.8rem;
+}
+
+#assignmentArrow {
+  height: fit-content;
+  width: 4rem;
+}
+
+#assignTitle{
+    resize: none;
+}
+
+.modal-body{
+    height: 20vh;
 }
 

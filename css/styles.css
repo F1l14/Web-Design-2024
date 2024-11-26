@@ -170,3 +170,48 @@ body {
     margin: 0;
     width: 0.5rem;
 }
+
+textarea.form-control{
+    z-index: 1;
+  background-color: #eaeaea74;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #000000;
+  font-size: 18px;
+
+  outline: none;
+
+  box-shadow: rgba(50, 50, 93, 0.048) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.158) 0px 18px 36px -18px inset;
+
+  transition: 0.1s ease-out;
+}
+
+#fileInput{
+    margin-bottom: 1.5rem;
+}
+
+
+
+input.form-control{
+    z-index: 1;
+  background-color: #eaeaea74;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #000000;
+  font-size: 18px;
+
+  outline: none;
+
+  box-shadow: rgba(50, 50, 93, 0.048) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.158) 0px 18px 36px -18px inset;
+
+  transition: 0.1s ease-in-out;
+
+}
+
+input.form-control:focus, textarea.form-control:focus {
+    outline: 3px solid aqua;
+    box-shadow: none;
+}
+
