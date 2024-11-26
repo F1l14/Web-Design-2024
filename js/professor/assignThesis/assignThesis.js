@@ -1,7 +1,10 @@
 availableThesisTable = document.getElementById("unassignedTable");
 assignedThesisTable = document.getElementById("assignedTable");
+datalist = document.getElementById("studentDatalist");
 window.addEventListener("load", loadThesis);
 window.addEventListener("load", loadAssignedThesis);
+window.addEventListener("load", getStudents);
+
 
 async function loadThesis() {
     fetch("../loadThesis.php", {
@@ -199,3 +202,59 @@ function deleteAllThesis(table) {
     table.innerHTML = "";
     return true;
 }
+
+
+
+
+
+
+
+
+async function getStudents(){
+   
+
+
+    fetch("/Web-Design-2024/php/getAvailableStudents.php", {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status} ${response.statusText}`);
+            }
+            return response.json();
+        })
+
+        .then(data => {
+            // data.forEach(key => {
+            //     newStudent = document.createElement("option");
+            //     newStudent.value = item.username;
+            //     datalist.appendChild(newStudent);
+            // });
+            Object.entries(data.data).forEach(([key,value]) => {
+                newStudent = document.createElement("option");
+                newStudent.setAttribute("username", value.username);
+                newStudent.value = `${value.username} | ${value.firstname} ${value.lastname}`;
+                datalist.appendChild(newStudent);
+                // console.log(`${key}: ${value.username} ${value.firstname} ${value.lastname}`);
+            });
+
+           
+           
+        })
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+}
+
+// options show username+full name, when clicked only username is passed
+const inputStudent = document.getElementById("inputStudent");
+inputStudent.addEventListener("input", function(input){
+    const selected = Array.from(datalist.options).find(
+        option => option.value === input.target.value
+    );
+    if(selected){
+        console.log(selected.getAttribute("username"));
+        inputStudent.value = selected.getAttribute("username");
+    }
+});
