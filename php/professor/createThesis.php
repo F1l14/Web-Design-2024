@@ -28,11 +28,18 @@ updateActivity();
     <div id="mainContainer" class="container align-items-center justify-content-center">
         <div id="innerContainer" class="box">
             <!-- Button trigger modal -->
-            <button type="button" id="create" class="btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#createModal">
-                Δημιουργία +
-            </button>
-            <input class="form-control" id="searchThesis" type="text" placeholder="Search...">
+            <div class="row g-0">
+                <div class="col m-3 align-content-center">
+                    <button type="button" id="create" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#createModal">
+                        Δημιουργία +
+                    </button>
+                </div>
+                <div class="col m-3 align-content-center">
+                    <input class="form-control" id="searchThesis" type="text" placeholder="Search...">
+                </div>
+            </div>
+
             <table id="thesisTable" class="table">
                 <tbody>
                 </tbody>
