@@ -212,3 +212,10 @@ input.form-control:focus, textarea.form-control:focus {
     box-shadow: none;
 }
 
+.disabledInput {
+    border-radius: 12px;
+    text-align: center;
+    border: 0;
+    outline:2px solid #868e94;
+    
+  }

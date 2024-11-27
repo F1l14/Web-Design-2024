@@ -128,7 +128,7 @@ function insertAssigned(title, student, id) {
     const studentName = document.createElement("input");
     studentName.value = student;
     studentName.disabled = true;
-    studentName.className = "studentInput";
+    studentName.className = "disabledInput";
     studentCell = row.insertCell(1);
     studentCell.appendChild(studentName);
 
