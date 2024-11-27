@@ -2,7 +2,81 @@
 require_once("../tokenFunctions.php");
 roleProtected("professor");
 updateActivity();
-
- $obj = json_decode($_COOKIE['user']);
- echo $obj->firstname;
 ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ΣΔΔΕ</title>
+    <link rel="stylesheet" href="/Web-Design-2024/css/styles.css">
+    <link rel="stylesheet" href="/Web-Design-2024/css/header.css">
+    <link rel="stylesheet" href="/Web-Design-2024/css/listThesis.css">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- icon -->
+    <link rel="icon" type="image/svg+xml" href="/Web-Design-2024/icons/websiteIcon.svg">
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/Web-Design-2024/header.html' ?>
+</head>
+
+<body>
+    <div id="mainContainer" class="container align-items-center justify-content-center">
+        <div id="innerContainer" class="container box">
+            <div class="row g-0">
+                <div class="col m-3 dropdown align-content-center">
+                    <button id="filter" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-expanded="false" data-bs-auto-close="outside">Filter
+                        <img src="/Web-Design-2024/icons/tune.svg" />
+                    </button>
+                    <form class="dropdown-menu p-4">
+                        test
+                    </form>
+                </div>
+
+                <div class="col m-3 align-content-center">
+                    <input class="form-control" id="searchThesis" type="text" placeholder="Search...">
+                </div>
+
+
+            </div>
+            <div class="row g-0">
+                <table id="thesisTable" class="table">
+                    <thead>
+                        <tr>
+                            <th id="title" scope="col" class="text-secondary">Τίτλος</th>
+                            <th id="role" scope="col" class="text-secondary">Ρόλος</th>
+                            <th scope="state" class="text-secondary">Κατάσταση</th>
+                            <th scope="more" class="text-secondary"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+        </div>
+
+        <!-- ======================================================================================== -->
+        <canvas class="background"></canvas>
+</body>
+
+<!-- bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+<!-- bacgkround lib -->
+<script src="/Web-Design-2024/particles.js-master/particles.js-master/dist/particles.min.js"></script>
+<script src="/Web-Design-2024/js/backgroundOptions.js"></script>
+
+
+<script src="/Web-Design-2024/js/professor/listThesis/listThesis.js" defer></script>
+<script src="/Web-Design-2024/js/professor/searchThesis.js" defer></script>
+
+</html>
