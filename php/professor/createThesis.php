@@ -39,11 +39,13 @@ updateActivity();
                     <input class="form-control" id="searchThesis" type="text" placeholder="Search...">
                 </div>
             </div>
+            <div class="row g-0">
+                <table id="thesisTable" class="table">
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
 
-            <table id="thesisTable" class="table">
-                <tbody>
-                </tbody>
-            </table>
         </div>
         <!-- Modal -->
         <div class="modal fade" id="createModal" tabindex="-1" aria-hidden="true">
