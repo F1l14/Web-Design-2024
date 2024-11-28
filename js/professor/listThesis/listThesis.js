@@ -1,4 +1,4 @@
-thesisTable = document.getElementById("thesisTable");
+thesisTbody = document.getElementById("thesisTbody");
 
 window.addEventListener("load", loadThesis);
 // window.addEventListener("load", function () {
@@ -60,7 +60,7 @@ async function loadThesis() {
 
 function insert(title, role, state, id) {
 
-    const row = thesisTable.insertRow();
+    const row = thesisTbody.insertRow();
     row.id = id;
 
     titleCell = row.insertCell(0);

@@ -54,7 +54,7 @@ updateActivity();
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody id="thesisTbody">
                     </tbody>
                 </table>
             </div>
