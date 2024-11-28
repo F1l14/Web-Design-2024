@@ -62,7 +62,10 @@ updateActivity();
 
 
         </div>
-
+        <div class="col-1">
+            <button id="download-json">Download JSON</button>
+            <button id="download-csv">Download CSV</button>
+        </div>
         <!-- ======================================================================================== -->
         <canvas class="background"></canvas>
 </body>
