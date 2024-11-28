@@ -132,7 +132,7 @@ function roleProtected($role): void{
         logout();
     }
     if($data->role !== $role){
-        header("Location: https://localhost/Web-Design-2024/php/roleRedirection.php");
+        header("Location: https://" . $_SERVER['HTTP_HOST'] . "/Web-Design-2024/php/roleRedirection.php");
     }
 }
 
@@ -162,7 +162,7 @@ function logout(): void{
     }
     
     // Redirect to login page
-    header("Location: https://localhost/Web-Design-2024/");
+    header("Location: https://" . $_SERVER['HTTP_HOST'] . "/Web-Design-2024/");
 }
 
 
