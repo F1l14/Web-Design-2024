@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
             if ($_FILES['thesisFile']['error'] === UPLOAD_ERR_OK) {
-                $userDir = $_SERVER['DOCUMENT_ROOT'] . "Web-Design-2024/Data/ThesisDescriptions/" . $user->username . "/";
+                $userDir = dirname(__DIR__) . "/Data/ThesisDescriptions/" . $user->username . "/";
 
                 //====User Folder====
                 if (!is_dir($destinationDir)) {
