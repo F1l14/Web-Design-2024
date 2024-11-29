@@ -16,6 +16,9 @@ function convertTableToJson() {
     const rows = document.querySelectorAll('#thesisTable tbody tr');
 
     rows.forEach(row => {
+        if (window.getComputedStyle(row).display === 'none') {
+            return; // Skip this row
+        }
         const id = row.id;
         const title = row.querySelector('td:nth-child(1)').innerText;
         const role = row.querySelector('td:nth-child(2) input').value;
@@ -46,6 +49,9 @@ function convertTableToCsv() {
     const rows = document.querySelectorAll('#thesisTable tbody tr');
 
     rows.forEach(row => {
+        if (window.getComputedStyle(row).display === 'none') {
+            return; // Skip this row
+        }
         const id = row.id;
         const title = row.querySelector('td:nth-child(1)').innerText;
         const role = row.querySelector('td:nth-child(2) input').value;
