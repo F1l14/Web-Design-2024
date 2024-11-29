@@ -36,26 +36,50 @@ updateActivity();
                     </button>
 
 
-                    <form class="dropdown-menu p-2 ">
-                        <h6>Ρόλος</h6>
-                        <div class="row d-flex justify-content-center text-center">
+                    <form class="dropdown-menu p-2 text-center">
+                        <div class="accordion accordion-flush" id="stateAccordion">
+                            <div class="accordion-item">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    <h6 class="accordion-header">Ρόλος</h6>
+                                </button>
+                            </div>
 
-                            <a href="#" id="epivlepon" class="filterButton btn btn-primary" role="button"
-                                data-bs-toggle="button">Επιβλέπων</a>
-                            <a href="#" id="melos" class="filterButton btn btn-primary" role="button"
-                                data-bs-toggle="button">Μέλος Τριμελούς</a>
+                            <div id="collapseOne" class="accordion-collapse collapse" >
+                                <div class="dropdownTable">
+                                    <a href="#" id="epivlepon" class="filterButton btn btn-primary" role="button"
+                                        data-bs-toggle="button">Επιβλέπων</a>
+                                    <a href="#" id="melos" class="filterButton btn btn-primary" role="button"
+                                        data-bs-toggle="button">Μέλος Τριμελούς</a>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <h6 class="accordion-header">Κατάσταση</h6>
+                                </button>
+                            </div>
+
+                            <div id="collapseTwo" class="accordion-collapse collapse" >
+                                <div class="accordion-body">
+                                    <div class="dropdownTable">
+                                        <a href="#" id="anathesi" class="filterButton btn btn-primary" role="button"
+                                            data-bs-toggle="button">Υπο Ανάθεση</a>
+                                        <a href="#" id="energi" class="filterButton btn btn-primary" role="button"
+                                            data-bs-toggle="button">Ενεργή</a>
+                                        <a href="#" id="peratomeni" class="filterButton btn btn-primary" role="button"
+                                            data-bs-toggle="button">Περατωμένη</a>
+                                        <a href="#" id="akiromeni" class="filterButton btn btn-primary" role="button"
+                                            data-bs-toggle="button">Ακυρωμένη</a>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                        <h6>Κατάσταση</h6>
                         <div class="row d-flex justify-content-center text-center">
 
-                            <a href="#" id="anathesi" class="filterButton btn btn-primary" role="button"
-                                data-bs-toggle="button">Υπο Ανάθεση</a>
-                            <a href="#" id="energi" class="filterButton btn btn-primary" role="button"
-                                data-bs-toggle="button">Ενεργή</a>
-                            <a href="#" id="peratomeni" class="filterButton btn btn-primary" role="button"
-                                data-bs-toggle="button">Περατωμένη</a>
-                            <a href="#" id="akiromeni" class="filterButton btn btn-primary" role="button"
-                                data-bs-toggle="button">Ακυρωμένη</a>
+
+
                         </div>
                     </form>
                 </div>
