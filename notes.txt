@@ -13,6 +13,10 @@ BackEnd
 -url
     hide full path
 
+
+-listThesisDetails.php
+    -seperate query for log
+
 ||COMPLETED||
 =============
 -login.php
@@ -43,6 +47,9 @@ FrontEnd
 -homepage
     -navigation buttons
 -menu
+
+-listThesisDetails.php
+    -full FrontEnd
 
 ||COMPLETED||
 =============
