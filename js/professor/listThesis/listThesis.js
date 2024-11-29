@@ -1,15 +1,15 @@
 thesisTbody = document.getElementById("thesisTbody");
 
-// window.addEventListener("load", loadThesis);
-window.addEventListener("load", function () {
-    insert("Titlos", "myrole", "energi", 4);
-    insert("asdf", "myrole", "epeksergasia", 4);
-    insert("fffffff", "myrole", "peratomeni", 4);
-    insert("ggggggggggg", "myrole", "akiromeni", 4);
-    insert("hhhhhhhhhhh", "myrole", "anathesi", 4);
-    const loadedEvent = new CustomEvent("tableLoaded");
-    window.dispatchEvent(loadedEvent);
-});
+window.addEventListener("load", loadThesis);
+// window.addEventListener("load", function () {
+//     insert("Titlos", "myrole", "energi", 4);
+//     insert("asdf", "myrole", "epeksergasia", 4);
+//     insert("fffffff", "myrole", "peratomeni", 4);
+//     insert("ggggggggggg", "myrole", "akiromeni", 4);
+//     insert("hhhhhhhhhhh", "myrole", "anathesi", 4);
+//     const loadedEvent = new CustomEvent("tableLoaded");
+//     window.dispatchEvent(loadedEvent);
+// });
 
 async function loadThesis() {
     fetch("../listProfessorsThesis.php", {
@@ -95,8 +95,9 @@ function insert(title, role, state, id) {
     openButton.appendChild(openIcon);
     openButton.className = "optionButton";
     openButton.style.backgroundColor = "#868e94";
-    openButton.addEventListener("click", function () {
-
+    openButton.addEventListener("click",function(){
+        localStorage.setItem("thesisId", id);
+        window.location.href = `https://${window.location.hostname}/Web-Design-2024/php/professor/listThesisDetails.php?thesisId=${encodeURIComponent(id)}`;
     });
 
     moreCell = row.insertCell(3);
