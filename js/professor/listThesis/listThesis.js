@@ -97,7 +97,7 @@ function insert(title, role, state, id) {
     openButton.style.backgroundColor = "#868e94";
     openButton.addEventListener("click",function(){
         localStorage.setItem("thesisId", id);
-        window.location.href = `https://${window.location.hostname}/Web-Design-2024/php/professor/listThesisDetails.php?thesisId=${encodeURIComponent(id)}`;
+        window.location.href = `listThesisDetails.php?thesisId=${encodeURIComponent(id)}`;
     });
 
     moreCell = row.insertCell(3);
