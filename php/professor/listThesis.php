@@ -11,6 +11,12 @@ updateActivity();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>ΣΔΔΕ</title>
+
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
     <link rel="stylesheet" href="/Web-Design-2024/css/styles.css">
     <link rel="stylesheet" href="/Web-Design-2024/css/header.css">
     <link rel="stylesheet" href="/Web-Design-2024/css/listThesis.css">
@@ -27,13 +33,34 @@ updateActivity();
     <div id="mainContainer" class="container align-items-center justify-content-center">
         <div id="innerContainer" class="container box">
             <div class="row g-0">
-                <div class="col m-3 dropdown align-content-center">
-                    <button id="filter" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
-                        aria-expanded="false" data-bs-auto-close="outside">Filter
+                <div class="col-4 m-auto dropdown align-content-center">
+                    <button id="filter" type="button" class="btn btn-secondary dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">Filter
                         <img src="/Web-Design-2024/icons/tune.svg" />
                     </button>
-                    <form class="dropdown-menu p-4">
-                        test
+
+
+                    <form class="dropdown-menu p-2 ">
+                        <h6>Ρόλος</h6>
+                        <div class="row d-flex justify-content-center text-center">
+
+                            <a href="#" id="epivlepon" class="filterButton btn btn-primary" role="button"
+                                data-bs-toggle="button">Επιβλέπων</a>
+                            <a href="#" id="melos" class="filterButton btn btn-primary" role="button"
+                                data-bs-toggle="button">Μέλος Τριμελούς</a>
+                        </div>
+                        <h6>Κατάσταση</h6>
+                        <div class="row d-flex justify-content-center text-center">
+
+                            <a href="#" id="anathesi" class="filterButton btn btn-primary" role="button"
+                                data-bs-toggle="button">Υπο Ανάθεση</a>
+                            <a href="#" id="energi" class="filterButton btn btn-primary" role="button"
+                                data-bs-toggle="button">Ενεργή</a>
+                            <a href="#" id="peratomeni" class="filterButton btn btn-primary" role="button"
+                                data-bs-toggle="button">Περατωμένη</a>
+                            <a href="#" id="akiromeni" class="filterButton btn btn-primary" role="button"
+                                data-bs-toggle="button">Ακυρωμένη</a>
+                        </div>
                     </form>
                 </div>
 

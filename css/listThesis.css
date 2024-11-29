@@ -1,19 +1,43 @@
 #mainContainer {
-    display: flex;
-  }
-  
-  #innerContainer {
-    height: 100%;
-    width: 90%;
-    padding: 0rem;
-    display: flexbox;
-    overflow-y: auto;
-  }
+  display: flex;
+}
 
-  #thesisTable{
-    width: 100%;
-  }
+#innerContainer {
+  height: 100%;
+  width: 90%;
+  padding: 0rem;
+  display: flexbox;
+  overflow-y: auto;
+}
 
-  tr {
-    text-align: center;
-  }
+#thesisTable {
+  width: 100%;
+}
+
+tr {
+  text-align: center;
+}
+
+.filterButton{
+  background-color: red ;
+  --bs-btn-active-bg: #750080;
+  /* width: max-content; */
+  font-size: small;
+  width: 6rem;
+  margin:0.5rem;
+  height: 3rem;
+}
+
+.filterButton[aria-pressed="true"]{
+  background-color: yellow;
+}
+
+
+#dropdownRow1{
+  width: 100%;
+}
+
+.btn-download{
+  background-color: gray;
+  color: #464646;
+}
