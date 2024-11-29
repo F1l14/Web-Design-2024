@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         try {
             $stmt = $conn->prepare(
-                "SELECT title, id FROM diplomatiki WHERE professor = ? AND status = 'diathesimi'"
+                "SELECT title, id, student FROM diplomatiki WHERE professor = ? AND status = 'anathesi'"
             );
             $stmt->bind_param("s", $user->username);
             $stmt->execute();

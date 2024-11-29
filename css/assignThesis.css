@@ -1,0 +1,44 @@
+#mainContainer {
+  display: flex;
+}
+
+#innerContainer {
+  height: 100%;
+  width: 90%;
+  padding: 0;
+  display: flexbox;
+  overflow-y: auto;
+}
+
+h3 {
+  text-align: center;
+}
+
+.set {
+  background-color: #0a6bff;
+  color: white;
+}
+
+
+
+.assignedTitle {
+  width: 50%;
+}
+
+#student {
+  padding-left: 3.8rem;
+}
+
+#assignmentArrow {
+  height: fit-content;
+  width: 4rem;
+}
+
+#assignTitle{
+    resize: none;
+}
+
+.modal-body{
+    height: 20vh;
+}
+

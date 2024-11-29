@@ -9,14 +9,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         try {
             $stmt = $conn->prepare(
-                "SELECT title, id FROM diplomatiki WHERE professor = ? AND status = 'diathesimi'"
+                "SELECT * FROM diplomatiki INNER JOIN epitroph ON diplomatiki.id = epitroph.diplomatiki
+                WHERE ? IN (prof1, prof2, prof3) AND diplomatiki.status <> 'diathesimi';"
             );
+            
             $stmt->bind_param("s", $user->username);
             $stmt->execute();
             $result = $stmt->get_result();
         } catch (mysqli) {
-            $reply->message = "sqlError";
+            $reply->message = $conn->error;
             echo json_encode($reply);
+            return;
         }
 
         // Fetch all rows into an array
@@ -28,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $data = $result->fetch_all(MYSQLI_ASSOC);
             $reply->data = $data;
             $reply->message = "ok";
+            $reply->username = $user->username;
             echo json_encode($reply);
         } else {
             $reply->message = "empty";

@@ -18,13 +18,13 @@ if ($data->response !== 'valid') {
     logout();
 }
 if ($data->role == "student") {
-    header("Location: https://localhost/Web-Design-2024/php/student/studentHome.php");
+    header("Location: https://" . $_SERVER['HTTP_HOST'] . "/Web-Design-2024/php/student/studentHome.php");
 }
 
 if ($data->role == "professor") {
-    header("Location: https://localhost/Web-Design-2024/php/professor/professorHome.php");
+    header("Location: https://" . $_SERVER['HTTP_HOST'] . "/Web-Design-2024/php/professor/professorHome.php");
 }
 
 if ($data->role == "grammateia") {
-    header("Location: https://localhost/Web-Design-2024/php/grammateia/grammateiaHome.php");
+    header("Location: https://" . $_SERVER['HTTP_HOST'] . "/Web-Design-2024/php/grammateia/grammateiaHome.php");
 }
