@@ -1,15 +1,15 @@
 thesisTbody = document.getElementById("thesisTbody");
 
-window.addEventListener("load", loadThesis);
-// window.addEventListener("load", function () {
-//     insert("Titlos", "myrole", "energi", 4);
-//     insert("asdf", "myrole", "epeksergasia", 4);
-//     insert("fffffff", "myrole", "peratomeni", 4);
-//     insert("ggggggggggg", "myrole", "akiromeni", 4);
-//     insert("hhhhhhhhhhh", "myrole", "anathesi", 4);
-//     const loadedEvent = new CustomEvent("tableLoaded");
-//     window.dispatchEvent(loadedEvent);
-// });
+// window.addEventListener("load", loadThesis);
+window.addEventListener("load", function () {
+    insert("Titlos", "myrole", "energi", 4);
+    insert("asdf", "myrole", "epeksergasia", 4);
+    insert("fffffff", "myrole", "peratomeni", 4);
+    insert("ggggggggggg", "myrole", "akiromeni", 4);
+    insert("hhhhhhhhhhh", "myrole", "anathesi", 4);
+    const loadedEvent = new CustomEvent("tableLoaded");
+    window.dispatchEvent(loadedEvent);
+});
 
 async function loadThesis() {
     fetch("../listProfessorsThesis.php", {
@@ -76,11 +76,11 @@ function insert(title, role, state, id) {
     const stateInput = document.createElement("input");
     greekState ="";
     switch (state) {
-        case "energi": { greekState ="Ενεργή";stateInput.style.outline = "3px solid #89fc00 "; break; }
-        case "epeksergasia": { greekState ="Επεξεργασία";stateInput.style.outline = "3px solid #00e9fc "; break; }
-        case "peratomeni": { greekState ="Περατωμένη";stateInput.style.outline = "3px solid #9b6900"; break; }
-        case "akiromeni": { greekState ="Ακυρωμένη";stateInput.style.outline = "3px solid #ff1414"; break; }
-        case "anathesi": { greekState ="Ανάθεση";stateInput.style.outline = "3px solid #fcce00"; break; }
+        case "energi": { greekState ="Ενεργή";stateInput.style.outline = "2px solid #40eb34 "; break; }
+        case "epeksergasia": { greekState ="Επεξεργασία";stateInput.style.outline = "2px solid #0a6bff "; break; }
+        case "peratomeni": { greekState ="Περατωμένη";/*stateInput.style.outline = "3px solid #9b6900";*/ break; }
+        case "akiromeni": { greekState ="Ακυρωμένη";stateInput.style.outline = "2px solid #ff1414"; break; }
+        case "anathesi": { greekState ="Ανάθεση";stateInput.style.outline = "2px solid #fcce00"; break; }
     }
     stateInput.value = greekState;
     stateInput.readOnly = true;
@@ -95,7 +95,9 @@ function insert(title, role, state, id) {
     openButton.appendChild(openIcon);
     openButton.className = "optionButton";
     openButton.style.backgroundColor = "#868e94";
-    // openButton.addEventListener("click", );
+    openButton.addEventListener("click", function () {
+
+    });
 
     moreCell = row.insertCell(3);
     moreCell.className = "optionCell";
