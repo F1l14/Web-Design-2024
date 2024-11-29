@@ -2,6 +2,7 @@
 require_once("../tokenFunctions.php");
 roleProtected("professor");
 updateActivity();
+require_once("../thesisDetails.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +52,15 @@ updateActivity();
 </html>
 
 <script>
-    param = new URL ("https://"+window.location.pathname).searchParams;
-    console.log(param);
-    console.log(param.get("thesisId"));
+    // Get the current URL
+    const queryParams = new URLSearchParams(window.location.search);
+
+    // Retrieve the 'thesisId' parameter
+    const thesisId = queryParams.get('thesisId');
+
+    if (thesisId) {
+        console.log(`Thesis ID: ${thesisId}`);
+    } else {
+        console.log("No thesisId found in the URL.");
+    }
 </script>
