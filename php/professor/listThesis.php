@@ -46,9 +46,9 @@ updateActivity();
 
                             <div id="collapseOne" class="accordion-collapse collapse" >
                                 <div class="dropdownTable">
-                                    <a href="#" id="epivlepon" class="filterButton btn btn-primary" role="button"
+                                    <a href="#" id="epivlepon" name="Επιβλέπων" class="filterButton btn btn-primary" role="button"
                                         data-bs-toggle="button">Επιβλέπων</a>
-                                    <a href="#" id="melos" class="filterButton btn btn-primary" role="button"
+                                    <a href="#" id="melos" name="Επιτροπή" class="filterButton btn btn-primary" role="button"
                                         data-bs-toggle="button">Μέλος Τριμελούς</a>
                                 </div>
                             </div>
@@ -63,13 +63,13 @@ updateActivity();
                             <div id="collapseTwo" class="accordion-collapse collapse" >
                                 <div class="accordion-body">
                                     <div class="dropdownTable">
-                                        <a href="#" id="anathesi" class="filterButton btn btn-primary" role="button"
+                                        <a href="#" id="anathesi" name ="Ανάθεση" class="filterButton btn btn-primary" role="button"
                                             data-bs-toggle="button">Υπο Ανάθεση</a>
-                                        <a href="#" id="energi" class="filterButton btn btn-primary" role="button"
+                                        <a href="#" id="energi" name ="Ενεργή" class="filterButton btn btn-primary" role="button"
                                             data-bs-toggle="button">Ενεργή</a>
-                                        <a href="#" id="peratomeni" class="filterButton btn btn-primary" role="button"
+                                        <a href="#" id="peratomeni" name ="Περατωμένη" class="filterButton btn btn-primary" role="button"
                                             data-bs-toggle="button">Περατωμένη</a>
-                                        <a href="#" id="akiromeni" class="filterButton btn btn-primary" role="button"
+                                        <a href="#" id="akiromeni"name ="Ακυρωμένη"  class="filterButton btn btn-primary" role="button"
                                             data-bs-toggle="button">Ακυρωμένη</a>
                                     </div>
                                 </div>
@@ -128,6 +128,7 @@ updateActivity();
 
 
 <script src="/Web-Design-2024/js/professor/listThesis/listThesis.js" defer></script>
+<script src="/Web-Design-2024/js/professor/listThesis/filterTable.js" defer></script>
 <script src="/Web-Design-2024/js/professor/searchThesis.js" defer></script>
 
 <script src="/Web-Design-2024/js/professor/listThesis/export.js"></script>
