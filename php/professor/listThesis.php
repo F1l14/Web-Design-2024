@@ -20,10 +20,6 @@ updateActivity();
     <link rel="stylesheet" href="/Web-Design-2024/css/styles.css">
     <link rel="stylesheet" href="/Web-Design-2024/css/header.css">
     <link rel="stylesheet" href="/Web-Design-2024/css/listThesis.css">
-
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- icon -->
     <link rel="icon" type="image/svg+xml" href="/Web-Design-2024/icons/websiteIcon.svg">
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/Web-Design-2024/header.html' ?>
@@ -63,12 +59,19 @@ updateActivity();
                         </div>
                     </form>
                 </div>
-
-                <div class="col m-3 align-content-center">
-                    <input class="form-control" id="searchThesis" type="text" placeholder="Search...">
+                <div class="col-1 m-3 align-content-center text-center">
+                    <button id="download-json" class="btn btn-secondary"><img
+                            src="/Web-Design-2024/icons/download.svg">JSON</button>
+                </div>
+                <div class="col-1 m-3 align-content-center text-center">
+                    <button id="download-csv" class="btn btn-secondary">
+                        <img src="/Web-Design-2024/icons/download.svg"> CSV</button>
                 </div>
 
 
+                <div class="col-4 m-3 align-content-center">
+                    <input class="form-control" id="searchThesis" type="text" placeholder="Search...">
+                </div>
             </div>
             <div class="row g-0">
                 <table id="thesisTable" class="table">
@@ -85,16 +88,10 @@ updateActivity();
                     </tbody>
                 </table>
             </div>
-
-
-
-        </div>
-        <div class="col-1">
-            <button id="download-json">Download JSON</button>
-            <button id="download-csv">Download CSV</button>
         </div>
         <!-- ======================================================================================== -->
         <canvas class="background"></canvas>
+    </div>
 </body>
 
 <!-- bootstrap -->
@@ -108,5 +105,7 @@ updateActivity();
 
 <script src="/Web-Design-2024/js/professor/listThesis/listThesis.js" defer></script>
 <script src="/Web-Design-2024/js/professor/searchThesis.js" defer></script>
+
+<script src="/Web-Design-2024/js/professor/listThesis/export.js"></script>
 
 </html>
