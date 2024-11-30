@@ -34,15 +34,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 prof2 = CASE 
                                     WHEN prof2 IS NULL THEN ?
                                     ELSE prof2
-                                END,
-                                prof3 = CASE 
-                                    WHEN prof2 IS NOT NULL THEN ?
-                                    ELSE prof3
                                 END
                             WHERE diplomatiki = ?"
                 );
-                $stmt->bind_param("ssi", $user->username, $user->username, $id);
+                $stmt->bind_param("si", $user->username, $id);
                 $stmt->execute();
+
+                if($conn->affected_rows ==0){
+                    $stmt = $conn->prepare(
+                        "UPDATE epitroph
+                                SET 
+                                prof3 = CASE 
+                                        WHEN prof2 IS NOT NULL AND prof3 IS NULL THEN ?
+                                        ELSE prof3
+                                    END
+                                WHERE diplomatiki = ?"
+                    );
+                    $stmt->bind_param("si",  $user->username, $id);
+                    $stmt->execute();
+                }
+               
 
                 $resp->state = $answer;
                 echo json_encode($resp);
