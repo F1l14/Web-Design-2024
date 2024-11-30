@@ -1,6 +1,6 @@
 Delete Red: rgb(255, 103, 103)
 Cancelled Red: #ff1414
-Active Green:
+Active Green: #40eb34
 Light Green:#89fc00
 Default Blue:#0a6bff
 Turqoise:#00e9fc
