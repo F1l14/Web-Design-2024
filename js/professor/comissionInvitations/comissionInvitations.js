@@ -113,39 +113,39 @@ function thesisAnswer(event, answer){
         id: id,
         answer: answer
     };
-    console.log(JSON.stringify(thesisAnswer));
-    fetch("../answerInvitationProfessor.php", {
-        method: "POST",
-        body: JSON.stringify(thesisAnswer),
-        //Accepting json response from backend
-        headers: { 'Accept': 'application/json' }
-    })
-
-        .then(response => {
-            return response.text().then(text => {
-                console.log("Raw Response:", text);
-                try {
-                    return JSON.parse(text); // Try parsing the JSON
-                } catch (error) {
-                    console.error("JSON Parsing Error:", error);
-                    throw error; // Rethrow the error to be caught below
+    const userConfirmation = confirm("Επιβεβαίωση?");    
+    if (userConfirmation) {
+        fetch("../answerInvitationProfessor.php", {
+            method: "POST",
+            body: JSON.stringify(thesisAnswer),
+            //Accepting json response from backend
+            headers: { 'Accept': 'application/json' }
+        })
+    
+            .then(response => {
+                return response.text().then(text => {
+                    console.log("Raw Response:", text);
+                    try {
+                        return JSON.parse(text); // Try parsing the JSON
+                    } catch (error) {
+                        console.error("JSON Parsing Error:", error);
+                        throw error; // Rethrow the error to be caught below
+                    }
+                });
+            })
+    
+            .then(data => {
+                if (data.state == "accepted") {
+                    row.remove();
                 }
-            });
-        })
-
-        .then(data => {
-            if (data.state == "accepted") {
-                alert("ACCEPTED");
-                row.remove();
-            }
-            else {
-                alert("REJECTED");
-                row.remove();
-            }
-        })
-
-        .catch(error => {
-            console.error("Error Occured:", error);
-        })
-        ;
+                else {
+                    row.remove();
+                }
+            })
+    
+            .catch(error => {
+                console.error("Error Occured:", error);
+            })
+            ;
+    }
 }
