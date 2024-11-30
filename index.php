@@ -18,7 +18,7 @@
   <link rel="icon" type="image/svg+xml" href="icons/websiteIcon.svg ">
 
   <?php include "headerIndex.html";
-        include "./php/index/isConnected.php";
+  include "./php/index/isConnected.php";
   ?>
 
 </head>
@@ -30,7 +30,19 @@
   <div id="mainContainer" class="container align-content-center">
     <div class="row  justify-content-between ">
 
-      <div id="calendar" class="col-lg-6 box  ">
+      <div id="calendar" class="col-lg-7 box  ">
+
+        <div class="row justify-content-center">
+          <div class="col-lg-3 col-sm-6">
+            <input id="startDate" class="form-control" type="date" />
+            <span id="startDateSelected"></span>
+          </div>
+          <img id="toDate" src="/Web-Design-2024/icons/assignment.svg"/>
+          <div class="col-lg-3 col-sm-7">
+            <input id="endDate" class="form-control dateInput" type="date" />
+            <span id="endDateSelected"></span>
+          </div>
+        </div>
         <table id="diplomatikiTable" class="table table-striped ">
           <thead>
             <tr>
@@ -158,12 +170,14 @@
 
           <img id="accountCircle" src="icons/accountCircle.svg" />
           <!-- <label for="username" class="loginText">Username<br></label> -->
-          <input id="userName" class="darkInput loginText" type="text" name="username" placeholder="Username" maxlength="50">
+          <input id="userName" class="darkInput loginText" type="text" name="username" placeholder="Username"
+            maxlength="50">
           <br>
 
 
           <!-- <label for="pass" class="loginText">Password<br></label> -->
-          <input id="passWord" class="darkInput loginText" type="password" name="password" placeholder="Password" maxlength="50">
+          <input id="passWord" class="darkInput loginText" type="password" name="password" placeholder="Password"
+            maxlength="50">
           <p id="loginError"></p>
           <button type="submit" name="login">Login</button>
 
@@ -179,10 +193,9 @@
 
 <!-- bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
-  <!-- bacgkround lib -->
-  <script src=".\particles.js-master\particles.js-master\dist\particles.min.js"></script>
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<!-- bacgkround lib -->
+<script src=".\particles.js-master\particles.js-master\dist\particles.min.js"></script>
 
 
 

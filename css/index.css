@@ -1,6 +1,13 @@
 
-
-
+#startDate, #endDate{
+  width: 11rem;
+}
+#toDate{
+  height: 2.5rem;
+  width: auto;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
 #calendar {
   position: relative;
   z-index: 1;
