@@ -4,3 +4,4 @@ Active Green:
 Light Green:#89fc00
 Default Blue:#0a6bff
 Turqoise:#00e9fc
+Disabled Grey: #b0b0b0
