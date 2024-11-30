@@ -2,6 +2,7 @@ BackEnd
 ========================================================
 -listThesisDetails
     -fix download button
+    -make edit button that redirect to thesis management
 -login.php
     -calendar search
     
@@ -12,10 +13,6 @@ BackEnd
 -settings on header
 -url
     hide full path
-
-
--listThesisDetails.php
-    -seperate query for log
 
 ||COMPLETED||
 =============
