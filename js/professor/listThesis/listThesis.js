@@ -96,7 +96,6 @@ function insert(title, role, state, id) {
     openButton.className = "optionButton";
     openButton.style.backgroundColor = "#868e94";
     openButton.addEventListener("click",function(){
-        localStorage.setItem("thesisId", id);
         window.location.href = `listThesisDetails.php?thesisId=${encodeURIComponent(id)}`;
     });
 
