@@ -65,7 +65,7 @@ function insertInvitations(title, professor, student, id) {
 
 
     const checkIcon = document.createElement("img");
-    checkIcon.src = "/Web-Design-2024/icons/check.svg";
+    checkIcon.src = "/Web-Design-2024/icons/check_light.svg";
     const checkButton = document.createElement("button");
     checkButton.appendChild(checkIcon);
     checkButton.className = "check optionButton";
@@ -76,7 +76,7 @@ function insertInvitations(title, professor, student, id) {
 
 
     const xIcon = document.createElement("img");
-    xIcon.src = "/Web-Design-2024/icons/x.svg";
+    xIcon.src = "/Web-Design-2024/icons/x_light.svg";
     const xButton = document.createElement("button");
     xButton.appendChild(xIcon);
     xButton.className = "reject optionButton";
