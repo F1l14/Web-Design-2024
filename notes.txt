@@ -1,13 +1,13 @@
 BackEnd
 ========================================================
+-listThesisDetails
+    -fix download button
 -login.php
     -calendar search
     
 -insertUsers
     -trigger for username from email
-    -add fields to database
-    -split json to students and professors
-        -insert students, professors
+    
     
 -settings on header
 -url
@@ -19,6 +19,11 @@ BackEnd
 
 ||COMPLETED||
 =============
+-insertUsers
+    -add fields to database
+    -split json to students and professors
+        -insert students, professors
+
 -login.php
     -Token expiration date Trigger
     -Disable multiple logins
