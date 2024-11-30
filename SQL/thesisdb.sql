@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 23, 2024 at 05:22 PM
+-- Generation Time: Dec 01, 2024 at 12:49 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -84,8 +84,37 @@ CREATE TABLE `diplomatiki` (
   `student` varchar(30) DEFAULT NULL,
   `url` text DEFAULT NULL,
   `status` enum('energi','epeksergasia','peratomeni','akiromeni','anathesi','diathesimi') NOT NULL DEFAULT 'diathesimi',
-  `filename` varchar(255) DEFAULT NULL
+  `filename` varchar(255) DEFAULT NULL,
+  `grade_filename` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `diplomatiki`
+--
+
+INSERT INTO `diplomatiki` (`id`, `title`, `description`, `professor`, `student`, `url`, `status`, `filename`, `grade_filename`) VALUES
+(199, 'Super duper Thesis', 'MOKO', 'up0000002', 'up0000015', NULL, 'anathesi', 'Typologio-D.E..pdf', NULL),
+(200, 'ela re mpro', 'fjladsfk', 'up0000001', 'up0000026', NULL, 'anathesi', NULL, NULL);
+
+--
+-- Triggers `diplomatiki`
+--
+DELIMITER $$
+CREATE TRIGGER `on_create_add_supervisor` AFTER INSERT ON `diplomatiki` FOR EACH ROW INSERT INTO epitroph(diplomatiki,prof1) VALUES (NEW.id, NEW.professor)
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `on_create_log` AFTER INSERT ON `diplomatiki` FOR EACH ROW INSERT INTO diplomatiki_log (new_state, diplomatiki)
+        VALUES ('diathesimi', NEW.id)
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `on_update_log` AFTER UPDATE ON `diplomatiki` FOR EACH ROW IF OLD.status <> NEW.status THEN
+	INSERT INTO diplomatiki_log (new_state, diplomatiki)
+        VALUES (NEW.status, NEW.id);
+END IF
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -103,6 +132,31 @@ CREATE TABLE `diplomatiki_app` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `diplomatiki_log`
+--
+
+CREATE TABLE `diplomatiki_log` (
+  `id` int(11) NOT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp(),
+  `new_state` enum('energi','epeksergasia','peratomeni','akiromeni','anathesi','diathesimi') NOT NULL,
+  `diplomatiki` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `diplomatiki_log`
+--
+
+INSERT INTO `diplomatiki_log` (`id`, `date`, `new_state`, `diplomatiki`) VALUES
+(13, '2024-11-30 21:26:05', 'diathesimi', 199),
+(14, '2024-11-30 21:26:23', 'diathesimi', 200),
+(15, '2024-11-30 21:26:39', 'anathesi', 200),
+(16, '2024-11-30 21:26:55', 'diathesimi', 200),
+(17, '2024-11-30 21:27:00', 'anathesi', 199),
+(18, '2024-11-30 21:27:25', 'anathesi', 200);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `epitroph`
 --
 
@@ -113,6 +167,24 @@ CREATE TABLE `epitroph` (
   `prof3` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `epitroph`
+--
+
+INSERT INTO `epitroph` (`diplomatiki`, `prof1`, `prof2`, `prof3`) VALUES
+(199, 'up0000002', 'up0000004', 'up0000001'),
+(200, 'up0000001', 'up0000002', NULL);
+
+--
+-- Triggers `epitroph`
+--
+DELIMITER $$
+CREATE TRIGGER `remove_invitations` AFTER UPDATE ON `epitroph` FOR EACH ROW IF NEW.prof3 IS NOT NULL THEN
+	DELETE FROM epitroph_app WHERE diplomatiki = NEW.diplomatiki;
+END IF
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -121,7 +193,7 @@ CREATE TABLE `epitroph` (
 
 CREATE TABLE `epitroph_app` (
   `diplomatiki` int(7) NOT NULL,
-  `professor` varchar(30) NOT NULL,
+  `invited_professor` varchar(30) NOT NULL,
   `datetime` datetime NOT NULL DEFAULT current_timestamp(),
   `status` enum('accepted','rejected','waiting') NOT NULL DEFAULT 'waiting'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -175,34 +247,35 @@ INSERT INTO `professor` (`username`, `tmhma`, `panepistimio`, `thema`, `status`)
 
 CREATE TABLE `student` (
   `username` varchar(30) NOT NULL,
-  `etos_eisagwghs` int(4) NOT NULL
+  `etos_eisagwghs` int(4) NOT NULL,
+  `status` enum('available','unavailable') NOT NULL DEFAULT 'available'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`username`, `etos_eisagwghs`) VALUES
-('up0000011', 2015),
-('up0000012', 2015),
-('up0000013', 2015),
-('up0000014', 2015),
-('up0000015', 2015),
-('up0000016', 2015),
-('up0000017', 2015),
-('up0000018', 2015),
-('up0000019', 2015),
-('up0000020', 2015),
-('up0000021', 2015),
-('up0000022', 2015),
-('up0000023', 2015),
-('up0000024', 2015),
-('up0000025', 2015),
-('up0000026', 2015),
-('up0000027', 2015),
-('up0000028', 2015),
-('up0000029', 2015),
-('up0000030', 2015);
+INSERT INTO `student` (`username`, `etos_eisagwghs`, `status`) VALUES
+('up0000011', 2015, 'available'),
+('up0000012', 2015, 'available'),
+('up0000013', 2015, 'available'),
+('up0000014', 2015, 'available'),
+('up0000015', 2015, 'unavailable'),
+('up0000016', 2015, 'available'),
+('up0000017', 2015, 'unavailable'),
+('up0000018', 2015, 'unavailable'),
+('up0000019', 2015, 'unavailable'),
+('up0000020', 2015, 'unavailable'),
+('up0000021', 2015, 'unavailable'),
+('up0000022', 2015, 'available'),
+('up0000023', 2015, 'available'),
+('up0000024', 2015, 'unavailable'),
+('up0000025', 2015, 'available'),
+('up0000026', 2015, 'unavailable'),
+('up0000027', 2015, 'available'),
+('up0000028', 2015, 'available'),
+('up0000029', 2015, 'available'),
+('up0000030', 2015, 'unavailable');
 
 -- --------------------------------------------------------
 
@@ -230,9 +303,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`username`, `password`, `am`, `email`, `firstname`, `lastname`, `patrwnumo`, `kinito`, `stathero`, `role`) VALUES
 ('grammateia', '789', 69, 'grammateia@ceid.upatras.gr', 'Κωνσταντίνος', 'Αχλάδης', 'Γεώργιος', '6975464452', '2610865974', 'grammateia'),
 ('up0000001', '123', 1, 'up0000001@ac.upatras.gr', 'Αναστάσιος', 'Παπαδόπουλος', 'Γιώργος', '6901234567', '2109111111', 'professor'),
-('up0000002', '$2y$10$juPLpyDdhun3GmYPzPmH3eThszl.dHyIDQ0hZ9dcjYe6GUzsiKvbG', 2, 'up0000002@ac.upatras.gr', 'Μαρία', 'Κωστόπουλος', 'Αλέξανδρος', '6902234567', '2109222222', 'professor'),
-('up0000003', '$2y$10$ZmoKd8vAOcgvBmWVLUnmdu61cvt.2jWdwUjSp/vX4jPLNY/JyJeoy', 3, 'up0000003@ac.upatras.gr', 'Γιάννης', 'Στασινόπουλος', 'Χρήστος', '6903234567', '2109333333', 'professor'),
-('up0000004', '$2y$10$djDD62FTDzVWmlCXwtFFXOwGWgRzybusm7qujQtMzysKXOaORv80G', 4, 'up0000004@ac.upatras.gr', 'Δημήτρης', 'Αναγνωστόπουλος', 'Σταύρος', '6904234567', '2109444444', 'professor'),
+('up0000002', '123', 2, 'up0000002@ac.upatras.gr', 'Μαρία', 'Κωστόπουλος', 'Αλέξανδρος', '6902234567', '2109222222', 'professor'),
+('up0000003', '123', 3, 'up0000003@ac.upatras.gr', 'Γιάννης', 'Στασινόπουλος', 'Χρήστος', '6903234567', '2109333333', 'professor'),
+('up0000004', '123', 4, 'up0000004@ac.upatras.gr', 'Δημήτρης', 'Αναγνωστόπουλος', 'Σταύρος', '6904234567', '2109444444', 'professor'),
 ('up0000005', '$2y$10$CgE3aHTDNTvBpsug4v2IY.BUC866tNzVEBBQUZ0CD2mu0YMJ5K4VK', 5, 'up0000005@ac.upatras.gr', 'Αλέξανδρος', 'Παντελίδης', 'Κωνσταντίνος', '6905234567', '2109555555', 'professor'),
 ('up0000006', '$2y$10$T6/WdH7z82rbR5L0XHvrMOapUkzLy1xLZpGHPhRwlzPHYh8S6PKs6', 6, 'up0000006@ac.upatras.gr', 'Σταύρος', 'Καραγιάννης', 'Πέτρος', '6906234567', '2109666666', 'professor'),
 ('up0000007', '$2y$10$XDAaaSAWQY7T3wFQu7ydq.o3/QKSzLVCz3r70y1hG3LTChdKgLa1.', 7, 'up0000007@ac.upatras.gr', 'Ευάγγελος', 'Παπακωνσταντίνου', 'Αλέξανδρος', '6907234567', '2109777777', 'professor'),
@@ -272,6 +345,14 @@ CREATE TABLE `user_tokens` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `user_tokens`
+--
+
+INSERT INTO `user_tokens` (`token`, `user`, `expiration_date`) VALUES
+('9e3fffd5df58b7f28ef118bdf976c9bcf2386ce005cc030a56155224ccb732cd', 'up0000001', '2024-12-01 02:35:46'),
+('e5751506d0df8860b25c78d35122ab601278e8e3b5622b111bb9e24957e21d21', 'up0000002', '2024-12-01 02:16:13');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -297,20 +378,27 @@ ALTER TABLE `diplomatiki_app`
   ADD KEY `fk_diplomatiki_app_student` (`student`);
 
 --
+-- Indexes for table `diplomatiki_log`
+--
+ALTER TABLE `diplomatiki_log`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_diplomatiki_log_diplomatiki` (`diplomatiki`);
+
+--
 -- Indexes for table `epitroph`
 --
 ALTER TABLE `epitroph`
   ADD PRIMARY KEY (`diplomatiki`),
-  ADD KEY `fk_comission_prof1` (`prof1`),
-  ADD KEY `fk_comission_prof2` (`prof2`),
-  ADD KEY `fk_comission_prof3` (`prof3`);
+  ADD KEY `fk_epitroph_professor1` (`prof1`),
+  ADD KEY `fk_epitroph_professor2` (`prof2`),
+  ADD KEY `fk_epitroph_professor3` (`prof3`);
 
 --
 -- Indexes for table `epitroph_app`
 --
 ALTER TABLE `epitroph_app`
-  ADD PRIMARY KEY (`diplomatiki`,`professor`),
-  ADD KEY `fk_comission_app_professor` (`professor`);
+  ADD PRIMARY KEY (`diplomatiki`,`invited_professor`),
+  ADD KEY `fk_comission_app_professor` (`invited_professor`);
 
 --
 -- Indexes for table `evaluation`
@@ -352,7 +440,13 @@ ALTER TABLE `user_tokens`
 -- AUTO_INCREMENT for table `diplomatiki`
 --
 ALTER TABLE `diplomatiki`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
+
+--
+-- AUTO_INCREMENT for table `diplomatiki_log`
+--
+ALTER TABLE `diplomatiki_log`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
@@ -368,7 +462,30 @@ ALTER TABLE `address`
 -- Constraints for table `diplomatiki`
 --
 ALTER TABLE `diplomatiki`
-  ADD CONSTRAINT `fk_professor_diplomatiki` FOREIGN KEY (`professor`) REFERENCES `professor` (`username`);
+  ADD CONSTRAINT `fk_professor_diplomatiki` FOREIGN KEY (`professor`) REFERENCES `professor` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_student_diplomatiki` FOREIGN KEY (`student`) REFERENCES `student` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `diplomatiki_log`
+--
+ALTER TABLE `diplomatiki_log`
+  ADD CONSTRAINT `fk_diplomatiki_log_diplomatiki` FOREIGN KEY (`diplomatiki`) REFERENCES `diplomatiki` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `epitroph`
+--
+ALTER TABLE `epitroph`
+  ADD CONSTRAINT `fk_epitroph_diplomatiki` FOREIGN KEY (`diplomatiki`) REFERENCES `diplomatiki` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_epitroph_professor1` FOREIGN KEY (`prof1`) REFERENCES `professor` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_epitroph_professor2` FOREIGN KEY (`prof2`) REFERENCES `professor` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_epitroph_professor3` FOREIGN KEY (`prof3`) REFERENCES `professor` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `epitroph_app`
+--
+ALTER TABLE `epitroph_app`
+  ADD CONSTRAINT `fk_epitroph_app_diplomatiki` FOREIGN KEY (`diplomatiki`) REFERENCES `diplomatiki` (`id`),
+  ADD CONSTRAINT `fk_epitroph_app_professor` FOREIGN KEY (`invited_professor`) REFERENCES `professor` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `professor`
