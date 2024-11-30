@@ -1,0 +1,19 @@
+#mainContainer {
+    display: flex;
+  }
+  
+  #innerContainer {
+    height: 100%;
+    width: 90%;
+    padding: 0rem;
+    display: flexbox;
+    overflow-y: auto;
+  }
+
+  .check{
+    background-color: #40eb34;
+  }
+
+  .reject{
+    background-color: rgb(255, 103, 103);
+  }

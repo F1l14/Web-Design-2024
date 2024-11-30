@@ -19,7 +19,7 @@ updateActivity();
 
     <link rel="stylesheet" href="/Web-Design-2024/css/styles.css">
     <link rel="stylesheet" href="/Web-Design-2024/css/header.css">
-    <link rel="stylesheet" href="/Web-Design-2024/css/listThesisDetails.css">
+    <link rel="stylesheet" href="/Web-Design-2024/css/invitationsProfessor.css">
     <!-- icon -->
     <link rel="icon" type="image/svg+xml" href="/Web-Design-2024/icons/websiteIcon.svg">
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/Web-Design-2024/header.html' ?>
@@ -28,7 +28,16 @@ updateActivity();
 <body>
     <div id="mainContainer" class="container align-items-center justify-content-center">
         <div id="innerContainer" class="container box">
-            
+
+            <table class="table text-center" id="invitations">
+                <thead>
+                    <th id="title" scope="col" class="text-secondary">Τίτλος</th>
+                    <th id="epivlepon" scope="col" class="text-secondary">Επιβλέπων</th>
+                    <th id="student" scope="col" class="text-secondary">Φοιτητής/τρια</th>
+                    <th id="option" scope="col" class="text-secondary"></th>
+                </thead>
+                <tbody></tbody>
+            </table>
 
         </div>
     </div>
@@ -45,6 +54,6 @@ updateActivity();
 <script src="/Web-Design-2024/particles.js-master/particles.js-master/dist/particles.min.js"></script>
 <script src="/Web-Design-2024/js/backgroundOptions.js"></script>
 
-<script src="/Web-Design-2024/js/professor/listThesis/details.js"></script>
+<script src="/Web-Design-2024/js/professor/comissionInvitations/comissionInvitations.js"></script>
 
 </html>
