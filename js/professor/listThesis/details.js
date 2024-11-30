@@ -4,12 +4,6 @@ const queryParams = new URLSearchParams(window.location.search);
 // Retrieve the 'thesisId' parameter
 const thesisId = queryParams.get('thesisId');
 
-if (thesisId) {
-    console.log(`Thesis ID: ${thesisId}`);
-} else {
-    console.log("No thesisId found in the URL.");
-}
-
 window.addEventListener("load", loadDetails)
 
 async function loadDetails() {
@@ -30,7 +24,7 @@ async function loadDetails() {
         })
         .then(data => {
             if (data.message != "empty") {
-                
+
                 title = data.data[0]["title"];
                 const titleInput = document.getElementById("titleInput");
                 titleInput.value = title;
@@ -38,34 +32,47 @@ async function loadDetails() {
                 student = `${data.data[0]["student"]} | ${data.data[0]["firstname"]} ${data.data[0]["lastname"]}`;
                 const studentInput = document.getElementById("studentInput");
                 studentInput.value = student;
-           
+
 
                 const prof1 = data.data[0]["prof1"];
                 const prof1Input = document.getElementById("prof1");
                 prof1Input.value = prof1;
-                if(data.prof_names.firstname_prof1 !== null) new bootstrap.Tooltip(prof1Input, {title: `${data.prof_names.firstname_prof1} ${data.prof_names.lastname_prof1}`});
+                if (data.prof_names.firstname_prof1 !== null) new bootstrap.Tooltip(prof1Input, { title: `${data.prof_names.firstname_prof1} ${data.prof_names.lastname_prof1}` });
 
 
                 const prof2 = data.data[0]["prof2"];
                 const prof2Input = document.getElementById("prof2");
                 prof2Input.value = prof2;
-                if(data.prof_names.firstname_prof2 !== null) new bootstrap.Tooltip(prof2Input, {title: `${data.prof_names.firstname_prof2} ${data.prof_names.lastname_prof2}`});
+                if (data.prof_names.firstname_prof2 !== null) new bootstrap.Tooltip(prof2Input, { title: `${data.prof_names.firstname_prof2} ${data.prof_names.lastname_prof2}` });
 
                 const prof3 = data.data[0]["prof3"];
                 const prof3Input = document.getElementById("prof3");
                 prof3Input.value = prof3;
-                if(data.prof_names.firstname_prof3 !== null) new bootstrap.Tooltip(prof3Input, {title: `${data.prof_names.firstname_prof3} ${data.prof_names.lastname_prof3}`});
+                if (data.prof_names.firstname_prof3 !== null) new bootstrap.Tooltip(prof3Input, { title: `${data.prof_names.firstname_prof3} ${data.prof_names.lastname_prof3}` });
 
                 const url = data.data[0]["url"];
                 const liburl = document.getElementById("liburl");
 
-                if (!url){
+                if (!url) {
                     liburl.disabled = true;
+                } else {
+                    liburl.addEventListener("click", function () {
+                        window.open(url, '_blank');
+                    })
                 }
 
-                liburl.addEventListener("click", function(){
-                    window.open(url, '_blank'); 
-                })
+
+
+                const gradeFilename = data.data[0]["grade_filename"];
+                const gradeFile = document.getElementById("gradeFile");
+                if (!gradeFilename) {
+                    gradeFile.disabled = true;
+                    new bootstrap.Tooltip(gradeFile, { title: "IMPLEMENT GRADE FILES" })
+                }else{
+                    gradeFile.addEventListener("click", function(){
+                        alert("IMPLEMENT GRADE FILES");
+                    })
+                }
 
                 const logTable = document.getElementById("logTable");
 

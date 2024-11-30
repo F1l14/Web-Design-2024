@@ -68,7 +68,7 @@ updateActivity();
                         <h4>Βαθμός</h4>
                         <div id="grade" >
                             <p>Έντυπο βαθμολόγησης:</p>
-                            <button class="optionButton ">
+                            <button id="gradeFile" class="optionButton ">
                                 <img src="/Web-Design-2024/icons/down.svg" />
                             </button>
                         </div>
