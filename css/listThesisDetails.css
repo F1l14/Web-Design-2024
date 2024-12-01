@@ -22,11 +22,7 @@
     flex-direction: column;
     align-items: center;
 } */
-.centeredDiv{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+
 
 #fullEpitroph{
     position: relative;
