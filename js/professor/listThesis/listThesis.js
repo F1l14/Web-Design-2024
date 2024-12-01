@@ -77,7 +77,7 @@ function insert(title, role, state, id) {
     greekState ="";
     switch (state) {
         case "energi": { greekState ="Ενεργή";stateInput.style.outline = "2px solid #40eb34 "; break; }
-        case "epeksergasia": { greekState ="Επεξεργασία";stateInput.style.outline = "2px solid #0a6bff "; break; }
+        // case "eksetasi": { greekState ="Εξέταση";stateInput.style.outline = "2px solid #0a6bff "; break; }
         case "peratomeni": { greekState ="Περατωμένη";/*stateInput.style.outline = "3px solid #9b6900";*/ break; }
         case "akiromeni": { greekState ="Ακυρωμένη";stateInput.style.outline = "2px solid #ff1414"; break; }
         case "anathesi": { greekState ="Ανάθεση";stateInput.style.outline = "2px solid #fcce00"; break; }

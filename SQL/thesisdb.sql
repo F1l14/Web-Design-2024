@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 01, 2024 at 12:49 AM
+-- Generation Time: Dec 01, 2024 at 07:11 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -83,7 +83,7 @@ CREATE TABLE `diplomatiki` (
   `professor` varchar(30) DEFAULT NULL,
   `student` varchar(30) DEFAULT NULL,
   `url` text DEFAULT NULL,
-  `status` enum('energi','epeksergasia','peratomeni','akiromeni','anathesi','diathesimi') NOT NULL DEFAULT 'diathesimi',
+  `status` enum('energi','eksetasi','peratomeni','akiromeni','anathesi','diathesimi') NOT NULL DEFAULT 'diathesimi',
   `filename` varchar(255) DEFAULT NULL,
   `grade_filename` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -94,7 +94,7 @@ CREATE TABLE `diplomatiki` (
 
 INSERT INTO `diplomatiki` (`id`, `title`, `description`, `professor`, `student`, `url`, `status`, `filename`, `grade_filename`) VALUES
 (199, 'Super duper Thesis', 'MOKO', 'up0000002', 'up0000015', NULL, 'anathesi', 'Typologio-D.E..pdf', NULL),
-(200, 'ela re mpro', 'fjladsfk', 'up0000001', 'up0000026', NULL, 'anathesi', NULL, NULL);
+(200, 'ela re mpro', 'fjladsfk', 'up0000001', 'up0000026', NULL, 'eksetasi', NULL, NULL);
 
 --
 -- Triggers `diplomatiki`
@@ -138,7 +138,7 @@ CREATE TABLE `diplomatiki_app` (
 CREATE TABLE `diplomatiki_log` (
   `id` int(11) NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp(),
-  `new_state` enum('energi','epeksergasia','peratomeni','akiromeni','anathesi','diathesimi') NOT NULL,
+  `new_state` enum('energi','eksetasi','peratomeni','akiromeni','anathesi','diathesimi') NOT NULL,
   `diplomatiki` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -152,7 +152,9 @@ INSERT INTO `diplomatiki_log` (`id`, `date`, `new_state`, `diplomatiki`) VALUES
 (15, '2024-11-30 21:26:39', 'anathesi', 200),
 (16, '2024-11-30 21:26:55', 'diathesimi', 200),
 (17, '2024-11-30 21:27:00', 'anathesi', 199),
-(18, '2024-11-30 21:27:25', 'anathesi', 200);
+(18, '2024-11-30 21:27:25', 'anathesi', 200),
+(21, '2024-12-01 20:06:53', 'energi', 200),
+(22, '2024-12-01 20:09:36', 'eksetasi', 200);
 
 -- --------------------------------------------------------
 
@@ -349,8 +351,8 @@ CREATE TABLE `user_tokens` (
 --
 
 INSERT INTO `user_tokens` (`token`, `user`, `expiration_date`) VALUES
-('9e3fffd5df58b7f28ef118bdf976c9bcf2386ce005cc030a56155224ccb732cd', 'up0000001', '2024-12-01 02:35:46'),
-('e5751506d0df8860b25c78d35122ab601278e8e3b5622b111bb9e24957e21d21', 'up0000002', '2024-12-01 02:16:13');
+('ea0497c8d6c9d25ad8110fecee7a6f5582cf07cf6c8e139eae68ac9fc4865702', 'up0000002', '2024-12-01 21:11:06'),
+('ec9e444cf399bd7a9f07a4d49a7f1834cf2b6d119c59650ed145638dcc7ed043', 'up0000001', '2024-12-01 21:10:27');
 
 --
 -- Indexes for dumped tables
@@ -446,7 +448,7 @@ ALTER TABLE `diplomatiki`
 -- AUTO_INCREMENT for table `diplomatiki_log`
 --
 ALTER TABLE `diplomatiki_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Constraints for dumped tables

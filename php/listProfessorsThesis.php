@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         try {
             $stmt = $conn->prepare(
                 "SELECT * FROM diplomatiki INNER JOIN epitroph ON diplomatiki.id = epitroph.diplomatiki
-                WHERE ? IN (prof1, prof2, prof3) AND diplomatiki.status <> 'diathesimi';"
+                WHERE ? IN (prof1, prof2, prof3) AND diplomatiki.status <> 'diathesimi' AND diplomatiki.status <> 'eksetasi';"
             );
             
             $stmt->bind_param("s", $user->username);
