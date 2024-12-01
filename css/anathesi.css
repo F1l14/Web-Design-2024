@@ -1,0 +1,10 @@
+.cancelThesis{
+    text-align: center;;
+    padding: 1rem;
+    margin-top: 2rem;
+    background-color: #ff1414;
+}
+
+.cancelThesis:hover{
+    background-color: #ff1414;
+}
