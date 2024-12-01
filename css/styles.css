@@ -153,10 +153,10 @@ body {
     transform: translateY(-2px);
 }
 
-.optionButton:disabled{
+.optionButton:disabled, .pageButton:disabled{
     background-color: #b0b0b0;
 }
-.optionButton:disabled:hover{
+.optionButton:disabled:hover,.pageButton:disabled:hover{
     animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
   transform: translate3d(0, 0, 0);
   perspective: 1000px;
