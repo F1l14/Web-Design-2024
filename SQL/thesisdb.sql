@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 01, 2024 at 07:11 PM
+-- Generation Time: Dec 01, 2024 at 09:48 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -93,12 +93,29 @@ CREATE TABLE `diplomatiki` (
 --
 
 INSERT INTO `diplomatiki` (`id`, `title`, `description`, `professor`, `student`, `url`, `status`, `filename`, `grade_filename`) VALUES
-(199, 'Super duper Thesis', 'MOKO', 'up0000002', 'up0000015', NULL, 'anathesi', 'Typologio-D.E..pdf', NULL),
-(200, 'ela re mpro', 'fjladsfk', 'up0000001', 'up0000026', NULL, 'eksetasi', NULL, NULL);
+(199, 'Super duper Thesis', 'MOKO', 'up0000002', 'up0000011', NULL, 'anathesi', 'Typologio-D.E..pdf', NULL),
+(200, 'ela re mpro', 'fjladsfk', 'up0000001', 'up0000025', NULL, 'anathesi', NULL, NULL),
+(202, 'assign', 'fjadksfjads\r\n', 'up0000001', 'up0000022', NULL, 'anathesi', NULL, NULL),
+(203, 'yahoo mario', 'test', 'up0000002', 'up0000013', NULL, 'anathesi', NULL, NULL);
 
 --
 -- Triggers `diplomatiki`
 --
+DELIMITER $$
+CREATE TRIGGER `clear_epitroph` AFTER UPDATE ON `diplomatiki` FOR EACH ROW IF NEW.status = 'diathesimi' THEN
+	UPDATE epitroph
+    SET prof2 = NULL,
+        prof3 = NULL
+	WHERE NEW.id = epitroph.diplomatiki;
+    
+    DELETE FROM epitroph_app
+    WHERE NEW.id =  epitroph_app.diplomatiki;
+    
+	DELETE FROM epitroph_app_log
+    WHERE NEW.id = epitroph_app_log.diplomatiki;
+END IF
+$$
+DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER `on_create_add_supervisor` AFTER INSERT ON `diplomatiki` FOR EACH ROW INSERT INTO epitroph(diplomatiki,prof1) VALUES (NEW.id, NEW.professor)
 $$
@@ -154,7 +171,57 @@ INSERT INTO `diplomatiki_log` (`id`, `date`, `new_state`, `diplomatiki`) VALUES
 (17, '2024-11-30 21:27:00', 'anathesi', 199),
 (18, '2024-11-30 21:27:25', 'anathesi', 200),
 (21, '2024-12-01 20:06:53', 'energi', 200),
-(22, '2024-12-01 20:09:36', 'eksetasi', 200);
+(22, '2024-12-01 20:09:36', 'eksetasi', 200),
+(23, '2024-12-01 20:17:19', 'eksetasi', 199),
+(24, '2024-12-01 20:20:50', 'anathesi', 199),
+(25, '2024-12-01 20:48:55', 'energi', 200),
+(26, '2024-12-01 21:08:25', 'diathesimi', 202),
+(27, '2024-12-01 21:08:32', 'anathesi', 202),
+(28, '2024-12-01 21:13:53', 'anathesi', 200),
+(29, '2024-12-01 21:28:04', 'diathesimi', 202),
+(30, '2024-12-01 21:28:07', 'diathesimi', 199),
+(31, '2024-12-01 21:28:20', 'anathesi', 202),
+(32, '2024-12-01 21:28:46', 'diathesimi', 202),
+(33, '2024-12-01 21:29:56', 'anathesi', 202),
+(34, '2024-12-01 21:30:01', 'diathesimi', 202),
+(35, '2024-12-01 21:30:31', 'anathesi', 202),
+(36, '2024-12-01 21:30:32', 'anathesi', 199),
+(37, '2024-12-01 21:30:37', 'diathesimi', 202),
+(38, '2024-12-01 21:30:41', 'diathesimi', 199),
+(39, '2024-12-01 21:31:13', 'anathesi', 202),
+(40, '2024-12-01 21:31:22', 'diathesimi', 200),
+(41, '2024-12-01 21:31:26', 'anathesi', 199),
+(42, '2024-12-01 21:31:43', 'anathesi', 200),
+(43, '2024-12-01 21:31:59', 'diathesimi', 202),
+(44, '2024-12-01 21:32:02', 'diathesimi', 199),
+(45, '2024-12-01 21:32:26', 'diathesimi', 200),
+(46, '2024-12-01 21:32:36', 'anathesi', 200),
+(47, '2024-12-01 21:32:40', 'anathesi', 202),
+(48, '2024-12-01 21:33:34', 'diathesimi', 202),
+(49, '2024-12-01 21:33:39', 'anathesi', 199),
+(50, '2024-12-01 21:33:55', 'diathesimi', 199),
+(51, '2024-12-01 21:34:19', 'diathesimi', 200),
+(52, '2024-12-01 21:34:47', 'anathesi', 200),
+(53, '2024-12-01 21:34:50', 'anathesi', 202),
+(54, '2024-12-01 21:35:26', 'anathesi', 199),
+(55, '2024-12-01 21:35:33', 'diathesimi', 199),
+(56, '2024-12-01 21:37:41', 'anathesi', 199),
+(57, '2024-12-01 21:37:48', 'diathesimi', 199),
+(58, '2024-12-01 21:38:26', 'diathesimi', 200),
+(59, '2024-12-01 21:38:33', 'anathesi', 199),
+(60, '2024-12-01 21:38:41', 'diathesimi', 199),
+(61, '2024-12-01 21:39:06', 'diathesimi', 202),
+(62, '2024-12-01 21:39:16', 'anathesi', 200),
+(63, '2024-12-01 21:39:20', 'anathesi', 202),
+(64, '2024-12-01 21:39:24', 'anathesi', 199),
+(65, '2024-12-01 21:55:06', 'diathesimi', 203),
+(66, '2024-12-01 21:55:14', 'anathesi', 203),
+(69, '2024-12-01 22:27:41', 'diathesimi', 203),
+(71, '2024-12-01 22:28:01', 'anathesi', 203),
+(72, '2024-12-01 22:45:24', 'diathesimi', 200),
+(73, '2024-12-01 22:46:05', 'anathesi', 200),
+(74, '2024-12-01 22:46:34', 'diathesimi', 200),
+(75, '2024-12-01 22:47:18', 'anathesi', 200);
 
 -- --------------------------------------------------------
 
@@ -175,7 +242,9 @@ CREATE TABLE `epitroph` (
 
 INSERT INTO `epitroph` (`diplomatiki`, `prof1`, `prof2`, `prof3`) VALUES
 (199, 'up0000002', 'up0000004', 'up0000001'),
-(200, 'up0000001', 'up0000002', NULL);
+(200, 'up0000001', NULL, NULL),
+(202, 'up0000001', NULL, NULL),
+(203, 'up0000002', NULL, NULL);
 
 --
 -- Triggers `epitroph`
@@ -196,9 +265,54 @@ DELIMITER ;
 CREATE TABLE `epitroph_app` (
   `diplomatiki` int(7) NOT NULL,
   `invited_professor` varchar(30) NOT NULL,
-  `datetime` datetime NOT NULL DEFAULT current_timestamp(),
   `status` enum('accepted','rejected','waiting') NOT NULL DEFAULT 'waiting'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `epitroph_app`
+--
+
+INSERT INTO `epitroph_app` (`diplomatiki`, `invited_professor`, `status`) VALUES
+(202, 'up0000002', 'waiting');
+
+--
+-- Triggers `epitroph_app`
+--
+DELIMITER $$
+CREATE TRIGGER `log_response` AFTER UPDATE ON `epitroph_app` FOR EACH ROW IF OLD.status <> NEW.status THEN
+INSERT INTO epitroph_app_log (new_state, diplomatiki, invited_professor)
+        VALUES (NEW.status, NEW.diplomatiki, NEW.invited_professor);
+END IF
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `log_waiting` AFTER INSERT ON `epitroph_app` FOR EACH ROW INSERT INTO epitroph_app_log (new_state, diplomatiki, invited_professor)
+        VALUES ('waiting', NEW.diplomatiki, NEW.invited_professor)
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `epitroph_app_log`
+--
+
+CREATE TABLE `epitroph_app_log` (
+  `id` int(11) NOT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp(),
+  `new_state` enum('accepted','rejected','waiting') NOT NULL,
+  `diplomatiki` int(11) NOT NULL,
+  `invited_professor` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `epitroph_app_log`
+--
+
+INSERT INTO `epitroph_app_log` (`id`, `date`, `new_state`, `diplomatiki`, `invited_professor`) VALUES
+(1, '2024-12-01 21:55:34', 'waiting', 202, 'up0000002'),
+(2, '2024-12-01 21:59:36', 'waiting', 199, 'up0000001'),
+(3, '2024-12-01 22:02:36', 'accepted', 199, 'up0000001');
 
 -- --------------------------------------------------------
 
@@ -258,22 +372,22 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`username`, `etos_eisagwghs`, `status`) VALUES
-('up0000011', 2015, 'available'),
+('up0000011', 2015, 'unavailable'),
 ('up0000012', 2015, 'available'),
-('up0000013', 2015, 'available'),
+('up0000013', 2015, 'unavailable'),
 ('up0000014', 2015, 'available'),
-('up0000015', 2015, 'unavailable'),
+('up0000015', 2015, 'available'),
 ('up0000016', 2015, 'available'),
 ('up0000017', 2015, 'unavailable'),
 ('up0000018', 2015, 'unavailable'),
 ('up0000019', 2015, 'unavailable'),
 ('up0000020', 2015, 'unavailable'),
 ('up0000021', 2015, 'unavailable'),
-('up0000022', 2015, 'available'),
+('up0000022', 2015, 'unavailable'),
 ('up0000023', 2015, 'available'),
 ('up0000024', 2015, 'unavailable'),
-('up0000025', 2015, 'available'),
-('up0000026', 2015, 'unavailable'),
+('up0000025', 2015, 'unavailable'),
+('up0000026', 2015, 'available'),
 ('up0000027', 2015, 'available'),
 ('up0000028', 2015, 'available'),
 ('up0000029', 2015, 'available'),
@@ -351,8 +465,8 @@ CREATE TABLE `user_tokens` (
 --
 
 INSERT INTO `user_tokens` (`token`, `user`, `expiration_date`) VALUES
-('ea0497c8d6c9d25ad8110fecee7a6f5582cf07cf6c8e139eae68ac9fc4865702', 'up0000002', '2024-12-01 21:11:06'),
-('ec9e444cf399bd7a9f07a4d49a7f1834cf2b6d119c59650ed145638dcc7ed043', 'up0000001', '2024-12-01 21:10:27');
+('51caddcf1e2b20afc582e39aa404b2bfe65269f40a266ac4810abe7a7a087744', 'up0000001', '2024-12-01 23:47:19'),
+('ea0497c8d6c9d25ad8110fecee7a6f5582cf07cf6c8e139eae68ac9fc4865702', 'up0000002', '2024-12-01 23:28:37');
 
 --
 -- Indexes for dumped tables
@@ -403,6 +517,12 @@ ALTER TABLE `epitroph_app`
   ADD KEY `fk_comission_app_professor` (`invited_professor`);
 
 --
+-- Indexes for table `epitroph_app_log`
+--
+ALTER TABLE `epitroph_app_log`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `evaluation`
 --
 ALTER TABLE `evaluation`
@@ -442,13 +562,19 @@ ALTER TABLE `user_tokens`
 -- AUTO_INCREMENT for table `diplomatiki`
 --
 ALTER TABLE `diplomatiki`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=205;
 
 --
 -- AUTO_INCREMENT for table `diplomatiki_log`
 --
 ALTER TABLE `diplomatiki_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+
+--
+-- AUTO_INCREMENT for table `epitroph_app_log`
+--
+ALTER TABLE `epitroph_app_log`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
