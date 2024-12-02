@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 01, 2024 at 09:48 PM
+-- Generation Time: Dec 02, 2024 at 04:29 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -73,6 +73,26 @@ INSERT INTO `address` (`username`, `city`, `street`, `number`, `zipcode`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `akiromeni_diplomatiki`
+--
+
+CREATE TABLE `akiromeni_diplomatiki` (
+  `diplomatiki` int(11) NOT NULL,
+  `arithmos_gs` int(11) DEFAULT NULL,
+  `etos_gs` year(4) DEFAULT NULL,
+  `logos` text NOT NULL DEFAULT '"από Διδάσκοντα"'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `akiromeni_diplomatiki`
+--
+
+INSERT INTO `akiromeni_diplomatiki` (`diplomatiki`, `arithmos_gs`, `etos_gs`, `logos`) VALUES
+(205, NULL, NULL, '\"από Διδάσκοντα\"');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `diplomatiki`
 --
 
@@ -93,10 +113,11 @@ CREATE TABLE `diplomatiki` (
 --
 
 INSERT INTO `diplomatiki` (`id`, `title`, `description`, `professor`, `student`, `url`, `status`, `filename`, `grade_filename`) VALUES
-(199, 'Super duper Thesis', 'MOKO', 'up0000002', 'up0000011', NULL, 'anathesi', 'Typologio-D.E..pdf', NULL),
-(200, 'ela re mpro', 'fjladsfk', 'up0000001', 'up0000025', NULL, 'anathesi', NULL, NULL),
-(202, 'assign', 'fjadksfjads\r\n', 'up0000001', 'up0000022', NULL, 'anathesi', NULL, NULL),
-(203, 'yahoo mario', 'test', 'up0000002', 'up0000013', NULL, 'anathesi', NULL, NULL);
+(199, 'Super duper Thesis', 'MOKO', 'up0000002', 'up0000011', NULL, 'energi', 'Typologio-D.E..pdf', NULL),
+(200, 'ela re mpro', 'fjladsfk', 'up0000001', 'up0000025', NULL, 'energi', NULL, NULL),
+(202, 'assign', 'fjadksfjads\r\n', 'up0000004', 'up0000022', NULL, 'anathesi', NULL, NULL),
+(203, 'yahoo mario', 'test', 'up0000002', 'up0000013', NULL, 'anathesi', NULL, NULL),
+(205, 'cancel', 'fdashjfa', 'up0000001', 'up0000028', NULL, 'akiromeni', NULL, NULL);
 
 --
 -- Triggers `diplomatiki`
@@ -114,6 +135,12 @@ CREATE TRIGGER `clear_epitroph` AFTER UPDATE ON `diplomatiki` FOR EACH ROW IF NE
 	DELETE FROM epitroph_app_log
     WHERE NEW.id = epitroph_app_log.diplomatiki;
 END IF
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `on_cancel_insert_to_akiromeni` AFTER UPDATE ON `diplomatiki` FOR EACH ROW IF NEW.status='akiromeni' THEN
+	INSERT INTO akiromeni_diplomatiki(diplomatiki) VALUES (NEW.id);
+    END IF
 $$
 DELIMITER ;
 DELIMITER $$
@@ -221,7 +248,21 @@ INSERT INTO `diplomatiki_log` (`id`, `date`, `new_state`, `diplomatiki`) VALUES
 (72, '2024-12-01 22:45:24', 'diathesimi', 200),
 (73, '2024-12-01 22:46:05', 'anathesi', 200),
 (74, '2024-12-01 22:46:34', 'diathesimi', 200),
-(75, '2024-12-01 22:47:18', 'anathesi', 200);
+(75, '2024-12-01 22:47:18', 'anathesi', 200),
+(76, '2024-12-02 14:14:40', 'energi', 199),
+(77, '2024-12-02 14:44:25', 'energi', 200),
+(78, '2024-12-02 14:52:33', 'eksetasi', 200),
+(79, '2024-12-02 14:54:33', 'energi', 200),
+(80, '2024-12-02 15:02:59', 'eksetasi', 200),
+(81, '2024-12-02 15:03:11', 'energi', 200),
+(82, '2024-12-02 15:18:17', 'anathesi', 200),
+(83, '2024-12-02 15:22:51', 'energi', 200),
+(84, '2024-12-02 16:17:15', 'diathesimi', 205),
+(85, '2024-12-02 16:17:27', 'anathesi', 205),
+(86, '2024-12-02 16:17:36', 'energi', 205),
+(121, '2024-12-02 16:24:01', 'akiromeni', 205),
+(122, '2024-12-02 16:25:03', 'energi', 205),
+(123, '2024-12-02 16:25:09', 'akiromeni', 205);
 
 -- --------------------------------------------------------
 
@@ -243,8 +284,9 @@ CREATE TABLE `epitroph` (
 INSERT INTO `epitroph` (`diplomatiki`, `prof1`, `prof2`, `prof3`) VALUES
 (199, 'up0000002', 'up0000004', 'up0000001'),
 (200, 'up0000001', NULL, NULL),
-(202, 'up0000001', NULL, NULL),
-(203, 'up0000002', NULL, NULL);
+(202, 'up0000004', 'up0000001', NULL),
+(203, 'up0000002', NULL, NULL),
+(205, 'up0000001', NULL, NULL);
 
 --
 -- Triggers `epitroph`
@@ -389,7 +431,7 @@ INSERT INTO `student` (`username`, `etos_eisagwghs`, `status`) VALUES
 ('up0000025', 2015, 'unavailable'),
 ('up0000026', 2015, 'available'),
 ('up0000027', 2015, 'available'),
-('up0000028', 2015, 'available'),
+('up0000028', 2015, 'unavailable'),
 ('up0000029', 2015, 'available'),
 ('up0000030', 2015, 'unavailable');
 
@@ -465,8 +507,8 @@ CREATE TABLE `user_tokens` (
 --
 
 INSERT INTO `user_tokens` (`token`, `user`, `expiration_date`) VALUES
-('51caddcf1e2b20afc582e39aa404b2bfe65269f40a266ac4810abe7a7a087744', 'up0000001', '2024-12-01 23:47:19'),
-('ea0497c8d6c9d25ad8110fecee7a6f5582cf07cf6c8e139eae68ac9fc4865702', 'up0000002', '2024-12-01 23:28:37');
+('7ce495b7400cb853627d977aa831cda8f3f2e5b7fdfbdc71eb95786a36f4c1ef', 'up0000002', '2024-12-02 18:18:21'),
+('81d8e70f3a1841eab56a045aa3bc2bc94fbcbb90710371772582472910eb16a0', 'up0000001', '2024-12-02 18:21:35');
 
 --
 -- Indexes for dumped tables
@@ -477,6 +519,12 @@ INSERT INTO `user_tokens` (`token`, `user`, `expiration_date`) VALUES
 --
 ALTER TABLE `address`
   ADD PRIMARY KEY (`username`);
+
+--
+-- Indexes for table `akiromeni_diplomatiki`
+--
+ALTER TABLE `akiromeni_diplomatiki`
+  ADD PRIMARY KEY (`diplomatiki`);
 
 --
 -- Indexes for table `diplomatiki`
@@ -559,16 +607,22 @@ ALTER TABLE `user_tokens`
 --
 
 --
+-- AUTO_INCREMENT for table `akiromeni_diplomatiki`
+--
+ALTER TABLE `akiromeni_diplomatiki`
+  MODIFY `diplomatiki` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
+
+--
 -- AUTO_INCREMENT for table `diplomatiki`
 --
 ALTER TABLE `diplomatiki`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=205;
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
 
 --
 -- AUTO_INCREMENT for table `diplomatiki_log`
 --
 ALTER TABLE `diplomatiki_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
 -- AUTO_INCREMENT for table `epitroph_app_log`
@@ -585,6 +639,12 @@ ALTER TABLE `epitroph_app_log`
 --
 ALTER TABLE `address`
   ADD CONSTRAINT `fk_address_users` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `akiromeni_diplomatiki`
+--
+ALTER TABLE `akiromeni_diplomatiki`
+  ADD CONSTRAINT `fk_akiromeni_diplomatiki_diplomatiki` FOREIGN KEY (`diplomatiki`) REFERENCES `diplomatiki` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `diplomatiki`
