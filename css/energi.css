@@ -1,3 +1,15 @@
+#cancel, #eksetasi{
+ box-sizing: border-box;
+ width: 10rem;
+ /* padding-left: 2.3rem; */
+ /* vertical-align: center; */
+ /* padding: 0.1rem 1rem; */
+ padding-right: 1rem;
+ padding-left: 1rem;
+ text-align: center;
+ display: block;
+}
+
 .cancelThesis{
   background-color: #ff1414;
 }
