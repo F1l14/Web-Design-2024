@@ -2,7 +2,7 @@ const invTable = document.getElementById("invitations");
 window.addEventListener("load", loadInvitations);
 
 async function loadInvitations() {
-    fetch("../loadInvitations.php", {
+    fetch("scripts/invitations/loadInvitations.php", {
         method: "POST",
         //Accepting json response from backend
         headers: { 'Accept': 'application/json' }
@@ -115,7 +115,7 @@ function thesisAnswer(event, answer){
     };
     const userConfirmation = confirm("Επιβεβαίωση?");    
     if (userConfirmation) {
-        fetch("../answerInvitationProfessor.php", {
+        fetch("scripts/invitations/answerInvitationProfessor.php", {
             method: "POST",
             body: JSON.stringify(thesisAnswer),
             //Accepting json response from backend
