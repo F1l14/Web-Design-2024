@@ -7,7 +7,7 @@ const thesisId = queryParams.get('thesisId');
 window.addEventListener("load", loadDetails)
 
 async function loadDetails() {
-    fetch(`scripts/list/thesisDetails.php?thesisId=${thesisId}`, {
+    fetch(`../scripts/list/thesisDetails.php?thesisId=${thesisId}`, {
         method: "GET",
         headers: { 'Accept': 'application/json' }
     })
