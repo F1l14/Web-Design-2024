@@ -1,6 +1,5 @@
 <?php
-include_once "dbconn.php";
-$reply = new stdClass;
+include_once $_SERVER["DOCUMENT_ROOT"] . "/Web-Design-2024/php/dbconn.php";$reply = new stdClass;
 $reply->message = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

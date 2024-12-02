@@ -12,7 +12,7 @@ window.addEventListener("load", loadThesis);
 // });
 
 async function loadThesis() {
-    fetch("../listProfessorsThesis.php", {
+    fetch("scripts/list/listProfessorsThesis.php", {
         method: "POST",
         //Accepting json response from backend
         headers: { 'Accept': 'application/json' }
