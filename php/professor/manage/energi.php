@@ -33,9 +33,9 @@ updateActivity();
                 <div class="col centeredDiv">
                     <h4>Σημειώσεις</h4>
                     <div id="notepad" class="centeredDiv">
-                        <div>
-                            <ol>
-                                <li>
+                        <div id="scrollable">
+                            <ol id="noteList">
+                                <!-- <li>
 
                                     <div class="noteWrapper">
                                         <textarea id="1" class="form-control note"
@@ -44,17 +44,21 @@ updateActivity();
                                         <span id="current">0</span>
                                         <span id="max">/300</span>
                                         <span>
-                                            <img  class="deleteNote" src="/Web-Design-2024/icons/delete.svg"/>
+                                            <img class="deleteNote" src="/Web-Design-2024/icons/delete.svg" />
                                         </span>
                                     </div>
 
 
-                                </li>
+                                </li> -->
                             </ol>
+                            <button id="add" class="button-6 btn ">
+                                <img id="addIcon" src="/Web-Design-2024/icons/add.svg" />
+                            </button>
                         </div>
-                        <button class="button-6 btn ">
-                            <img id="addIcon"src="/Web-Design-2024/icons/add.svg"/>
-                        </button>
+
+                        <div id="saveWrapper" class="col">
+                            <button id="saveNotes" class="pageButton">save</button>
+                        </div>
                     </div>
 
                     <div class="col m-2 centeredDiv">
