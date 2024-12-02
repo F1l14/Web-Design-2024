@@ -1,5 +1,7 @@
 BackEnd
 ========================================================
+-manageThesis
+    fix filtering
 -listThesisDetails
     -fix download button
     -make edit button that redirect to thesis management
