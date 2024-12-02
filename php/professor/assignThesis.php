@@ -69,7 +69,7 @@ updateActivity();
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form id="assignThesisForm" enctype="multipart/form-data"
-                        action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/assignThesisToStudent.php'); ?>"
+                        action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/professor/scripts/assign/assignThesisToStudent.php'); ?>"
                         method="POST">
                         <div class="modal-body">
                             <div class="container-fluid">

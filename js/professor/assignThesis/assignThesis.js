@@ -7,7 +7,7 @@ window.addEventListener("load", getStudents);
 
 
 async function loadThesis() {
-    fetch("../loadThesis.php", {
+    fetch("scripts/create/loadThesis.php", {
         method: "POST",
         //Accepting json response from backend
         headers: { 'Accept': 'application/json' }
@@ -75,7 +75,7 @@ function insert(title, id) {
 
 
 async function loadAssignedThesis() {
-    fetch("../loadAssignedThesis.php", {
+    fetch("scripts/assign/loadAssignedThesis.php", {
         method: "POST",
         //Accepting json response from backend
         headers: { 'Accept': 'application/json' }
@@ -159,7 +159,7 @@ async function unassign(event) {
     };
     const userConfirmation = confirm("Αναίρεση ανάθεσης?");
     if (userConfirmation) {
-        fetch("../unassignThesis.php", {
+        fetch("scripts/assign/unassignThesis.php", {
             method: "POST",
             body: JSON.stringify(rowId),
             //Accepting json response from backend
@@ -216,7 +216,7 @@ async function getStudents() {
     datalist.innerHTML = "";
 
 
-    fetch("/Web-Design-2024/php/getAvailableStudents.php", {
+    fetch("scripts/assign/getAvailableStudents.php", {
         method: "GET",
         headers: { 'Accept': 'application/json' }
     })
