@@ -40,7 +40,7 @@ updateActivity();
                                     <div class="noteWrapper">
                                         <textarea id="1" class="form-control note"
                                             placeholder="Γράψτε τις σημειώσεις σας εδώ..." maxlength="300"></textarea>
-                                        
+
                                         <span id="current">0</span>
                                         <span id="max">/300</span>
                                         <span>
@@ -65,18 +65,56 @@ updateActivity();
                         <button id="eksetasi" class="pageButton">Υπο εξέταση</button>
                     </div>
                     <div class="col m-2 centeredDiv">
-                        <button id="cancel" class="pageButton cancelThesis">Ακύρωση</button>
+                        <button id="cancel" class="pageButton cancelThesis" data-bs-toggle="modal"
+                            data-bs-target="#cancelModal">Ακύρωση</button>
                     </div>
-
-
-
                 </div>
-
-
             </div>
-
-
         </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="cancelModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="cancelModalHeader">Ακύρωση Διπλωματικής Εργασίας
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="cancelThesisForm" enctype="multipart/form-data"
+                    action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/cancelThesis.php'); ?>"
+                    method="POST">
+                    <div class="modal-body">
+                        <div class="container-fluid">
+
+                            <div class="row g-3">
+                                <div class="col-lg-6">
+                                    <label for="arithmosGs" class="form-label">
+                                        Αριθμός Γενικής Συνέλευσης
+                                    </label>
+                                    <input id="arithmosGs" name="arithmosGs" class="form-control">
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="etosGs" class="form-label">
+                                        Έτος Γενικής Συνέλευσης
+                                    </label>
+                                    <select id="etosGs" class="form-select" name="etosGs" required>
+                                        <option value="">Please select a year</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Κλείσιμο</button>
+                        <button id="" type="submit" class="btn btn-primary"
+                            style="background-color: #ff1414;">Ακύρωση</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     </div>
     <!-- ======================================================================================== -->
     <canvas class="background"></canvas>

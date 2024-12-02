@@ -104,3 +104,31 @@ async function eksetasi() {
             ;
     }
 }
+
+
+
+// Function to dynamically populate the year select dropdown
+function populateYearDropdown(startYear, endYear) {
+    var select = document.getElementById("etosGs");
+
+    // Loop through the range of years and create option elements
+    for (var year = startYear; year <= endYear; year++) {
+        var option = document.createElement("option");
+        option.value = year;
+        option.textContent = year;
+        select.appendChild(option);
+    }
+}
+
+// Call the function with a start year and end year (e.g., 2000 to current year)
+var currentYear = new Date().getFullYear();
+populateYearDropdown(2000, currentYear);
+
+// Simple form validation
+document.getElementById("etosGs").onsubmit = function (event) {
+    var yearInput = document.getElementById("etosGs");
+    if (!yearInput.value) {
+        alert("Please select a year.");
+        event.preventDefault(); // Prevent form submission if no year is selected
+    }
+};
