@@ -40,21 +40,27 @@ updateActivity();
                                     <div class="noteWrapper">
                                         <textarea id="1" class="form-control note"
                                             placeholder="Γράψτε τις σημειώσεις σας εδώ..." maxlength="300"></textarea>
+                                        
                                         <span id="current">0</span>
                                         <span id="max">/300</span>
+                                        <span>
+                                            <img  class="deleteNote" src="/Web-Design-2024/icons/delete.svg"/>
+                                        </span>
                                     </div>
 
 
                                 </li>
                             </ol>
                         </div>
-                        <button class="btn">button</button>
+                        <button class="button-6 btn ">
+                            <img id="addIcon"src="/Web-Design-2024/icons/add.svg"/>
+                        </button>
                     </div>
 
-                    <div class="col m-2">
+                    <div class="col m-2 centeredDiv">
                         <button id="eksetasi" class="pageButton">Υπο εξέταση</button>
                     </div>
-                    <div class="col m-2">
+                    <div class="col m-2 centeredDiv">
                         <button id="cancel" class="pageButton cancelThesis">Ακύρωση</button>
                     </div>
 
