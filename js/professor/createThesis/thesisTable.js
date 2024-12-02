@@ -3,7 +3,7 @@ window.addEventListener("load", loadThesis);
 
 
 async function loadThesis() {
-    fetch("../loadThesis.php", {
+    fetch("scripts/create/loadThesis.php", {
         method: "POST",
         //Accepting json response from backend
         headers: { 'Accept': 'application/json' }

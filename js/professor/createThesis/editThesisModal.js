@@ -51,7 +51,7 @@ async function createEditModal(event) {
         id: id
     }
 
-    fetch("../loadSingleThesis.php", {
+    fetch("scripts/create/loadSingleThesis.php", {
         method: "POST",
         body: JSON.stringify(thesisId),
         //Accepting json response from backend

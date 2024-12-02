@@ -57,7 +57,7 @@ updateActivity();
                     </div>
                     <div class="modal-body">
                         <form id="createThesisForm" enctype="multipart/form-data"
-                            action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/uploadThesis.php'); ?>"
+                            action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/professor/scripts/create/uploadThesis.php'); ?>"
                             method="POST">
                             <div class="container-fluid">
                                 <div class="row">
@@ -109,7 +109,7 @@ updateActivity();
                     </div>
                     <div class="modal-body">
                         <form id="editThesisForm" enctype="multipart/form-data"
-                            action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/updateThesis.php'); ?>"
+                            action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/professor/scripts/create/updateThesis.php'); ?>"
                             method="POST">
                             <div class="container-fluid">
                                 <div class="row">
@@ -164,8 +164,8 @@ updateActivity();
 <script src="/Web-Design-2024/js/backgroundOptions.js"></script>
 
 </html>
-<script src="/Web-Design-2024/js/professor/thesisTable.js" defer></script>
+<script src="/Web-Design-2024/js/professor/createThesis/thesisTable.js" defer></script>
 
-<script src="/Web-Design-2024/js/professor/createThesisModal.js" defer></script>
-<script src="/Web-Design-2024/js/professor/editThesisModal.js" defer></script>
+<script src="/Web-Design-2024/js/professor/createThesis/createThesisModal.js" defer></script>
+<script src="/Web-Design-2024/js/professor/createThesis/editThesisModal.js" defer></script>
 <script src="/Web-Design-2024/js/professor/searchThesis.js"></script>
