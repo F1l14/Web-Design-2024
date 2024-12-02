@@ -74,7 +74,7 @@ async function professorPrivileges() {
 async function eksetasi() {
     const userConfirmation = confirm("Επιβεβαίωση?");
     if (userConfirmation) {
-        fetch(`../../updateToEksetasi.php?thesisId=${thesisId}`, {
+        fetch(`../scripts/manage/energi/updateToEksetasi.php?thesisId=${thesisId}`, {
             method: "GET",
             headers: { 'Accept': 'application/json' }
         })

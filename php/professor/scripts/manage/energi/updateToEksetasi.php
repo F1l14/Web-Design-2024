@@ -1,6 +1,6 @@
 <?php
 
-include "dbconn.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/Web-Design-2024/php/dbconn.php";
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if (isset($_GET['thesisId']) && isset($_COOKIE["user"])) {

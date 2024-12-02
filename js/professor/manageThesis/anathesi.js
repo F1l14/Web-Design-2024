@@ -7,7 +7,7 @@ const cancelButton = document.getElementById("cancelThesis");
 window.addEventListener("load", loadDetails)
 
 async function loadDetails() {
-    fetch(`../../anathesiDetails.php?thesisId=${thesisId}`, {
+    fetch(`../scripts/manage/anathesi/anathesiDetails.php?thesisId=${thesisId}`, {
         method: "GET",
         headers: { 'Accept': 'application/json' }
     })
@@ -94,7 +94,7 @@ async function cancelThesis(id) {
     };
     const userConfirmation = confirm("Αναίρεση ανάθεσης?");
     if (userConfirmation) {
-        fetch("../../unassignThesis.php", {
+        fetch("../scripts/assign/unassignThesis.php", {
             method: "POST",
             body: JSON.stringify(rowId),
             //Accepting json response from backend
