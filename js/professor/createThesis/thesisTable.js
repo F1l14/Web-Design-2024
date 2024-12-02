@@ -109,7 +109,7 @@ async function deleteThesis(event) {
                 id: id
             };
 
-            fetch("../../php/deleteThesis.php", {
+            fetch("scripts/create/deleteThesis.php", {
                 method: "POST",
                 body: JSON.stringify(rowId),
                 //Accepting json response from backend
