@@ -10,6 +10,7 @@
 
 .nav-tab {
     border-bottom: 0;
+    width: 100%;
 }
 
 .tab-pane {
@@ -51,7 +52,7 @@
     border-radius: 12px;
     text-align: center;
     height: max-content;
-    
+    width: 100%;
    
 } 
 #gradeTable.disabled * {
