@@ -4,8 +4,13 @@ const queryParams = new URLSearchParams(window.location.search);
 // Retrieve the 'thesisId' parameter
 const thesisId = queryParams.get('thesisId');
 
+if (thesisId) {
+    document.getElementById("id").value = thesisId;
+}
+
 const eksetasiButton = document.getElementById("eksetasi");
 const cancelButton = document.getElementById("cancel");
+const form = document.getElementById("cancelThesisForm");
 
 
 window.addEventListener("load", professorPrivileges)
@@ -33,10 +38,8 @@ async function professorPrivileges() {
                     cancelButton.disabled = true;
                     eksetasiButton.disabled = true;
                 } else {
-                    cancelButton.addEventListener("click", function () {
-                        // cancelThesis(thesisId);
-                    })
                     eksetasiButton.addEventListener("click", eksetasi)
+                    form.addEventListener("submit", cancelThesis)
                 }
 
                 const logTable = document.getElementById("logTable");
@@ -95,7 +98,6 @@ async function eksetasi() {
                 } else if (data.message == "SQL Error") {
                     console.log(data.message);
                 }
-
             })
 
             .catch(error => {
@@ -132,3 +134,46 @@ document.getElementById("etosGs").onsubmit = function (event) {
         event.preventDefault(); // Prevent form submission if no year is selected
     }
 };
+
+
+
+async function cancelThesis(event) {
+    event.preventDefault();
+    var data = new FormData(event.target);
+
+    for (let [key, value] of data.entries()) {
+        console.log(`${key}: ${value}`);
+    }
+
+    fetch(event.target.action, {
+        method: "POST",
+        body: data,
+        //Accepting json response from backend
+        headers: { 'Accept': 'application/json' }
+    })
+
+        .then(response => {
+            return response.text().then(text => {
+                console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+
+        .then(data => {
+            if (data.state != "SQL Error") {
+                window.location.href = '/Web-Design-2024/php/professor/manageThesis.php';
+            } else if (data.message == "SQL Error") {
+                console.log(data.error);
+            }
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}

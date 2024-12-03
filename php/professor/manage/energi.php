@@ -82,13 +82,14 @@ updateActivity();
                     </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="cancelThesisForm" enctype="multipart/form-data"
-                    action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/cancelThesis.php'); ?>"
+                <form id="cancelThesisForm"
+                    action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/professor/scripts/manage/energi/cancelThesis.php'); ?>"
                     method="POST">
                     <div class="modal-body">
                         <div class="container-fluid">
 
                             <div class="row g-3">
+                                <input type="hidden" name="id" id="id">
                                 <div class="col-lg-6">
                                     <label for="arithmosGs" class="form-label">
                                         Αριθμός Γενικής Συνέλευσης
@@ -100,7 +101,7 @@ updateActivity();
                                         Έτος Γενικής Συνέλευσης
                                     </label>
                                     <select id="etosGs" class="form-select" name="etosGs" required>
-                                        <option value="">Please select a year</option>
+                                        <option value="">Διαλέξτε Έτος</option>
                                     </select>
                                 </div>
                             </div>
@@ -108,7 +109,7 @@ updateActivity();
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Κλείσιμο</button>
-                        <button id="" type="submit" class="btn btn-primary"
+                        <button type="submit" class="btn btn-primary"
                             style="background-color: #ff1414;">Ακύρωση</button>
                     </div>
                 </form>
