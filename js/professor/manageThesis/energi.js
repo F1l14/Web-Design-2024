@@ -12,7 +12,9 @@ const eksetasiButton = document.getElementById("eksetasi");
 const cancelButton = document.getElementById("cancel");
 const form = document.getElementById("cancelThesisForm");
 
-
+window.addEventListener("load", function(){
+    stateProtect("energi", thesisId)
+});
 window.addEventListener("load", professorPrivileges)
 
 async function professorPrivileges() {

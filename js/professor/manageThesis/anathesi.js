@@ -6,6 +6,10 @@ const thesisId = queryParams.get('thesisId');
 const cancelButton = document.getElementById("cancelThesis");
 window.addEventListener("load", loadDetails)
 
+window.addEventListener("load", function(){
+    stateProtect("anathesi", thesisId)
+});
+
 async function loadDetails() {
     fetch(`../scripts/manage/anathesi/anathesiDetails.php?thesisId=${thesisId}`, {
         method: "GET",

@@ -98,7 +98,7 @@ updateActivity();
 <!-- bacgkround lib -->
 <script src="/Web-Design-2024/particles.js-master/particles.js-master/dist/particles.min.js"></script>
 <script src="/Web-Design-2024/js/backgroundOptions.js"></script>
-
+<script src="/Web-Design-2024/js/professor/manageThesis/stateProtect.js"></script>
 <script src="/Web-Design-2024/js/professor/manageThesis/anathesi.js"></script>
 
 </html>
