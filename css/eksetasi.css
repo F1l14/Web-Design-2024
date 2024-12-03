@@ -1,0 +1,72 @@
+.nav-link[aria-selected="true"] {
+    background-color: rgba(255, 255, 255, 0) !important;
+    border-color: rgb(255, 255, 255) !important;
+    border-bottom: 0;
+}
+
+.nav-link[aria-selected="false"] {
+    background-color: rgba(182, 182, 182, 0.337) !important;
+}
+
+.nav-tab {
+    border-bottom: 0;
+}
+
+.tab-pane {
+    height: 100%;
+}
+
+.tab-content {
+    height: 92%;
+}
+
+/* #editor-container{
+    resize: vertical;
+} */
+
+
+#saveWrapper {
+
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 4;
+
+}
+
+#saveNotes {
+    display: block;
+    width: 1rem;
+    border-radius: 30px;
+    min-height: max-content;
+    height: 3rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    min-width: max-content;
+}
+
+#gradeTable {
+    border-radius: 12px;
+    text-align: center;
+    height: max-content;
+    
+   
+} 
+#gradeTable.disabled * {
+    background-color: rgba(200, 200, 200, 0.088) !important;
+    color: rgba(97, 97, 97, 0.518) !important;
+}
+
+.pageButton{
+    margin-bottom: 2rem;
+}
+
+#enableButton{
+    background-color: hsl(116, 82%, 56%);
+}
+
+#enableButton:focus, #enableButton:hover{
+    background-color: hsl(116, 82%, 40%);
+}
