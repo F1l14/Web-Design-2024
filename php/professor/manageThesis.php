@@ -67,10 +67,8 @@ updateActivity();
                                             data-bs-toggle="button">Υπο Ανάθεση</a>
                                         <a href="#" id="energi" name ="Ενεργή" class="filterButton btn btn-primary" role="button"
                                             data-bs-toggle="button">Ενεργή</a>
-                                        <a href="#" id="peratomeni" name ="Περατωμένη" class="filterButton btn btn-primary" role="button"
-                                            data-bs-toggle="button">Περατωμένη</a>
-                                        <a href="#" id="akiromeni"name ="Ακυρωμένη"  class="filterButton btn btn-primary" role="button"
-                                            data-bs-toggle="button">Ακυρωμένη</a>
+                                        <a href="#" id="eksetasi" name ="Εξέταση" class="filterButton btn btn-primary" role="button"
+                                            data-bs-toggle="button">Εξέταση</a>
                                     </div>
                                 </div>
                             </div>
@@ -128,7 +126,7 @@ updateActivity();
 
 
 <script src="/Web-Design-2024/js/professor/manageThesis/manageThesis.js" defer></script>
-<script src="/Web-Design-2024/js/professor/listThesis/filterTable.js" defer></script>
+<script src="/Web-Design-2024/js/professor/manageThesis/filterTable.js" defer></script>
 <script src="/Web-Design-2024/js/professor/searchThesis.js" defer></script>
 
 <script src="/Web-Design-2024/js/professor/listThesis/export.js"></script>
