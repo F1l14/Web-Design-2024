@@ -1,3 +1,8 @@
+const CurrentqueryParams = new URLSearchParams(window.location.search);
+
+// Retrieve the 'thesisId' parameter
+const currentThesisId = CurrentqueryParams.get('thesisId');
+
 const note = document.getElementById("1")
 const counter = document.getElementById("current");
 const add = document.getElementById("add");
@@ -7,7 +12,11 @@ const save = document.getElementById("saveNotes");
 
 add.addEventListener("click",function(){addNote(noteList)});
 save.addEventListener("click", function(){
-    alert("CLICKED SAVE NOTES");
+    saveNotes(noteList);
+});
+
+window.addEventListener("DOMcontentLoaded", function(){
+    loadNotes(noteList);
 });
 
 function addNote(noteList){
@@ -51,4 +60,82 @@ function addNote(noteList){
 
 
 
+}
+
+
+async function saveNotes(noteList){
+    let notes = noteList.querySelectorAll("li textarea");
+    // mapping to only the values of the text area
+    let notesArray = Array.from(notes).map(textarea => textarea.value);
+    let json = JSON.stringify(notesArray);
+
+    let curentThesis = {
+        id: currentThesisId
+    }
+
+    fetch("../scripts/manage/energi/notepad/storeNotes.php", {
+        method: "POST",
+        body: JSON.stringify([currentThesisId,json]),
+        haeders: {'Accept' : 'application/json'}
+    })
+
+    .then(response => {
+        return response.text().then(text=> {
+            console.log("Raw: ", text);
+            try {
+                return JSON.parse(text); // Try parsing the JSON
+            } catch (error) {
+                console.error("JSON Parsing Error:", error);
+                throw error; // Rethrow the error to be caught below
+            }
+        })
+    })
+
+    .then(data => {
+        switch(data.state){
+            case "ok": {console.log("ok"); break;}
+            default: {console.log("fetch error notes"); break;}
+        }
+    })
+
+    .catch(error => {
+        console.error("Error Occured:", error);
+    })
+    ;
+}
+
+
+async function loadNotes(noteList){
+    let currentThesis = {
+        id: currentThesisId
+    }
+    fetch("../scripts/manage/energi/notepad/loadNotes.php", {
+        method: "POST",
+        body: JSON.stringify(currentThesisId),
+        haeders: {'Accept' : 'application/json'}
+    })
+
+    .then(response => {
+        return response.text().then(text=> {
+            console.log("Raw: ", text);
+            try {
+                return JSON.parse(text); // Try parsing the JSON
+            } catch (error) {
+                console.error("JSON Parsing Error:", error);
+                throw error; // Rethrow the error to be caught below
+            }
+        })
+    })
+
+    .then(data => {
+        switch(data.state){
+            case "ok": {console.log(data.notes); break;}
+            default: {console.log("fetch error notes"); break;}
+        }
+    })
+
+    .catch(error => {
+        console.error("Error Occured:", error);
+    })
+    ;
 }
