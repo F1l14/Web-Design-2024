@@ -27,10 +27,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 // delete file from server
                 $fileName = $result->fetch_assoc()["filename"];
-                $path = $_SERVER['DOCUMENT_ROOT'] . "/Web-Design-2024/Data/ThesisDescriptions/" . $user->username . "/".$thesisId;
+                $path = $_SERVER['DOCUMENT_ROOT'] . "/Web-Design-2024/Data/ThesisData/" . $user->username . "/".$thesisId;
                 if(is_dir($path)){
-                    unlink($path . "/" . $fileName);
-                    // array_map('unlink', glob("$path/*.*"));
+
+                    // delete all files matching in the array of filenames
+                    array_map('unlink', glob("$path/*.*"));
                     rmdir($path);
                 }
 
