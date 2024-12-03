@@ -82,6 +82,8 @@ async function createEditModal(event) {
 
             } else if (data.message == "sqlError") {
                 console.log("sqlError on insert thesis table");
+            }else{
+                console.log(data.message);
             }
 
         })
