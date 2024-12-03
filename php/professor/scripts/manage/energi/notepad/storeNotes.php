@@ -11,20 +11,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $combinedJson = file_get_contents('php://input');
         $combinedData = json_decode($combinedJson);
 
-        if($combinedData){
+
+
+       
+        if ($combinedData) {
             $thesisId = $combinedData[0];
             $notes = $combinedData[1];
-            
-            $filepath = $_SERVER["DOCUMENT_ROOT"] ."/Web-Design-2024/Data/ThesisData/" . $user->username . "/" . $thesisId . "/" . "notes.json";
-            file_put_contents($filepath,$notes);
+            $thesisDir = $_SERVER["DOCUMENT_ROOT"] . "/Web-Design-2024//Data/ThesisData/" . $user->username . "/" . $thesisId;
+            if (!is_dir($thesisDir)) {
+                mkdir($thesisDir, 0777, true);
+            }
+            $filepath = $thesisDir . "/" . "notes.json";
+            file_put_contents($filepath, $notes);
             $resp->state = "ok";
             echo json_encode($resp);
-        }else{
+        } else {
             $resp->state = "no data";
             echo json_encode($resp);
             return;
         }
-
-
     }
 }

@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 //====User Folder====
                 if (!is_dir($userDir)) {
                     // Create the directory with appropriate permissions
-                    if (!mkdir($userDir, 0755, true)) {
+                    if (!mkdir($userDir, 0777, true)) {
                         $resp->error = "Failed to create USER directory: " . $userDir;
 
                         // echo json_encode($resp);
@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $thesisDir = $userDir . "/" . $id . "/";
                 if (!is_dir($thesisDir)) {
                     // Create the directory with appropriate permissions
-                    if (!mkdir($thesisDir, 0755, true)) {
+                    if (!mkdir($thesisDir, 0777, true)) {
                         $resp->error = "Failed to create THESIS directory: " . $thesisDir;
 
                         // echo json_encode($resp);
