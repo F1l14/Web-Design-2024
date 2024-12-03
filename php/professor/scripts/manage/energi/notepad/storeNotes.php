@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($combinedData) {
             $thesisId = $combinedData[0];
             $notes = $combinedData[1];
-            $thesisDir = $_SERVER["DOCUMENT_ROOT"] . "/Web-Design-2024//Data/ThesisData/" . $user->username . "/" . $thesisId;
+            $thesisDir = $_SERVER["DOCUMENT_ROOT"] . "/Web-Design-2024/Data/ThesisData/" . $user->username . "/" . $thesisId;
             if (!is_dir($thesisDir)) {
                 mkdir($thesisDir, 0777, true);
             }

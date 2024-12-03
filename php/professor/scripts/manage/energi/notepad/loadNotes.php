@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id = json_decode($jsonId, true)["id"];
         $resp = new stdClass();
 
-        $filepath = $_SERVER["DOCUMENT_ROOT"] ."/Web-Design-2024//Data/ThesisData/" . $user->username . "/". $id . "/notes.json";
+        $filepath = $_SERVER["DOCUMENT_ROOT"] ."/Web-Design-2024/Data/ThesisData/" . $user->username . "/". $id . "/notes.json";
 
         if(file_exists($filepath)){
             $notes = file_get_contents($filepath);

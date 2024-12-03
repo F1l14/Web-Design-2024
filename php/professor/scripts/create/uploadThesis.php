@@ -56,15 +56,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
             if ($_FILES['thesisFile']['error'] === UPLOAD_ERR_OK) {
-                $userDir = $_SERVER["DOCUMENT_ROOT"] ."/Web-Design-2024//Data/ThesisData/" . $user->username . "/";
+                $userDir = $_SERVER["DOCUMENT_ROOT"] ."/Web-Design-2024/Data/ThesisData/" . $user->username . "/";
 
                 //====User Folder====
                 if (!is_dir($userDir)) {
-                    // Create the directory with appropriate permissions
+
                     if (!mkdir($userDir, 0777, true)) {
                         $resp->error = "Failed to create USER directory: " . $userDir;
 
                         // echo json_encode($resp);
+                        $resp->message = $userDir;
+                        echo json_encode($resp);
+                        return;
 
                     }
                 }
