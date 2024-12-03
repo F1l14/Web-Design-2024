@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
            
             $reply->data = $result->fetch_assoc();
             $reply->message = "ok";
-            $reply->filepath = "/Web-Design-2024/Data/ThesisDescriptions/" . $user->username . "/" . $thesisId . "/";
+            $reply->filepath = "/Web-Design-2024/Data/ThesisData/" . $user->username . "/" . $thesisId . "/";
             echo json_encode($reply);
         } else {
             $reply->message = "empty";
