@@ -38,6 +38,10 @@ async function professorPrivileges() {
 
                 if (!data.epivlepon) {
                     cancelButton.disabled = true;
+                    form.addEventListener('submit', function(event) {
+                        event.preventDefault(); // Prevent the form from submitting
+                        alert('Form submission is disabled.');
+                      })
                     eksetasiButton.disabled = true;
                 } else {
                     eksetasiButton.addEventListener("click", eksetasi)
