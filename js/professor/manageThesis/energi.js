@@ -12,10 +12,56 @@ const eksetasiButton = document.getElementById("eksetasi");
 const cancelButton = document.getElementById("cancel");
 const form = document.getElementById("cancelThesisForm");
 
-window.addEventListener("load", function(){
+window.addEventListener("load", function () {
     stateProtect("energi", thesisId)
 });
 window.addEventListener("load", professorPrivileges)
+
+async function canCancel(skip) {
+    fetch(`../../checkTwoYears.php?thesisId=${thesisId}`, {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.state != "SQL Error") {
+                if (skip) {
+                    eksetasiButton.addEventListener("click", eksetasi)
+                    form.addEventListener("submit", cancelThesis)
+                }else if (!data.cancel) {
+                    cancelButton.disabled = true;
+                    form.addEventListener('submit', function (event) {
+                        event.preventDefault(); // Prevent the form from submitting
+                        alert('Form submission is disabled.');
+                    })
+                    new bootstrap.Tooltip(cancelButton, { title: `Δεν έχουν παρέλθει δύο ημερολογιακά έτη από την επίσημη ανάθεση` });
+                } else {
+                    eksetasiButton.addEventListener("click", eksetasi)
+                    form.addEventListener("submit", cancelThesis)
+                }
+
+
+            } else if (data.state == "SQL Error") {
+                console.log(data.message);
+            }
+
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
 
 async function professorPrivileges() {
     fetch(`../../professorPrivileges.php?thesisId=${thesisId}`, {
@@ -38,30 +84,17 @@ async function professorPrivileges() {
 
                 if (!data.epivlepon) {
                     cancelButton.disabled = true;
-                    form.addEventListener('submit', function(event) {
+                    form.addEventListener('submit', function (event) {
                         event.preventDefault(); // Prevent the form from submitting
                         alert('Form submission is disabled.');
-                      })
+                    })
                     eksetasiButton.disabled = true;
+
+                    new bootstrap.Tooltip(cancelButton, { title: `Δεν είστε ο επιβλέπων` });
+                    new bootstrap.Tooltip(eksetasiButton, { title: `Δεν είστε ο επιβλέπων` });
                 } else {
-                    eksetasiButton.addEventListener("click", eksetasi)
-                    form.addEventListener("submit", cancelThesis)
+                    canCancel();
                 }
-
-                const logTable = document.getElementById("logTable");
-                if (data.log !== undefined) {
-                    data.log.forEach((entry) => {
-                        const row = logTable.insertRow();
-                        date = row.insertCell(0);
-                        date.textContent = entry["date"];
-                        katastasi = row.insertCell(1);
-                        katastasi.textContent = entry["new_state"];
-
-                        professor = row.insertCell(2);
-                        professor.textContent = entry["invited_professor"];
-                    });
-                }
-
             } else if (data.message == "SQL Error") {
                 console.log(data.message);
             }
@@ -171,8 +204,10 @@ async function cancelThesis(event) {
         })
 
         .then(data => {
-            if (data.state != "SQL Error") {
-                window.location.href = '/Web-Design-2024/php/professor/manageThesis.php';
+            if (data.state == "Can't cancel") {
+                alert("Δεν μπορεί να ακυρωθεί ακόμη");
+            } else if (data.state != "SQL Error") {
+                // window.location.href = '/Web-Design-2024/php/professor/manageThesis.php';
             } else if (data.message == "SQL Error") {
                 console.log(data.error);
             }
