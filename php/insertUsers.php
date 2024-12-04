@@ -1,12 +1,23 @@
 <?php
 include_once "dbconn.php";
 
+
+function passGen($length=8){
+    // two bytes one char
+     $random = bin2hex(random_bytes($length/2));
+     $hashed = password_hash($random, PASSWORD_BCRYPT);
+     return [$random , $hashed];
+}
+
 function insertProfessor($profs){
     global $conn;
+    echo "PROFESSORS <br>";
     foreach($profs as $current){
         
+        $hashedPass = passGen();
+
         $insertUser = $conn->prepare("INSERT INTO users(username, password, am , email, firstname, lastname, patrwnumo, kinito, stathero, role) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, 'professor')");
-        $insertUser->bind_param("ssissssss",$current["username"],$current["password"],$current["am"],$current["email"],$current["firstname"],$current["lastname"],$current["patrwnumo"],$current["kinito"],$current["stathero"]);
+        $insertUser->bind_param("ssissssss",$current["username"], $hashedPass[1] ,$current["am"],$current["email"],$current["firstname"],$current["lastname"],$current["patrwnumo"],$current["kinito"],$current["stathero"]);
         if (!$insertUser->execute()) {
             die("Error inserting user: " . $insertUser->error);
         }
@@ -22,14 +33,20 @@ function insertProfessor($profs){
         if (!$insertProfessor->execute()) {
             die("Error inserting prof: " . $insertProfessor->error);
         }
+
+        
+        echo $current["username"] ." : " . $hashedPass[0];
     }
 }
 
 function insertStudents($students){
     global $conn;
+    echo "STUDENTS <br>";
     foreach($students as $current){
+        $hashedPass = passGen();
+
         $insertUser = $conn->prepare("INSERT INTO users(username, password, am , email, firstname, lastname, patrwnumo, kinito, stathero, role) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, 'student')");
-        $insertUser->bind_param("ssissssss",$current["username"],$current["password"],$current["am"],$current["email"],$current["firstname"],$current["lastname"],$current["patrwnumo"],$current["kinito"],$current["stathero"]);
+        $insertUser->bind_param("ssissssss",$current["username"], $hashedPass[1], $current["am"],$current["email"],$current["firstname"],$current["lastname"],$current["patrwnumo"],$current["kinito"],$current["stathero"]);
         $insertUser->execute();
         
         $insertAddress= $conn->prepare("INSERT INTO address(username, city, street, number, zipcode) VALUES(?,?,?,?,?)");
@@ -39,10 +56,12 @@ function insertStudents($students){
         $insertStudent= $conn->prepare("INSERT INTO student(username, etos_eisagwghs) VALUES (?,?)");
         $insertStudent->bind_param("si", $current["username"], $current["etos"]);
         $insertStudent->execute();
+
+        echo $current["username"] . " : " . $hashedPass[0];
     }
 }
 
-$usersFile = file_get_contents("../Data/users.json");
+$usersFile = file_get_contents("../Data/user.json");
 // associative array
 $data = json_decode($usersFile, true);
 

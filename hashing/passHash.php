@@ -12,4 +12,5 @@ $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
 // Output the generated hash
 echo "Hashed Password: " . $hashedPassword . "\n";
-?>
+passGen();
+

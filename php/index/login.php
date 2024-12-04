@@ -29,8 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (mysqli_num_rows($result) > 0) {
             //================future hashing================
-            //if(password_verify($pass, mysqli_fetch_assoc($result)["password"])){
-            if ($password == mysqli_fetch_assoc($result)["password"]) {
+            if(password_verify($password, mysqli_fetch_assoc($result)["password"])){
+            // if ($password == mysqli_fetch_assoc($result)["password"]) {
                 $answer->response = "valid";
 
                 //DELETE OLD TOKEN IF EXISTS
