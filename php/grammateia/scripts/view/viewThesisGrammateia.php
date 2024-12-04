@@ -1,0 +1,44 @@
+<?php
+include_once $_SERVER["DOCUMENT_ROOT"] . "/Web-Design-2024/php/dbconn.php";
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+$reply = new stdClass;
+$reply->message = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_COOKIE["user"])) {
+        $user = json_decode($_COOKIE['user']);
+
+        try {
+            $stmt = $conn->prepare(
+                "SELECT id, title, status FROM diplomatiki
+                        WHERE diplomatiki.status = 'energi' OR diplomatiki.status = 'eksetasi';"
+            );
+            
+            $stmt->execute();
+            $result = $stmt->get_result();
+        } catch (mysqli) {
+            $resp->state = "SQL Error";
+            $resp->message= "empty";
+            $resp->error = $conn->error; // Log the specific error message
+            echo json_encode($resp);
+            return;
+        }
+
+        // Fetch all rows into an array
+        $data = array();
+        if ($result->num_rows > 0) {
+            // while ($row = $result->fetch_assoc()) {
+
+            // }
+            $data = $result->fetch_all(MYSQLI_ASSOC);
+            $reply->data = $data;
+            $reply->message = "ok";
+            $reply->username = $user->username;
+            echo json_encode($reply);
+        } else {
+            $reply->message = "empty";
+            echo json_encode($reply);
+        }
+    }
+}
