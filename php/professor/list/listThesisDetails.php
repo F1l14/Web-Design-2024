@@ -68,7 +68,7 @@ updateActivity();
                         <h4>Βαθμός</h4>
                         <div id="grade" >
                             <p>Έντυπο βαθμολόγησης:</p>
-                            <button id="gradeFile" class="optionButton ">
+                            <button id="gradeFile" class="optionButton " disabled>
                                 <img src="/Web-Design-2024/icons/down.svg" />
                             </button>
                         </div>
@@ -78,11 +78,14 @@ updateActivity();
                         <h4>Τελικό Κείμενο</h4>
                         <div id="library">
                             <p>Σύνδεσμος Βιβλιοθήκης:</p>
-                            <button class="optionButton" id="liburl">
+                            <button class="optionButton" id="liburl" disabled>
                                 <img src="/Web-Design-2024/icons/openNew.svg" />
                             </button>
                         </div>
 
+                    </div>
+                    <div id="manageThesisDiv" hidden>
+                        <button id="manageButton" class="pageButton">Διαχείριση</button>
                     </div>
                 </div>
 

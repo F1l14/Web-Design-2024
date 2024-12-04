@@ -52,10 +52,8 @@ async function loadDetails() {
 
                 const url = data.data[0]["url"];
                 const liburl = document.getElementById("liburl");
-
-                if (!url) {
-                    liburl.disabled = true;
-                } else {
+                if (url) {
+                    liburl.disabled = false;
                     liburl.addEventListener("click", function () {
                         window.open(url, '_blank');
                     })
@@ -65,13 +63,22 @@ async function loadDetails() {
 
                 const gradeFilename = data.data[0]["grade_filename"];
                 const gradeFile = document.getElementById("gradeFile");
-                if (!gradeFilename) {
-                    gradeFile.disabled = true;
+                if (gradeFilename) {
+                    gradeFile.disabled = false;
                     new bootstrap.Tooltip(gradeFile, { title: "IMPLEMENT GRADE FILES" })
-                }else{
-                    gradeFile.addEventListener("click", function(){
-                        alert("IMPLEMENT GRADE FILES");
+                }
+
+                const status = data.data[0]["status"];
+                const manageButton = document.getElementById("manageButton");
+                const manageDiv = document.getElementById("manageThesisDiv");
+                if (status === "anathesi" || status === "energi") {
+                    manageDiv.hidden = false;                    
+                    manageButton.addEventListener("click", function () {
+                        window.location.href = `/Web-Design-2024/php/professor/manage/${status}.php?thesisId=${thesisId}`
                     })
+                } else {
+                    manageDiv.hidden = true;
+                    manageButton.disabled = true;
                 }
 
                 const logTable = document.getElementById("logTable");
