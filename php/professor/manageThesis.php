@@ -127,7 +127,7 @@ updateActivity();
 
 <script src="/Web-Design-2024/js/professor/manageThesis/manageThesis.js" defer></script>
 <script src="/Web-Design-2024/js/professor/manageThesis/filterTable.js" defer></script>
-<script src="/Web-Design-2024/js/professor/searchThesis.js" defer></script>
+<script src="/Web-Design-2024/js/searchThesis.js" defer></script>
 
 <script src="/Web-Design-2024/js/professor/listThesis/export.js"></script>
 

@@ -168,4 +168,4 @@ updateActivity();
 
 <script src="/Web-Design-2024/js/professor/createThesis/createThesisModal.js" defer></script>
 <script src="/Web-Design-2024/js/professor/createThesis/editThesisModal.js" defer></script>
-<script src="/Web-Design-2024/js/professor/searchThesis.js"></script>
+<script src="/Web-Design-2024/js/searchThesis.js"></script>
