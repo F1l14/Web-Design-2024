@@ -5,7 +5,7 @@ async function stateProtect(state) {
     })
         .then(response => {
             return response.text().then(text => {
-                console.log("Raw Response:", text);
+                // console.log("Raw Response:", text);
                 try {
                     return JSON.parse(text); // Try parsing the JSON
                 } catch (error) {
