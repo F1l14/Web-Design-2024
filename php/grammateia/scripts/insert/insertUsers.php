@@ -1,6 +1,6 @@
 <?php
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-include_once "dbconn.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/Web-Design-2024/php/dbconn.php";
 
 function createUsername($email)
 {
@@ -20,7 +20,7 @@ function insertProfessor($profs)
 {
     global $conn;
     $professorsString = "";
-    echo "PROFESSORS <br>";
+    $resp = new stdClass();
     foreach ($profs as $current) {
         $username = createUsername($current["email"]);
         $hashedPass = passGen();
@@ -31,7 +31,8 @@ function insertProfessor($profs)
                 die("Error inserting user: " . $insertUser->error);
             }
         }catch(mysqli){
-            echo $conn->error;
+            $resp->state  = $conn->error;
+            echo json_encode($resp);
         }
         try{
             $insertAddress = $conn->prepare("INSERT INTO address(username, city, street, number, zipcode) VALUES(?,?,?,?,?)");
@@ -40,7 +41,8 @@ function insertProfessor($profs)
                 die("Error inserting add: " . $insertAddress->error);
             }
         }catch(mysqli){
-            echo $conn->error;
+            $resp->state  = $conn->error;
+            echo json_encode($resp);
         }
         try{
             $insertProfessor = $conn->prepare("INSERT INTO professor(username, tmhma, panepistimio, thema) VALUES (?,?,?,?)");
@@ -49,7 +51,8 @@ function insertProfessor($profs)
                 die("Error inserting prof: " . $insertProfessor->error);
             }
         }catch(mysqli){
-            echo $conn->error;
+            $resp->state  = $conn->error;
+            echo json_encode($resp);
         }
 
 
@@ -63,7 +66,7 @@ function insertStudents($students)
 {
     global $conn;
     $studentsString = "";
-    echo "<br>STUDENTS <br>";
+    $resp = new stdClass();
     foreach ($students as $current) {
         $username = createUsername($current["email"]);
         $hashedPass = passGen();
@@ -72,7 +75,8 @@ function insertStudents($students)
             $insertUser->bind_param("ssssssss", $username, $hashedPass[1], $current["email"], $current["firstname"], $current["lastname"], $current["patrwnumo"], $current["kinito"], $current["stathero"]);
             $insertUser->execute();
         }catch(mysqli){
-            echo $conn->error;
+            $resp->state  = $conn->error;
+            echo json_encode($resp);
         }
 
         try{
@@ -80,7 +84,8 @@ function insertStudents($students)
             $insertAddress->bind_param("sssii", $username, $current["city"], $current["street"], $current["num"], $current["tk"]);
             $insertAddress->execute();
         }catch(mysqli){
-            echo $conn->error;
+            $resp->state  = $conn->error;
+            echo json_encode($resp);
         }
 
         try{
@@ -88,14 +93,22 @@ function insertStudents($students)
             $insertStudent->bind_param("sii", $username, $current["am"], $current["etos"]);
             $insertStudent->execute();
         }catch(mysqli){
-            echo $conn->error;   
+            $resp->state  = $conn->error;
+            echo json_encode($resp);   
         }
         $studentsString .= $username . " : " . $hashedPass[0] . "\n";
     }
     return $studentsString;
 }
 
-$usersFile = file_get_contents("../Data/users.json");
+if ($_FILES['fileToUpload']['error'] === UPLOAD_ERR_OK) {
+    // $fileName = $_FILES['fileToUpload']["name"];
+    $tempFileName = $_FILES['fileToUpload']["tmp_name"];
+}
+
+$resp = new stdClass;
+
+$usersFile = file_get_contents($tempFileName);
 // associative array
 $data = json_decode($usersFile, true);
 
@@ -108,8 +121,11 @@ foreach ($data as $category => $items) {
     }
     if ($users != "") {
         saveFile($users);
+        $resp->state = 'ok';
+        echo json_encode($resp);
     }else{
-        echo "users : empty";
+        $resp->state = "users : empty";
+        echo json_encode($resp);
     }
 
 }
@@ -118,13 +134,11 @@ function saveFile($data)
 {
     $file = $_SERVER['DOCUMENT_ROOT'] . 'Web-Design-2024/Data/Users/listUsers.txt';
     // Open the file in append mode
+    file_put_contents($file, "");
     $handle = fopen($file, 'a');
     if ($handle) {
         fwrite($handle, $data);
         fclose($handle);
-        echo "Text appended successfully.";
 
-    } else {
-        echo "Failed to open the file.";
     }
 }
