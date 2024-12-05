@@ -1,4 +1,5 @@
 <?php
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 include_once "dbconn.php";
 
 function createUsername($email)
@@ -23,23 +24,32 @@ function insertProfessor($profs)
     foreach ($profs as $current) {
         $username = createUsername($current["email"]);
         $hashedPass = passGen();
-
-        $insertUser = $conn->prepare("INSERT INTO users(username, password, am , email, firstname, lastname, patrwnumo, kinito, stathero, role) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, 'professor')");
-        $insertUser->bind_param("ssissssss", $username, $hashedPass[1], $current["am"], $current["email"], $current["firstname"], $current["lastname"], $current["patrwnumo"], $current["kinito"], $current["stathero"]);
-        if (!$insertUser->execute()) {
-            die("Error inserting user: " . $insertUser->error);
+        try{
+            $insertUser = $conn->prepare("INSERT INTO users(username, password , email, firstname, lastname, patrwnumo, kinito, stathero, role) VALUES(?, ?, ?, ?, ?, ?, ?, ?, 'professor')");
+            $insertUser->bind_param("ssssssss", $username, $hashedPass[1], $current["email"], $current["firstname"], $current["lastname"], $current["patrwnumo"], $current["kinito"], $current["stathero"]);
+            if (!$insertUser->execute()) {
+                die("Error inserting user: " . $insertUser->error);
+            }
+        }catch(mysqli){
+            echo $conn->error;
         }
-
-        $insertAddress = $conn->prepare("INSERT INTO address(username, city, street, number, zipcode) VALUES(?,?,?,?,?)");
-        $insertAddress->bind_param("sssii", $username, $current["city"], $current["street"], $current["num"], $current["tk"]);
-        if (!$insertAddress->execute()) {
-            die("Error inserting add: " . $insertAddress->error);
+        try{
+            $insertAddress = $conn->prepare("INSERT INTO address(username, city, street, number, zipcode) VALUES(?,?,?,?,?)");
+            $insertAddress->bind_param("sssii", $username, $current["city"], $current["street"], $current["num"], $current["tk"]);
+            if (!$insertAddress->execute()) {
+                die("Error inserting add: " . $insertAddress->error);
+            }
+        }catch(mysqli){
+            echo $conn->error;
         }
-
-        $insertProfessor = $conn->prepare("INSERT INTO professor(username, tmhma, panepistimio, thema) VALUES (?,?,?,?)");
-        $insertProfessor->bind_param("ssss", $username, $current["department"], $current["university"], $current["topic"]);
-        if (!$insertProfessor->execute()) {
-            die("Error inserting prof: " . $insertProfessor->error);
+        try{
+            $insertProfessor = $conn->prepare("INSERT INTO professor(username, tmhma, panepistimio, thema) VALUES (?,?,?,?)");
+            $insertProfessor->bind_param("ssss", $username, $current["department"], $current["university"], $current["topic"]);
+            if (!$insertProfessor->execute()) {
+                die("Error inserting prof: " . $insertProfessor->error);
+            }
+        }catch(mysqli){
+            echo $conn->error;
         }
 
 
@@ -53,29 +63,39 @@ function insertStudents($students)
 {
     global $conn;
     $studentsString = "";
-    echo "STUDENTS <br>";
+    echo "<br>STUDENTS <br>";
     foreach ($students as $current) {
         $username = createUsername($current["email"]);
         $hashedPass = passGen();
+        try{
+            $insertUser = $conn->prepare("INSERT INTO users(username, password , email, firstname, lastname, patrwnumo, kinito, stathero, role) VALUES(?, ?, ?, ?, ?, ?, ?, ?, 'student')");
+            $insertUser->bind_param("ssssssss", $username, $hashedPass[1], $current["email"], $current["firstname"], $current["lastname"], $current["patrwnumo"], $current["kinito"], $current["stathero"]);
+            $insertUser->execute();
+        }catch(mysqli){
+            echo $conn->error;
+        }
 
-        $insertUser = $conn->prepare("INSERT INTO users(username, password, am , email, firstname, lastname, patrwnumo, kinito, stathero, role) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, 'student')");
-        $insertUser->bind_param("ssissssss", $username, $hashedPass[1], $current["am"], $current["email"], $current["firstname"], $current["lastname"], $current["patrwnumo"], $current["kinito"], $current["stathero"]);
-        $insertUser->execute();
+        try{
+            $insertAddress = $conn->prepare("INSERT INTO address(username, city, street, number, zipcode) VALUES(?,?,?,?,?)");
+            $insertAddress->bind_param("sssii", $username, $current["city"], $current["street"], $current["num"], $current["tk"]);
+            $insertAddress->execute();
+        }catch(mysqli){
+            echo $conn->error;
+        }
 
-        $insertAddress = $conn->prepare("INSERT INTO address(username, city, street, number, zipcode) VALUES(?,?,?,?,?)");
-        $insertAddress->bind_param("sssii", $username, $current["city"], $current["street"], $current["num"], $current["tk"]);
-        $insertAddress->execute();
-
-        $insertStudent = $conn->prepare("INSERT INTO student(username, etos_eisagwghs) VALUES (?,?)");
-        $insertStudent->bind_param("si", $username, $current["etos"]);
-        $insertStudent->execute();
-
-        $studentsString .= $username . " : " . $hashedPass[0] . "/n";
+        try{
+            $insertStudent = $conn->prepare("INSERT INTO student(username, am, etos_eisagwghs) VALUES (?,?,?)");
+            $insertStudent->bind_param("sii", $username, $current["am"], $current["etos"]);
+            $insertStudent->execute();
+        }catch(mysqli){
+            echo $conn->error;   
+        }
+        $studentsString .= $username . " : " . $hashedPass[0] . "\n";
     }
     return $studentsString;
 }
 
-$usersFile = file_get_contents("../Data/user.json");
+$usersFile = file_get_contents("../Data/users.json");
 // associative array
 $data = json_decode($usersFile, true);
 
