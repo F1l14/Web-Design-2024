@@ -1,69 +1,78 @@
 <?php
 include_once "dbconn.php";
 
-function createUsername($email){
+function createUsername($email)
+{
     $splitEmail = explode("@", $email);
     return $splitEmail[0];
 }
 
-function passGen($length=8){
+function passGen($length = 8)
+{
     // two bytes one char
-     $random = bin2hex(random_bytes($length/2));
-     $hashed = password_hash($random, PASSWORD_BCRYPT);
-     return [$random , $hashed];
+    $random = bin2hex(random_bytes($length / 2));
+    $hashed = password_hash($random, PASSWORD_BCRYPT);
+    return [$random, $hashed];
 }
 
-function insertProfessor($profs){
+function insertProfessor($profs)
+{
     global $conn;
+    $professorsString = "";
     echo "PROFESSORS <br>";
-    foreach($profs as $current){
+    foreach ($profs as $current) {
         $username = createUsername($current["email"]);
         $hashedPass = passGen();
 
         $insertUser = $conn->prepare("INSERT INTO users(username, password, am , email, firstname, lastname, patrwnumo, kinito, stathero, role) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, 'professor')");
-        $insertUser->bind_param("ssissssss",$username, $hashedPass[1] ,$current["am"],$current["email"],$current["firstname"],$current["lastname"],$current["patrwnumo"],$current["kinito"],$current["stathero"]);
+        $insertUser->bind_param("ssissssss", $username, $hashedPass[1], $current["am"], $current["email"], $current["firstname"], $current["lastname"], $current["patrwnumo"], $current["kinito"], $current["stathero"]);
         if (!$insertUser->execute()) {
             die("Error inserting user: " . $insertUser->error);
         }
 
-        $insertAddress= $conn->prepare("INSERT INTO address(username, city, street, number, zipcode) VALUES(?,?,?,?,?)");
+        $insertAddress = $conn->prepare("INSERT INTO address(username, city, street, number, zipcode) VALUES(?,?,?,?,?)");
         $insertAddress->bind_param("sssii", $username, $current["city"], $current["street"], $current["num"], $current["tk"]);
         if (!$insertAddress->execute()) {
             die("Error inserting add: " . $insertAddress->error);
         }
 
-        $insertProfessor= $conn->prepare("INSERT INTO professor(username, tmhma, panepistimio, thema) VALUES (?,?,?,?)");
+        $insertProfessor = $conn->prepare("INSERT INTO professor(username, tmhma, panepistimio, thema) VALUES (?,?,?,?)");
         $insertProfessor->bind_param("ssss", $username, $current["department"], $current["university"], $current["topic"]);
         if (!$insertProfessor->execute()) {
             die("Error inserting prof: " . $insertProfessor->error);
         }
 
-        
-        echo $current["username"] ." : " . $hashedPass[0];
+
+        $professorsString .= $username . " : " . $hashedPass[0] . "\n";
     }
+    return $professorsString;
+    ;
 }
 
-function insertStudents($students){
+function insertStudents($students)
+{
     global $conn;
+    $studentsString = "";
     echo "STUDENTS <br>";
-    foreach($students as $current){
+    foreach ($students as $current) {
         $username = createUsername($current["email"]);
         $hashedPass = passGen();
 
         $insertUser = $conn->prepare("INSERT INTO users(username, password, am , email, firstname, lastname, patrwnumo, kinito, stathero, role) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, 'student')");
-        $insertUser->bind_param("ssissssss",$username, $hashedPass[1], $current["am"],$current["email"],$current["firstname"],$current["lastname"],$current["patrwnumo"],$current["kinito"],$current["stathero"]);
+        $insertUser->bind_param("ssissssss", $username, $hashedPass[1], $current["am"], $current["email"], $current["firstname"], $current["lastname"], $current["patrwnumo"], $current["kinito"], $current["stathero"]);
         $insertUser->execute();
-        
-        $insertAddress= $conn->prepare("INSERT INTO address(username, city, street, number, zipcode) VALUES(?,?,?,?,?)");
-        $insertAddress->bind_param("sssii",$username, $current["city"], $current["street"], $current["num"], $current["tk"]);
+
+        $insertAddress = $conn->prepare("INSERT INTO address(username, city, street, number, zipcode) VALUES(?,?,?,?,?)");
+        $insertAddress->bind_param("sssii", $username, $current["city"], $current["street"], $current["num"], $current["tk"]);
         $insertAddress->execute();
 
-        $insertStudent= $conn->prepare("INSERT INTO student(username, etos_eisagwghs) VALUES (?,?)");
+        $insertStudent = $conn->prepare("INSERT INTO student(username, etos_eisagwghs) VALUES (?,?)");
         $insertStudent->bind_param("si", $username, $current["etos"]);
         $insertStudent->execute();
 
-        echo $current["username"] . " : " . $hashedPass[0];
+        $studentsString .= $username . " : " . $hashedPass[0] . "/n";
     }
+    return $studentsString;
 }
 
 $usersFile = file_get_contents("../Data/user.json");
@@ -71,12 +80,31 @@ $usersFile = file_get_contents("../Data/user.json");
 $data = json_decode($usersFile, true);
 
 foreach ($data as $category => $items) {
-    
-    if($category == "professors"){
-        insertProfessor($items);
+    $users = "";
+    if ($category == "professors") {
+        $users .= insertProfessor($items);
+    } else if ($category == "students") {
+        $users .= insertStudents($items);
     }
-    else if($category == "students"){
-        insertStudents($items);
+    if ($users != "") {
+        saveFile($users);
+    }else{
+        echo "users : empty";
     }
+
 }
 
+function saveFile($data)
+{
+    $file = $_SERVER['DOCUMENT_ROOT'] . 'Web-Design-2024/Data/Users/listUsers.txt';
+    // Open the file in append mode
+    $handle = fopen($file, 'a');
+    if ($handle) {
+        fwrite($handle, $data);
+        fclose($handle);
+        echo "Text appended successfully.";
+
+    } else {
+        echo "Failed to open the file.";
+    }
+}
