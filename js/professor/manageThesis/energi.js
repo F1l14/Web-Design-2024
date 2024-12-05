@@ -15,7 +15,7 @@ const form = document.getElementById("cancelThesisForm");
 window.addEventListener("load", function () {
     stateProtect("energi", thesisId)
 });
-window.addEventListener("load", professorPrivileges)
+window.addEventListener("load", professorPrivileges);
 
 async function canCancel(skip) {
     fetch(`../../checkTwoYears.php?thesisId=${thesisId}`, {
@@ -36,9 +36,10 @@ async function canCancel(skip) {
         .then(data => {
             if (data.state != "SQL Error") {
                 if (skip) {
-                    eksetasiButton.addEventListener("click", eksetasi)
-                    form.addEventListener("submit", cancelThesis)
+                    eksetasiButton.addEventListener("click", eksetasi);
+                    form.addEventListener("submit", cancelThesis);
                 }else if (!data.cancel) {
+                    eksetasiButton.addEventListener("click", eksetasi);
                     cancelButton.disabled = true;
                     form.addEventListener('submit', function (event) {
                         event.preventDefault(); // Prevent the form from submitting
@@ -46,8 +47,8 @@ async function canCancel(skip) {
                     })
                     new bootstrap.Tooltip(cancelButton, { title: `Δεν έχουν παρέλθει δύο ημερολογιακά έτη από την επίσημη ανάθεση` });
                 } else {
-                    eksetasiButton.addEventListener("click", eksetasi)
-                    form.addEventListener("submit", cancelThesis)
+                    eksetasiButton.addEventListener("click", eksetasi);
+                    form.addEventListener("submit", cancelThesis);
                 }
 
 
