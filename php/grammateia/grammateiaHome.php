@@ -36,7 +36,7 @@ updateActivity();
                         <button class="pageButton" onclick="redirect('dataInput.php')">Εισαγωγή Δεδομένων</button>
                     </div>
                     <div class="col">
-                        <button class="pageButton" onclick="redirect('viewThesis.php')">Διαχείρηση Διπλωματικής Εργασίας</button>
+                        <button class="pageButton" onclick="redirect('manageThesis.php')">Διαχείρηση Διπλωματικής Εργασίας</button>
                     </div>
 
                 </div>
