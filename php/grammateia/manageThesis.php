@@ -38,20 +38,7 @@ updateActivity();
 
                     <form class="dropdown-menu p-2 text-center">
                         <div class="accordion accordion-flush" id="stateAccordion">
-                            <div class="accordion-item">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                    <h6 class="accordion-header">Ρόλος</h6>
-                                </button>
-                            </div>
-
-                            <div id="collapseOne" class="accordion-collapse collapse" >
-                                <div class="dropdownTable">
-                                    <a href="#" id="epivlepon" name="Επιβλέπων" class="filterButton btn btn-primary" role="button"
-                                        data-bs-toggle="button">Επιβλέπων</a>
-                                    <a href="#" id="melos" name="Επιτροπή" class="filterButton btn btn-primary" role="button"
-                                        data-bs-toggle="button">Μέλος Τριμελούς</a>
-                                </div>
-                            </div>
+                            
 
                             <div class="accordion-item">
 
@@ -63,8 +50,6 @@ updateActivity();
                             <div id="collapseTwo" class="accordion-collapse collapse" >
                                 <div class="accordion-body">
                                     <div class="dropdownTable">
-                                        <a href="#" id="anathesi" name ="Ανάθεση" class="filterButton btn btn-primary" role="button"
-                                            data-bs-toggle="button">Υπο Ανάθεση</a>
                                         <a href="#" id="energi" name ="Ενεργή" class="filterButton btn btn-primary" role="button"
                                             data-bs-toggle="button">Ενεργή</a>
                                         <a href="#" id="eksetasi" name ="Εξέταση" class="filterButton btn btn-primary" role="button"
@@ -124,10 +109,10 @@ updateActivity();
 <script src="/Web-Design-2024/js/backgroundOptions.js"></script>
 
 
-<script src="/Web-Design-2024/js/professor/manageThesis/manageThesis.js" defer></script>
-<script src="/Web-Design-2024/js/professor/manageThesis/filterTable.js" defer></script>
+<script src="/Web-Design-2024/js/grammateia/viewThesis/viewThesis.js" defer></script>
+<script src="/Web-Design-2024/js/grammateia/filterTable.js" defer></script>
 <script src="/Web-Design-2024/js/searchThesis.js" defer></script>
 
-<script src="/Web-Design-2024/js/professor/listThesis/export.js"></script>
+<script src="/Web-Design-2024/js/grammateia/export.js" defer></script>
 
 </html>
