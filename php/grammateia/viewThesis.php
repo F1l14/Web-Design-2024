@@ -110,9 +110,9 @@ updateActivity();
 
 
 <script src="/Web-Design-2024/js/grammateia/viewThesis/viewThesis.js" defer></script>
-<script src="/Web-Design-2024/js/grammateia/viewThesis/filterTable.js" defer></script>
+<script src="/Web-Design-2024/js/grammateia/filterTable.js" defer></script>
 <script src="/Web-Design-2024/js/searchThesis.js" defer></script>
 
-<script src="/Web-Design-2024/js/grammateia/viewThesis/export.js"></script>
+<script src="/Web-Design-2024/js/grammateia/export.js" defer></script>
 
 </html>
