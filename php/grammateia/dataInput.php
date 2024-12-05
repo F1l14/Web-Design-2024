@@ -19,19 +19,21 @@ updateActivity();
 
     <link rel="stylesheet" href="/Web-Design-2024/css/styles.css">
     <link rel="stylesheet" href="/Web-Design-2024/css/header.css">
-    <link rel="stylesheet" href="/Web-Design-2024/css/listThesis.css">
+    <link rel="stylesheet" href="/Web-Design-2024/css/dataInput.css">
     <!-- icon -->
     <link rel="icon" type="image/svg+xml" href="/Web-Design-2024/icons/websiteIcon.svg">
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/Web-Design-2024/header.html' ?>
 </head>
 
 <body>
-    <div id="mainContainer" class="container align-items-center justify-content-center">
-        <div id="innerContainer" class="container box" container-fluid>
+    <div id="mainContainer" class="container d-flex align-items-center justify-content-center">
+        <div class="row text-center">
 
-            <div class="row ">
-                <div class="col align-self-center">
-                    <form action="" enctype="multipart/form-data">
+            <div id="innerContainer" class="container box col align-self-center" container-fluid>
+
+
+                <div id="uploadDiv" class=" ">
+                    <form class="" id="uploadForm" action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/grammateia/scripts/insert/insertUsers.php'); ?>" enctype="multipart/form-data">
                         <h3>Επισύναψη αρχείου Χρηστών</h3>
                         <div class="input-group">
                             <input class="form-control " name="fileToUpload" id="fileToUpload" type="file"
@@ -41,13 +43,15 @@ updateActivity();
                             </button>
                         </div>
                         <div class="centeredDiv">
-                            <button class="pageButton">upload</button>
+                            <button id="uploadButton" class="pageButton" disabled>upload</button>
                         </div>
 
                     </form>
                 </div>
+
             </div>
         </div>
+
         <!-- ======================================================================================== -->
         <canvas class="background"></canvas>
     </div>
@@ -61,4 +65,5 @@ updateActivity();
 <script src="/Web-Design-2024/particles.js-master/particles.js-master/dist/particles.min.js"></script>
 <script src="/Web-Design-2024/js/backgroundOptions.js"></script>
 
+<script src="/Web-Design-2024/js/grammateia/insert/insertUsers.js"></script>
 </html>
