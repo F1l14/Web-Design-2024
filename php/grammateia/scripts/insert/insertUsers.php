@@ -27,32 +27,30 @@ function insertProfessor($profs)
         try{
             $insertUser = $conn->prepare("INSERT INTO users(username, password , email, firstname, lastname, patrwnumo, kinito, stathero, role) VALUES(?, ?, ?, ?, ?, ?, ?, ?, 'professor')");
             $insertUser->bind_param("ssssssss", $username, $hashedPass[1], $current["email"], $current["firstname"], $current["lastname"], $current["patrwnumo"], $current["kinito"], $current["stathero"]);
-            if (!$insertUser->execute()) {
-                die("Error inserting user: " . $insertUser->error);
-            }
-        }catch(mysqli){
+            $insertUser->execute();
+               
+        }catch(mysqli_sql_exception $e){
             $resp->state  = $conn->error;
             echo json_encode($resp);
+            exit(1);
         }
         try{
             $insertAddress = $conn->prepare("INSERT INTO address(username, city, street, number, zipcode) VALUES(?,?,?,?,?)");
             $insertAddress->bind_param("sssii", $username, $current["city"], $current["street"], $current["num"], $current["tk"]);
-            if (!$insertAddress->execute()) {
-                die("Error inserting add: " . $insertAddress->error);
-            }
-        }catch(mysqli){
+            $insertAddress->execute();
+        }catch(mysqli_sql_exception $e){
             $resp->state  = $conn->error;
             echo json_encode($resp);
+            exit(1);
         }
         try{
             $insertProfessor = $conn->prepare("INSERT INTO professor(username, tmhma, panepistimio, thema) VALUES (?,?,?,?)");
             $insertProfessor->bind_param("ssss", $username, $current["department"], $current["university"], $current["topic"]);
-            if (!$insertProfessor->execute()) {
-                die("Error inserting prof: " . $insertProfessor->error);
-            }
-        }catch(mysqli){
+            $insertAddress->execute();
+        }catch(mysqli_sql_exception $e){
             $resp->state  = $conn->error;
             echo json_encode($resp);
+            exit(1);
         }
 
 
@@ -74,27 +72,30 @@ function insertStudents($students)
             $insertUser = $conn->prepare("INSERT INTO users(username, password , email, firstname, lastname, patrwnumo, kinito, stathero, role) VALUES(?, ?, ?, ?, ?, ?, ?, ?, 'student')");
             $insertUser->bind_param("ssssssss", $username, $hashedPass[1], $current["email"], $current["firstname"], $current["lastname"], $current["patrwnumo"], $current["kinito"], $current["stathero"]);
             $insertUser->execute();
-        }catch(mysqli){
+        }catch(mysqli_sql_exception $e){
             $resp->state  = $conn->error;
             echo json_encode($resp);
+            exit(1);
         }
 
         try{
             $insertAddress = $conn->prepare("INSERT INTO address(username, city, street, number, zipcode) VALUES(?,?,?,?,?)");
             $insertAddress->bind_param("sssii", $username, $current["city"], $current["street"], $current["num"], $current["tk"]);
             $insertAddress->execute();
-        }catch(mysqli){
+        }catch(mysqli_sql_exception $e){
             $resp->state  = $conn->error;
             echo json_encode($resp);
+            exit(1);
         }
 
         try{
             $insertStudent = $conn->prepare("INSERT INTO student(username, am, etos_eisagwghs) VALUES (?,?,?)");
             $insertStudent->bind_param("sii", $username, $current["am"], $current["etos"]);
             $insertStudent->execute();
-        }catch(mysqli){
+        }catch(mysqli_sql_exception $e){
             $resp->state  = $conn->error;
-            echo json_encode($resp);   
+            echo json_encode($resp);
+            exit(1); 
         }
         $studentsString .= $username . " : " . $hashedPass[0] . "\n";
     }
