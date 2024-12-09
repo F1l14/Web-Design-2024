@@ -26,24 +26,75 @@ updateActivity();
 </head>
 
 <body>
-    < <div id="mainContainer" class="container d-flex align-items-center justify-content-center">
+    <div id="mainContainer" class="container d-flex align-items-center justify-content-center">
         <div class="row text-center">
 
             <div id="innerContainer" class="container box col align-self-center" container-fluid>
-                <div class="row">
+                <div class="row margined">
                     <div class="col vertical">
                         <h5 id="grade">Αριθμός πρωτοκόλλου γενικής συνέλευσης</h5>
-                        <form action="">
-                            <input class="form-control"  type="text"/>
+                        <form id="protokForm"
+                            action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/grammateia/scripts/manage/energiArProtok.php'); ?>">
+                            <input id="protokInput" class="form-control" type="text" />
                             <button id="saveButton" class="pageButton">Αποθήκευση</button>
                         </form>
                     </div>
                     <div class="col vertical">
                         <h5>Ακύρωση ανάθεσης θέματος</h5>
-                        <button  id="cancelButton" class="pageButton">Ακύρωση</button>
+                        <button id="cancelButton" class="pageButton" data-bs-toggle="modal"
+                            data-bs-target="#cancelModalGrammateia">Ακύρωση</button>
                     </div>
                 </div>
-               
+            </div>
+
+            <div class="modal fade" id="cancelModalGrammateia" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="cancelModalHeader">Ακύρωση Διπλωματικής Εργασίας
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form id="cancelThesisForm"
+                            action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/grammateia/scripts/manage/energi/energiAkirosi.php'); ?>"
+                            method="POST">
+                            <div class="modal-body">
+                                <div class="container-fluid">
+
+                                    <div class="row g-3">
+                                        <input type="hidden" name="id" id="id">
+                                        <div class="col-lg-6">
+                                            <label for="arithmosGs" class="form-label">
+                                                Αριθμός Γενικής Συνέλευσης
+                                            </label>
+                                            <input id="arithmosGs" name="arithmosGs" class="form-control">
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label for="etosGs" class="form-label">
+                                                Έτος Γενικής Συνέλευσης
+                                            </label>
+                                            <select id="etosGs" class="form-select" name="etosGs" required>
+                                                <option value="">Διαλέξτε Έτος</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <label for="logos" class="form-label">
+                                                Λόγος Ακύρωσης
+                                            </label>
+                                            <textarea id="logos" name="logos" class="form-control" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Κλείσιμο</button>
+                                <button type="submit" class="btn btn-primary"
+                                    style="background-color: #ff1414;">Ακύρωση</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
             </div>
             <!-- ======================================================================================== -->

@@ -94,7 +94,7 @@ async function professorPrivileges() {
                     new bootstrap.Tooltip(cancelButton, { title: `Δεν είστε ο επιβλέπων` });
                     new bootstrap.Tooltip(eksetasiButton, { title: `Δεν είστε ο επιβλέπων` });
                 } else {
-                    canCancel();
+                    canCancel(true);
                 }
             } else if (data.message == "SQL Error") {
                 console.log(data.message);

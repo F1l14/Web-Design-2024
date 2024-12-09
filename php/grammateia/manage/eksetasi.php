@@ -26,7 +26,7 @@ updateActivity();
 </head>
 
 <body>
-    < <div id="mainContainer" class="container d-flex align-items-center justify-content-center">
+    <div id="mainContainer" class="container d-flex align-items-center justify-content-center">
         <div class="row text-center">
 
             <div id="innerContainer" class="container box col align-self-center" container-fluid>
@@ -38,7 +38,7 @@ updateActivity();
 
                 </div>
                 <div class="row">
-                    <div class="inlineDiv col justify-content-between" >
+                    <div class="inlineDiv col justify-content-between">
                         <h5 id="url">Σύνδεσμος Βιβλιοθήκης</h5>
                         <img id="urlCheckbox" class="checkbox" src="/Web-Design-2024/icons/checkBoxBlank.svg">
                     </div>
