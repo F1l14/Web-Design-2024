@@ -1,9 +1,8 @@
 const search = document.getElementById("searchThesis");
-const table = document.getElementById("thesisTable");
 var rows = document.querySelectorAll("#thesisTable tr");
 window.addEventListener("tableLoaded", function () {
     rows = document.querySelectorAll("#thesisTable tr");
-    // console.log(rows);
+// console.log(rows);
 });
 search.addEventListener("keyup", function () {
 
