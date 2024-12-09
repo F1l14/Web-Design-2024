@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 05, 2024 at 07:47 PM
+-- Generation Time: Dec 09, 2024 at 09:44 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -103,6 +103,16 @@ CREATE TABLE `diplomatiki` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `diplomatiki`
+--
+
+INSERT INTO `diplomatiki` (`id`, `title`, `description`, `professor`, `student`, `url`, `status`, `filename`, `grade_filename`, `gradeable`) VALUES
+(233, 'test', 'test', 'apapadopoulos', 'up0000011', NULL, 'energi', 'ekfonisi_web.pdf', NULL, 0),
+(234, 'test2', 'test2', 'apapadopoulos', 'up0000030', NULL, 'eksetasi', NULL, NULL, 0),
+(235, 'test3', 'test3', 'mkostopoulos', 'up0000015', NULL, 'eksetasi', NULL, NULL, 0),
+(236, 'energi', 'energi', 'apapadopoulos', 'up0000024', NULL, 'energi', NULL, NULL, 0);
+
+--
 -- Triggers `diplomatiki`
 --
 DELIMITER $$
@@ -163,6 +173,26 @@ CREATE TABLE `diplomatiki_log` (
   `diplomatiki` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `diplomatiki_log`
+--
+
+INSERT INTO `diplomatiki_log` (`id`, `date`, `new_state`, `diplomatiki`) VALUES
+(208, '2024-12-05 22:35:23', 'diathesimi', 233),
+(209, '2024-12-05 22:35:50', 'diathesimi', 234),
+(210, '2024-12-05 22:35:59', 'anathesi', 233),
+(211, '2024-12-05 22:36:04', 'anathesi', 234),
+(212, '2024-12-05 22:39:45', 'energi', 233),
+(213, '2024-12-05 22:39:49', 'energi', 234),
+(214, '2024-12-05 22:43:20', 'diathesimi', 235),
+(215, '2024-12-05 22:43:29', 'anathesi', 235),
+(216, '2024-12-05 22:45:06', 'energi', 235),
+(217, '2024-12-05 22:48:00', 'eksetasi', 235),
+(218, '2024-12-05 22:48:01', 'eksetasi', 234),
+(219, '2024-12-09 22:43:10', 'diathesimi', 236),
+(220, '2024-12-09 22:43:16', 'anathesi', 236),
+(221, '2024-12-09 22:43:48', 'energi', 236);
+
 -- --------------------------------------------------------
 
 --
@@ -177,11 +207,29 @@ CREATE TABLE `epitroph` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `epitroph`
+--
+
+INSERT INTO `epitroph` (`diplomatiki`, `prof1`, `prof2`, `prof3`) VALUES
+(233, 'apapadopoulos', 'danagnostopoulos', 'epapakostantinou'),
+(234, 'apapadopoulos', 'gstasinopoulos', 'kavram'),
+(235, 'mkostopoulos', NULL, NULL),
+(236, 'apapadopoulos', 'danagnostopoulos', 'skaragiannis');
+
+--
 -- Triggers `epitroph`
 --
 DELIMITER $$
 CREATE TRIGGER `remove_invitations` AFTER UPDATE ON `epitroph` FOR EACH ROW IF NEW.prof3 IS NOT NULL THEN
 	DELETE FROM epitroph_app WHERE diplomatiki = NEW.diplomatiki;
+END IF
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `set_thesis_active` AFTER UPDATE ON `epitroph` FOR EACH ROW IF NEW.prof3 IS NOT NULL THEN
+	UPDATE diplomatiki
+    SET diplomatiki.status="energi"
+    WHERE diplomatiki.id = NEW.diplomatiki;
 END IF
 $$
 DELIMITER ;
@@ -286,11 +334,11 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`username`, `am`, `etos_eisagwghs`, `status`) VALUES
-('up0000011', 11, 2015, 'available'),
+('up0000011', 11, 2015, 'unavailable'),
 ('up0000012', 12, 2015, 'available'),
 ('up0000013', 13, 2015, 'available'),
 ('up0000014', 14, 2015, 'available'),
-('up0000015', 15, 2015, 'available'),
+('up0000015', 15, 2015, 'unavailable'),
 ('up0000016', 16, 2015, 'available'),
 ('up0000017', 17, 2015, 'available'),
 ('up0000018', 18, 2015, 'available'),
@@ -299,13 +347,13 @@ INSERT INTO `student` (`username`, `am`, `etos_eisagwghs`, `status`) VALUES
 ('up0000021', 21, 2015, 'available'),
 ('up0000022', 22, 2015, 'available'),
 ('up0000023', 23, 2015, 'available'),
-('up0000024', 24, 2015, 'available'),
+('up0000024', 24, 2015, 'unavailable'),
 ('up0000025', 25, 2015, 'available'),
 ('up0000026', 26, 2015, 'available'),
 ('up0000027', 27, 2015, 'available'),
 ('up0000028', 28, 2015, 'available'),
 ('up0000029', 29, 2015, 'available'),
-('up0000030', 30, 2015, 'available');
+('up0000030', 30, 2015, 'unavailable');
 
 -- --------------------------------------------------------
 
@@ -377,9 +425,9 @@ CREATE TABLE `user_tokens` (
 --
 
 INSERT INTO `user_tokens` (`token`, `user`, `expiration_date`) VALUES
-('3c975c1602641a0e85d4edf51fa18558998c599de355294773ce02e2edc07b17', 'apantelidis', '2024-12-05 21:41:35'),
-('b24da33a04339611e26a9608966f6be4bb180625a153c1bfa2d98d5aede1ed61', 'grammateia2', '2024-12-05 15:11:33'),
-('bfad49a315592906b86437e32b36baf4d9d9c7767558c526f955d9139f065805', 'akyriakidis', '2024-12-05 18:12:39');
+('11145a618dd7e1a00453d938c33a49029fd94d7595a16ce1bc48c67045b42cde', 'akyriakidis', '2024-12-09 23:43:51'),
+('3c25d7d919889a77873b0c59c5873264e0e509e67248103593890af58ebe09e8', 'apapadopoulos', '2024-12-09 23:44:03'),
+('b24da33a04339611e26a9608966f6be4bb180625a153c1bfa2d98d5aede1ed61', 'grammateia2', '2024-12-05 15:11:33');
 
 --
 -- Indexes for dumped tables
@@ -439,7 +487,9 @@ ALTER TABLE `epitroph_app`
 -- Indexes for table `epitroph_app_log`
 --
 ALTER TABLE `epitroph_app_log`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_diplomatiki_epitroph_app_log` (`diplomatiki`),
+  ADD KEY `fk_professor_epitroph_app_log` (`invited_professor`);
 
 --
 -- Indexes for table `evaluation`
@@ -487,13 +537,13 @@ ALTER TABLE `akiromeni_diplomatiki`
 -- AUTO_INCREMENT for table `diplomatiki`
 --
 ALTER TABLE `diplomatiki`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=233;
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=237;
 
 --
 -- AUTO_INCREMENT for table `diplomatiki_log`
 --
 ALTER TABLE `diplomatiki_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=208;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=222;
 
 --
 -- AUTO_INCREMENT for table `epitroph_app_log`
@@ -545,6 +595,13 @@ ALTER TABLE `epitroph`
 ALTER TABLE `epitroph_app`
   ADD CONSTRAINT `fk_epitroph_app_diplomatiki` FOREIGN KEY (`diplomatiki`) REFERENCES `diplomatiki` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_epitroph_app_professor` FOREIGN KEY (`invited_professor`) REFERENCES `professor` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `epitroph_app_log`
+--
+ALTER TABLE `epitroph_app_log`
+  ADD CONSTRAINT `fk_diplomatiki_epitroph_app_log` FOREIGN KEY (`diplomatiki`) REFERENCES `diplomatiki` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_professor_epitroph_app_log` FOREIGN KEY (`invited_professor`) REFERENCES `professor` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `evaluation`
