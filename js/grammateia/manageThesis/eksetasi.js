@@ -12,7 +12,7 @@ window.addEventListener("load", getThesisInfo);
 peratomeniButton.addEventListener("click", changeThesisPeratomeni)
 
 async function changeThesisPeratomeni() {
-    fetch(`../scripts/manage/eksetasiCheck.php?thesisId=${thesisId}`, {
+    fetch(`../scripts/manage/peratomeniUpdate.php?thesisId=${thesisId}`, {
         method: "GET",
         headers: { 'Accept': 'application/json' }
     })
@@ -28,8 +28,9 @@ async function changeThesisPeratomeni() {
             });
         })
         .then(data => {
-            if (data.answer === "ok") {
+            if (data.answer) {
                 alert("Επιτυχής αλλαγή σε: Περατωμένη");
+                window.location.href = "/Web-Design-2024/php/grammateia/manageThesis.php";
             } else {
                 console.error("BackendErr" , data.error );
             }
