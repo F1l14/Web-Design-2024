@@ -1,6 +1,7 @@
 async function stateProtect(state, thesisId, role) {
     fetch(`/Web-Design-2024/php/stateProtect.php?thesisId=${thesisId}&state=${state}`, {
-        method: "GET",
+        method: "POST",
+        body: JSON.stringify({role : role}),
         headers: { 'Accept': 'application/json' }
     })
         .then(response => {

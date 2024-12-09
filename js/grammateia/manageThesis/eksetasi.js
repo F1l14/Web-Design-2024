@@ -8,6 +8,9 @@ const queryParams = new URLSearchParams(window.location.search);
 // Retrieve the 'thesisId' parameter
 const thesisId = queryParams.get('thesisId');
 
+window.addEventListener("load", function(){
+    stateProtect("eksetasi", thesisId, "grammateia")
+});
 window.addEventListener("load", getThesisInfo);
 peratomeniButton.addEventListener("click", changeThesisPeratomeni)
 

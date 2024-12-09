@@ -3,12 +3,6 @@ require_once("../../tokenFunctions.php");
 roleProtected("grammateia");
 updateActivity();
 ?>
-
-<?php
-require_once("../../tokenFunctions.php");
-roleProtected("grammateia");
-updateActivity();
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,7 +66,7 @@ updateActivity();
 <script src="/Web-Design-2024/particles.js-master/particles.js-master/dist/particles.min.js"></script>
 <script src="/Web-Design-2024/js/backgroundOptions.js"></script>
 
-
+<script src="/Web-Design-2024/js/stateProtect.js"></script>
 <script src="/Web-Design-2024/js/grammateia/manageThesis/eksetasi.js" defer></script>
 
 </html>
