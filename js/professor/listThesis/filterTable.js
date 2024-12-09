@@ -22,9 +22,7 @@ function filterTable(currentButton, table, option) {
     let visibility = currentButton.getAttribute("aria-pressed");
     let atrVal = ""
     let cell = 0;
-    if (visibility === "false") {
-
-    } else {
+    if (visibility !== "false") {
         atrVal = "none";
     }
 
@@ -36,8 +34,8 @@ function filterTable(currentButton, table, option) {
 
 
     tableRows.forEach(function (row) {
-        currentRole = row.cells[cell].querySelector("input").value;
-        if (currentRole != currentButton.name) {
+        current = row.cells[cell].querySelector("input").value;
+        if (current != currentButton.name) {
             row.style.display = atrVal;
         }
     })
