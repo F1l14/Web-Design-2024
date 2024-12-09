@@ -25,7 +25,7 @@ if (isset($_GET['thesisId']) && $_GET['state'] && isset($_COOKIE["user"])) {
             $reply->message = "ok";
             echo json_encode($reply);
         } else {
-            $reply->epivlepon = false;
+            $reply->message = "not ok";
             echo json_encode($reply);
         }
     } catch (mysqli) {
