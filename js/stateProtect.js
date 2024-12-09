@@ -1,5 +1,5 @@
-async function stateProtect(state) {
-    fetch(`../scripts/manage/stateProtect.php?thesisId=${thesisId}&state=${state}`, {
+async function stateProtect(state, thesisId, role) {
+    fetch(`/Web-Design-2024/php/stateProtect.php?thesisId=${thesisId}&state=${state}`, {
         method: "GET",
         headers: { 'Accept': 'application/json' }
     })
@@ -16,7 +16,7 @@ async function stateProtect(state) {
         })
         .then(data => {
             if (data.message != "ok") {
-                window.location.href = '/Web-Design-2024/php/professor/manageThesis.php';
+                window.location.href = `/Web-Design-2024/php/${role}/manageThesis.php`;
             }
         })
 

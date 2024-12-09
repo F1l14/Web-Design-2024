@@ -13,7 +13,7 @@ const cancelButton = document.getElementById("cancel");
 const form = document.getElementById("cancelThesisForm");
 
 window.addEventListener("load", function () {
-    stateProtect("energi", thesisId)
+    stateProtect("energi", thesisId, "professor")
 });
 window.addEventListener("load", professorPrivileges);
 

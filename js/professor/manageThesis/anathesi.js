@@ -7,7 +7,7 @@ const cancelButton = document.getElementById("cancelThesis");
 window.addEventListener("load", loadDetails)
 
 window.addEventListener("load", function(){
-    stateProtect("anathesi", thesisId)
+    stateProtect("anathesi", thesisId, "professor")
 });
 
 async function loadDetails() {

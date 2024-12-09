@@ -3,5 +3,5 @@ const queryParams = new URLSearchParams(window.location.search);
 // Retrieve the 'thesisId' parameter
 const thesisId = queryParams.get('thesisId');
 window.addEventListener("load", function(){
-    stateProtect("eksetasi", thesisId)
+    stateProtect("eksetasi", thesisId, "professor")
 });
