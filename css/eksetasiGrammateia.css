@@ -1,0 +1,35 @@
+.checkbox {
+    height: 2rem;
+    width: 2rem;
+    padding: 0;
+    margin-left: 2rem;
+}
+
+#innerContainer{
+    padding:1rem;
+}
+
+.row{
+    margin: 2rem 0;
+}
+
+.inlineDiv{
+    display: flex;
+}
+
+#grade {
+    width: max-content;
+}
+
+.divHr {
+    margin-bottom: 2rem;
+    width: 96%;               
+    background-color:black;
+    height: 1px;
+  }
+
+#peratomeniButton{
+    margin-top: 2rem;
+    width: max-content;
+    padding: 0.5rem 1rem;
+}
