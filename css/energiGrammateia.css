@@ -1,0 +1,26 @@
+#innerContainer{
+    padding:1rem;
+}
+
+.vertical, form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.row{
+    margin: 2rem 0;
+}
+
+.pageButton{
+    margin-top: 2rem;
+    width: max-content;
+    min-width: fit-content;
+    padding: 0.5rem 1em;
+}
+
+#cancelButton{
+    background-color: hsl(0, 100%, 54%) ;
+}
+#cancelButton:hover,#cancelButton:focus{
+    background-color: hsl(0, 100%, 45%)
+}
