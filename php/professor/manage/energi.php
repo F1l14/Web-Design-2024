@@ -20,6 +20,8 @@ updateActivity();
     <link rel="stylesheet" href="/Web-Design-2024/css/styles.css">
     <link rel="stylesheet" href="/Web-Design-2024/css/header.css">
     <link rel="stylesheet" href="/Web-Design-2024/css/energi.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
     <!-- icon -->
     <link rel="icon" type="image/svg+xml" href="/Web-Design-2024/icons/websiteIcon.svg">
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/Web-Design-2024/header.html' ?>
@@ -88,23 +90,40 @@ updateActivity();
                     <div class="modal-body">
                         <div class="container-fluid">
 
-                            <div class="row g-3">
-                                <input type="hidden" name="id" id="id">
-                                <div class="col-lg-6">
-                                    <label for="arithmosGs" class="form-label">
-                                        Αριθμός Γενικής Συνέλευσης
-                                    </label>
-                                    <input id="arithmosGs" name="arithmosGs" class="form-control">
-                                </div>
-                                <div class="col-lg-6">
-                                    <label for="etosGs" class="form-label">
-                                        Έτος Γενικής Συνέλευσης
-                                    </label>
-                                    <select id="etosGs" class="form-select" name="etosGs" required>
-                                        <option value="">Διαλέξτε Έτος</option>
-                                    </select>
-                                </div>
-                            </div>
+                        <div class="row g-3">
+                                        <input type="hidden" name="id" id="id">
+
+
+                                        <div class="col-lg-6">
+                                            <div class="centeredDiv">
+                                                <label>Αριθμός Γενικής Συνέλευσης</label>
+                                                <div id="protokDiv2" class="row">
+
+                                                    <div class="col ">
+                                                        <input id="protokNum2" name="protokNum" class="form-control"
+                                                            type="number" min="0" />
+                                                    </div>
+                                                    <div class="col-lg-1 vertical">
+                                                        <h4>/</h4>
+                                                    </div>
+                                                    <div class="col ">
+                                                        <input id="protokDate2" name="protokDate" class="form-control"
+                                                            type="date" placeholder="dd-mm-yyyy">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-lg-6">
+                                            <label for="etosGs" class="form-label">
+                                                Έτος Γενικής Συνέλευσης
+                                            </label>
+                                            <select id="etosGs" class="form-select" name="etosGs">
+                                                <option value="">Διαλέξτε Έτος</option>
+                                            </select>
+                                        </div>
+                                    </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -133,5 +152,12 @@ updateActivity();
 <script src="/Web-Design-2024/js/stateProtect.js"></script>
 <script src="/Web-Design-2024/js/professor/manageThesis/energi.js"></script>
 <script src="/Web-Design-2024/js/professor/manageThesis/notepad.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    flatpickr("#protokDate2", {
+        dateFormat: "d-m-Y",
+    });
+</script>
 
 </html>
