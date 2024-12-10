@@ -85,14 +85,14 @@ updateActivity();
                                                 <div id="protokDiv2" class="row">
 
                                                     <div class="col ">
-                                                        <input id="protokNum2" name="protokNum" class="form-control"
+                                                        <input id="protokNum2" name="protokNum2" class="form-control"
                                                             type="number" min="0" />
                                                     </div>
                                                     <div class="col-lg-1 vertical">
                                                         <h4>/</h4>
                                                     </div>
                                                     <div class="col ">
-                                                        <input id="protokDate2" name="protokDate" class="form-control"
+                                                        <input id="protokDate2" name="protokDate2" class="form-control"
                                                             type="date" placeholder="dd-mm-yyyy">
                                                     </div>
                                                 </div>
