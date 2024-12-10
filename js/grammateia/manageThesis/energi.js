@@ -122,9 +122,6 @@ function requiredText(element){
 async function cancelThesis(event) {
     var data = new FormData(event.target);
     data.append("concatDate", `${data.get("protokNum2")}/${data.get("protokDate2")}`)
-    for (let [key, value] of data.entries()) {
-        console.log(`${key}: ${value}`);
-    }
     fetch(event.target.action, {
         method: "POST",
         body: data,
@@ -133,7 +130,7 @@ async function cancelThesis(event) {
     })
         .then(response => {
             return response.text().then(text => {
-                console.log("Raw Response:", text);
+                // console.log("Raw Response:", text);
                 try {
                     return JSON.parse(text); // Try parsing the JSON
                 } catch (error) {
