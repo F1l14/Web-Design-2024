@@ -70,7 +70,7 @@ updateActivity();
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form id="cancelThesisForm"
-                            action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/grammateia/scripts/manage/energi/energiAkirosi.php'); ?>"
+                            action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/grammateia/scripts/manage/energiAkirosi.php'); ?>"
                             method="POST">
                             <div class="modal-body">
                                 <div class="container-fluid">
