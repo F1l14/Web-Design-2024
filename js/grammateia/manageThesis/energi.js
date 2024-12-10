@@ -9,7 +9,7 @@ window.addEventListener("load", function(){
 protokNum = document.getElementById("protokNum");
 protokDate = document.getElementById("protokDate");
 saveForm = document.getElementById("protokForm");
-cancelButton = document.getElementById("cancelButton");
+cancelButton = document.getElementById("cancel");
 
 saveForm.addEventListener("submit", function(event){
     event.preventDefault();
@@ -20,9 +20,7 @@ saveForm.addEventListener("submit", function(event){
 
 window.addEventListener("load", loadProtocol);
 
-
-
-// cancelButton.addEventListener("click", cancelThesis);
+cancelButton.addEventListener("click", cancelThesis);
 
 async function loadProtocol(){
     fetch(`../scripts/manage/getArProtok.php?thesisId=${thesisId}`, {
@@ -32,7 +30,7 @@ async function loadProtocol(){
     })
         .then(response => {
             return response.text().then(text => {
-                console.log("Raw Response:", text);
+                // console.log("Raw Response:", text);
                 try {
                     return JSON.parse(text); // Try parsing the JSON
                 } catch (error) {
@@ -44,7 +42,6 @@ async function loadProtocol(){
         .then(data => {
             if (data.answer) {
                 splitDate = data.date.split("/");
-                console.log(splitDate);
                 protokNum.value = parseInt(splitDate[0]);
                 protokDate.value = splitDate[1];  
             } else {
@@ -109,3 +106,30 @@ function requiredText(element){
         return true;
     }
 }
+
+
+// Function to dynamically populate the year select dropdown
+function populateYearDropdown(startYear, endYear) {
+    var select = document.getElementById("etosGs");
+
+    // Loop through the range of years and create option elements
+    for (var year = startYear; year <= endYear; year++) {
+        var option = document.createElement("option");
+        option.value = year;
+        option.textContent = year;
+        select.appendChild(option);
+    }
+}
+
+// Call the function with a start year and end year (e.g., 2000 to current year)
+var currentYear = new Date().getFullYear();
+populateYearDropdown(2000, currentYear);
+
+// Simple form validation
+document.getElementById("etosGs").onsubmit = function (event) {
+    var yearInput = document.getElementById("etosGs");
+    if (!yearInput.value) {
+        alert("Please select a year.");
+        event.preventDefault(); // Prevent form submission if no year is selected
+    }
+};
