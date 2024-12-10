@@ -11,12 +11,12 @@
     margin: 2rem 0;
 }
 
-.pageButton{
+/* .pageButton{
     margin-top: 2rem;
     width: max-content;
     min-width: fit-content;
     padding: 0.5rem 1em;
-}
+} */
 
 #cancelButton{
     background-color: hsl(0, 100%, 54%) ;
@@ -34,7 +34,7 @@
     vertical-align: middle;
     padding:0;
     width: max-content;
-    margin:1rem;
+    /* margin:1rem; */
 }
 
 #protokDiv div, #protokDiv2{

@@ -31,12 +31,12 @@ updateActivity();
         <div class="row text-center">
 
             <div id="innerContainer" class="container box col align-self-center" container-fluid>
-                <div class="row margined">
-                    <div class="col vertical">
+                <div class="row">
+                    <div class="col-lg-12 m-3 vertical">
                         <h5 id="grade">Αριθμός πρωτοκόλλου γενικής συνέλευσης</h5>
                         <form id="protokForm">
                             <!-- <input id="protokInput" class="form-control" type="text" /> -->
-                            <div id="protokDiv" class="row">
+                            <div id="protokDiv" class="row g-0">
                                 <div class="col-lg-5 ">
                                     <input id="protokNum" name="protokNum" class="form-control" type="number" min="0" />
                                 </div>
@@ -51,7 +51,7 @@ updateActivity();
                             <button id="saveButton" class="pageButton">Αποθήκευση</button>
                         </form>
                     </div>
-                    <div class="col vertical">
+                    <div class="col-lg-12 m-3 vertical">
                         <h5>Ακύρωση ανάθεσης θέματος</h5>
                         <button id="cancelButton" class="pageButton" data-bs-toggle="modal"
                             data-bs-target="#cancelModalGrammateia">Ακύρωση</button>
