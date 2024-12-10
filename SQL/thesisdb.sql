@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 09, 2024 at 09:44 PM
+-- Generation Time: Dec 10, 2024 at 01:46 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -99,18 +99,19 @@ CREATE TABLE `diplomatiki` (
   `status` enum('energi','eksetasi','peratomeni','akiromeni','anathesi','diathesimi') NOT NULL DEFAULT 'diathesimi',
   `filename` varchar(255) DEFAULT NULL,
   `grade_filename` varchar(255) DEFAULT NULL,
-  `gradeable` tinyint(1) NOT NULL DEFAULT 0
+  `gradeable` tinyint(1) NOT NULL DEFAULT 0,
+  `arithmos_protokolou` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `diplomatiki`
 --
 
-INSERT INTO `diplomatiki` (`id`, `title`, `description`, `professor`, `student`, `url`, `status`, `filename`, `grade_filename`, `gradeable`) VALUES
-(233, 'test', 'test', 'apapadopoulos', 'up0000011', NULL, 'energi', 'ekfonisi_web.pdf', NULL, 0),
-(234, 'test2', 'test2', 'apapadopoulos', 'up0000030', NULL, 'eksetasi', NULL, NULL, 0),
-(235, 'test3', 'test3', 'mkostopoulos', 'up0000015', NULL, 'eksetasi', NULL, NULL, 0),
-(236, 'energi', 'energi', 'apapadopoulos', 'up0000024', NULL, 'energi', NULL, NULL, 0);
+INSERT INTO `diplomatiki` (`id`, `title`, `description`, `professor`, `student`, `url`, `status`, `filename`, `grade_filename`, `gradeable`, `arithmos_protokolou`) VALUES
+(233, 'test', 'test', 'apapadopoulos', 'up0000011', NULL, 'energi', 'ekfonisi_web.pdf', NULL, 0, NULL),
+(234, 'test2', 'test2', 'apapadopoulos', 'up0000030', 'gsdffadsfads', 'eksetasi', NULL, 'fadsfadsf', 0, NULL),
+(235, 'test3', 'test3', 'mkostopoulos', 'up0000015', NULL, 'energi', NULL, NULL, 0, NULL),
+(236, 'energi', 'energi', 'apapadopoulos', 'up0000024', NULL, 'energi', NULL, NULL, 0, NULL);
 
 --
 -- Triggers `diplomatiki`
@@ -191,7 +192,20 @@ INSERT INTO `diplomatiki_log` (`id`, `date`, `new_state`, `diplomatiki`) VALUES
 (218, '2024-12-05 22:48:01', 'eksetasi', 234),
 (219, '2024-12-09 22:43:10', 'diathesimi', 236),
 (220, '2024-12-09 22:43:16', 'anathesi', 236),
-(221, '2024-12-09 22:43:48', 'energi', 236);
+(221, '2024-12-09 22:43:48', 'energi', 236),
+(222, '2024-12-09 23:43:44', 'peratomeni', 234),
+(223, '2024-12-09 23:47:56', 'energi', 234),
+(224, '2024-12-09 23:48:00', 'eksetasi', 234),
+(225, '2024-12-09 23:48:08', 'peratomeni', 234),
+(226, '2024-12-09 23:48:20', 'eksetasi', 234),
+(227, '2024-12-09 23:48:26', 'peratomeni', 234),
+(228, '2024-12-09 23:49:09', 'energi', 234),
+(229, '2024-12-09 23:49:11', 'eksetasi', 234),
+(230, '2024-12-09 23:49:14', 'peratomeni', 234),
+(231, '2024-12-09 23:49:56', 'eksetasi', 234),
+(232, '2024-12-09 23:50:22', 'peratomeni', 234),
+(233, '2024-12-09 23:55:38', 'eksetasi', 234),
+(234, '2024-12-10 00:03:53', 'energi', 235);
 
 -- --------------------------------------------------------
 
@@ -425,9 +439,9 @@ CREATE TABLE `user_tokens` (
 --
 
 INSERT INTO `user_tokens` (`token`, `user`, `expiration_date`) VALUES
-('11145a618dd7e1a00453d938c33a49029fd94d7595a16ce1bc48c67045b42cde', 'akyriakidis', '2024-12-09 23:43:51'),
-('3c25d7d919889a77873b0c59c5873264e0e509e67248103593890af58ebe09e8', 'apapadopoulos', '2024-12-09 23:44:03'),
-('b24da33a04339611e26a9608966f6be4bb180625a153c1bfa2d98d5aede1ed61', 'grammateia2', '2024-12-05 15:11:33');
+('29cdf400a037ab9834a5740fdc728c01979f7f0c27e25d3fe458cc44be08cee8', 'akyriakidis', '2024-12-10 15:46:15'),
+('b24da33a04339611e26a9608966f6be4bb180625a153c1bfa2d98d5aede1ed61', 'grammateia2', '2024-12-05 15:11:33'),
+('d214930a533b14a26af960d16c2b7cbbec76291f6223957495ee938183451455', 'apantelidis', '2024-12-10 15:44:23');
 
 --
 -- Indexes for dumped tables
@@ -543,7 +557,7 @@ ALTER TABLE `diplomatiki`
 -- AUTO_INCREMENT for table `diplomatiki_log`
 --
 ALTER TABLE `diplomatiki_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=222;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=235;
 
 --
 -- AUTO_INCREMENT for table `epitroph_app_log`
