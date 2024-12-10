@@ -2,6 +2,10 @@
 const queryParams = new URLSearchParams(window.location.search);
 // Retrieve the 'thesisId' parameter
 const thesisId = queryParams.get('thesisId');
+if (thesisId) {
+    document.getElementById("id").value = thesisId;
+}
+
 window.addEventListener("load", function(){
     stateProtect("energi", thesisId, "grammateia")
 });
@@ -44,11 +48,7 @@ async function loadProtocol(){
                 splitDate = data.date.split("/");
                 protokNum.value = parseInt(splitDate[0]);
                 protokDate.value = splitDate[1];  
-            } else {
-                alert("Πρόβλημα: Δοκιμάστε Ξανά")
-                console.error("BackendErr" , data.error );
             }
-
         })
 
         .catch(error => {
@@ -59,12 +59,12 @@ async function loadProtocol(){
 
 async function saveProtocol(event){
 
-    concatDate = `${protokNum.value}/${protokDate.value}`;
-    console.log(concatDate);
+    var data = new FormData(event.target);
+    data.append("concatDate", `${data.get("protokNum")}/${data.get("protokDate")}`)
 
-    fetch(`../scripts/manage/energiArProtok.php?thesisId=${thesisId}`, {
+    fetch(event.target.action, {
         method: "POST",
-        body: concatDate,
+        body: data,
         //Accepting json response from backend
         headers: { 'Accept': 'application/json' }
     })

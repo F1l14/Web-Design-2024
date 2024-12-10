@@ -4,9 +4,9 @@ $resp = new stdClass;
 $resp->answer = false;
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-if (isset($_GET['thesisId']) && isset($_COOKIE["user"])) {
-    $id = intval($_GET['thesisId']);
-    $arProtok = file_get_contents('php://input');
+if (isset($_POST['id']) && isset($_COOKIE["user"])) {
+    $id = intval($_POST['id']);
+    $arProtok = $_POST['concatDate'];
     try {
 
         $stmt1 = $conn->prepare(

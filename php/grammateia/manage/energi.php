@@ -34,8 +34,10 @@ updateActivity();
                 <div class="row">
                     <div class="col-lg-12 m-3 vertical">
                         <h5 id="grade">Αριθμός πρωτοκόλλου γενικής συνέλευσης</h5>
-                        <form id="protokForm">
-                            <!-- <input id="protokInput" class="form-control" type="text" /> -->
+                        <form id="protokForm"
+                            action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/grammateia/scripts/manage/energiArProtok.php'); ?>"
+                            method="POST">
+                            <input type="hidden" name="id" id="id">
                             <div id="protokDiv" class="row g-0">
                                 <div class="col-lg-5 ">
                                     <input id="protokNum" name="protokNum" class="form-control" type="number" min="0" />
@@ -48,7 +50,7 @@ updateActivity();
                                         placeholder="dd-mm-yyyy">
                                 </div>
                             </div>
-                            <button id="saveButton" class="pageButton">Αποθήκευση</button>
+                            <button id="saveButton" type="submit" class="pageButton">Αποθήκευση</button>
                         </form>
                     </div>
                     <div class="col-lg-12 m-3 vertical">
