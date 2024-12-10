@@ -17,12 +17,16 @@ if (isset($_GET['thesisId']) && isset($_COOKIE["user"])) {
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
             $data = $result->fetch_assoc();
-            $resp->date = $data['episimi_anathesi'];
-            $resp->answer = true;
-            echo json_encode($resp);
-        }else
-        {
-            $resp->error = "affected rows " . $conn->affected_rows ;
+            if ($data['episimi_anathesi'] != null) {
+                $resp->date = $data['episimi_anathesi'];
+                $resp->answer = true;
+                echo json_encode($resp);
+            } else {
+                echo json_encode($resp);
+                return;                
+            }
+        } else {
+            $resp->error = "affected rows " . $conn->affected_rows;
             echo json_encode($resp);
         }
     } catch (mysqli) {
