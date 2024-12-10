@@ -3,7 +3,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/Web-Design-2024/php/dbconn.php";
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_COOKIE["user"])) {
-        $arithmosGs = $_POST['arithmosGs'];
+        $arithmosGs = $_POST['concatDate'];
         $etosGs = $_POST['etosGs'];
         $id = $_POST['id'];
 

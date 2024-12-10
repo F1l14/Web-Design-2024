@@ -181,10 +181,11 @@ async function cancelThesis(event) {
     event.preventDefault();
     var data = new FormData(event.target);
 
+
+    data.append("concatDate", `${data.get("protokNum")}/${data.get("protokDate")}`)
     for (let [key, value] of data.entries()) {
         console.log(`${key}: ${value}`);
     }
-
     fetch(event.target.action, {
         method: "POST",
         body: data,

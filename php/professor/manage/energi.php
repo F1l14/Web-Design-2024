@@ -92,8 +92,6 @@ updateActivity();
 
                         <div class="row g-3">
                                         <input type="hidden" name="id" id="id">
-
-
                                         <div class="col-lg-6">
                                             <div class="centeredDiv">
                                                 <label>Αριθμός Γενικής Συνέλευσης</label>
