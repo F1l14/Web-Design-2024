@@ -6,26 +6,33 @@ window.addEventListener("load", function(){
     stateProtect("energi", thesisId, "grammateia")
 });
 
-protokInput = document.getElementById("protokInput")
-saveButton = document.getElementById("saveButton");
+protokNum = document.getElementById("protokNum");
+protokDate = document.getElementById("protokDate");
+saveForm = document.getElementById("protokForm");
 cancelButton = document.getElementById("cancelButton");
 
-saveButton.addEventListener("click", function(event){
+saveForm.addEventListener("submit", function(event){
     event.preventDefault();
-    if(requiredText(protokInput)){
-        saveProtocol()
+    if(requiredText(protokNum)&&requiredText(protokDate)){
+        saveProtocol(event);
     }
 });
 cancelButton.addEventListener("click", cancelThesis);
 
-async function saveProtocol(){
+async function saveProtocol(event){
+
+    concatDate = `${protokNum.value}/${protokDate.value}`;
+    console.log(concatDate);
+
     fetch(`../scripts/manage/energiArProtok.php?thesisId=${thesisId}`, {
-        method: "GET",
+        method: "POST",
+        body: concatDate,
+        //Accepting json response from backend
         headers: { 'Accept': 'application/json' }
     })
         .then(response => {
             return response.text().then(text => {
-                // console.log("Raw Response:", text);
+                console.log("Raw Response:", text);
                 try {
                     return JSON.parse(text); // Try parsing the JSON
                 } catch (error) {
