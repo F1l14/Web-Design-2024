@@ -28,3 +28,36 @@
 #logos{
     height: 7rem;
 }
+
+#protokDiv{
+    display: flex;
+    vertical-align: middle;
+    padding:0;
+    width: max-content;
+    margin:1rem;
+}
+
+#protokDiv div{
+    min-width: 1rem;
+    padding: 0;
+    width: fit-content;
+    margin:0.5rem;
+   
+}
+
+#protokForm{
+    width: max-content;
+}
+
+#protokDiv h4{
+    font-size: 2rem;
+    width: max-content;
+    font-weight: 350;
+    
+}
+
+#protokNum{
+    min-width: 5rem;
+    width: 5rem;
+}
+

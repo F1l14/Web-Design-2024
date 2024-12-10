@@ -20,6 +20,7 @@ updateActivity();
     <link rel="stylesheet" href="/Web-Design-2024/css/styles.css">
     <link rel="stylesheet" href="/Web-Design-2024/css/header.css">
     <link rel="stylesheet" href="/Web-Design-2024/css/energiGrammateia.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <!-- icon -->
     <link rel="icon" type="image/svg+xml" href="/Web-Design-2024/icons/websiteIcon.svg">
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/Web-Design-2024/header.html' ?>
@@ -33,9 +34,19 @@ updateActivity();
                 <div class="row margined">
                     <div class="col vertical">
                         <h5 id="grade">Αριθμός πρωτοκόλλου γενικής συνέλευσης</h5>
-                        <form id="protokForm"
-                            action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/grammateia/scripts/manage/energiArProtok.php'); ?>">
-                            <input id="protokInput" class="form-control" type="text" />
+                        <form id="protokForm">
+                            <!-- <input id="protokInput" class="form-control" type="text" /> -->
+                            <div id="protokDiv" class="row">
+                                <div class="col-lg-5 ">
+                                    <input id="protokNum" name="protokNum" class="form-control" type="number" min="0"/>
+                                </div>
+                                <div class="col-lg-2 vertical">
+                                    <h4>/</h4>
+                                </div>
+                                <div class="col-lg-5 ">
+                                    <input  id="protokDate" name="protokDate" class="form-control" type="date" placeholder="dd-mm-yyyy">
+                                </div>
+                            </div>
                             <button id="saveButton" class="pageButton">Αποθήκευση</button>
                         </form>
                     </div>
@@ -113,4 +124,12 @@ updateActivity();
 <script src="/Web-Design-2024/js/stateProtect.js"></script>
 <script src="/Web-Design-2024/js/grammateia/manageThesis/energi.js" defer></script>
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    flatpickr("#protokDate",{
+        dateFormat: "d-m-Y",
+    });
+</script>
 </html>
