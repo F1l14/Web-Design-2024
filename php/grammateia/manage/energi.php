@@ -37,7 +37,7 @@ updateActivity();
                         <form id="protokForm"
                             action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/grammateia/scripts/manage/energiArProtok.php'); ?>"
                             method="POST">
-                            <input type="hidden" name="id" id="id">
+                            <input type="hidden" name="id1" id="id1">
                             <div id="protokDiv" class="row g-0">
                                 <div class="col-lg-5 ">
                                     <input id="protokNum" name="protokNum" class="form-control" type="number" min="0" />
@@ -76,7 +76,7 @@ updateActivity();
                                 <div class="container-fluid">
 
                                     <div class="row g-3">
-                                        <input type="hidden" name="id" id="id">
+                                        <input type="hidden" name="id2" id="id2">
 
 
                                         <div class="col-lg-6">

@@ -4,8 +4,8 @@ $resp = new stdClass;
 $resp->answer = false;
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-if (isset($_POST['id']) && isset($_COOKIE["user"])) {
-    $id = intval($_POST['id']);
+if (isset($_POST['id1']) && isset($_COOKIE["user"])) {
+    $id = intval($_POST['id1']);
     $arProtok = $_POST['concatDate'];
     try {
 
