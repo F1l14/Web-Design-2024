@@ -37,7 +37,7 @@
     margin:1rem;
 }
 
-#protokDiv div{
+#protokDiv div, #protokDiv2{
     min-width: 1rem;
     padding: 0;
     width: fit-content;
@@ -49,19 +49,19 @@
     width: max-content;
 }
 
-#protokDiv h4{
+#protokDiv h4, #protokDiv2 h4{
     font-size: 2rem;
-    width: max-content;
+    width: fit-content;
     font-weight: 350;
     
 }
 
-#protokNum{
+#protokNum, #protokNum2{
     min-width: 5rem;
     width: 5rem;
 }
 
-#protokDate{
+#protokDate, #protokDate2{
     width: 8rem;
     min-width: 8rem;
 }

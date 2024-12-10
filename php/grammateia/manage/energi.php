@@ -38,13 +38,14 @@ updateActivity();
                             <!-- <input id="protokInput" class="form-control" type="text" /> -->
                             <div id="protokDiv" class="row">
                                 <div class="col-lg-5 ">
-                                    <input id="protokNum" name="protokNum" class="form-control" type="number" min="0"/>
+                                    <input id="protokNum" name="protokNum" class="form-control" type="number" min="0" />
                                 </div>
                                 <div class="col-lg-2 vertical">
                                     <h4>/</h4>
                                 </div>
                                 <div class="col-lg-5 ">
-                                    <input  id="protokDate" name="protokDate" class="form-control" type="date" placeholder="dd-mm-yyyy">
+                                    <input id="protokDate" name="protokDate" class="form-control" type="date"
+                                        placeholder="dd-mm-yyyy">
                                 </div>
                             </div>
                             <button id="saveButton" class="pageButton">Αποθήκευση</button>
@@ -74,25 +75,43 @@ updateActivity();
 
                                     <div class="row g-3">
                                         <input type="hidden" name="id" id="id">
+
+
                                         <div class="col-lg-6">
-                                            <label for="arithmosGs" class="form-label">
-                                                Αριθμός Γενικής Συνέλευσης
-                                            </label>
-                                            <input id="arithmosGs" name="arithmosGs" class="form-control">
+                                            <div class="centeredDiv">
+                                                <label>Αριθμός Γενικής Συνέλευσης</label>
+                                                <div id="protokDiv2" class="row">
+
+                                                    <div class="col ">
+                                                        <input id="protokNum2" name="protokNum" class="form-control"
+                                                            type="number" min="0" />
+                                                    </div>
+                                                    <div class="col-lg-1 vertical">
+                                                        <h4>/</h4>
+                                                    </div>
+                                                    <div class="col ">
+                                                        <input id="protokDate2" name="protokDate" class="form-control"
+                                                            type="date" placeholder="dd-mm-yyyy">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
+
+
                                         <div class="col-lg-6">
                                             <label for="etosGs" class="form-label">
                                                 Έτος Γενικής Συνέλευσης
                                             </label>
-                                            <select id="etosGs" class="form-select" name="etosGs" required>
+                                            <select id="etosGs" class="form-select" name="etosGs">
                                                 <option value="">Διαλέξτε Έτος</option>
                                             </select>
                                         </div>
+
                                         <div class="col-lg-12">
                                             <label for="logos" class="form-label">
                                                 Λόγος Ακύρωσης
                                             </label>
-                                            <textarea id="logos" name="logos" class="form-control" required></textarea>
+                                            <textarea id="logos" name="logos" class="form-control"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -100,7 +119,7 @@ updateActivity();
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
                                     data-bs-dismiss="modal">Κλείσιμο</button>
-                                <button type="submit" class="btn btn-primary"
+                                <button id="cancel" type="submit" class="btn btn-primary"
                                     style="background-color: #ff1414;">Ακύρωση</button>
                             </div>
                         </form>
@@ -128,8 +147,12 @@ updateActivity();
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
-    flatpickr("#protokDate",{
+    flatpickr("#protokDate", {
+        dateFormat: "d-m-Y",
+    });
+    flatpickr("#protokDate2", {
         dateFormat: "d-m-Y",
     });
 </script>
+
 </html>
