@@ -7,7 +7,7 @@ if (isset($_GET['thesisId']) && isset($_COOKIE["user"])) {
     $id = intval($_GET['thesisId']);
     try {
         $stmt = $conn->prepare(
-            "SELECT arithmos_protokolou
+            "SELECT episimi_anathesi
             FROM diplomatiki
             WHERE id = ?"
         );
@@ -17,7 +17,7 @@ if (isset($_GET['thesisId']) && isset($_COOKIE["user"])) {
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
             $data = $result->fetch_assoc();
-            $resp->date = $data['arithmos_protokolou'];
+            $resp->date = $data['episimi_anathesi'];
             $resp->answer = true;
             echo json_encode($resp);
         }else

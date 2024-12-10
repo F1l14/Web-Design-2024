@@ -11,7 +11,7 @@ if (isset($_GET['thesisId']) && isset($_COOKIE["user"])) {
 
         $stmt1 = $conn->prepare(
             "UPDATE diplomatiki
-            SET arithmos_protokolou = ?
+            SET episimi_anathesi = ?
             WHERE id = ?;"
         );
         $stmt1->bind_param("si", $arProtok, $id);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 10, 2024 at 01:46 PM
+-- Generation Time: Dec 10, 2024 at 03:32 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -100,17 +100,17 @@ CREATE TABLE `diplomatiki` (
   `filename` varchar(255) DEFAULT NULL,
   `grade_filename` varchar(255) DEFAULT NULL,
   `gradeable` tinyint(1) NOT NULL DEFAULT 0,
-  `arithmos_protokolou` varchar(255) DEFAULT NULL
+  `episimi_anathesi` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `diplomatiki`
 --
 
-INSERT INTO `diplomatiki` (`id`, `title`, `description`, `professor`, `student`, `url`, `status`, `filename`, `grade_filename`, `gradeable`, `arithmos_protokolou`) VALUES
-(233, 'test', 'test', 'apapadopoulos', 'up0000011', NULL, 'energi', 'ekfonisi_web.pdf', NULL, 0, NULL),
+INSERT INTO `diplomatiki` (`id`, `title`, `description`, `professor`, `student`, `url`, `status`, `filename`, `grade_filename`, `gradeable`, `episimi_anathesi`) VALUES
+(233, 'test', 'test', 'apapadopoulos', 'up0000011', NULL, 'energi', 'ekfonisi_web.pdf', NULL, 0, '6/10-12-2024'),
 (234, 'test2', 'test2', 'apapadopoulos', 'up0000030', 'gsdffadsfads', 'eksetasi', NULL, 'fadsfadsf', 0, NULL),
-(235, 'test3', 'test3', 'mkostopoulos', 'up0000015', NULL, 'energi', NULL, NULL, 0, NULL),
+(235, 'test3', 'test3', 'mkostopoulos', 'up0000015', NULL, 'energi', NULL, NULL, 0, '1/10-12-2024'),
 (236, 'energi', 'energi', 'apapadopoulos', 'up0000024', NULL, 'energi', NULL, NULL, 0, NULL);
 
 --
@@ -439,9 +439,9 @@ CREATE TABLE `user_tokens` (
 --
 
 INSERT INTO `user_tokens` (`token`, `user`, `expiration_date`) VALUES
-('29cdf400a037ab9834a5740fdc728c01979f7f0c27e25d3fe458cc44be08cee8', 'akyriakidis', '2024-12-10 15:46:15'),
+('29cdf400a037ab9834a5740fdc728c01979f7f0c27e25d3fe458cc44be08cee8', 'akyriakidis', '2024-12-10 17:31:53'),
 ('b24da33a04339611e26a9608966f6be4bb180625a153c1bfa2d98d5aede1ed61', 'grammateia2', '2024-12-05 15:11:33'),
-('d214930a533b14a26af960d16c2b7cbbec76291f6223957495ee938183451455', 'apantelidis', '2024-12-10 15:44:23');
+('d214930a533b14a26af960d16c2b7cbbec76291f6223957495ee938183451455', 'apantelidis', '2024-12-10 17:31:16');
 
 --
 -- Indexes for dumped tables
