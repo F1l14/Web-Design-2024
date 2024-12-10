@@ -17,7 +17,48 @@ saveForm.addEventListener("submit", function(event){
         saveProtocol(event);
     }
 });
-cancelButton.addEventListener("click", cancelThesis);
+
+window.addEventListener("load", loadProtocol);
+
+
+
+// cancelButton.addEventListener("click", cancelThesis);
+
+async function loadProtocol(){
+    fetch(`../scripts/manage/getArProtok.php?thesisId=${thesisId}`, {
+        method: "GET",
+        //Accepting json response from backend
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                splitDate = data.date.split("/");
+                console.log(splitDate);
+                protokNum.value = parseInt(splitDate[0]);
+                protokDate.value = splitDate[1];  
+            } else {
+                alert("Πρόβλημα: Δοκιμάστε Ξανά")
+                console.error("BackendErr" , data.error );
+            }
+
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
 
 async function saveProtocol(event){
 
@@ -44,7 +85,6 @@ async function saveProtocol(event){
         .then(data => {
             if (data.answer) {
                 alert("Επιτυχής Αποθήκευση");
-                window.location.href = "/Web-Design-2024/php/grammateia/manageThesis.php";
             } else {
                 alert("Πρόβλημα: Δοκιμάστε Ξανά")
                 console.error("BackendErr" , data.error );
