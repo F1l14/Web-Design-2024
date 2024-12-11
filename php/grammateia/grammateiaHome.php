@@ -25,23 +25,24 @@ updateActivity();
 </head>
 
 <body>
-    <div id="mainContainer" class="container align-content-center ">
-        <div class="buttonWindow box align-content-center">
-            <div id="innerContainer" class="container text-center">
-                <div class="row row-cols-3 ">
-                    <div class="col">
-                        <button class="pageButton" onclick="redirect('viewThesis.php')">Προβολή ΔΕ</button>
-                    </div>
-                    <div class="col">
-                        <button class="pageButton" onclick="redirect('dataInput.php')">Εισαγωγή Δεδομένων</button>
-                    </div>
-                    <div class="col">
-                        <button class="pageButton" onclick="redirect('manageThesis.php')">Διαχείρηση Διπλωματικής Εργασίας</button>
-                    </div>
+    <div id="mainContainer" class="container-fluid">
 
+        <div id="innerContainer" class="box container text-center">
+
+            <div class="row row-cols-3 d-flex justify-content-center">
+                <div class="col-12 col-md-4 d-flex justify-content-center">
+                    <button class="pageButton mx-5" onclick="redirect('viewThesis.php')">Προβολή ΔΕ</button>
+                </div>
+                <div class="col-12 col-md-4 d-flex justify-content-center">
+                    <button class="pageButton mx-5" onclick="redirect('dataInput.php')">Εισαγωγή Δεδομένων</button>
+                </div>
+                <div class="col-12 col-md-4 d-flex justify-content-center">
+                    <button class="pageButton mx-5" onclick="redirect('manageThesis.php')">Διαχείρηση Διπλωματικής
+                        Εργασίας</button>
                 </div>
 
             </div>
+
         </div>
     </div>
 

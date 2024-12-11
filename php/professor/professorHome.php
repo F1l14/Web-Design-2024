@@ -21,37 +21,41 @@ updateActivity();
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- icon -->
     <link rel="icon" type="image/svg+xml" href="/Web-Design-2024/icons/websiteIcon.svg ">
-    
+
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/Web-Design-2024/header.html' ?>
 </head>
 
 <body>
-    <div id="mainContainer" class="container align-content-center ">
-        <div class="buttonWindow box align-content-center">
-            <div id="innerContainer" class="container text-center">
-                <div class="row row-cols-3 ">
-                    <div class="col">
-                        <button class="pageButton" onclick="redirect('createThesis.php')">Προβολή/Δημιουργία θεμάτων προς ανάθεση</button>
-                    </div>
-                    <div class="col">
-                        <button class="pageButton" onclick="redirect('assignThesis.php')">Αρχική ανάθεση θέματος σε φοιτητή</button>
-                    </div>
-                    <div class="col">
-                        <button class="pageButton" onclick="redirect('listThesis.php')">Προβολή λίστας διπλωματικών</button>
-                    </div>
-                    <div class="col">
-                        <button class="pageButton" onclick="redirect('invitations.php')">Προβολή προσκλήσεων συμμετοχής σε τριμελή επιτροπή</button>
-                    </div>
-                    <div class="col">
-                        <button class="pageButton" onclick="redirect('stats.php')">Προβολή στατιστικών</button>
-                    </div>
-                    <div class="col">
-                        <button class="pageButton" onclick="redirect('manageThesis.php')">Διαχείριση διπλωματικών εργασιών</button>
-                    </div>
-                </div>
+    <div id="mainContainer" class="container-fluid">
 
+        <div id="innerContainer" class="box container">
+
+            <div class="row row-cols-3 d-flex justify-content-center">
+                <div class="col-12 col-md-4 d-flex justify-content-center">
+                    <button class="pageButton" onclick="redirect('createThesis.php')">Προβολή/Δημιουργία θεμάτων προς
+                        ανάθεση</button>
+                </div>
+                <div class="col-12 col-md-4 d-flex justify-content-center">
+                    <button class="pageButton" onclick="redirect('assignThesis.php')">Αρχική ανάθεση θέματος σε
+                        φοιτητή</button>
+                </div>
+                <div class="col-12 col-md-4 d-flex justify-content-center">
+                    <button class="pageButton" onclick="redirect('listThesis.php')">Προβολή λίστας διπλωματικών</button>
+                </div>
+                <div class="col-12 col-md-4 d-flex justify-content-center">
+                    <button class="pageButton" onclick="redirect('invitations.php')">Προβολή προσκλήσεων</button>
+                </div>
+                <div class="col-12 col-md-4 d-flex justify-content-center">
+                    <button class="pageButton" onclick="redirect('stats.php')">Προβολή στατιστικών</button>
+                </div>
+                <div class="col-12 col-md-4 d-flex justify-content-center">
+                    <button class="pageButton" onclick="redirect('manageThesis.php')">Διαχείριση διπλωματικών
+                        εργασιών</button>
+                </div>
             </div>
+
         </div>
+    </div>
     </div>
 
     <!-- ======================================================================================== -->

@@ -25,29 +25,37 @@ updateActivity();
 </head>
 
 <body>
-    <div id="mainContainer" class="container align-content-center ">
-        <div class="buttonWindow box align-content-center">
-            <div id="innerContainer" class="container text-center">
-                <div class="row row-cols-3 ">
-                    <div class="col">
-                        <button class="pageButton" onclick="redirect('viewThesis.php')">Προβολή Θέματος</button>
-                    </div>
-                    <div class="col">
-                        <button class="pageButton" onclick="redirect('profile.php')">Επεξεργασία Προφίλ</button>
-                    </div>
-                    <div class="col">
-                        <button class="pageButton" onclick="redirect('manageThesis.php')">Διαχείρηση Διπλωματικής Εργασίας</button>
-                    </div>
+    <div id="mainContainer" class="container-fluid">
 
+        <div id="innerContainer" class="box container">
+            <div class="row row-cols-3 d-flex justify-content-center">
+
+                <div class="col-12 col-md-4 d-flex justify-content-center">
+                    <button class="pageButton mx-5" onclick="redirect('viewThesis.php')">Προβολή Θέματος</button>
+                </div>
+                <div class="col-12 col-md-4 d-flex justify-content-center">
+                    <button class="pageButton mx-5" onclick="redirect('profile.php')">Επεξεργασία Προφίλ</button>
+                </div>
+                <div class="col-12 col-md-4 d-flex justify-content-center">
+                    <button class="pageButton mx-5" onclick="redirect('manageThesis.php')">Διαχείρηση Διπλωματικής
+                        Εργασίας</button>
                 </div>
 
             </div>
+
         </div>
+
+
     </div>
 
     <!-- ======================================================================================== -->
-    <canvas class="background"></canvas>
+
 </body>
+<background>
+    <canvas class="background"></canvas>
+</background>
+
+</html>
 
 <!-- bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
