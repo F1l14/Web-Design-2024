@@ -1,3 +1,24 @@
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 0;
+  left: 0;
+  flex-grow: 1;
+  }
+
+#innerContainer {
+  margin: 0;
+    margin-top: 1rem;
+  align-items: center;
+  justify-content:center;
+  padding: 2rem;
+}
+
+.buttonWindow {
+  /* height: 50%; */
+  height: fit-content;
+  padding: 3rem;
 @import url('https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
@@ -11,6 +32,11 @@ html,
 body {
     height: 100%;
     width: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column; /* Stack header and main container */
 }
 
 
@@ -29,14 +55,27 @@ body {
 }
 
 #mainContainer {
-    height: 86%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 0;
+  left: 0;
+  flex-grow: 1;
   }
-#innerContainer{
-    margin:0;
+
+#innerContainer {
+  margin: 0;
     margin-top: 1rem;
+  align-items: center;
+  justify-content:center;
+  padding: 2rem;
 }
-.buttonWindow{
-    height: 50%;
+
+.buttonWindow {
+  /* height: 50%; */
+  height: fit-content;
+  padding: 3rem;
 }
 
 .box {
