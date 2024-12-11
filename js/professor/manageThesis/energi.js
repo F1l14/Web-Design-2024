@@ -12,6 +12,10 @@ const eksetasiButton = document.getElementById("eksetasi");
 const cancelButton = document.getElementById("cancel");
 const form = document.getElementById("cancelThesisForm");
 
+const cancelProtokNum = document.getElementById("protokNum2");
+const cancelProtokDate = document.getElementById("protokDate2");
+const cancelYear = document.getElementById("etosGs");
+
 window.addEventListener("load", function () {
     stateProtect("energi", thesisId, "professor")
 });
@@ -37,8 +41,13 @@ async function canCancel(skip) {
             if (data.state != "SQL Error") {
                 if (skip) {
                     eksetasiButton.addEventListener("click", eksetasi);
-                    form.addEventListener("submit", cancelThesis);
-                }else if (!data.cancel) {
+                    form.addEventListener("submit", function (event) {
+                        event.preventDefault();
+                        if (requiredText(cancelProtokNum) && requiredText(cancelProtokDate) && requiredText(cancelYear)) {
+                            cancelThesis(event);
+                        }
+                    });
+                } else if (!data.cancel) {
                     eksetasiButton.addEventListener("click", eksetasi);
                     cancelButton.disabled = true;
                     form.addEventListener('submit', function (event) {
@@ -48,10 +57,13 @@ async function canCancel(skip) {
                     new bootstrap.Tooltip(cancelButton, { title: `Δεν έχουν παρέλθει δύο ημερολογιακά έτη από την επίσημη ανάθεση` });
                 } else {
                     eksetasiButton.addEventListener("click", eksetasi);
-                    form.addEventListener("submit", cancelThesis);
+                    form.addEventListener("submit", function (event) {
+                        event.preventDefault();
+                        if (requiredText(cancelProtokNum) && requiredText(cancelProtokDate) && requiredText(cancelYear)) {
+                            cancelThesis(event);
+                        }
+                    });
                 }
-
-
             } else if (data.state == "SQL Error") {
                 console.log(data.message);
             }
@@ -94,7 +106,7 @@ async function professorPrivileges() {
                     new bootstrap.Tooltip(cancelButton, { title: `Δεν είστε ο επιβλέπων` });
                     new bootstrap.Tooltip(eksetasiButton, { title: `Δεν είστε ο επιβλέπων` });
                 } else {
-                    canCancel(true);
+                    canCancel();
                 }
             } else if (data.message == "SQL Error") {
                 console.log(data.message);
@@ -178,7 +190,6 @@ document.getElementById("etosGs").onsubmit = function (event) {
 
 
 async function cancelThesis(event) {
-    event.preventDefault();
     var data = new FormData(event.target);
 
 
@@ -209,7 +220,7 @@ async function cancelThesis(event) {
             if (data.state == "Can't cancel") {
                 alert("Δεν μπορεί να ακυρωθεί ακόμη");
             } else if (data.state != "SQL Error") {
-                // window.location.href = '/Web-Design-2024/php/professor/manageThesis.php';
+                window.location.href = '/Web-Design-2024/php/professor/manageThesis.php';
             } else if (data.message == "SQL Error") {
                 console.log(data.error);
             }
@@ -219,4 +230,15 @@ async function cancelThesis(event) {
             console.error("Error Occured:", error);
         })
         ;
+}
+
+function requiredText(element) {
+    // trim removes leading or trailing whitespaces
+    if (!element.value.trim()) {
+        element.style.border = "3px solid red";
+        return false;
+    } else {
+        element.style.border = "3px solid #90ff6e";
+        return true;
+    }
 }
