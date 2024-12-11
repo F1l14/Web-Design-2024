@@ -6,15 +6,15 @@ window.onload = function() {
     speed: 0.06,
     responsive: [
 {
-  breakpoint: 425,
+  breakpoint: 576,
   options: {
-    maxParticles: 100,
+    maxParticles: 60,
     connectParticles: true
   }
 }, {
   breakpoint: 320,
   options: {
-    maxParticles: 0 // disables particles.js
+    maxParticles: 20 // disables particles.js
   }
 }
 ]
