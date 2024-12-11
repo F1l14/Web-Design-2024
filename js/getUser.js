@@ -3,6 +3,7 @@ document.addEventListener("load", getUser());
 
 async function getUser() {
     var user = document.getElementById("user");
+    var userMobile = document.getElementById("userMobile");
     fetch("/Web-Design-2024/php/getUser.php", {
         method: "GET",
         headers: { 'Accept': 'application/json' }
@@ -17,6 +18,7 @@ async function getUser() {
         .then(data => {
             if (data.status == "success") {
                 user.innerHTML = `${data.username} | ${data.firstname} ${data.lastname}`;
+                userMobile.innerHTML= data.username
             } else {
                 throw new Error("Error: While fetching Name");
             }

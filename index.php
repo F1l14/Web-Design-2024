@@ -8,7 +8,7 @@
   <title>ΣΔΔΕ</title>
 
   <link rel="stylesheet" href="/Web-Design-2024/css/styles.css">
-  <link rel="stylesheet" href="/Web-Design-2024/css/header.css">
+  <link rel="stylesheet" href="/Web-Design-2024/css/headerIndex.css">
   <link rel="stylesheet" href="/Web-Design-2024/css/index.css">
 
 
