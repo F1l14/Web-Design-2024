@@ -32,7 +32,7 @@ updateActivity();
 
             <div id="innerContainer" class="container box col align-self-center" container-fluid>
                 <div class="row">
-                    <div class="col-lg-12 m-3 vertical">
+                    <div class="col-lg-12 margined vertical">
                         <h5 id="grade">Αριθμός πρωτοκόλλου γενικής συνέλευσης</h5>
                         <form id="protokForm"
                             action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/grammateia/scripts/manage/energiArProtok.php'); ?>"
@@ -53,7 +53,7 @@ updateActivity();
                             <button id="saveButton" type="submit" class="pageButton">Αποθήκευση</button>
                         </form>
                     </div>
-                    <div class="col-lg-12 m-3 vertical">
+                    <div class="col-lg-12 margined vertical">
                         <h5>Ακύρωση ανάθεσης θέματος</h5>
                         <button id="cancelButton" class="pageButton" data-bs-toggle="modal"
                             data-bs-target="#cancelModalGrammateia">Ακύρωση</button>
