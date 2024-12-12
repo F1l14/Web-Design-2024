@@ -44,7 +44,8 @@
 #notepad{
     border: 3px solid white ;
     border-radius: 12px;
-    height: 30rem;
+    height: 25rem;
+    flex-grow: 1;
     width: 50%;
     position: relative;
     display: block;
