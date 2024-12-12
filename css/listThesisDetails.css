@@ -1,20 +1,7 @@
-#mainContainer {
-    display: flex;
-  }
-  
-  #innerContainer {
-    height: 100%;
-    width: 90%;
-    padding: 0rem;
-    display: flexbox;
-    overflow-y: auto;
-  }
-
-
-  .epitrophInput{
-    height: 2rem;
-    width: 10rem;
-  }
+.epitrophInput {
+  height: 2rem;
+  width: 10rem;
+}
 
 
 /* #titleDiv{
@@ -24,87 +11,92 @@
 } */
 
 
-#fullEpitroph{
-    position: relative;
+#fullEpitroph {
+  position: relative;
 }
 
-  #epitroph{
-    /* height: 5rem; */
-    /* background-color: yellow; */
-    /* padding-left: 2rem;; */
-    list-style:none;
-    width: 20rem;
-    position: relative;
+#epitroph {
+  /* height: 5rem; */
+  /* background-color: yellow; */
+  /* padding-left: 2rem;; */
+  list-style: none;
+  width: 20rem;
+  position: relative;
+}
+
+#firstEpitroph {
+  margin-left: 3rem;
+  width: max-content;
+
+  &:after {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 5rem;
+    /* left:4rem; */
+    margin-left: 1rem;
+    border-right: 2px dashed black;
   }
-  
- #firstEpitroph{
-    margin-left: 3rem;
-    width: max-content;
-    &:after{
-        content: "";
-        position: absolute;
-        width:1px;
-        height: 5rem;
-        /* left:4rem; */
-        margin-left: 1rem;
-        border-right:2px dashed black;
-    }
- }
+}
 
-  #epitroph li{
-    width: max-content;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    position: relative;
-    left:5rem;
-    &:before{
-        content: "";
-        position:absolute;
-        border-top: 2px dashed black;
-        width:3rem;
-        left:-3rem;
-        top:0.9rem;
-    }
+#epitroph li {
+  width: max-content;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+  left: 5rem;
+
+  &:before {
+    content: "";
+    position: absolute;
+    border-top: 2px dashed black;
+    width: 3rem;
+    left: -3rem;
+    top: 0.9rem;
   }
-
-  h4 {
-    text-align: center;
-    margin-top: 1rem;
-  }
-
-table{
-    max-height: 100%;
-    overflow: auto;
 }
 
-#studentInput{
-    width: 60%;
-    text-align: center;
-    height: 2rem;
+h4 {
+  text-align: center;
+  margin-top: 1rem;
 }
 
-#titleInput{
-    width: 50%;
-    overflow: auto;
+table {
+  max-height: 100%;
+  overflow: auto;
 }
+
+#studentInput {
+  width: 60%;
+  text-align: center;
+  height: 2rem;
+}
+
+#titleInput {
+  width: 50%;
+  overflow: auto;
+}
+
 button {
-    float: right;
-    margin-left: 1rem;
+  float: right;
+  margin-left: 1rem;
 }
 
-p{
-    width: max-content;
+p {
+  width: max-content;
 }
 
-#grade, #library {
-    display: flex;
-    
+#grade,
+#library {
+  display: flex;
+
 }
 
-.optionButton{
-    height: 2rem;
-    margin-left: 1rem;
+.optionButton {
+  height: 2rem;
+  margin-left: 1rem;
 }
-#manageButton{
+
+#manageButton {
   margin-top: 2rem;
 }

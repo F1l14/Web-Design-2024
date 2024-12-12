@@ -1,25 +1,3 @@
-#innerContainer {
-    height: 100%;
-    width: 90%;
-    padding: 0;
-
-    display: flexbox;
-    overflow-y: auto;
-     
-}
-
-#mainContainer {
-    display: flex;
-    
-}
-
-
-
-
-
-
-
-
 #title {
     /* height: 10vh;
     width: 32.5vw; */
