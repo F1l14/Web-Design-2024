@@ -1,9 +1,15 @@
+#innerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.row {
+  flex-grow: 1;
+}
 #cancel, #eksetasi{
  box-sizing: border-box;
  width: 10rem;
- /* padding-left: 2.3rem; */
- /* vertical-align: center; */
- /* padding: 0.1rem 1rem; */
  padding-right: 1rem;
  padding-left: 1rem;
  text-align: center;
@@ -44,9 +50,9 @@
 #notepad{
     border: 3px solid white ;
     border-radius: 12px;
-    height: 25rem;
+    height: 100%;
     flex-grow: 1;
-    width: 50%;
+    width: 75%;
     position: relative;
     display: block;
     background-color: #f2f2f2b1;
