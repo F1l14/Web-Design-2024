@@ -8,3 +8,14 @@
     margin: 1rem;
     font-size: large;
 }
+
+#innerContainer {
+    align-items: center;
+    justify-content:center;
+    padding: 2rem;
+
+    height: auto;
+    width: auto;
+   
+    overflow-y: none;
+  }
