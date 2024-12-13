@@ -25,6 +25,9 @@
     .usermobileDropdown{
         display:list-item
     }
+    #settings {
+        display: none;
+    }
 
     #user{
         display: none;
