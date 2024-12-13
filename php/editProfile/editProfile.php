@@ -81,7 +81,7 @@ updateActivity();
 <script src="/Web-Design-2024/particles.js-master/particles.js-master/dist/particles.min.js"></script>
 <script src="/Web-Design-2024/js/backgroundOptions.js"></script>
 
-<script src="/Web-Design-2024/js/getUserInfo.js" defer></script>
+<script src="/Web-Design-2024/js/userInfo.js" defer></script>
 
 
 </html>
