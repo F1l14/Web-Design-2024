@@ -46,7 +46,7 @@ updateActivity();
                         <h3 class="text-center">Ταχυδρομική διεύθυνση</h3>
                         <h5>Πόλη</h5>
                         <input id="city" name="city" type="text" class="form-control" />
-                        <h5>Δρόμος</h5>
+                        <h5>Οδός</h5>
                         <input id="street" name="street" type="text" class="form-control" />
                         <h5>Αριθμός</h5>
                         <input id="number" name="number" type="text" class="form-control" min="1" pattern="^[0-9]+[Α-Ζ]?$"
