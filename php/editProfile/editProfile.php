@@ -31,6 +31,8 @@ updateActivity();
                 <div class="row">
                     <div class="col-lg-6 col-sm-12 ms-auto">
                         <h3 class="text-center">Στοιχεία Επικοινωνίας</h3>
+                        <h5>Ονοματεπώνυμο</h5>
+                        <input id="fullname" name="fullname" type="text" class="form-control" disabled/>
                         <h5>E-mail</h5>
                         <input id="email" name="email" type="email" class="form-control" />
 
@@ -79,7 +81,7 @@ updateActivity();
 <script src="/Web-Design-2024/particles.js-master/particles.js-master/dist/particles.min.js"></script>
 <script src="/Web-Design-2024/js/backgroundOptions.js"></script>
 
-<!-- <script src="/Web-Design-2024/js/stateProtect.js"></script>
-<script src="/Web-Design-2024/js/grammateia/manageThesis/eksetasi.js" defer></script> -->
+<script src="/Web-Design-2024/js/getUserInfo.js" defer></script>
+
 
 </html>
