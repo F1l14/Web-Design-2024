@@ -46,7 +46,7 @@ function insertProfessor($profs)
         try{
             $insertProfessor = $conn->prepare("INSERT INTO professor(username, tmhma, panepistimio, thema) VALUES (?,?,?,?)");
             $insertProfessor->bind_param("ssss", $username, $current["department"], $current["university"], $current["topic"]);
-            $insertAddress->execute();
+            $insertProfessor->execute();
         }catch(mysqli_sql_exception $e){
             $resp->state  = $conn->error;
             echo json_encode($resp);
