@@ -18,43 +18,57 @@ updateActivity();
 
     <link rel="stylesheet" href="/Web-Design-2024/css/styles.css">
     <link rel="stylesheet" href="/Web-Design-2024/css/header.css">
-    <link rel="stylesheet" href="/Web-Design-2024/css/eksetasiGrammateia.css">
+    <link rel="stylesheet" href="/Web-Design-2024/css/editProfile.css">
     <!-- icon -->
     <link rel="icon" type="image/svg+xml" href="/Web-Design-2024/icons/websiteIcon.svg">
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/Web-Design-2024/header.html' ?>
 </head>
 
 <body>
-    <div id="mainContainer" class="container d-flex align-items-center justify-content-center">
-        <div class="row text-center">
-
-            <div id="innerContainer" class="container box col align-self-center" container-fluid>
+    <div id="mainContainer" class="container align-items-center justify-content-center">
+        <div id="innerContainer" class="container box row">
+            <form action="">
                 <div class="row">
-                    <div class="inlineDiv col justify-content-between">
-                        <h5 id="grade">Βαθμός</h5>
-                        <img id="gradeCheckbox" class="checkbox" src="/Web-Design-2024/icons/checkBoxBlank.svg">
-                    </div>
+                    <div class="col-lg-6 col-sm-12 ms-auto">
+                        <h3 class="text-center">Στοιχεία Επικοινωνίας</h3>
+                        <h5>E-mail</h5>
+                        <input type="email" class="form-control" />
 
-                </div>
-                <div class="row">
-                    <div class="inlineDiv col justify-content-between">
-                        <h5 id="url">Σύνδεσμος Βιβλιοθήκης</h5>
-                        <img id="urlCheckbox" class="checkbox" src="/Web-Design-2024/icons/checkBoxBlank.svg">
+                        <h5>Κινητό</h5>
+                        <input type="text" class="form-control" pattern="^(\+[0-9]+)?[0-9]{10}$"/>
+                        <h5>Σταθερό</h5>
+                        <input type="text" class="form-control" pattern="^(\+[0-9]+)?[0-9]{10}$"/>
+                        <br>
                     </div>
-
-                </div>
-                <div class="row">
-                    <div class="centeredDiv">
-                        <hr class="divHr">
-                        <h5>Αλλαγή κατάστασης διπλωματικής</h5>
-                        <button id=peratomeniButton class="pageButton" disabled>Περατωμένη</button>
+                    <div class="col">
+                        <h3 class="text-center">Ταχυδρομική διεύθυνση</h3>
+                        <h5>Πόλη</h5>
+                        <input type="text" class="form-control" />
+                        <h5>Δρόμος</h5>
+                        <input type="text" class="form-control" />
+                        <h5>Αριθμός</h5>
+                        <input type="text" class="form-control" min="1" pattern="^[0-9]+[Α-Ζ]?$"
+                            title="Αριθμός ή Αριθμός και Γράμμα" />
+                        <h5>ΤΚ</h5>
+                        <input type="number" class="form-control" min="10000" />
+                        <br>
                     </div>
                 </div>
 
-            </div>
-            <!-- ======================================================================================== -->
-            <canvas class="background"></canvas>
+
+
+
+                <div class="col d-flex justify-content-center">
+                    <button class="pageButton">Αποθήκευση</button>
+                </div>
+
+
+
+            </form>
+
         </div>
+        <!-- ======================================================================================== -->
+        <canvas class="background"></canvas>
 </body>
 
 <!-- bootstrap -->

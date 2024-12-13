@@ -1,0 +1,12 @@
+.pageButton{
+    margin-top: 2rem;
+}
+
+input.form-control{
+    margin-bottom: 0.5rem;
+}
+
+#innerContainer {
+    height: auto;
+    padding: 1rem;
+}
