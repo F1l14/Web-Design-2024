@@ -27,30 +27,30 @@ updateActivity();
 <body>
     <div id="mainContainer" class="container align-items-center justify-content-center">
         <div id="innerContainer" class="container box row">
-            <form action="">
+            <form id="userInfo" name="userInfo" action="">
                 <div class="row">
                     <div class="col-lg-6 col-sm-12 ms-auto">
                         <h3 class="text-center">Στοιχεία Επικοινωνίας</h3>
                         <h5>E-mail</h5>
-                        <input type="email" class="form-control" />
+                        <input id="email" name="email" type="email" class="form-control" />
 
                         <h5>Κινητό</h5>
-                        <input type="text" class="form-control" pattern="^(\+[0-9]+)?[0-9]{10}$"/>
+                        <input id="mobile" name="mobile" type="text" class="form-control" pattern="^(\+[0-9]+)?[0-9]{10}$"/>
                         <h5>Σταθερό</h5>
-                        <input type="text" class="form-control" pattern="^(\+[0-9]+)?[0-9]{10}$"/>
+                        <input id="landline" name="landline" type="text" class="form-control" pattern="^(\+[0-9]+)?[0-9]{10}$"/>
                         <br>
                     </div>
                     <div class="col">
                         <h3 class="text-center">Ταχυδρομική διεύθυνση</h3>
                         <h5>Πόλη</h5>
-                        <input type="text" class="form-control" />
+                        <input id="city" name="city" type="text" class="form-control" />
                         <h5>Δρόμος</h5>
-                        <input type="text" class="form-control" />
+                        <input id="street" name="street" type="text" class="form-control" />
                         <h5>Αριθμός</h5>
-                        <input type="text" class="form-control" min="1" pattern="^[0-9]+[Α-Ζ]?$"
+                        <input id="number" name="number" type="text" class="form-control" min="1" pattern="^[0-9]+[Α-Ζ]?$"
                             title="Αριθμός ή Αριθμός και Γράμμα" />
                         <h5>ΤΚ</h5>
-                        <input type="number" class="form-control" min="10000" />
+                        <input id="zipcode" name="zipcode" type="number" class="form-control" min="10000" />
                         <br>
                     </div>
                 </div>
@@ -59,7 +59,7 @@ updateActivity();
 
 
                 <div class="col d-flex justify-content-center">
-                    <button class="pageButton">Αποθήκευση</button>
+                    <button id="saveButton" name="saveButton" type="submit" class="pageButton">Αποθήκευση</button>
                 </div>
 
 
