@@ -85,31 +85,46 @@ async function loadDetails() {
 
 
 
-function handleDate(interval){
+function handleDate(interval) {
     diff = "";
-    if(interval.y!=0){
-        if(interval.y>1){
-            diff+= interval.y + " χρόνια ";
-        }else{
-            diff+= interval.y + " χρόνος "
+    if (interval.y != 0) {
+        if (interval.y > 1) {
+            diff += interval.y + " χρόνια ";
+        } else {
+            diff += interval.y + " χρόνος "
         }
     }
 
-    if(interval.m!=0){
-        if(interval.m>1){
-            diff+= interval.m + " μήνες ";
-        }else{
-            diff+= interval.m + " μήνας "
+    if (interval.m != 0) {
+        if (interval.m > 1) {
+            diff += interval.m + " μήνες ";
+        } else {
+            diff += interval.m + " μήνας "
         }
     }
 
-    if(interval.d!=0){
-        if(interval.d>1){
-            diff+= interval.d + " ημέρες ";
-        }else{
-            diff+= interval.d + " ημέρα "
+    if (interval.d != 0) {
+        if (interval.d > 1) {
+            diff += interval.d + " ημέρες ";
+        } else {
+            diff += interval.d + " ημέρα "
         }
     }
 
+    if (interval.h != 0) {
+        if (interval.h > 1) {
+            diff += interval.h + " ώρες ";
+        } else {
+            diff += interval.h + " ώρα "
+        }
+    }
+
+    if (interval.i != 0) {
+        if (interval.i > 1) {
+            diff += interval.i + " λεπτά ";
+        } else {
+            diff += interval.i + " λεπτό "
+        }
+    }
     return diff;
 }
