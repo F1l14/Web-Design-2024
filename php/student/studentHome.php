@@ -34,7 +34,7 @@ updateActivity();
                     <button class="pageButton mx-5" onclick="redirect('viewThesis.php')">Προβολή Θέματος</button>
                 </div>
                 <div class="col-12 col-md-4 d-flex justify-content-center">
-                    <button class="pageButton mx-5" onclick="redirect('profile.php')">Επεξεργασία Προφίλ</button>
+                    <button class="pageButton mx-5" onclick="redirect('/Web-Design-2024/php/editProfile/editProfile.php')">Επεξεργασία Προφίλ</button>
                 </div>
                 <div class="col-12 col-md-4 d-flex justify-content-center">
                     <button class="pageButton mx-5" onclick="redirect('manageThesis.php')">Διαχείρηση Διπλωματικής
