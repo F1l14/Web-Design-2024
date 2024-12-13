@@ -15,9 +15,10 @@
 
 
 
+
  /* small screen */
 @media (max-width: 576px){
-    h3{
+    #titleLabel{
         display: none;
     }
     
@@ -38,9 +39,19 @@
     }
     
 }
+
+/* medium screen */
+@media(min-width: 768px){
+    #user{
+        display: none;
+    }
+}
 /* large screen */
 @media(min-width: 992px){
+    #titleLabel{
+        font-size: large;
 
+    }
     #websiteTitle {
         padding-left: 3rem;
     }
