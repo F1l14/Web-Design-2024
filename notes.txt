@@ -1,5 +1,7 @@
 BackEnd
 ========================================================
+-settings
+    -password
 -professor
     -manageThesis
         -eksetasi
