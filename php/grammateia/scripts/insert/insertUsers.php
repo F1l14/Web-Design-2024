@@ -36,7 +36,7 @@ function insertProfessor($profs)
         }
         try{
             $insertAddress = $conn->prepare("INSERT INTO address(username, city, street, number, zipcode) VALUES(?,?,?,?,?)");
-            $insertAddress->bind_param("sssii", $username, $current["city"], $current["street"], $current["num"], $current["tk"]);
+            $insertAddress->bind_param("ssssi", $username, $current["city"], $current["street"], $current["num"], $current["tk"]);
             $insertAddress->execute();
         }catch(mysqli_sql_exception $e){
             $resp->state  = $conn->error;
@@ -80,7 +80,7 @@ function insertStudents($students)
 
         try{
             $insertAddress = $conn->prepare("INSERT INTO address(username, city, street, number, zipcode) VALUES(?,?,?,?,?)");
-            $insertAddress->bind_param("sssii", $username, $current["city"], $current["street"], $current["num"], $current["tk"]);
+            $insertAddress->bind_param("ssssi", $username, $current["city"], $current["street"], $current["num"], $current["tk"]);
             $insertAddress->execute();
         }catch(mysqli_sql_exception $e){
             $resp->state  = $conn->error;
