@@ -51,6 +51,7 @@ async function loadInfo() {
                zipcode.value  = data.data["zipcode"];
             } else {
                 alert("ΠΡΟΒΛΗΜΑ! Σφάλμα φόρτωσης δεδομένων")
+                console.log(data.error);
             }
 
         })
@@ -64,7 +65,6 @@ async function loadInfo() {
 
 
 async function saveInfo(event){
-    event.preventDefault();
     var data = new FormData(event.target);
     fetch(event.target.action, {
         method: "POST",
@@ -87,7 +87,7 @@ async function saveInfo(event){
                 alert("Επιτυχής Αποθήκευση");
             } else {
                 alert("ΠΡΟΒΛΗΜΑ! Προσπαθήστε Ξανά")
-                
+                console.log(data.error);
             }
 
         })

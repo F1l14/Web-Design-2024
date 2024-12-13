@@ -27,7 +27,7 @@ updateActivity();
 <body>
     <div id="mainContainer" class="container align-items-center justify-content-center">
         <div id="innerContainer" class="container box row">
-            <form id="userInfo" name="userInfo" action="">
+            <form id="userInfo" name="userInfo" action="<?php echo htmlspecialchars('https://' . $_SERVER['HTTP_HOST'] . '/Web-Design-2024/php/editProfile/scripts/updateUserInfo.php'); ?>">
                 <div class="row">
                     <div class="col-lg-6 col-sm-12 ms-auto">
                         <h3 class="text-center">Στοιχεία Επικοινωνίας</h3>
