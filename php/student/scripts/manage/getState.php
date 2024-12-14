@@ -18,6 +18,7 @@ if (isset($_COOKIE["user"])) {
         if ($result->num_rows > 0) {
             $resp->data = $result->fetch_assoc();
             $resp->answer = true;
+            echo json_encode($resp);
         } else {
             echo json_encode($resp);
             return;
