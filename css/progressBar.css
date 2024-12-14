@@ -1,3 +1,36 @@
+#progressBar {
+    position: relative;
+}
+
+@media(min-width: 992px){
+    .label{
+        display: inline;
+    }
+    .singleLabel{
+        display: none;
+    }
+}
+@media(max-width: 991px){
+    .label{
+        display: none;
+    }
+    .singleLabel{
+        display: contents;
+    }
+}
+
+.labelsDiv{
+    display: flex;
+    position: absolute;
+    justify-content: space-around;
+    width: 100%;
+    top: -2rem;  
+}
+
+.labelsDiv span{
+    width: 7rem;
+    text-align: center;
+}
 
 
 ul.progressBar {
@@ -7,10 +40,12 @@ ul.progressBar {
     margin: 0;
     padding: 0;
     align-content: center;
+    /* margin-top: 0.5rem; */
+    margin-top: 2rem;
 }
 
 
-.barContainer{
+.barContainer {
     position: absolute;
     top: 50%;
     /* Position the top of the pseudo-element at the vertical center */
@@ -19,35 +54,44 @@ ul.progressBar {
     height: 10%;
     width: 96%;
     z-index: 99;
-    background-color: grey;
+    background-color: rgb(174, 174, 174);
     margin: 0 2%;
     border-radius: 5px;
+    padding: 0;
 }
-.greenBar{
+
+.greenBar {
     background-color: #40eb34;
     width: 0%;
     height: 100%;
     transition: 2s ease-in-out;
+    border-radius: 5px;
 }
 
-.greenBar{
+.greenBar {
     width: 50%;
 }
 
 
 ul.progressBar li {
+
+    
     display: table-cell;
-    background-color: grey;
+    background-color: rgb(174, 174, 174);
     border-radius: 100%;
     /* height: 2rem;
     width: 2rem; */
-    padding: 1rem;
+    /* padding: 1rem; */
     vertical-align: middle;
     text-align: center;
     z-index: 100;
 }
 
-ul.progressbar>img {
-    top: 50%;
-    left: 50%;
+.barIcon {
+    width: 3rem;
 }
+
+ul.progressBar li.activeIcon {
+    background-color: #40eb34;
+}
+

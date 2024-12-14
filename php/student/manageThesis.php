@@ -32,8 +32,8 @@ updateActivity();
 <body>
     <div id="mainContainer" class="container align-items-center justify-content-center">
         <div id="innerContainer" class="container box">
-            <div id="progressBar" class="row"></div>
-            <div id="content">
+            <div id="progressBar"></div>
+            <div id="content" class="container">
 
             </div>
 
@@ -53,11 +53,6 @@ updateActivity();
 <script src="/Web-Design-2024/js/backgroundOptions.js"></script>
 <script src="/Web-Design-2024/js/student/manage/progressBar.js"></script>
 <script src="/Web-Design-2024/js/student/manage/manageThesis.js"></script>
-
-<!-- <script src="/Web-Design-2024/js/student/thesisDetails.js"></script> -->
+<script src="/Web-Design-2024/js/student/manage/anathesi.js"></script>
 
 </html>
-
-<script>
-    progressBar(["Υπό Ανάθεση","Ενεργή", "Υπό Εξέταση", "Περατωμένη"]);
-</script>
