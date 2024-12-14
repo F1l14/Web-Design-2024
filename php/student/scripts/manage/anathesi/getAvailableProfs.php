@@ -6,16 +6,16 @@ $resp->answer = false;
 if (isset($_COOKIE["user"])) {
     try {
         $stmt = $conn->prepare(
-            "SELECT firstname, lastname, username
+            "SELECT firstname, lastname, professor.username
                     FROM professor
                     INNER JOIN  users ON users.username = professor.username
-                    WHERE professor.status = available;"
+                    WHERE professor.status = 'available';"
         );
 
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
-            $resp->data = $result->fetch_assoc();
+            $resp->data = $result->fetch_all(MYSQLI_ASSOC);
             $resp->answer = true;
             echo json_encode($resp);
         } else {
