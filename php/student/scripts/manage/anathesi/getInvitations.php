@@ -17,7 +17,7 @@ if (isset($_COOKIE["user"])) {
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
-            $resp->data = $result->fetch_assoc();
+            $resp->data = $result->fetch_all(MYSQLI_ASSOC);
             $resp->answer = true;
             echo json_encode($resp);
         } else {
