@@ -44,3 +44,49 @@ async function getEpitroph() {
         })
         ;
 }
+
+async function getInvitations() {
+    fetch("scripts/manage/anathesi/getInvitations.php", {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                invTable = document.getElementById("st_invitations");
+
+                Object.entries(data.data).forEach(([key, value]) => {
+
+                    insertInvitations(value.invited_professor, value.status);
+
+                });
+            }
+        }
+        )
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
+
+function insertInvitations(professor, status) {
+
+    const row = invTable.insertRow();
+
+    let invited_professor = row.insertCell(0);
+    invited_professor.textContent = professor;
+
+    let invitiation_status = row.insertCell(1);
+    invitiation_status.textContent = status;
+}
