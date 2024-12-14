@@ -51,12 +51,10 @@ function updateGreenBar(currentCircle){
     if(currentCircle >  0 && currentCircle <= circles.length){
         widthPercentage = ((currentCircle) / (totalCircles))*100;
         greenBar.style.width = `${widthPercentage}%`;
-        console.log(widthPercentage)
     }
 
     for(i=0; i<currentCircle; i++){
         circles[i].className = "activeIcon"
         icons[i].src = "/Web-Design-2024/icons/check_light.svg";
-        console.log(circles[i]);
     }
 }
