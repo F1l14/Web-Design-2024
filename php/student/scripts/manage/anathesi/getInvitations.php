@@ -7,9 +7,10 @@ if (isset($_COOKIE["user"])) {
     $username = json_decode($_COOKIE['user'])->username;
     try {
         $stmt = $conn->prepare(
-            "SELECT invited_professor, epitroph_app.status
+            "SELECT firstname, lastname, epitroph_app.status
                     FROM epitroph_app
-                    INNER JOIN  diplomatiki ON diplomatiki.id = epitroph_app.diplomatiki
+                    INNER JOIN diplomatiki ON diplomatiki.id = epitroph_app.diplomatiki
+                    INNER JOIN users ON users.username = epitroph_app.invited_professor
                     WHERE diplomatiki.student = ?
                     ORDER BY FIELD(epitroph_app.status, 'waiting', 'accepted', 'rejected');"
         );
