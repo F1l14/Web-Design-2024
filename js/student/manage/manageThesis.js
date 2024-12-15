@@ -36,7 +36,7 @@ async function getState() {
                             })
                         break;
                     case "energi":
-                        fetch("manage/anathesi.php")
+                        fetch("manage/energi.php")
                             .then(res => res.text())
                             .then(data => {
                                 content.innerHTML = data;
