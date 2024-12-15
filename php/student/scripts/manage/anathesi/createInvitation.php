@@ -4,7 +4,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 $resp = new stdClass;
 $resp->answer = false;
 $diplomatiki = 0;
-$invited_professor = $_POST['invited_professor'];
+$invited_professor = $_GET['username'];
 
 if (isset($_COOKIE["user"])) {
     $username = json_decode($_COOKIE['user'])->username;
@@ -20,7 +20,6 @@ if (isset($_COOKIE["user"])) {
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
             $diplomatiki = $result->fetch_assoc()['id'];
-            $resp->answer = true;
         } else {
             echo json_encode($resp);
             return;

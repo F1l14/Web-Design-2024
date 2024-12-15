@@ -156,7 +156,6 @@ function insertProfessor(firstname, lastname, username) {
     const profCell = row.insertCell(0);
     const profSpan = document.createElement("span");
     profSpan.innerHTML = `${firstname} ${lastname}`;
-    profSpan.dataset.username = username;
     profSpan.className = "profName";
     profCell.appendChild(profSpan);
 
@@ -164,23 +163,57 @@ function insertProfessor(firstname, lastname, username) {
     const buttonIcon = document.createElement("img");
     buttonIcon.src = "/Web-Design-2024/icons/addCircle.svg";
     buttonIcon.className = "addIcon";
+    buttonIcon.addEventListener("click", function(){sendInvitation(username)});
     buttonCell.appendChild(buttonIcon);
 
 }
+
+function sendInvitation(username) {
+    fetch(`scripts/manage/anathesi/createInvitation.php?username=${username}`, {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                invTableBody = document.getElementById("st_invitations");
+                invTableBody.innerHTML = "";
+                console.log(invTableBody.innerHTML);
+                getInvitations();  
+            }else{
+                // console.log(data.error);
+                alert("Υπάρχει ήδη πρόσκληση")
+            }
+        }
+        )
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
+
 
 let rows, search;
 window.addEventListener("tableLoaded", function () {
     rows = document.querySelectorAll("#profBody tr");
     search = document.getElementById("searchProf");
     search.addEventListener("keyup", searchExecute);
-    console.log("ROWS:\n");
-    console.log(rows);
 });
 
 function searchExecute() {
     let value = search.value.toLowerCase();
     rows.forEach(function (row) {
-        console.log(row.textContent.toLowerCase());
         if (row.textContent.toLowerCase().indexOf(value) > -1) {
             row.style.display = "";
         } else {
@@ -191,6 +224,6 @@ function searchExecute() {
 }
 
 
- 
 
-    
+
+

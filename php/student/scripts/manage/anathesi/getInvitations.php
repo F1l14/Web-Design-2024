@@ -12,7 +12,7 @@ if (isset($_COOKIE["user"])) {
                     INNER JOIN diplomatiki ON diplomatiki.id = epitroph_app.diplomatiki
                     INNER JOIN users ON users.username = epitroph_app.invited_professor
                     WHERE diplomatiki.student = ?
-                    ORDER BY FIELD(epitroph_app.status, 'waiting', 'accepted', 'rejected');"
+                    ORDER BY FIELD(epitroph_app.status, 'waiting', 'accepted', 'rejected'), firstname;"
         );
 
         $stmt->bind_param("s", $username);
