@@ -1,5 +1,7 @@
 var content = document.getElementById("content");
 var invTable = document.getElementById("st_invitations");
+var profBody = document.getElementById("profBody");
+
 window.addEventListener('load', getState);
 
 const states = ["Υπό Ανάθεση","Ενεργή", "Υπό Εξέταση", "Περατωμένη"];
@@ -30,6 +32,7 @@ async function getState() {
                                 progressBar(states, 1);
                                 getEpitroph();
                                 getInvitations();
+                                loadProfs();
                             })
                         break;
                     case "energi":

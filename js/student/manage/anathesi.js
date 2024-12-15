@@ -107,3 +107,90 @@ function insertInvitations(firstname, lastname, status) {
     let invitiation_status = row.insertCell(1);
     invitiation_status.textContent = gr_status;
 }
+
+
+
+function loadProfs() {
+
+    fetch("scripts/manage/anathesi/getAvailableProfs.php", {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                profBody = document.getElementById("profBody");
+
+                Object.entries(data.data).forEach(([key, value]) => {
+
+                    insertProfessor(value.firstname, value.lastname, value.username);
+
+                });
+                const loadedEvent = new CustomEvent("tableLoaded");
+                window.dispatchEvent(loadedEvent);
+            }
+        }
+        )
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
+
+
+
+function insertProfessor(firstname, lastname, username) {
+    const row = profBody.insertRow();
+
+    const profCell = row.insertCell(0);
+    const profSpan = document.createElement("span");
+    profSpan.innerHTML = `${firstname} ${lastname}`;
+    profSpan.dataset.username = username;
+    profSpan.className = "profName";
+    profCell.appendChild(profSpan);
+
+    const buttonCell = row.insertCell(1);
+    const buttonIcon = document.createElement("img");
+    buttonIcon.src = "/Web-Design-2024/icons/addCircle.svg";
+    buttonIcon.className = "addIcon";
+    buttonCell.appendChild(buttonIcon);
+
+}
+
+let rows, search;
+window.addEventListener("tableLoaded", function () {
+    rows = document.querySelectorAll("#profBody tr");
+    search = document.getElementById("searchProf");
+    search.addEventListener("keyup", searchExecute);
+    console.log("ROWS:\n");
+    console.log(rows);
+});
+
+function searchExecute() {
+    let value = search.value.toLowerCase();
+    rows.forEach(function (row) {
+        console.log(row.textContent.toLowerCase());
+        if (row.textContent.toLowerCase().indexOf(value) > -1) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+
+    });
+}
+
+
+ 
+
+    
