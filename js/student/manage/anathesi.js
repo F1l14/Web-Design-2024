@@ -67,7 +67,7 @@ async function getInvitations() {
 
                 Object.entries(data.data).forEach(([key, value]) => {
 
-                    insertInvitations(value.invited_professor, value.status);
+                    insertInvitations(value.firstname, value.lastname, value.status);
 
                 });
             }
@@ -80,13 +80,30 @@ async function getInvitations() {
         ;
 }
 
-function insertInvitations(professor, status) {
+function insertInvitations(firstname, lastname, status) {
 
     const row = invTable.insertRow();
 
     let invited_professor = row.insertCell(0);
-    invited_professor.textContent = professor;
+    invited_professor.textContent = `${firstname} ${lastname}`;
 
+    var gr_status = '';
+    switch (status) {
+        case 'waiting':
+            gr_status = 'Αναμονή'
+            break;
+
+        case 'accepted':
+            gr_status = 'Αποδοχή'
+            break;
+
+        case 'rejected':
+            gr_status = 'Απόρριψη'
+            break;
+
+        default:
+            break;
+    }
     let invitiation_status = row.insertCell(1);
-    invitiation_status.textContent = status;
+    invitiation_status.textContent = gr_status;
 }
