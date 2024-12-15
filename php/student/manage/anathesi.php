@@ -17,12 +17,12 @@
     <div id="invitations" class="col">
         <h4>Προσκλήσεις</h4>
         <div class="tableWrapper">
-            <table id="st_invitations" class="table text-center">
+            <table class="table text-center">
                 <thead>
                     <th class="text-secondary">Καθηγητής</th>
                     <th class="text-secondary">Κατάσταση</th>
                 </thead>
-                <tbody></tbody>
+                <tbody id="st_invitations"></tbody>
             </table>
         </div>
     </div>
