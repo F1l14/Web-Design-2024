@@ -110,7 +110,7 @@ function insertInvitations(firstname, lastname, status) {
 
 
 
-function loadProfs() {
+async function loadProfs() {
 
     fetch("scripts/manage/anathesi/getAvailableProfs.php", {
         method: "GET",
@@ -163,12 +163,21 @@ function insertProfessor(firstname, lastname, username) {
     const buttonIcon = document.createElement("img");
     buttonIcon.src = "/Web-Design-2024/icons/addCircle.svg";
     buttonIcon.className = "addIcon";
-    buttonIcon.addEventListener("click", function(){sendInvitation(username)});
+    buttonIcon.addEventListener("click", function () {
+        sendInvitation(username)
+            .then(() => {
+                row.remove();
+            })
+            .catch((error)=>{
+                console.log(error);
+            });
+
+    });
     buttonCell.appendChild(buttonIcon);
 
 }
 
-function sendInvitation(username) {
+async function sendInvitation(username) {
     fetch(`scripts/manage/anathesi/createInvitation.php?username=${username}`, {
         method: "GET",
         headers: { 'Accept': 'application/json' }
@@ -188,11 +197,12 @@ function sendInvitation(username) {
             if (data.answer) {
                 invTableBody = document.getElementById("st_invitations");
                 invTableBody.innerHTML = "";
-                console.log(invTableBody.innerHTML);
-                getInvitations();  
-            }else{
+                getInvitations();
+                return new Boolean(true);
+            } else {
                 // console.log(data.error);
                 alert("Υπάρχει ήδη πρόσκληση")
+                return new Boolean(false);
             }
         }
         )

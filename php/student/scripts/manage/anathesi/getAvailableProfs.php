@@ -40,10 +40,15 @@ if (isset($_COOKIE["user"])) {
                         SELECT 1 FROM epitroph
                         WHERE epitroph.diplomatiki = ?
                         AND (professor.username = epitroph.prof1 OR professor.username = epitroph.prof2 OR professor.username = epitroph.prof3)
+                    )
+                    AND NOT EXISTS (
+                        SELECT 1 FROM epitroph_app
+                        WHERE epitroph_app.diplomatiki = ?
+                        AND (professor.username = epitroph_app.invited_professor)
                     );"
         );
 
-        $stmt->bind_param("i", $diplomatiki);
+        $stmt->bind_param("ii", $diplomatiki, $diplomatiki);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
