@@ -1,10 +1,12 @@
 #profTable {
-    table-layout:fixed;
+    table-layout: fixed;
 }
-tr{
-    text-align: center; 
+
+tr {
+    text-align: center;
     vertical-align: middle;
 }
+
 .tableWrapper {
     border: 3px solid white;
     border-radius: 12px;
@@ -20,13 +22,13 @@ tr{
 }
 
 
-.addIcon{
-  border-radius: 30px;
+.addIcon {
+    border-radius: 30px;
 
-  transition: 0.07s ease-in-out;
-  width: 2rem;
-  transition: 0.1s ease-in-out;
-  vertical-align: middle;
+    transition: 0.07s ease-in-out;
+    width: 2rem;
+    transition: 0.1s ease-in-out;
+    vertical-align: middle;
 }
 
 .addIcon:hover,
@@ -38,7 +40,7 @@ tr{
     backdrop-filter: blur(10px);
 }
 
-.addIcon:hover{
+.addIcon:hover {
     transform: translateY(-1px);
 }
 
@@ -48,4 +50,4 @@ tr{
     box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
     color: rgba(0, 0, 0, 0.65);
     transform: translateY(0);
-  }
+}
