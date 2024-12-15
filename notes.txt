@@ -1,5 +1,7 @@
 BackEnd
 ========================================================
+-Thesis Details 
+    -Συνοψη
 -settings
     -address number
     -password
