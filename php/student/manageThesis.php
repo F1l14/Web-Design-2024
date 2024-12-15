@@ -20,6 +20,7 @@ updateActivity();
     <link rel="stylesheet" href="/Web-Design-2024/css/styles.css">
     <link rel="stylesheet" href="/Web-Design-2024/css/header.css">
     <link rel="stylesheet" href="/Web-Design-2024/css/listThesisDetails.css">
+    <link rel="stylesheet" href="/Web-Design-2024/css/anathesiStudent.css">
 
 
     <link rel="stylesheet" href="/Web-Design-2024/css/manageThesis.css">
