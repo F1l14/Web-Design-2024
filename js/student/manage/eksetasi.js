@@ -124,3 +124,29 @@ async function getStudentDocument() {
         })
         ;
 }
+
+
+
+function createUrlInput() {
+
+    const input = document.createElement("input");
+    input.className = ("form-control");
+
+    const deleteIcon = document.createElement("img");
+    deleteIcon.src = "/Web-Design-2024/icons/delete.svg";
+    deleteIcon.className = "deleteUrl";
+
+
+
+    const newUrl = document.createElement("li");
+    newUrl.appendChild(input);
+    newUrl.appendChild(deleteIcon);
+    ulUrl.appendChild(newUrl);
+
+    deleteIcon.addEventListener("click", function () {
+        console.log("removing");
+        newUrl.remove();
+    })
+
+
+}
