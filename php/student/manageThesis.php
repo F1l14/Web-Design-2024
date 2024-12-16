@@ -13,7 +13,7 @@ updateActivity();
     <title>ΣΔΔΕ</title>
 
 
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -21,6 +21,7 @@ updateActivity();
     <link rel="stylesheet" href="/Web-Design-2024/css/header.css">
     <link rel="stylesheet" href="/Web-Design-2024/css/listThesisDetails.css">
     <link rel="stylesheet" href="/Web-Design-2024/css/anathesiStudent.css">
+    <link rel="stylesheet" href="/Web-Design-2024/css/eksetasiStudent.css">
     <link rel="stylesheet" href="/Web-Design-2024/css/peratomeniStudent.css">
 
     <link rel="stylesheet" href="/Web-Design-2024/css/manageThesis.css">
@@ -55,6 +56,11 @@ updateActivity();
 <script src="/Web-Design-2024/js/student/manage/progressBar.js"></script>
 <script src="/Web-Design-2024/js/student/manage/manageThesis.js"></script>
 <script src="/Web-Design-2024/js/student/manage/anathesi.js"></script>
+<script src="/Web-Design-2024/js/student/manage/eksetasi.js"></script>
 <script src="/Web-Design-2024/js/student/manage/peratomeni.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 
 </html>
+
+

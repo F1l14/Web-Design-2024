@@ -1,0 +1,123 @@
+.rounded{
+  display: block;
+  width: max-content;
+  border-radius: 50px !important;
+  min-height: max-content;
+  height: max-content;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  min-width: max-content;
+  margin-left: 1rem;
+}
+
+.eksetasiDiv{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: fit-content;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+#currentFileDiv{
+    margin-bottom: 2rem;
+}
+
+
+#fileInput{
+    margin:0 !important;
+}
+#provolh{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-self: center;
+}
+
+
+#urlWrapper{
+    position: relative;
+    /* height: 20rem; */
+    max-height: 20rem;
+    overflow-y: auto;
+}
+
+#urlWrapper li{
+    list-style: none;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    
+}
+
+#urls{
+    margin-left: 0;
+    padding:0;
+}
+
+#removeFile{
+    display: none;
+}
+
+@media(min-width: 992px){
+    #urlButtons{
+        float: right;
+        display: flex;
+        flex-direction: column;
+    }
+    #addUrl{
+        margin-bottom: 0.2rem;
+    }
+    #uploadStudentDocumentForm{
+        display: flex;
+    }
+}
+
+@media(max-width: 991px){
+    #urlButtons{
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+    }
+    #uploadStudentDocumentForm{
+        display: flex;
+        flex-direction: column;
+    }
+    #uploadDraft{
+        align-self: center;
+        margin-top: 1rem;
+    }
+}
+
+.deleteUrl {
+    margin-right: 0.5rem;
+    height: max-content;
+    border-radius: 8px;
+    transition: 0.1s ease-in-out;
+  }
+  
+
+  .deleteUrl:focus,
+  .deleteUrl:hover {
+    background-color: #FFFFFF;
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.411) 0 4px 12px;
+    color: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(10px);
+  }
+  
+
+  .deleteUrl:hover {
+    transform: translateY(-1px);
+  }
+  
+  .deleteUrl:active {
+    background-color: #F0F0F1;
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+    color: rgba(0, 0, 0, 0.65);
+    transform: translateY(0);
+  }
