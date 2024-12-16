@@ -4,7 +4,7 @@ var profBody = document.getElementById("profBody");
 
 window.addEventListener('load', getState);
 
-const states = ["Υπό Ανάθεση","Ενεργή", "Υπό Εξέταση", "Περατωμένη"];
+const states = ["Υπό Ανάθεση", "Ενεργή", "Υπό Εξέταση", "Περατωμένη"];
 async function getState() {
     fetch("scripts/manage/getState.php", {
         method: "GET",
@@ -50,6 +50,11 @@ async function getState() {
                             .then(data => {
                                 content.innerHTML = data;
                                 progressBar(states, 3);
+                                eksetasi();
+
+                                
+                                
+
                             })
                         break;
                     case "peratomeni":
