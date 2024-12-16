@@ -33,9 +33,11 @@ updateActivity();
                 <div id="titleDiv" class="col centeredDiv">
                     <h4>Τίτλος</h4>
                     <textarea class="form-control" name="titleInput" id="titleInput" readonly></textarea>
-
                 </div>
-
+                <div id="descriptionDiv" class="col centeredDiv">
+                    <h4>Σύνοψη</h4>
+                    <textarea class="form-control" name="descriptionInput" id="descriptionInput" readonly></textarea>
+                </div>
             </div>
             <div class="row g-0">
                 <div id="studentDiv" class="col centeredDiv">
@@ -64,9 +66,9 @@ updateActivity();
             </div>
             <div class="row g-0">
                 <div class="col centeredDiv">
-                <h4>Αναλυτική Περιγραφή</h4>
-                    <div id="descriptionDiv" class="centeredDiv">
-                        
+                    <h4>Αναλυτική Περιγραφή</h4>
+                    <div id="descriptionFileDiv" class="centeredDiv">
+
                         <p>Λήψη</p>
                         <button id="downloadDescription" class="optionButton" disabled>
                             <img src="/Web-Design-2024/icons/download.svg" />
