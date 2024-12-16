@@ -24,7 +24,7 @@ function eksetasi() {
         event.preventDefault();
         // $=end of a string
         // i= case sensitive
-        let filePattern = /\.(pdf|doc|docx|odt)$/i;
+        let filePattern = /\.(pdf)$/i;
         // filesize in bytes converting to mb with 2 rounding points
         if (file.files[0].length === 0) {
             console.log("no file");
@@ -37,7 +37,7 @@ function eksetasi() {
             return;
         }
         if (!filePattern.exec(file.files[0].name)) {
-            alert("Λάθος τύπος αρχείου: .pdf, .doc, .docx, .odt");
+            alert("Λάθος τύπος αρχείου: .pdf");
             file.value = "";
             removeFile.style.display = "none";
             return;
