@@ -21,7 +21,7 @@ updateActivity();
     <link rel="stylesheet" href="/Web-Design-2024/css/header.css">
     <link rel="stylesheet" href="/Web-Design-2024/css/listThesisDetails.css">
     <link rel="stylesheet" href="/Web-Design-2024/css/anathesiStudent.css">
-
+    <link rel="stylesheet" href="/Web-Design-2024/css/peratomeniStudent.css">
 
     <link rel="stylesheet" href="/Web-Design-2024/css/manageThesis.css">
     <link rel="stylesheet" href="/Web-Design-2024/css/progressBar.css">
@@ -55,5 +55,6 @@ updateActivity();
 <script src="/Web-Design-2024/js/student/manage/progressBar.js"></script>
 <script src="/Web-Design-2024/js/student/manage/manageThesis.js"></script>
 <script src="/Web-Design-2024/js/student/manage/anathesi.js"></script>
+<script src="/Web-Design-2024/js/student/manage/peratomeni.js"></script>
 
 </html>
