@@ -34,12 +34,17 @@ updateActivity();
                     <textarea class="form-control" name="titleInput" id="titleInput" readonly></textarea>
 
                 </div>
+                <div id="descriptionDiv" class="col centeredDiv">
+                    <h4>Σύνοψη</h4>
+                    <textarea class="form-control" name="descriptionInput" id="descriptionInput" readonly></textarea>
+
+                </div>
 
             </div>
             <div class="row g-0">
                 <div id="studentDiv" class="col centeredDiv">
                     <h4>Φοιτητής/τρια</h4>
-                    <textarea class="form-control" id="studentInput"  readonly></textarea>
+                    <textarea class="form-control" id="studentInput" readonly></textarea>
                 </div>
                 <div id="epitrophDiv" class="col centeredDiv">
                     <h4>Τριμελής Επιτροπή</h4>
@@ -64,9 +69,9 @@ updateActivity();
             <div class="row g-0">
                 <div class="col centeredDiv">
                     <div>
-                        
+
                         <h4>Βαθμός</h4>
-                        <div id="grade" >
+                        <div id="grade">
                             <p>Έντυπο βαθμολόγησης:</p>
                             <button id="gradeFile" class="optionButton " disabled>
                                 <img src="/Web-Design-2024/icons/down.svg" />
@@ -91,16 +96,19 @@ updateActivity();
 
                 <div id="logDiv" class="col centeredDiv">
                     <h4>Χρονολόγιο Ενεργειών</h4>
-                    <table class="table-striped table " id="logTable">
-                        <thead>
-                            <tr>
-                                <th scope="col">Ημερομηνία</th>
-                                <th scope="col">Κατάσταση</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+                    <div class="tableWrapper">
+                        <table class="table-striped table" id="logTable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Ημερομηνία</th>
+                                    <th scope="col">Κατάσταση</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
 

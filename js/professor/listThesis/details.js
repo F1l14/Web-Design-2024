@@ -29,6 +29,10 @@ async function loadDetails() {
                 const titleInput = document.getElementById("titleInput");
                 titleInput.value = title;
 
+                description = data.data[0]["description"];
+                const descriptionInput = document.getElementById("descriptionInput");
+                descriptionInput.value = title;
+
                 student = `${data.data[0]["student"]} | ${data.data[0]["firstname"]} ${data.data[0]["lastname"]}`;
                 const studentInput = document.getElementById("studentInput");
                 studentInput.value = student;
@@ -72,7 +76,7 @@ async function loadDetails() {
                 const manageButton = document.getElementById("manageButton");
                 const manageDiv = document.getElementById("manageThesisDiv");
                 if (status === "anathesi" || status === "energi") {
-                    manageDiv.hidden = false;                    
+                    manageDiv.hidden = false;
                     manageButton.addEventListener("click", function () {
                         window.location.href = `/Web-Design-2024/php/professor/manage/${status}.php?thesisId=${thesisId}`
                     })
@@ -88,7 +92,28 @@ async function loadDetails() {
                     date = row.insertCell(0);
                     date.textContent = entry["date"];
                     katastasi = row.insertCell(1);
-                    katastasi.textContent = entry["new_state"];
+                    switch (entry["new_state"]) {
+                        case "diathesimi":
+                            katastasi.textContent = 'Διαθέσιμη';
+                            break;
+                        case "anathesi":
+                            katastasi.textContent = 'Ανάθεση';
+                            break;
+                        case "energi":
+                            katastasi.textContent = 'Ενεργή';
+                            break;
+                        case "eksetasi":
+                            katastasi.textContent = 'Εξέταση';
+                            break;
+                        case "peratomeni":
+                            katastasi.textContent = 'Περατωμένη';
+                            break;
+                        case "akiromeni":
+                            katastasi.textContent = 'Ακυρωμένη';
+                            break;
+                        default:
+                            break;
+                    }
                 });
             } else if (data.message == "sqlError") {
                 console.log("sqlError on insert thesis table");

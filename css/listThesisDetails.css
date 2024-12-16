@@ -61,9 +61,22 @@ h4 {
   margin-top: 1rem;
 }
 
+.tableWrapper {
+  border: 3px solid white;
+  border-radius: 12px;
+  height: 30rem;
+
+  position: relative;
+  display: block;
+  background-color: #f2f2f2b1;
+  -webkit-box-shadow: inset -27px -12px 300px -54px rgba(191, 191, 191, 0.167);
+  -moz-box-shadow: inset -27px -12px 300px -54px rgba(191, 191, 191, 0.142);
+  box-shadow: inset -27px -12px 300px -54px rgba(180, 180, 180, 0.277);
+  overflow-y: auto;
+}
+
 table {
   max-height: 100%;
-  overflow: auto;
 }
 
 #studentInput {
@@ -73,7 +86,11 @@ table {
 }
 
 #titleInput {
-  width: 50%;
+  width: 75%;
+  overflow: auto;
+}
+#descriptionInput {
+  width: 75%;
   overflow: auto;
 }
 
