@@ -1,5 +1,7 @@
 BackEnd
 ========================================================
+-exam
+    -15 days after peratwsh or something
 -Thesis Details 
     -Συνοψη
 -settings
