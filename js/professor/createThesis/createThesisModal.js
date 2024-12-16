@@ -45,23 +45,26 @@ async function save(event){
     event.preventDefault();
     // $=end of a string
     // i= case sensitive
-    let filePattern= /(\.pdf || \.doc || \.docx || \.odt)$/i;
+    let filePattern = /\.(pdf|doc|docx|odt)$/i;
     if(requiredText(title) && requiredText(description) && requiredFile(file)){
         //=======pass to ajax here=============
         // filesize in bytes converting to mb with 2 rounding points
         if((file.files[0].size/1024/1024).toFixed(2)>4) {
-            alert("File too Large");
+            alert("Αρχείο μεγαλύτερο από: 4MB");
             file.value = "";
-        }else if(!filePattern.exec(file.files[0].name)){
-            alert("Wrong file type");
+            return;
+        }
+        if(!filePattern.exec(file.files[0].name)){
+            alert("Λάθος τύπος αρχείου: .pdf, .doc, .docx, .odt");
             file.value = "";
-        }else{
+            return;
+        }
             uploadThesis(event);
             
 
             Modal.hide();
             resetModal();
-        }
+        
     }
     else if (requiredText(title) && requiredText(description)){
         uploadThesis(event);
