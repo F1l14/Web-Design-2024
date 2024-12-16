@@ -1,6 +1,6 @@
 function eksetasi() {
     loadUrls();
-
+    loadExam();
 
     removeFile = document.getElementById("removeFile");
     file = document.getElementById("formFileSm");
@@ -49,7 +49,7 @@ function eksetasi() {
 
     getLibUrl();
 
-    saveLibUrlForm = document.getElementById("libUrlForm");
+    const saveLibUrlForm = document.getElementById("libUrlForm");
     saveLibUrlForm.addEventListener("submit", function (event) {
         event.preventDefault();
         saveLibUrl(event);
@@ -57,21 +57,20 @@ function eksetasi() {
 
 
 
-    addUrl = document.getElementById("addUrl");
+    const addUrl = document.getElementById("addUrl");
     addUrl.addEventListener("click", function () { createUrlInput() });
     ulUrl = document.getElementById("urls");
 
-    saveUrlsButton = document.getElementById("saveUrls");
+    const saveUrlsButton = document.getElementById("saveUrls");
     saveUrlsButton.addEventListener("click", function (event) {
         event.preventDefault();
         saveUrls(ulUrl);
-        alert("saved");
     })
 
 
     flatpickr("#eksetasiDate", {
         enableTime: true,
-        dateFormat: "d/m/y - H:i",
+        dateFormat: "d-m-Y H:i",
         minDate: "today"
     });
 
@@ -90,6 +89,13 @@ function eksetasi() {
             examLabel.innerHTML = "Σύνδεσμος";
         }
     })
+
+    const examForm = document.getElementById("examForm");
+    examForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        saveExam(event);
+    });
+
 
 }
 
@@ -281,7 +287,7 @@ async function saveUrls(urlList) {
 
         .then(data => {
             switch (data.state) {
-                case "ok": { console.log("ok"); break; }
+                case "ok": { alert("Επιτυχής Αποθήκευση!"); break; }
                 default: { console.log("fetch error"); break; }
             }
         })
@@ -324,6 +330,86 @@ async function loadUrls(urlList) {
                 }
                 default: { console.log(data.state + " " + data.message); break; }
             }
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
+
+
+
+
+async function loadExam() {
+    const inputDate = document.getElementById("eksetasiDate");
+    const examLive = document.getElementById("roomOption");
+    const examOnline = document.getElementById("onlineOption");
+    const examLocation = document.getElementById("examRoom");
+
+    fetch("scripts/manage/eksetasi/getPresentation.php", {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                inputDate.value = data.data["date"];
+                if (data.data["presentation_way"] === "dia_zwsis") {
+                    examLive.checked = true;
+                } else {
+                    examOnline.checked = true;
+                }
+                examLocation.value = data.data["location"];
+            }
+
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+
+}
+
+
+
+async function saveExam(event) {
+    var data = new FormData(event.target);
+    fetch(event.target.action, {
+        method: "POST",
+        body: data,
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                alert("Επιτυχής Αποθήκευση");
+            } else {
+                alert("ΠΡΟΒΛΗΜΑ! Προσπαθήστε Ξανά")
+                console.log(data.error);
+            }
+
         })
 
         .catch(error => {
