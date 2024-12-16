@@ -73,9 +73,15 @@
     margin-right: 1rem;
 }
 
-#examForm{
-    margin-bottom: 1rem;
+#examLabel{
+    margin-top: 1.5rem;
 }
+
+#examForm{
+    margin-bottom: 0.5rem;
+}
+
+
 
 @media(min-width: 992px){
     #urlButtons{
@@ -93,6 +99,10 @@
     #urlCol, #draftCol{
         border-right: 3px solid lightgrey;
     }
+
+    .smaller{
+        width: 50%;
+    }
 }
 
 @media(max-width: 991px){
@@ -109,6 +119,10 @@
     #uploadDraft{
         align-self: center;
         margin-top: 1rem;
+    }
+
+    .smaller{
+        width: 100%;
     }
 }
 

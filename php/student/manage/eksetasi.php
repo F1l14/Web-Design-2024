@@ -85,26 +85,41 @@
     <div class="col text-center">
         <h3 id="examTitle">Εξέταση</h3>
         <form id="examForm" action="">
-            <div class="input-group mb-3">
+            <div class="d-flex justify-content-center">
+                <div class="input-group mb-3 d-flex  smaller">
 
-                <input id="eksetasiDate" class="form-control" type="date">
-                <span class="input-group-text">
-                    <img src="/Web-Design-2024/icons/calendarClock.svg">
-                </span>
+
+                    <input id="eksetasiDate" class="form-control " type="date">
+                    <span class="input-group-text">
+                        <img src="/Web-Design-2024/icons/calendarClock.svg">
+                    </span>
+
+
+                </div>
             </div>
 
+
             <!-- <div class="form-check form-check-inline"> -->
-                <input class="form-check-input" type="radio" name="eksetasiRadio" id="roomOption" value="live" checked>
-                <label  id="liveExamLabel" class="form-check-label" for="inlineRadio1">Δια ζώσης</label>
+            <input class="form-check-input" type="radio" name="eksetasiRadio" id="roomOption" value="live" checked>
+            <label id="liveExamLabel" class="form-check-label" for="roomOption">Δια ζώσης</label>
             <!-- </div> -->
             <!-- <div class="form-check form-check-inline"> -->
-                <input class="form-check-input" type="radio" name="eksetasiRadio" id="onlineOption" value="online">
-                <label class="form-check-label" for="inlineRadio2">Διαδικτυακή</label>
+            <input class="form-check-input" type="radio" name="eksetasiRadio" id="onlineOption" value="online">
+            <label class="form-check-label" for="onlineOption">Εξ αποστάσεως</label>
             <!-- </div> -->
 
 
             <h5 id="examLabel">Αίθουσα</h5>
-            <input id="examRoom" type="text" class="form-control">
+            <div class="d-flex justify-content-center">
+                <div class="smaller d-flex">
+                    <input id="examRoom" type="text" class="form-control ">
+                    <button id="saveEksetasi" class="pageButton rounded">
+                        <img src="/Web-Design-2024/icons/save.svg">
+                    </button>
+                </div>
+
+            </div>
+
         </form>
 
     </div>
