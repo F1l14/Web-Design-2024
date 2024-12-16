@@ -251,7 +251,6 @@ function createUrlInput(element = null) {
     ulUrl.appendChild(newUrl);
 
     deleteIcon.addEventListener("click", function () {
-        console.log("removing");
         newUrl.remove();
     })
 
