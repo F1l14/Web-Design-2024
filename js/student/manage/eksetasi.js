@@ -8,6 +8,8 @@ function eksetasi() {
         uploadStudentDocument(event);
     })
 
+    getLibUrl();
+
     saveLibUrlForm = document.getElementById("libUrlForm");
     saveLibUrlForm.addEventListener("submit", function (event) {
         event.preventDefault();
@@ -152,12 +154,41 @@ async function getStudentDocument() {
         })
         .then(data => {
             if (data.answer) {
-                // alert("Επιτυχής Αποθήκευση");
                 currentFile = document.getElementById("currentFile");
                 currentFile.hidden = false;
                 let filename = data.filename;
                 currentFile.innerHTML = filename;
                 currentFile.setAttribute('href', data.filepath);
+            }
+
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
+
+async function getLibUrl() {
+    fetch("scripts/manage/eksetasi/getLibUrl.php", {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                libUrl = document.getElementById("libUrl");
+                libUrl.value = data.url;
             }
 
         })
