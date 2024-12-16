@@ -70,9 +70,7 @@ h3 {
     display: none;
 }
 
-#examTitle {
-    margin-top: 3rem;
-}
+
 
 #liveExamLabel {
     margin-right: 1rem;
@@ -89,6 +87,9 @@ h3 {
 
 
 @media(min-width: 992px) {
+    #examTitle {
+        margin-top: 3rem;
+    }
     #urlButtons {
         float: right;
         display: flex;
@@ -111,9 +112,19 @@ h3 {
     .smaller {
         width: 50%;
     }
+
+    .mobileHr{
+        display: none;
+    }
 }
 
 @media(max-width: 991px) {
+    #examTitle {
+        margin-top: 2rem;
+    }
+    .mobileHr{
+        display: block;
+    }
     #urlButtons {
         text-align: center;
         display: flex;
