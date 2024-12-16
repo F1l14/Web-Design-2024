@@ -59,7 +59,7 @@ updateActivity();
                         </div>
 
                         <div id="saveWrapper" class="col">
-                            <button id="saveNotes" class="pageButton">save</button>
+                            <button id="saveNotes" class="pageButton"><img src="/Web-Design-2024/icons/save.svg"></button>
                         </div>
                     </div>
 
