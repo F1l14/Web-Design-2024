@@ -1,22 +1,22 @@
-.rounded{
-  display: block;
-  width: max-content;
-  border-radius: 50px !important;
-  min-height: max-content;
-  height: max-content;
-  padding-right: 1rem;
-  padding-left: 1rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  min-width: max-content;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
+.rounded {
+    display: block;
+    width: max-content;
+    border-radius: 50px !important;
+    min-height: max-content;
+    height: max-content;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    min-width: max-content;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
 }
 
 
 
 
-.eksetasiDiv{
+.eksetasiDiv {
     display: flex;
     justify-content: center;
     align-content: center;
@@ -25,15 +25,16 @@
     margin-bottom: 1rem;
 }
 
-#currentFileDiv{
+#currentFileDiv {
     margin-bottom: 2rem;
 }
 
 
-#fileInput{
-    margin:0 !important;
+#fileInput {
+    margin: 0 !important;
 }
-#provolh{
+
+#provolh {
     padding: 0;
     margin: 0;
     display: flex;
@@ -41,87 +42,92 @@
 }
 
 
-#urlWrapper{
+#urlWrapper {
     position: relative;
     /* height: 20rem; */
     max-height: 20rem;
     overflow-y: auto;
 }
 
-#urlWrapper li{
+#urlWrapper li {
     list-style: none;
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
-    
+
 }
 
-#urls{
+#urls {
     margin-left: 0;
-    padding:0;
+    padding: 0;
 }
 
-#removeFile{
+#removeFile {
     display: none;
 }
 
-#examTitle{
+#examTitle {
     margin-top: 3rem;
 }
 
-#liveExamLabel{
+#liveExamLabel {
     margin-right: 1rem;
 }
 
-#examLabel{
+#examLabel {
     margin-top: 1.5rem;
 }
 
-#examForm{
+#examForm {
     margin-bottom: 0.5rem;
 }
 
 
 
-@media(min-width: 992px){
-    #urlButtons{
+@media(min-width: 992px) {
+    #urlButtons {
         float: right;
         display: flex;
         flex-direction: column;
     }
-    #addUrl{
+
+    #addUrl {
         margin-bottom: 0.2rem;
     }
-    #uploadStudentDocumentForm{
+
+    #uploadStudentDocumentForm {
         display: flex;
     }
 
-    #urlCol, #draftCol{
+    #urlCol,
+    #draftCol {
         border-right: 3px solid lightgrey;
     }
 
-    .smaller{
+    .smaller {
         width: 50%;
     }
 }
 
-@media(max-width: 991px){
-    #urlButtons{
+@media(max-width: 991px) {
+    #urlButtons {
         text-align: center;
         display: flex;
         justify-content: center;
         margin-bottom: 0.5rem;
     }
-    #uploadStudentDocumentForm{
+
+    #uploadStudentDocumentForm {
         display: flex;
         flex-direction: column;
     }
-    #uploadDraft{
+
+    #uploadDraft {
         align-self: center;
         margin-top: 1rem;
     }
 
-    .smaller{
+    .smaller {
         width: 100%;
     }
 }
@@ -131,27 +137,27 @@
     height: max-content;
     border-radius: 8px;
     transition: 0.1s ease-in-out;
-  }
-  
+}
 
-  .deleteUrl:focus,
-  .deleteUrl:hover {
+
+.deleteUrl:focus,
+.deleteUrl:hover {
     background-color: #FFFFFF;
     border-color: rgba(0, 0, 0, 0.15);
     box-shadow: rgba(0, 0, 0, 0.411) 0 4px 12px;
     color: rgba(0, 0, 0, 0.65);
     backdrop-filter: blur(10px);
-  }
-  
+}
 
-  .deleteUrl:hover {
+
+.deleteUrl:hover {
     transform: translateY(-1px);
-  }
-  
-  .deleteUrl:active {
+}
+
+.deleteUrl:active {
     background-color: #F0F0F1;
     border-color: rgba(0, 0, 0, 0.15);
     box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
     color: rgba(0, 0, 0, 0.65);
     transform: translateY(0);
-  }
+}
