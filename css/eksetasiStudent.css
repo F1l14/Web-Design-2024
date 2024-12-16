@@ -9,8 +9,12 @@
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   min-width: max-content;
-  margin-left: 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
+
+
+
 
 .eksetasiDiv{
     display: flex;
@@ -61,6 +65,18 @@
     display: none;
 }
 
+#examTitle{
+    margin-top: 3rem;
+}
+
+#liveExamLabel{
+    margin-right: 1rem;
+}
+
+#examForm{
+    margin-bottom: 1rem;
+}
+
 @media(min-width: 992px){
     #urlButtons{
         float: right;
@@ -72,6 +88,10 @@
     }
     #uploadStudentDocumentForm{
         display: flex;
+    }
+
+    #urlCol, #draftCol{
+        border-right: 3px solid lightgrey;
     }
 }
 

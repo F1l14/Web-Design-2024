@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-lg-6 col-md-12 col-sm-12 text-center">
+    <div id="draftCol" class="col-lg-6 col-md-12 col-sm-12 text-center">
         <div id="draft">
             <h3>Πρόχειρο Κείμενο</h3>
             <form id="uploadStudentDocumentForm" method="POST"
@@ -47,7 +47,7 @@
 
 </div>
 <div class="row">
-    <div class="col-lg-6 col-md-12 col-sm-12 text-center">
+    <div id="urlCol" class="col-lg-6 col-md-12 col-sm-12 text-center">
         <div id="urlsDiv">
             <h3>Σύνδεσμοι</h3>
 
@@ -83,27 +83,29 @@
 
 <div class="row">
     <div class="col text-center">
-        <h3>Εξέταση</h3>
-        <div class="input-group mb-3">
+        <h3 id="examTitle">Εξέταση</h3>
+        <form id="examForm" action="">
+            <div class="input-group mb-3">
 
-            <input id="eksetasiDate" class="form-control" type="date">
-            <span class="input-group-text">
-                <img src="/Web-Design-2024/icons/calendarClock.svg">
-            </span>
-        </div>
+                <input id="eksetasiDate" class="form-control" type="date">
+                <span class="input-group-text">
+                    <img src="/Web-Design-2024/icons/calendarClock.svg">
+                </span>
+            </div>
 
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="roomOption" value="live" checked>
-            <label class="form-check-label" for="inlineRadio1">Δια ζώσης</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="onlineOption" value="online">
-            <label class="form-check-label" for="inlineRadio2">Διαδικτυακή</label>
-        </div>
+            <!-- <div class="form-check form-check-inline"> -->
+                <input class="form-check-input" type="radio" name="eksetasiRadio" id="roomOption" value="live" checked>
+                <label  id="liveExamLabel" class="form-check-label" for="inlineRadio1">Δια ζώσης</label>
+            <!-- </div> -->
+            <!-- <div class="form-check form-check-inline"> -->
+                <input class="form-check-input" type="radio" name="eksetasiRadio" id="onlineOption" value="online">
+                <label class="form-check-label" for="inlineRadio2">Διαδικτυακή</label>
+            <!-- </div> -->
 
 
-        <h5>Αίθουσα</h5>
-        <input id="examRoom" type="text" class="form-control">
+            <h5 id="examLabel">Αίθουσα</h5>
+            <input id="examRoom" type="text" class="form-control">
+        </form>
 
     </div>
 </div>

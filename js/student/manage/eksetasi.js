@@ -21,6 +21,47 @@ function eksetasi() {
             removeFile.style.display = "none";
         }
     });
+
+    removeFile.addEventListener("click", function () {
+        file.value = "";
+        removeFile.style.display = "none";
+    })
+
+
+    addUrl = document.getElementById("addUrl");
+    addUrl.addEventListener("click", function () { createUrlInput() });
+    ulUrl = document.getElementById("urls");
+
+    saveUrlsButton = document.getElementById("saveUrls");
+    saveUrlsButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        saveUrls(ulUrl);
+        alert("saved");
+    })
+
+
+    flatpickr("#eksetasiDate", {
+        enableTime: true,
+        dateFormat: "d/m/y - H:i",
+        minDate: "today"
+    });
+
+
+    examRoom = document.getElementById("roomOption");
+    examOnline = document.getElementById("onlineOption");
+    examLabel = document.getElementById("examLabel");
+    examRoom.addEventListener("change", function () {
+        if (examRoom.checked) {
+            examLabel.innerHTML = "Αίθουσα";
+        }
+    });
+
+    examOnline.addEventListener("change", function () {
+        if (examOnline.checked) {
+            examLabel.innerHTML = "Σύνδεσμος";
+        }
+    })
+
 }
 
 async function saveLibUrl(event) {
