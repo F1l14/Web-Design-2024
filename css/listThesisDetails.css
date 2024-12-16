@@ -106,6 +106,7 @@ p {
   width: max-content;
 }
 
+#desc,
 #grade,
 #library {
   display: flex;

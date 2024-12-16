@@ -41,9 +41,9 @@
         <div>
 
             <h4>Αναλυτική Περιγραφή</h4>
-            <div id="grade">
-                <p>Έντυπο βαθμολόγησης:</p>
-                <button id="gradeFile" class="optionButton " disabled>
+            <div id="desc">
+                <p>Πλήρης Περιγραφή ΔΕ:</p>
+                <button id="descriptionFile" class="optionButton " disabled>
                     <img src="/Web-Design-2024/icons/down.svg" />
                 </button>
             </div>
