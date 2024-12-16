@@ -24,7 +24,7 @@
 
             </form>
             <div id="currentFileDiv">
-                <a id="currentFile" href="" target="_blank" hidden></a>
+                Τρέχων αρχείο:  <a id="currentFile" href="" target="_blank" hidden></a>
             </div>
 
         </div>
