@@ -123,6 +123,7 @@ async function uploadStudentDocument(event) {
         .then(data => {
             if (data.answer) {
                 alert("Επιτυχής Αποθήκευση");
+                getStudentDocument();
             } else {
                 alert("ΠΡΟΒΛΗΜΑ! Προσπαθήστε Ξανά")
                 console.log(data.error);
