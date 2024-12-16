@@ -49,6 +49,7 @@ async function getState() {
                             .then(res => res.text())
                             .then(data => {
                                 content.innerHTML = data;
+                                progressBar(states, 3);
                             })
                         break;
                     case "peratomeni":
@@ -56,6 +57,8 @@ async function getState() {
                             .then(res => res.text())
                             .then(data => {
                                 content.innerHTML = data;
+                                progressBar(states, 4);
+                                loadDetails();
                             })
                         break;
                 }
