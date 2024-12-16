@@ -31,7 +31,7 @@
 
 
     </div>
-
+    <hr class="mobileHr">
     <div class="col-lg-6 col-md-12 col-sm-12 text-center">
         <div id="praktiko">
             <h3>Πρακτικό Εξέτασης</h3>
@@ -44,7 +44,7 @@
 
         </div>
     </div>
-
+    <hr class="mobileHr">
 </div>
 <div class="row">
     <div id="urlCol" class="col-lg-6 col-md-12 col-sm-12 text-center">
@@ -67,6 +67,7 @@
             </div>
         </div>
     </div>
+    <hr class="mobileHr">
     <div class="col-lg-6 col-md-12 col-sm-12 text-center">
         <div id="libUrlDiv">
             <h3>Σύνδεσμος Αποθετηρίου</h3>
@@ -78,6 +79,7 @@
             </form>
         </div>
     </div>
+    <hr class="mobileHr">
 </div>
 
 
