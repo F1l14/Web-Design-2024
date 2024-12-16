@@ -61,15 +61,12 @@ async function loadDetails() {
                 var descriptionFile = document.getElementById("descriptionFile")
                 if (descriptionFilename) {
                     descriptionFile.disabled = false;
+                    descriptionFile.addEventListener("click", function (event) {
+                        const filePath = `/Web-Design-2024/Data/ThesisData/${professor}/${diplomatiki}/${descriptionFilename}`; // Adjust the path to your file
+                        downloadFile(filePath);
+                    })
                 }
-                descriptionFile = document.addEventListener("click", function () {
-                    // const link = document.createElement('a');
-                    // link.href = `/Web-Design-2024/Data/ThesisData/${professor}/${diplomatiki}/${descriptionFilename}`;
-                    // link.download = descriptionFilename;
-                    // document.body.appendChild(link);
-                    // link.click();
-                    // document.body.removeChild(link);
-                })
+
                 const gradeFilename = data.data[0]["grade_filename"];
                 const gradeFile = document.getElementById("gradeFile");
                 if (gradeFilename) {
@@ -130,4 +127,23 @@ async function loadDetails() {
             console.error("Error Occured:", error);
         })
         ;
+}
+
+
+function downloadFile(file) {
+
+    //creating an invisible element
+    console.log('Triggering download for:', file);
+
+    let element = document.createElement('a');
+    element.setAttribute('href', file);
+
+    // Extract or set the filename for download
+    const fileName = file.split('/').pop() || 'downloaded_file';
+    element.download = fileName;
+    element.setAttribute('download', fileName);
+    document.body.appendChild(element);
+    element.click();
+
+    document.body.removeChild(element);
 }
