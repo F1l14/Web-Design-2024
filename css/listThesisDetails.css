@@ -64,8 +64,8 @@ h4 {
 .tableWrapper {
   border: 3px solid white;
   border-radius: 12px;
-  height: 30rem;
-
+  height: 15rem;
+  width: 90%;
   position: relative;
   display: block;
   background-color: #f2f2f2b1;
@@ -77,6 +77,9 @@ h4 {
 
 table {
   max-height: 100%;
+}
+tr {
+  text-align: center;
 }
 
 #studentInput {
