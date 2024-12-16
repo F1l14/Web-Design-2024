@@ -1,20 +1,6 @@
 function eksetasi() {
     loadUrls();
 
-    getStudentDocument();
-    uploadStudentDocumentForm = document.getElementById("uploadStudentDocumentForm");
-    uploadStudentDocumentForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-        uploadStudentDocument(event);
-    })
-
-    getLibUrl();
-
-    saveLibUrlForm = document.getElementById("libUrlForm");
-    saveLibUrlForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-        saveLibUrl(event);
-    });
 
     removeFile = document.getElementById("removeFile");
     file = document.getElementById("formFileSm");
@@ -30,6 +16,45 @@ function eksetasi() {
         file.value = "";
         removeFile.style.display = "none";
     })
+
+
+    getStudentDocument();
+    const uploadStudentDocumentForm = document.getElementById("uploadStudentDocumentForm");
+    uploadStudentDocumentForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        // $=end of a string
+        // i= case sensitive
+        let filePattern = /\.(pdf|doc|docx|odt)$/i;
+        // filesize in bytes converting to mb with 2 rounding points
+        if (file.files[0].length === 0) {
+            console.log("no file");
+            return;
+        }
+        if ((file.files[0].size / 1024 / 1024).toFixed(2) > 15) {
+            alert("Αρχείο μεγαλύτερο από: 15MB");
+            file.value = "";
+            removeFile.style.display = "none";
+            return;
+        }
+        if (!filePattern.exec(file.files[0].name)) {
+            alert("Λάθος τύπος αρχείου: .pdf, .doc, .docx, .odt");
+            file.value = "";
+            removeFile.style.display = "none";
+            return;
+        }
+        uploadStudentDocument(event);
+
+
+    })
+
+    getLibUrl();
+
+    saveLibUrlForm = document.getElementById("libUrlForm");
+    saveLibUrlForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        saveLibUrl(event);
+    });
+
 
 
     addUrl = document.getElementById("addUrl");
@@ -290,7 +315,7 @@ async function loadUrls(urlList) {
         .then(data => {
             switch (data.state) {
                 case "ok": {
-                   
+
                     let parsed = JSON.parse(data.urls);
                     parsed.forEach(element => {
                         createUrlInput(element);
