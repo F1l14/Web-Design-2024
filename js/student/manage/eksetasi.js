@@ -1,4 +1,6 @@
 function eksetasi() {
+    loadUrls();
+
     getStudentDocument();
     uploadStudentDocumentForm = document.getElementById("uploadStudentDocumentForm");
     uploadStudentDocumentForm.addEventListener("submit", function (event) {
@@ -168,10 +170,11 @@ async function getStudentDocument() {
 
 
 
-function createUrlInput() {
+function createUrlInput(element = null) {
 
     const input = document.createElement("input");
     input.className = ("form-control");
+    if (element != null) input.value = element;
 
     const deleteIcon = document.createElement("img");
     deleteIcon.src = "/Web-Design-2024/icons/delete.svg";
@@ -190,4 +193,84 @@ function createUrlInput() {
     })
 
 
+}
+
+
+
+
+async function saveUrls(urlList) {
+    let urls = urlList.querySelectorAll("li input");
+    // mapping to only the values of the text area
+    let urlsArray = Array.from(urls).map(input => input.value);
+    let json = JSON.stringify(urlsArray);
+
+    fetch("scripts/manage/eksetasi/storeUrls.php", {
+        method: "POST",
+        body: json,
+        headers: { 'Accept': 'application/json' }
+    })
+
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw: ", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            })
+        })
+
+        .then(data => {
+            switch (data.state) {
+                case "ok": { console.log("ok"); break; }
+                default: { console.log("fetch error"); break; }
+            }
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
+
+
+async function loadUrls(urlList) {
+
+    fetch("scripts/manage/eksetasi/loadUrls.php", {
+        method: "POST",
+        headers: { 'Accept': 'application/json' }
+    })
+
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw: ", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            })
+        })
+
+        .then(data => {
+            switch (data.state) {
+                case "ok": {
+                   
+                    let parsed = JSON.parse(data.urls);
+                    parsed.forEach(element => {
+                        createUrlInput(element);
+                    });
+                    break;
+                }
+                default: { console.log(data.state + " " + data.message); break; }
+            }
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
 }
