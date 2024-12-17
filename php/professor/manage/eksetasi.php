@@ -53,8 +53,8 @@ updateActivity();
             <div class="tab-content w-100" id="myTabContent">
                 <div class="tab-pane fade show active " id="keimeno" role="tabpanel" aria-labelledby="keimeno-tab">
                     <!-- <embed src="/Web-Design-2024/Ergastiriaki_Askisi_24-25-1.0.pdf" frameborder="0" width="100%" height="400px"> -->
-                    <iframe src="/Web-Design-2024/Ergastiriaki_Askisi_24-25-1.0.pdf" width="100%"
-                        height="100%"></iframe>
+                    <iframe id="pdfFrame" src="" width="100%" height="100%"
+                        ></iframe>
                 </div>
                 <div class="tab-pane fade" id="anakoinwsh" role="tabpanel" aria-labelledby="anakoinwsh-tab">
 
