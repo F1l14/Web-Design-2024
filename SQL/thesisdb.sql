@@ -382,8 +382,8 @@ CREATE TABLE `users` (
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(100) NOT NULL,
   `patrwnumo` varchar(50) NOT NULL,
-  `kinito` varchar(10) NOT NULL,
-  `stathero` varchar(10) NOT NULL,
+  `kinito` varchar(14) NOT NULL,
+  `stathero` varchar(14) NOT NULL,
   `role` enum('student','professor','grammateia') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
