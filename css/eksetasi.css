@@ -42,6 +42,9 @@
     flex-grow: 1;
     min-height: 200px;
 }
+.ql-editor{
+    width: 100%;
+}
 
 #innerContainer {
     display: flex;
