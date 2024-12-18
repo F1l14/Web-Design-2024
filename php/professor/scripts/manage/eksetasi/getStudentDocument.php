@@ -18,11 +18,16 @@ if (isset($_COOKIE["user"])) {
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
-            $resp->answer = true;
             $data = $result->fetch_assoc();
             $student = $data["student"];
             $filename = $data['student_document'];
-            $url = "/Web-Design-2024/Data/ThesisData/" . $student . "/student_document/" . $filename;
+            if ($filename == null) {
+                $url = "";
+            } else {
+                $resp->answer = true;
+                $url = "/Web-Design-2024/Data/ThesisData/" . $student . "/student_document/" . $filename;
+            }
+
             $resp->url = $url;
             echo json_encode($resp);
         } else {

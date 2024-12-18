@@ -20,7 +20,7 @@ async function getDraft(){
                 // console.log("Raw Response:", text);
                 try {
                     return JSON.parse(text); // Try parsing the JSON
-                } catch (error) {
+            } catch (error) {
                     console.error("JSON Parsing Error:", error);
                     throw error; // Rethrow the error to be caught below
                 }
@@ -29,6 +29,14 @@ async function getDraft(){
         .then(data => {
             if (data.answer) {
                 pdfFrame.src = data.url;
+            } else {
+                pdfFrame.hidden=true;
+                const h3 = document.createElement("h3");
+                h3.style.marginBottom = "0";
+                h3.innerHTML = "Δεν υπάρχει πρόχειρο κείμενο";
+                const container = document.getElementById("draftContainer");
+              
+                container.appendChild(h3);
             }
 
         })

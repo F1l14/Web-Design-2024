@@ -23,11 +23,18 @@
 }
 
 #myTabContent,
-#anakoinwshContainer {
+#anakoinwshContainer,
+#draftContainer {
     display: flex;
     flex-direction: column;
     padding: 0;
     height: 100%;
+}
+
+#draftContainer{
+    /* align-content: center; */
+    justify-content: center;
+    text-align: center;
 }
 
 #editor-container {
