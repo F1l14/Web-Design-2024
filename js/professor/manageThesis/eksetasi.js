@@ -10,6 +10,10 @@ const pdfFrame = document.getElementById("pdfFrame");
 const generateButton = document.getElementById("generatePresentation");
 generateButton.addEventListener("click", generateAnnouncement);
 
+const savePresentationButton = document.getElementById("savePresentation");
+savePresentationButton.addEventListener("click", saveAnnouncement)
+
+
 window.addEventListener("load", getDraft);
 
 async function getDraft() {
@@ -49,6 +53,11 @@ async function getDraft() {
         ;
 }
 
+
+async function saveAnnouncement(){
+    const contents = quill.getContents();
+    console.log(contents);
+}
 
 async function generateAnnouncement() {
     const data = await getAnnouncementDetails();
