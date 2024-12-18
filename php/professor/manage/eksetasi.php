@@ -131,7 +131,7 @@ updateActivity();
 </html>
 
 <script>
-    const quill = new Quill('#editor-container', {
+    quill = new Quill('#editor-container', {
         theme: 'snow'
     });
 </script>

@@ -90,7 +90,7 @@ function insertStudents($students)
 
         try{
             $insertStudent = $conn->prepare("INSERT INTO student(username, am, etos_eisagwghs) VALUES (?,?,?)");
-            $insertStudent->bind_param("sii", $username, $current["am"], $current["etos"]);
+            $insertStudent->bind_param("ssi", $username, $current["am"], $current["etos"]);
             $insertStudent->execute();
         }catch(mysqli_sql_exception $e){
             $resp->state  = $conn->error;
