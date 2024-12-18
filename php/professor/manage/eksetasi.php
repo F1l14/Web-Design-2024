@@ -50,20 +50,29 @@ updateActivity();
                     <a class="nav-link disabled" aria-disabled="true" data-bs-toggle="tab">Disabled</a>
                 </li> -->
             </ul>
-            <div class="tab-content w-100" id="myTabContent">
-                <div class="tab-pane fade show active " id="keimeno" role="tabpanel" aria-labelledby="keimeno-tab">
+            <div class="tab-content w-100 container" id="myTabContent">
+                <div class="tab-pane fade show active" id="keimeno" role="tabpanel" aria-labelledby="keimeno-tab">
                     <!-- <embed src="/Web-Design-2024/Ergastiriaki_Askisi_24-25-1.0.pdf" frameborder="0" width="100%" height="400px"> -->
-                    <iframe id="pdfFrame" src="" width="100%" height="100%"
-                        ></iframe>
+                    <iframe id="pdfFrame" src="" width="100%" height="100%"></iframe>
+
                 </div>
                 <div class="tab-pane fade" id="anakoinwsh" role="tabpanel" aria-labelledby="anakoinwsh-tab">
-
-                    <div id="editor-container" style="height: 92%;">
-
+                    <div class="container" id="anakoinwshContainer">
+                        <div id="editor-container"></div>
+                        <!-- remove negative margin -->
+                        <div id="buttonRow" class="row">
+                            <div id="" class="col centeredDiv ">
+                                <button id="generatePresentation" class="pageButton"><img
+                                        src="/Web-Design-2024/icons/edit_light.svg" alt="Παραγωγή Κειμένου">Παραγωγή
+                                    Κειμένου</button>
+                            </div>
+                            <div id="" class="col centeredDiv ">
+                                <button id="savePresentation" class="pageButton"><img
+                                        src="/Web-Design-2024/icons/save.svg" alt="Αποθήκευση"> Αποθήκευση</button>
+                            </div>
+                        </div>
                     </div>
-                    <div id="saveWrapper" class="col">
-                        <button id="saveNotes" class="pageButton">save</button>
-                    </div>
+
                 </div>
                 <div class="tab-pane fade" id="vathmos" role="tabpanel" aria-labelledby="vathmos-tab">
                     <table id="gradeTable" class="table disabled">
