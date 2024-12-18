@@ -59,7 +59,8 @@ async function generateAnnouncement() {
         let presentation_way = "";
         const location = data["location"];
         const title = data["title"];
-        const student = data["student"];
+        const firstname = data["firstname"];
+        const lastname = data["lastname"];
         const studentAM = data["am"];
         const prof1 = data["prof1"];
         const prof2 = data["prof2"];
@@ -73,10 +74,10 @@ async function generateAnnouncement() {
                 presentation_way = `εξ αποστάσεως στον σύνδεσμο <a href = "${location}">${location}</a>`
         }
         const content = `
-        <h3>Παρουσίαση Διπλωματικής Εργασίας ${student}</h3>
+        <h3>Παρουσίαση Διπλωματικής Εργασίας</h3>
         <p>Στις ${date} και ώρα ${time} θα πραγματοποιηθεί ${presentation_way} η παρουσίαση-εξέταση της προπτυχιακής διπλωματικής εργασίας με θέμα:<br><br>
         "<strong>${title}</strong>"<br><br>
-        Φοιτητής/τρια: ${student}<br>
+        Φοιτητής/τρια: ${firstname} ${lastname}<br>
         ΑΜ: ${studentAM}<br>
         <br>
         Μέλη Τριμελούς Εξεταστικής Επιτροπής:
@@ -102,7 +103,7 @@ async function getAnnouncementDetails() {
 })
         .then(response => {
             return response.text().then(text => {
-            // c    onsole.log("Raw Response:", text);
+            // console.log("Raw Response:", text);
             try {
                 return JSON.parse(text); // Try parsing the JSON
             } catch(error) {
