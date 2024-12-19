@@ -54,9 +54,41 @@ async function getDraft() {
 }
 
 
-async function saveAnnouncement(){
-    const contents = quill.getContents();
-    console.log(contents);
+async function saveAnnouncement() {
+    const html = quill.root.innerHTML;
+    // console.log(html);
+
+    fetch(`../scripts/manage/eksetasi/savePresentation.php?thesisId=${thesisId}`, {
+        method: "POST",
+        body: JSON.stringify({ content: html }),
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                alert("Επιτυχής Αποθήκευση");
+            } else {
+                alert("ΠΡΟΒΛΗΜΑ! Προσπαθήστε Ξανά")
+                console.log(data.error);
+                console.log(data.state);
+            }
+
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
 }
 
 async function generateAnnouncement() {
@@ -107,19 +139,19 @@ async function generateAnnouncement() {
 
 async function getAnnouncementDetails() {
     return fetch(`../scripts/manage/eksetasi/getPresentation.php?thesisId=${thesisId}`, {
-    method: "GET",
-    headers: { 'Accept': 'application/json' }
-})
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
         .then(response => {
             return response.text().then(text => {
-            // console.log("Raw Response:", text);
-            try {
-                return JSON.parse(text); // Try parsing the JSON
-            } catch(error) {
-                console.error("JSON Parsing Error:", error);
-                throw error; // Rethrow the error to be caught below
-            }
-        });
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
         })
         .then(data => {
             if (data.answer) {
@@ -131,9 +163,9 @@ async function getAnnouncementDetails() {
 
         })
 
-            .catch(error => {
-                console.error("Error Occured    :", error);
-            })
+        .catch(error => {
+            console.error("Error Occured    :", error);
+        })
         ;
 
 
