@@ -72,7 +72,6 @@ async function loadAnnouncement() {
         })
         .then(data => {
             if (data.answer) {
-                console.log("Επιτυχής Φόρτωση");
                 const content = data.announcement;
                 quill.clipboard.dangerouslyPasteHTML(content);
             } else {
@@ -148,13 +147,12 @@ async function generateAnnouncement() {
         }
         const content = `
         <h3>Παρουσίαση Διπλωματικής Εργασίας</h3>
-        <p>Στις ${date} και ώρα ${time} θα πραγματοποιηθεί ${presentation_way} η παρουσίαση-εξέταση της προπτυχιακής διπλωματικής εργασίας με θέμα:<br><br>
-        "<strong>${title}</strong>"<br><br>
-        Φοιτητής/τρια: ${firstname} ${lastname}<br>
-        ΑΜ: ${studentAM}<br>
-        <br>
-        Μέλη Τριμελούς Εξεταστικής Επιτροπής:
-        </p>
+        <p>Στις ${date} και ώρα ${time} θα πραγματοποιηθεί ${presentation_way} η παρουσίαση-εξέταση της προπτυχιακής διπλωματικής εργασίας με θέμα:</p><br>
+        <p>"<strong>${title}</strong>"</p><br>
+        <p>Φοιτητής/τρια: ${firstname} ${lastname}<br></p>
+        <p>ΑΜ: ${studentAM}</p><br>
+        
+        <p>Μέλη Τριμελούς Εξεταστικής Επιτροπής:</p>
         <ul>
             <li>${prof1}, επιβλέπων</li>
             <li>${prof2}</li>
