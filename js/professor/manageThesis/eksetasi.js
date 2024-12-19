@@ -107,11 +107,7 @@ async function loadAnnouncement() {
             if (data.answer) {
                 const content = data.announcement;
                 quill.clipboard.dangerouslyPasteHTML(content);
-            } else {
-                alert("ΠΡΟΒΛΗΜΑ! Προσπαθήστε Ξανά")
-                console.log(data.error);
             }
-
         })
 
         .catch(error => {
