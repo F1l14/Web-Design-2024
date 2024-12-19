@@ -4,6 +4,7 @@ const queryParams = new URLSearchParams(window.location.search);
 const thesisId = queryParams.get('thesisId');
 window.addEventListener("load", function () {
     stateProtect("eksetasi", thesisId, "professor")
+    loadAnnouncement();
 });
 
 const pdfFrame = document.getElementById("pdfFrame");
@@ -53,6 +54,39 @@ async function getDraft() {
         ;
 }
 
+async function loadAnnouncement() {
+    fetch(`../scripts/manage/eksetasi/loadPresentation.php?thesisId=${thesisId}`, {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                console.log("Επιτυχής Φόρτωση");
+                const content = data.announcement;
+                quill.clipboard.dangerouslyPasteHTML(content);
+            } else {
+                alert("ΠΡΟΒΛΗΜΑ! Προσπαθήστε Ξανά")
+                console.log(data.error);
+            }
+
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
 
 async function saveAnnouncement() {
     const html = quill.root.innerHTML;
@@ -79,7 +113,6 @@ async function saveAnnouncement() {
             } else {
                 alert("ΠΡΟΒΛΗΜΑ! Προσπαθήστε Ξανά")
                 console.log(data.error);
-                console.log(data.state);
             }
 
         })
