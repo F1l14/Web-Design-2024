@@ -62,12 +62,12 @@ updateActivity();
                         <!-- remove negative margin -->
                         <div id="buttonRow" class="row">
                             <div id="" class="col centeredDiv ">
-                                <button id="generatePresentation" class="pageButton"><img
+                                <button id="generatePresentation" class="pageButton" disabled><img
                                         src="/Web-Design-2024/icons/edit_light.svg" alt="Παραγωγή Κειμένου">Παραγωγή
                                     Κειμένου</button>
                             </div>
                             <div id="" class="col centeredDiv ">
-                                <button id="savePresentation" class="pageButton"><img
+                                <button id="savePresentation" class="pageButton" disabled><img
                                         src="/Web-Design-2024/icons/save.svg" alt="Αποθήκευση"> Αποθήκευση</button>
                             </div>
                         </div>

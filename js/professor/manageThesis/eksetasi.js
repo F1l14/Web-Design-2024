@@ -4,7 +4,6 @@ const queryParams = new URLSearchParams(window.location.search);
 const thesisId = queryParams.get('thesisId');
 window.addEventListener("load", function () {
     stateProtect("eksetasi", thesisId, "professor")
-    loadAnnouncement();
 });
 
 const pdfFrame = document.getElementById("pdfFrame");
@@ -15,7 +14,41 @@ const savePresentationButton = document.getElementById("savePresentation");
 savePresentationButton.addEventListener("click", saveAnnouncement)
 
 
+window.addEventListener("load", professorPrivileges);
 window.addEventListener("load", getDraft);
+window.addEventListener("load", loadAnnouncement);
+
+
+async function professorPrivileges() {
+    fetch(`../../professorPrivileges.php?thesisId=${thesisId}`, {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.state != "SQL Error") {
+                if(data.epivlepon) {
+                    savePresentationButton.disabled =false;
+                    generateButton.disabled = false; 
+                }
+            }
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
 
 async function getDraft() {
     fetch(`../scripts/manage/eksetasi/getStudentDocument.php?thesisId=${thesisId}`, {
