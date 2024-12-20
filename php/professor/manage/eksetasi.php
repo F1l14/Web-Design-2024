@@ -42,7 +42,8 @@ updateActivity();
                     <a class="nav-link" href="#anakoinwsh" data-bs-toggle="tab">Ανακοίνωση</a>
                 </li>
                 <li class="nav-item">
-                    <a id="vathmosTab" class="nav-link disabled" href="#vathmos" data-bs-toggle="tab" aria-disabled="true">Καταχώρηση
+                    <a id="vathmosTab" class="nav-link disabled" href="#vathmos" data-bs-toggle="tab"
+                        aria-disabled="true">Καταχώρηση
                         Βαθμού</a>
                 </li>
 
@@ -104,7 +105,8 @@ updateActivity();
                     <div id="vathmosRow" class="row" hidden>
                         <div class="centeredDiv">
                             <p>Καταχώρηση Βαθμού:</p>
-                            <button id="gradeButton" class="pageButton">Βαθμός</button>
+                            <button id="gradeButton" class="pageButton" data-bs-toggle="modal"
+                                data-bs-target="#gradeModal">Βαθμός</button>
                         </div>
 
                     </div>
@@ -114,6 +116,23 @@ updateActivity();
 
 
 
+        </div>
+        <div id="gradeModal" class="modal fade" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Καταχώρηση Βαθμού</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="number" class="form-control">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Κλείσιμο</button>
+                        <button type="button" class="btn btn-primary">Αποθήκευση</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- ======================================================================================== -->
