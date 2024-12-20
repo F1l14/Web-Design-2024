@@ -104,3 +104,7 @@
     display: flex;
     flex-grow: 1;
 }
+
+#enableGradingDiv{
+    height: max-content ;
+}

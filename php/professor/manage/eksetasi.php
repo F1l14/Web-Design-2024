@@ -42,7 +42,7 @@ updateActivity();
                     <a class="nav-link" href="#anakoinwsh" data-bs-toggle="tab">Ανακοίνωση</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#vathmos" data-bs-toggle="tab" aria-disabled="false">Καταχώρηση
+                    <a id="vathmosTab" class="nav-link disabled" href="#vathmos" data-bs-toggle="tab" aria-disabled="true">Καταχώρηση
                         Βαθμού</a>
                 </li>
 
@@ -75,7 +75,7 @@ updateActivity();
 
                 </div>
                 <div class="tab-pane fade" id="vathmos" role="tabpanel" aria-labelledby="vathmos-tab">
-                    <table id="gradeTable" class="table disabled">
+                    <table id="gradeTable" class="table disabled" hidden>
                         <thead>
                             <tr>
                                 <th scope="col">Καθηγητής/τρια</th>
@@ -91,14 +91,17 @@ updateActivity();
                             </tr>
                         </tbody>
                     </table>
-                    <div class="row">
-                        <div id="enableGradingDiv" class="centeredDiv">
-                            <p>Ενεργοποίηση καταχώρησης βαθμολογίας:</p>
-                            <button id="enableButton" class="pageButton">Ενεργοποίηση </button>
+                    <div class="row h-100" id="enableRow">
+                        <div class="col d-flex justify-content-center align-items-center">
+                            <div id="enableGradingDiv" class="centeredDiv">
+                                <p>Ενεργοποίηση καταχώρησης βαθμολογίας:</p>
+                                <button id="enableButton" class="pageButton" disabled>Ενεργοποίηση </button>
+                            </div>
                         </div>
 
+
                     </div>
-                    <div class="row">
+                    <div id="vathmosRow" class="row" hidden>
                         <div class="centeredDiv">
                             <p>Καταχώρηση Βαθμού:</p>
                             <button id="gradeButton" class="pageButton">Βαθμός</button>

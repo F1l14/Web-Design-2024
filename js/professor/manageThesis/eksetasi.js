@@ -17,7 +17,80 @@ savePresentationButton.addEventListener("click", saveAnnouncement)
 window.addEventListener("load", professorPrivileges);
 window.addEventListener("load", getDraft);
 window.addEventListener("load", loadAnnouncement);
+window.addEventListener("load", getGradeable);
 
+const gradeButton = document.getElementById("enableButton");
+gradeButton.addEventListener("click", setGradeable);
+
+
+async function getGradeable() {
+    fetch(`../scripts/manage/eksetasi/getGradeable.php?thesisId=${thesisId}`, {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (!data.gradeable) {
+                gradeButton.disabled = false;
+            } else {
+                const enableRow = document.getElementById("enableRow");
+                const table = document.getElementById("gradeTable");
+                const vathmosRow = document.getElementById("vathmosRow");
+                const vathmosButton = document.getElementById("gradeButton");
+                
+                enableGradeTab();
+
+                enableRow.hidden = true;
+                table.hidden = false;
+                vathmosRow.hidden = false;
+                vathmosButton.disabled = false;
+            }
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+
+}
+
+async function setGradeable() {
+    fetch(`../scripts/manage/eksetasi/setGradeable.php?thesisId=${thesisId}`, {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if(data.answer) {
+                getGradeable();
+            }
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
 
 async function professorPrivileges() {
     fetch(`../../professorPrivileges.php?thesisId=${thesisId}`, {
@@ -37,10 +110,11 @@ async function professorPrivileges() {
         })
         .then(data => {
             if (data.state != "SQL Error") {
-                if(data.epivlepon) {
-                    savePresentationButton.disabled =false;
+                if (data.epivlepon) {
+                    savePresentationButton.disabled = false;
                     generateButton.disabled = false;
                     quill.enable();
+                    enableGradeTab();
                 }
             }
         })
@@ -49,6 +123,13 @@ async function professorPrivileges() {
             console.error("Error Occured:", error);
         })
         ;
+}
+
+
+function enableGradeTab(){
+    const vathmosTab = document.getElementById("vathmosTab");
+    vathmosTab.className = "nav-link";
+    vathmosTab.setAttribute("aria-disabled", false);
 }
 
 async function getDraft() {
