@@ -377,24 +377,25 @@ async function getGrades() {
             });
         })
         .then(data => {
-           
-            data.grades.forEach(element => {
-                const row = gradeTable.insertRow();
-                const professor = row.insertCell(0);
-                const role = row.insertCell(1);
-                const grade =row.insertCell(2);
-                const date = row.insertCell(3);
-    
-                professor.innerHTML = `${element["firstname"]} ${element["lastname"]}`;
-                if(element["professor"] === element["prof1"]){
-                    role.innerHTML = "Επιβλέπων";
-                }else{
-                    role.innerHTML = "Επιτροπή";
-                }
-               
-                grade.innerHTML = element["grade"];
-                date.innerHTML = element["datetime"];
-            });
+            if(data.answer) {
+                data.grades.forEach(element => {
+                    const row = gradeTable.insertRow();
+                    const professor = row.insertCell(0);
+                    const role = row.insertCell(1);
+                    const grade =row.insertCell(2);
+                    const date = row.insertCell(3);
+        
+                    professor.innerHTML = `${element["firstname"]} ${element["lastname"]}`;
+                    if(element["professor"] === element["prof1"]){
+                        role.innerHTML = "Επιβλέπων";
+                    }else{
+                        role.innerHTML = "Επιτροπή";
+                    }
+                   
+                    grade.innerHTML = element["grade"];
+                    date.innerHTML = element["datetime"];
+                });
+            }
         })
 
         .catch(error => {
