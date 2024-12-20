@@ -9,14 +9,14 @@ if (isset($_GET['thesisId']) && isset($_COOKIE["user"])) {
     $diplomatiki = $_GET['thesisId'];
     $json = file_get_contents("php://input");
     $data = json_decode($json);
-    $html = $data->content; // Assuming the JSON has a "content" field
+    $html = $data->content;
 
     if ($html) {
         $announcementDir = $_SERVER["DOCUMENT_ROOT"] . "Web-Design-2024/Data/announcements/" . $diplomatiki . "/";
         if (!is_dir($announcementDir)) {
             if (!mkdir($announcementDir, 0777, true)) {
                 $resp->state = "failed to create directory: " . $announcementDir;
-                $resp->error = error_get_last(); // Get the last PHP error
+                $resp->error = error_get_last();
                 echo json_encode($resp);
                 return;
             }
@@ -37,5 +37,3 @@ if (isset($_GET['thesisId']) && isset($_COOKIE["user"])) {
 } else {
     $resp->state = "user not authenticated or thesisId not provided";
 }
-
-echo json_encode($resp);
