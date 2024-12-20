@@ -39,7 +39,8 @@ async function professorPrivileges() {
             if (data.state != "SQL Error") {
                 if(data.epivlepon) {
                     savePresentationButton.disabled =false;
-                    generateButton.disabled = false; 
+                    generateButton.disabled = false;
+                    quill.enable();
                 }
             }
         })

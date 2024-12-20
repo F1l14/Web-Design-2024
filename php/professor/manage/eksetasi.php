@@ -134,4 +134,5 @@ updateActivity();
     quill = new Quill('#editor-container', {
         theme: 'snow'
     });
+    quill.enable(false);
 </script>
