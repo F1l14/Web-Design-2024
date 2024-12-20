@@ -37,3 +37,4 @@ if (isset($_GET['thesisId']) && isset($_COOKIE["user"])) {
 } else {
     $resp->state = "user not authenticated or thesisId not provided";
 }
+echo json_encode($resp);
