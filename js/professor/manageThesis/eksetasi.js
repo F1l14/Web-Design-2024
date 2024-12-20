@@ -178,7 +178,7 @@ async function generateAnnouncement() {
         <h3>Παρουσίαση Διπλωματικής Εργασίας</h3>
         <p>Στις ${date} και ώρα ${time} θα πραγματοποιηθεί ${presentation_way} η παρουσίαση-εξέταση της προπτυχιακής διπλωματικής εργασίας με θέμα:</p><br>
         <p>"<strong>${title}</strong>"</p><br>
-        <p>Φοιτητής/τρια: ${firstname} ${lastname}<br></p>
+        <p>Φοιτητής/τρια: ${firstname} ${lastname}</p>
         <p>ΑΜ: ${studentAM}</p><br>
         
         <p>Μέλη Τριμελούς Εξεταστικής Επιτροπής:</p>
