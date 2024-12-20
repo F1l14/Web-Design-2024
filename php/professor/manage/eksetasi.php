@@ -76,19 +76,18 @@ updateActivity();
 
                 </div>
                 <div class="tab-pane fade" id="vathmos" role="tabpanel" aria-labelledby="vathmos-tab">
-                    <table id="gradeTable" class="table disabled" hidden>
+                    <table id="gradeTable" class="table" hidden>
                         <thead>
                             <tr>
                                 <th scope="col">Καθηγητής/τρια</th>
                                 <th scope="col">Ρόλος</th>
                                 <th scope="col">Βαθμός</th>
+                                <th scope="col">Ημερομηνία</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="gradeTableBody">
                             <tr>
-                                <td>Δημήτριος Κουτσομητρόπουλος</td>
-                                <td>Επιβλέπων</td>
-                                <td>4.9964</td>
+                                
                             </tr>
                         </tbody>
                     </table>

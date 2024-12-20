@@ -26,6 +26,12 @@ gradeButton.addEventListener("click", setGradeable);
 const gradeForm = document.getElementById("gradeForm");
 gradeForm.addEventListener("submit", saveGrade);
 
+const gradeTable = document.getElementById("gradeTableBody");
+
+window.addEventListener("load", getGrades);
+
+const gradeModalElement = document.getElementById("gradeModal");
+const gradeModal =  new bootstrap.Modal(gradeModalElement);
 
 async function getGradeable() {
     fetch(`../scripts/manage/eksetasi/getGradeable.php?thesisId=${thesisId}`, {
@@ -339,11 +345,56 @@ async function saveGrade(event) {
         })
         .then(data => {
             if (data.answer) {
-                alert("Επιτυχής Αποθήκευση");
+                gradeTable.innerHTML = "";
+                getGrades();
+                gradeModal.hide();
             } else {
                 alert("ΠΡΟΒΛΗΜΑ! Προσπαθήστε ξανά");
                 console.log(data.error);
             }
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
+
+async function getGrades() {
+    fetch(`../scripts/manage/eksetasi/getGrades.php?thesisId=${thesisId}`, {
+        method: "POST",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+           
+            data.grades.forEach(element => {
+                const row = gradeTable.insertRow();
+                const professor = row.insertCell(0);
+                const role = row.insertCell(1);
+                const grade =row.insertCell(2);
+                const date = row.insertCell(3);
+    
+                professor.innerHTML = `${element["firstname"]} ${element["lastname"]}`;
+                if(element["professor"] === element["prof1"]){
+                    role.innerHTML = "Επιβλέπων";
+                }else{
+                    role.innerHTML = "Επιτροπή";
+                }
+               
+                grade.innerHTML = element["grade"];
+                date.innerHTML = element["datetime"];
+            });
         })
 
         .catch(error => {
