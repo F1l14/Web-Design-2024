@@ -18,6 +18,7 @@ if (isset($_COOKIE["user"])) {
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
+            $resp->answer = true;
             $gradeable = $result->fetch_assoc()["gradeable"];
             $resp->gradeable = $gradeable;
             echo json_encode($resp);
