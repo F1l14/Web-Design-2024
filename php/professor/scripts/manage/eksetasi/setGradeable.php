@@ -19,6 +19,7 @@ if (isset($_COOKIE["user"])) {
         $result = $stmt->get_result();
         if ($conn->affected_rows > 0) {
             $resp->answer = true;
+            echo json_encode($resp);
         }
     } catch (mysqli_sql_exception) {
 
