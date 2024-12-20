@@ -124,13 +124,16 @@ updateActivity();
                         <h5 class="modal-title">Καταχώρηση Βαθμού</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <input type="number" class="form-control">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Κλείσιμο</button>
-                        <button type="button" class="btn btn-primary">Αποθήκευση</button>
-                    </div>
+                    <form id="gradeForm" method="POST">
+                        <div class="modal-body">
+                            <label  class="form-label" for="grade">Βαθμός</label>
+                            <input id="grade" name="grade" type="number" step=".1" class="form-control" min=0 max=10 required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Κλείσιμο</button>
+                            <button type="submit" class="btn btn-primary">Αποθήκευση</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

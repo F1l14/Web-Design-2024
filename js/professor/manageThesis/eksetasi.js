@@ -23,6 +23,10 @@ const gradeButton = document.getElementById("enableButton");
 gradeButton.addEventListener("click", setGradeable);
 
 
+const gradeForm = document.getElementById("gradeForm");
+gradeForm.addEventListener("submit", saveGrade);
+
+
 async function getGradeable() {
     fetch(`../scripts/manage/eksetasi/getGradeable.php?thesisId=${thesisId}`, {
         method: "GET",
@@ -81,7 +85,7 @@ async function setGradeable() {
             });
         })
         .then(data => {
-            if(data.answer) {
+            if (data.answer) {
                 getGradeable();
             }
         })
@@ -126,7 +130,7 @@ async function professorPrivileges() {
 }
 
 
-function enableGradeTab(){
+function enableGradeTab() {
     const vathmosTab = document.getElementById("vathmosTab");
     vathmosTab.className = "nav-link";
     vathmosTab.setAttribute("aria-disabled", false);
@@ -310,4 +314,40 @@ async function getAnnouncementDetails() {
         ;
 
 
+}
+
+
+
+async function saveGrade(event) {
+    event.preventDefault();
+    var data = new FormData(event.target);
+    fetch(`../scripts/manage/eksetasi/setGrade.php?thesisId=${thesisId}`, {
+        method: "POST",
+        body: data,
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                alert("Επιτυχής Αποθήκευση");
+            } else {
+                alert("ΠΡΟΒΛΗΜΑ! Προσπαθήστε ξανά");
+                console.log(data.error);
+            }
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
 }
