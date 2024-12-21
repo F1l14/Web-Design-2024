@@ -464,7 +464,28 @@ async function createPraktiko() {
                 var finalGrade = gradeSum / 3;
                 finalGrade = finalGrade.toFixed(1);
 
-                console.log(data.professors);
+                var grades = [];
+                data.grades.forEach(grade => {
+                    if (grade["professor"] == grade["prof1"]) {
+                        grades[0] = {
+                            name: `${grade["lastname"]} ${grade["firstname"]}`,
+                            role: "Επιβλέπων",
+                            grade: grade["grade"],
+                        }
+                    } else if (grade["professor"] == grade["prof2"]) {
+                        grades[1] = {
+                            name: `${grade["lastname"]} ${grade["firstname"]}`,
+                            role: "Μέλος",
+                            grade: grade["grade"],
+                        }
+                    } else if (grade["professor"] == grade["prof3"]) {
+                        grades[2] = {
+                            name: `${grade["lastname"]} ${grade["firstname"]}`,
+                            role: "Μέλος",
+                            grade: grade["grade"],
+                        }
+                    }
+                });
 
                 const praktikoHtml = `
                                <!DOCTYPE html>
@@ -542,20 +563,24 @@ async function createPraktiko() {
                                             <tr>
                                                 <th>ΟΝΟΜΑΤΕΠΩΝΥΜΟ</th>
                                                 <th>ΙΔΙΟΤΗΤΑ</th>
+                                                <th>ΒΑΘΜΟΣ</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td><span>${data.prof1_name}</span></td>
-                                                <td><span>Επιβλέπων</span></td>
+                                                <td><span>${grades[0].name}</span></td>
+                                                <td><span>${grades[0].role}</span></td>
+                                                <td><span>${grades[0].grade}</span></td>
                                             </tr>
                                             <tr>
-                                                <td><span>${data.prof2_name}</span></td>
-                                                <td><span>Μέλος</span></td>
+                                                <td><span>${grades[1].name}</span></td>
+                                                <td><span>${grades[1].role}</span></td>
+                                                <td><span>${grades[1].grade}</span></td>
                                             </tr>
                                             <tr>
-                                                <td><span>${data.prof3_name}</span></td>
-                                                <td><span>Μέλος</span></td>
+                                                <td><span>${grades[2].name}</span></td>
+                                                <td><span>${grades[2].role}</span></td>
+                                                <td><span>${grades[2].grade}</span></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -563,6 +588,12 @@ async function createPraktiko() {
                                     <p class="signature">Μετά την έγκριση και την απονομή του βαθμού ο κ. <span>${data.prof1_name}</span> παραδίδει το παρόν πρακτικό για την αρχειοθέτησή του.</p>
                                 </body>
                                 `;
+
+
+
+
+                generatePraktikoPdf(data);
+
 
                 savePraktiko(praktikoHtml);
             } else {
@@ -595,7 +626,7 @@ async function savePraktiko(html) {
         })
         .then(data => {
             if (data.answer) {
-                alert("Επιτυχής Αποθήκευση");
+                console.log("Επιτυχής Αποθήκευση");
             } else {
                 alert("ΠΡΟΒΛΗΜΑ! Προσπαθήστε Ξανά")
                 console.log(data.error);
@@ -607,4 +638,125 @@ async function savePraktiko(html) {
             console.error("Error Occured:", error);
         })
         ;
+}
+
+function generatePraktikoPdf(data) {
+    var gradeSum = 0;
+    data.grades.forEach(grade => {
+        gradeSum += parseFloat(grade["grade"]);
+    });
+    var finalGrade = gradeSum / 3;
+    finalGrade = finalGrade.toFixed(1);
+
+    var grades = [];
+    data.grades.forEach(grade => {
+        if (grade["professor"] == grade["prof1"]) {
+            grades[0] = {
+                name: `${grade["lastname"]} ${grade["firstname"]}`,
+                role: "Επιβλέπων",
+                grade: grade["grade"],
+            }
+        } else if (grade["professor"] == grade["prof2"]) {
+            grades[1] = {
+                name: `${grade["lastname"]} ${grade["firstname"]}`,
+                role: "Μέλος",
+                grade: grade["grade"],
+            }
+        } else if (grade["professor"] == grade["prof3"]) {
+            grades[2] = {
+                name: `${grade["lastname"]} ${grade["firstname"]}`,
+                role: "Μέλος",
+                grade: grade["grade"],
+            }
+        }
+    });
+
+    const docDefinition = {
+        content: [
+            { text: 'ΠΡΟΓΡΑΜΜΑ ΣΠΟΥΔΩΝ', style: 'header', alignment: 'center' },
+            { text: '«ΤΜΗΜΑΤΟΣ ΜΗΧΑΝΙΚΩΝ, ΗΛΕΚΤΡΟΝΙΚΩΝ ΥΠΟΛΟΓΙΣΤΩΝ ΚΑΙ ΠΛΗΡΟΦΟΡΙΚΗΣ»', style: 'header', alignment: 'center' },
+            { text: 'ΠΡΑΚΤΙΚΟ ΣΥΝΕΔΡΙΑΣΗΣ ΤΗΣ ΤΡΙΜΕΛΟΥΣ ΕΠΙΤΡΟΠΗΣ', style: 'subheader', alignment: 'center' },
+            { text: 'ΓΙΑ ΤΗΝ ΠΑΡΟΥΣΙΑΣΗ ΚΑΙ ΚΡΙΣΗ ΤΗΣ ΔΙΠΛΩΜΑΤΙΚΗΣ ΕΡΓΑΣΙΑΣ', style: 'subheader', alignment: 'center' },
+            '\n',
+            { text: `του/της φοιτητή/φοιτήτριας ${data.student_name}`, style: 'subheader', alignment: 'center' },
+            '\n',
+            { text: `Η συνεδρίαση πραγματοποιήθηκε στην αίθουσα ${data.location} στις ${data.date}, ημέρα ${data.day}, και ώρα ${data.time}.` },
+            '\n',
+            { text: 'Στην συνεδρίαση είναι παρόντα τα μέλη της Τριμελούς Επιτροπής, κ.κ.:' },
+            {
+                ol: [
+                    data.prof1_name,
+                    data.prof2_name,
+                    data.prof3_name
+                ]
+            },
+            '\n',
+            { text: `οι οποίοι ορίσθηκαν από την Συνέλευση του ΤΜΗΥΠ, στην συνεδρίαση της με αριθμό ${data.episimi_anathesi} \n\n` },
+            {
+                text: `Ο/Η φοιτητής/φοιτήτρια κ. ${data.student_name} ανέπτυξε το θέμα της Διπλωματικής του/της Εργασίας, με τίτλο\n«${data.title}.»\n\n`
+            },
+            {
+                text: `Στην συνέχεια υποβλήθηκαν ερωτήσεις στον υποψήφιο από τα μέλη της Τριμελούς Επιτροπής και τους άλλους παρευρισκόμενους, προκειμένου να διαμορφώσουν σαφή άποψη για το περιεχόμενο της εργασίας, για την επιστημονική συγκρότηση του μεταπτυχιακού φοιτητή.\n\n Μετά το τέλος της ανάπτυξης της εργασίας του και των ερωτήσεων, ο υποψήφιος αποχωρεί.\n\n`
+            },
+            { text: "Τα μέλη της Τριμελούς Επιτροπής, ψηφίζουν κατ’ αλφαβητική σειρά:\n\n" },
+            {
+                ol: [
+                    `${data.professors[0]["lastname_prof"]} ${data.professors[0]["firstname_prof"]}`,
+                    `${data.professors[1]["lastname_prof"]} ${data.professors[1]["firstname_prof"]}`,
+                    `${data.professors[2]["lastname_prof"]} ${data.professors[2]["firstname_prof"]}`
+                ]
+            },
+            '\n\n',
+            { text: `υπέρ της εγκρίσεως της Διπλωματικής Εργασίας του φοιτητή ${data.student_name}, επειδή θεωρούν επιστημονικά επαρκή και το περιεχόμενό της ανταποκρίνεται στο θέμα που του δόθηκε.\n` },
+            { text: 'Μετά την έγκριση και την απονομή του βαθμού, ο επιβλέπων καθηγητής καταθέτει το παρόν πρακτικό για αρχειοθέτηση.\n\n' },
+            { text: 'Μετά το τέλος της ανάπτυξης της εργασίας του και των ερωτήσεων, ο υποψήφιος αποχωρεί.\n\n' },
+            {
+                text: `Ο Επιβλέπων καθηγητής κ. ${data.prof1_name} προτείνει στα μέλη της Τριμελούς Επιτροπής, να απονεμηθεί στο/στη φοιτητή/τρια κ ${data.student_name} ο βαθμός ${finalGrade}.\n\n`
+            },
+            {
+                text: "Τα μέλη της Τριμελούς Επιτροπής, απονέμουν την παρακάτω βαθμολογία:\n\n"
+            },
+            {
+                columns: [
+                    { width: '*', text: '' },
+                    {
+                        width: 'auto',
+                        table: {
+
+                            body: [
+                                [{ text: 'ΟΝΟΜΑΤΕΠΩΝΥΜΟ', bold: true }, { text: 'ΙΔΙΟΤΗΤΑ', bold: true }, { text: 'ΒΑΘΜΟΣ', bold: true }],
+                                [grades[0].name, grades[0].role, grades[0].grade],
+                                [grades[1].name, grades[1].role, grades[1].grade],
+                                [grades[2].name, grades[2].role, grades[2].grade],
+                            ],
+                            alignment: "center"
+                        }
+                    },
+                    { width: '*', text: '' },
+                ]
+
+            },
+            '\n\n',
+            { text: `Μετά την έγκριση και την απονομή του βαθμού ${finalGrade}, η Τριμελής Επιτροπή προτείνει να προχωρήσει στην διαδικασία για να ανακηρύξει τον/την κ. ${data.student_name} σε διπλωματούχο του Προγράμματος Σπουδών του «ΤΜΗΜΑΤΟΣ ΜΗΧΑΝΙΚΩΝ, ΗΛΕΚΤΡΟΝΙΚΩΝ ΥΠΟΛΟΓΙΣΤΩΝ ΚΑΙ ΠΛΗΡΟΦΟΡΙΚΗΣ ΠΑΝΕΠΙΣΤΗΜΙΟΥ ΠΑΤΡΩΝ» και να του/της απονέμει το Δίπλωμα Μηχανικού Η/Υ το οποίο αναγνωρίζεται ως Ενιαίος Τίτλος Σπουδών Μεταπτυχιακού Επιπέδου.` }
+        ],
+        styles: {
+            header: {
+                fontSize: 16,
+                bold: true
+            },
+            subheader: {
+                fontSize: 12,
+                bold: true
+            }
+        },
+        pageMargins: [40, 40, 40, 40],
+        defaultStyle: {
+            lineHeight: 1.5,
+            alignment: 'justify',  // Set alignment for all content
+            fontSize: 12
+        }
+    };
+
+    // Create and open the PDF
+    pdfMake.createPdf(docDefinition).open();
 }

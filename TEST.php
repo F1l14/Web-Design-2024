@@ -4,74 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jsPDF Example</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Noto Sans', sans-serif;
-        }
-    </style>
-
+    <title>pdfmake Built-in Fonts Example</title>
 </head>
 
 <body>
     <button id="downloadPDF">Download PDF</button>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.3.0-beta.13/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.3.0-beta.13/vfs_fonts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.3.0-beta.13/standard-fonts/Times.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.2/purify.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="/Web-Design-2024/NotoSans-Regular-normal.js"></script>
+
+
+    <div id="mydiv">
+        <h3>Πρόγραμμα Σπουδών</h3>
+    </div>
+
     <script>
         document.getElementById("downloadPDF").addEventListener("click", function () {
-            const { jsPDF } = window.jspdf; // Access jsPDF from the UMD bundle
-            const pdf = new jsPDF();
+            mydiv = document.getElementById("mydiv");
+            var docDefinition = {
+                content: [
+                    {
+                        text: "Αυτό είναι το πρόγραμμα σπουδών"
+                    }
+                ]
+            };
 
-
-
-
-
-
-
-
-
-            const contentDiv = document.createElement("div");
-            const title1 = document.createElement("h5");
-            const title2 = document.createElement("h5");
-
-            title1.innerHTML = "ΠΡΟΓΡΑΜΜΑ ΣΠΟΥΔΩΝ «ΤΜΗΜΑΤΟΣ ΜΗΧΑΝΙΚΩΝ, ΗΛΕΚΤΡΟΝΙΚΩΝ ΥΠΟΛΟΓΙΣΤΩΝ ΚΑΙ ΠΛΗΡΟΦΟΡΙΚΗΣ»";
-
-            contentDiv.appendChild(title1);
-            contentDiv.appendChild(document.createElement("br"));
-            title2.innerHTML = "asdasdf";
-
-            contentDiv.appendChild(title2);
-
-
-
-
-
-            document.body.appendChild(contentDiv);
-            pdf.html(contentDiv, {
-                callback: function (doc) {
-                    // Generate the Blob URL
-
-                    const pdfUrl = doc.output('bloburl');
-
-                    // Open the PDF in a new window
-                    window.open(pdfUrl, '_blank');
-
-                    // Clean up by removing the temporary contentDiv
-                    // document.body.removeChild(contentDiv);
-                },
-                x: 10,  // Starting X position of content in PDF
-                y: 10,  // Starting Y position of content in PDF
-            });
+            // Create and open the PDF
+            pdfMake.createPdf(docDefinition).open();
         });
-
-        const font = "";
-
     </script>
 </body>
 

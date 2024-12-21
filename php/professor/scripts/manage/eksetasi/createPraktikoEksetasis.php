@@ -242,7 +242,7 @@ if (isset($_COOKIE["user"])) {
 
     try {
         $stmt = $conn->prepare(
-            "SELECT professor, prof1, firstname, lastname, grade
+            "SELECT professor, prof1, prof2, prof3, firstname, lastname, grade
                     FROM evaluation
                     INNER JOIN users ON users.username = evaluation.professor
                     INNER JOIN epitroph ON epitroph.diplomatiki = evaluation.diplomatiki

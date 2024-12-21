@@ -87,7 +87,7 @@ updateActivity();
                         </thead>
                         <tbody id="gradeTableBody">
                             <tr>
-                                
+
                             </tr>
                         </tbody>
                     </table>
@@ -108,7 +108,8 @@ updateActivity();
                                 data-bs-target="#gradeModal">Βαθμός</button>
                         </div>
                         <div id="praktikoDiv" class="centeredDiv" hidden>
-                            <br><p>Δημιουργία Πρακτικού Εξέτασης:</p>
+                            <br>
+                            <p>Δημιουργία Πρακτικού Εξέτασης:</p>
                             <button id="praktikoButton" class="pageButton">Δημιουργία</button>
                         </div>
 
@@ -129,8 +130,9 @@ updateActivity();
                     </div>
                     <form id="gradeForm" method="POST">
                         <div class="modal-body">
-                            <label  class="form-label" for="grade">Βαθμός</label>
-                            <input id="grade" name="grade" type="number" step=".1" class="form-control" min=0 max=10 required>
+                            <label class="form-label" for="grade">Βαθμός</label>
+                            <input id="grade" name="grade" type="number" step=".1" class="form-control" min=0 max=10
+                                required>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Κλείσιμο</button>
@@ -155,6 +157,10 @@ updateActivity();
 <script src="/Web-Design-2024/js/backgroundOptions.js"></script>
 <script src="/Web-Design-2024/js/stateProtect.js"></script>
 <script src="/Web-Design-2024/js/professor/manageThesis/eksetasi.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.3.0-beta.13/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.3.0-beta.13/vfs_fonts.min.js"></script>
+
+
 
 </html>
 
