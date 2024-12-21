@@ -9,7 +9,7 @@ if (isset($_GET['thesisId']) && isset($_COOKIE["user"])) {
         $stmt = $conn->prepare(
             "UPDATE diplomatiki
             SET status = 'peratomeni'
-            WHERE id = ? AND grade_filename IS NOT NULL AND url IS NOT NULL;"
+            WHERE id = ?;"
         );
 
         $stmt->bind_param("i", $id);
