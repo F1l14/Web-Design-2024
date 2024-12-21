@@ -31,7 +31,11 @@ const gradeTable = document.getElementById("gradeTableBody");
 window.addEventListener("load", getGrades);
 
 const gradeModalElement = document.getElementById("gradeModal");
-const gradeModal =  new bootstrap.Modal(gradeModalElement);
+const gradeModal = new bootstrap.Modal(gradeModalElement);
+
+
+const praktikoButton = document.getElementById("praktikoButton");
+praktikoButton.addEventListener("click", createPraktiko);
 
 async function getGradeable() {
     fetch(`../scripts/manage/eksetasi/getGradeable.php?thesisId=${thesisId}`, {
@@ -57,7 +61,7 @@ async function getGradeable() {
                 const table = document.getElementById("gradeTable");
                 const vathmosRow = document.getElementById("vathmosRow");
                 const vathmosButton = document.getElementById("gradeButton");
-                
+
                 enableGradeTab();
 
                 enableRow.hidden = true;
@@ -377,25 +381,187 @@ async function getGrades() {
             });
         })
         .then(data => {
-            if(data.answer) {
+            if (data.answer) {
                 data.grades.forEach(element => {
                     const row = gradeTable.insertRow();
                     const professor = row.insertCell(0);
                     const role = row.insertCell(1);
-                    const grade =row.insertCell(2);
+                    const grade = row.insertCell(2);
                     const date = row.insertCell(3);
-        
+
                     professor.innerHTML = `${element["firstname"]} ${element["lastname"]}`;
-                    if(element["professor"] === element["prof1"]){
+                    if (element["professor"] === element["prof1"]) {
                         role.innerHTML = "Επιβλέπων";
-                    }else{
+                    } else {
                         role.innerHTML = "Επιτροπή";
                     }
-                   
+
                     grade.innerHTML = element["grade"];
                     date.innerHTML = element["datetime"];
                 });
             }
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
+
+async function createPraktiko() {
+    fetch(`../scripts/manage/eksetasi/createPraktikoEksetasis.php?thesisId=${thesisId}`, {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                console.log("true");
+                const praktikoHtml = `
+                                <!DOCTYPE html>
+                                <html lang="el">
+                                <head>
+                                    <meta charset="UTF-8">
+                                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                    <title>Πρακτικό Συνεδρίασης</title>
+                                    <style>
+                                        body {
+                                            font-family: Arial, sans-serif;
+                                            line-height: 1.6;
+                                        }
+                                        .center {
+                                            text-align: center;
+                                            margin: 20px 0;
+                                        }
+                                        .signature {
+                                            margin-top: 30px;
+                                        }
+                                        table {
+                                            width: 100%;
+                                            border-collapse: collapse;
+                                            margin: 20px 0;
+                                        }
+                                        th, td {
+                                            border: 1px solid black;
+                                            padding: 10px;
+                                            text-align: left;
+                                        }
+                                    </style>
+                                </head>
+                                <body>
+                                    <h3 class="center">ΠΡΟΓΡΑΜΜΑ ΣΠΟΥΔΩΝ</h3>
+                                    <h4 class="center">«ΤΜΗΜΑΤΟΣ ΜΗΧΑΝΙΚΩΝ, ΗΛΕΚΤΡΟΝΙΚΩΝ ΥΠΟΛΟΓΙΣΤΩΝ ΚΑΙ ΠΛΗΡΟΦΟΡΙΚΗΣ»</h4>
+                                    <h4 class="center">ΠΡΑΚΤΙΚΟ ΣΥΝΕΔΡΙΑΣΗΣ ΤΗΣ ΤΡΙΜΕΛΟΥΣ ΕΠΙΤΡΟΠΗΣ</h4>
+                                    <h4 class="center">ΓΙΑ ΤΗΝ ΠΑΡΟΥΣΙΑΣΗ ΚΑΙ ΚΡΙΣΗ ΤΗΣ ΔΙΠΛΩΜΑΤΙΚΗΣ ΕΡΓΑΣΙΑΣ</h4>
+
+                                    <p>του/της φοιτητή/φοιτήτριας <span>${data.student_name}</span></p>
+
+                                    <p>Η συνεδρίαση πραγματοποιήθηκε στην αίθουσα <span>${data.location}</span> στις <span>${data.date}</span>, ημέρα <span>\${day}</span>, και ώρα <span>\${time}</span>.</p>
+
+                                    <p>Στην συνεδρίαση είναι παρόντα τα μέλη της Τριμελούς Επιτροπής:</p>
+                                    <ol>
+                                        <li><span>${data.prof1_name}</span></li>
+                                        <li><span>${data.prof2_name}</span></li>
+                                        <li><span>${data.prof3_name}</span></li>
+                                    </ol>
+
+                                    <p>οι οποίοι ορίσθηκαν από την Συνέλευση του ΤΜΗΥΠΗ, στην συνεδρίαση της με αριθμό <span>${data.episimi_anathesi}</span>.</p>
+
+                                    <p>Ο/Η φοιτητής/φοιτήτρια <span>${data.student_name}</span></p>
+                                    <p>της Διπλωματικής του/της Εργασίας, με τίτλο</p>
+                                    <p>«<span>${data.title}</span>»</p>
+
+                                    <p>Στην συνέχεια υποβλήθηκαν ερωτήσεις στον υποψήφιο από τα μέλη της Τριμελούς Επιτροπής και τους άλλους παρευρισκόμενους, προκειμένου να διαμορφώσουν σαφή άποψη για το περιεχόμενο της εργασίας και για την επιστημονική συγκρότηση του μεταπτυχιακού φοιτητή.</p>
+
+                                    <p>Μετά το τέλος της παρουσίασης της εργασίας του και των ερωτήσεων, ο υποψήφιος αποχώρησε.</p>
+
+                                    <p>Ο Επιβλέπων καθηγητής κ. <span>${data.prof1_name}</span> προτείνει στα μέλη της Τριμελούς Επιτροπής να ψηφίσουν για το αν εγκρίνουν ή όχι τη διπλωματική εργασία του υποψηφίου.</p>
+
+                                    <p>Τα μέλη της Τριμελούς Επιτροπής ψηφίζουν κατά αλφαβητική σειρά:</p>
+                                    <ol>
+                                        <li><span>\${vote1}</span></li>
+                                        <li><span>\${vote2}</span></li>
+                                        <li><span>\${vote3}</span></li>
+                                    </ol>
+
+                                    <p>υπέρ της έγκρισης της Διπλωματικής Εργασίας του φοιτητή επειδή θεωρούν επιστημονικά επαρκή και το περιεχόμενο της ανταποκρίνεται στο θέμα που του δόθηκε.</p>
+
+                                    <p>Μετά την έγκριση, ο εισηγητής κ. <span>${data.prof1_name}</span> μέλη της Τριμελούς Επιτροπής να απονείμουν στον φοιτητή/τρια το βαθμό <span>\${grade}</span>.</p>
+
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>ΟΝΟΜΑΤΕΠΩΝΥΜΟ</th>
+                                                <th>ΙΔΙΟΤΗΤΑ</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><span>${data.prof1_name}</span></td>
+                                                <td><span>Επιβλέπων</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>${data.prof2_name}</span></td>
+                                                <td><span>Μέλος</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>${data.prof3_name}</span></td>
+                                                <td><span>Μέλος</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <p class="signature">Μετά την έγκριση και την απονομή του βαθμού ο κ. <span>${data.prof1_name}</span> παραδίδει το παρόν πρακτικό για την αρχειοθέτησή του.</p>
+                                </body>
+                                </html>`;
+
+                savePraktiko(praktikoHtml);
+            } else {
+                console.log(data.error);
+            }
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
+
+async function savePraktiko(html) {
+    fetch(`../scripts/manage/eksetasi/savePraktiko.php?thesisId=${thesisId}`, {
+        method: "POST",
+        body: JSON.stringify({ content: html }),
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                alert("Επιτυχής Αποθήκευση");
+            } else {
+                alert("ΠΡΟΒΛΗΜΑ! Προσπαθήστε Ξανά")
+                console.log(data.error);
+            }
+
         })
 
         .catch(error => {
