@@ -458,8 +458,37 @@ async function createPraktiko() {
         .then(data => {
             if (data.answer) {
                 const praktikoHtml = `
-                               
-                                <div>
+                               <!DOCTYPE html>
+                                <html lang="el">
+                                <head>
+                                    <meta charset="UTF-8">
+                                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                    <title>Πρακτικό Συνεδρίασης</title>
+                                    <style>
+                                        body {
+                                            font-family: Arial, sans-serif;
+                                            line-height: 1.6;
+                                        }
+                                        .center {
+                                            text-align: center;
+                                            margin: 20px 0;
+                                        }
+                                        .signature {
+                                            margin-top: 30px;
+                                        }
+                                        table {
+                                            width: 100%;
+                                            border-collapse: collapse;
+                                            margin: 20px 0;
+                                        }
+                                        th, td {
+                                            border: 1px solid black;
+                                            padding: 10px;
+                                            text-align: left;
+                                        }
+                                    </style>
+                                </head>
+                                <body>
                                     <h3 class="center">ΠΡΟΓΡΑΜΜΑ ΣΠΟΥΔΩΝ</h3>
                                     <h4 class="center">«ΤΜΗΜΑΤΟΣ ΜΗΧΑΝΙΚΩΝ, ΗΛΕΚΤΡΟΝΙΚΩΝ ΥΠΟΛΟΓΙΣΤΩΝ ΚΑΙ ΠΛΗΡΟΦΟΡΙΚΗΣ»</h4>
                                     <h4 class="center">ΠΡΑΚΤΙΚΟ ΣΥΝΕΔΡΙΑΣΗΣ ΤΗΣ ΤΡΙΜΕΛΟΥΣ ΕΠΙΤΡΟΠΗΣ</h4>
@@ -523,8 +552,6 @@ async function createPraktiko() {
                                     </table>
 
                                     <p class="signature">Μετά την έγκριση και την απονομή του βαθμού ο κ. <span>${data.prof1_name}</span> παραδίδει το παρόν πρακτικό για την αρχειοθέτησή του.</p>
-                                </div>
-                                `;
                                 </body>
                                 </html>`;
 
