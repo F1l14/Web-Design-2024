@@ -457,6 +457,15 @@ async function createPraktiko() {
         })
         .then(data => {
             if (data.answer) {
+                var gradeSum = 0;
+                data.grades.forEach(grade => {
+                    gradeSum += parseFloat(grade["grade"]);
+                })
+                var finalGrade = gradeSum / 3;
+                finalGrade = finalGrade.toFixed(1);
+
+                console.log(data.professors);
+
                 const praktikoHtml = `
                                <!DOCTYPE html>
                                 <html lang="el">
@@ -496,7 +505,7 @@ async function createPraktiko() {
 
                                     <p>του/της φοιτητή/φοιτήτριας <span>${data.student_name}</span></p>
 
-                                    <p>Η συνεδρίαση πραγματοποιήθηκε στην αίθουσα <span>${data.location}</span> στις <span>${data.date}</span>, ημέρα <span>\${day}</span>, και ώρα <span>\${time}</span>.</p>
+                                    <p>Η συνεδρίαση πραγματοποιήθηκε στην αίθουσα <span>${data.location}</span> στις <span>${data.date}</span>, ημέρα <span>${data.day}</span>, και ώρα <span>${data.time}</span>.</p>
 
                                     <p>Στην συνεδρίαση είναι παρόντα τα μέλη της Τριμελούς Επιτροπής:</p>
                                     <ol>
@@ -519,14 +528,14 @@ async function createPraktiko() {
 
                                     <p>Τα μέλη της Τριμελούς Επιτροπής ψηφίζουν κατά αλφαβητική σειρά:</p>
                                     <ol>
-                                        <li><span>\${vote1}</span></li>
-                                        <li><span>\${vote2}</span></li>
-                                        <li><span>\${vote3}</span></li>
+                                        <li><span>${data.professors[0]["lastname_prof"]} ${data.professors[0]["firstname_prof"]}</span></li>
+                                        <li><span>${data.professors[1]["lastname_prof"]} ${data.professors[1]["firstname_prof"]}</span></li>
+                                        <li><span>${data.professors[2]["lastname_prof"]} ${data.professors[2]["firstname_prof"]}</span></li>
                                     </ol>
 
                                     <p>υπέρ της έγκρισης της Διπλωματικής Εργασίας του φοιτητή επειδή θεωρούν επιστημονικά επαρκή και το περιεχόμενο της ανταποκρίνεται στο θέμα που του δόθηκε.</p>
 
-                                    <p>Μετά την έγκριση, ο εισηγητής κ. <span>${data.prof1_name}</span> μέλη της Τριμελούς Επιτροπής να απονείμουν στον φοιτητή/τρια το βαθμό <span>\${grade}</span>.</p>
+                                    <p>Μετά την έγκριση, ο εισηγητής κ. <span>${data.prof1_name}</span> μέλη της Τριμελούς Επιτροπής να απονείμουν στον φοιτητή/τρια το βαθμό <span>${finalGrade}</span>.</p>
 
                                     <table>
                                         <thead>
@@ -553,7 +562,7 @@ async function createPraktiko() {
 
                                     <p class="signature">Μετά την έγκριση και την απονομή του βαθμού ο κ. <span>${data.prof1_name}</span> παραδίδει το παρόν πρακτικό για την αρχειοθέτησή του.</p>
                                 </body>
-                                </html>`;
+                                `;
 
                 savePraktiko(praktikoHtml);
             } else {

@@ -46,8 +46,29 @@ if (isset($_COOKIE["user"])) {
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
             $data = $result->fetch_assoc();
+
             $resp->location = $data["location"];
-            $resp->date = $data["date"];
+
+            $dayOfWeekNumeric = DateTime::createFromFormat('Y-m-d H:i:s', $data["date"])->format('w');
+
+            $daysOfWeekGreek = [
+                'Κυριακή',  // Sunday
+                'Δευτέρα',  // Monday
+                'Τρίτη',    // Tuesday
+                'Τετάρτη',  // Wednesday
+                'Πέμπτη',   // Thursday
+                'Παρασκευή',// Friday
+                'Σάββατο'   // Saturday
+            ];
+
+            $dayOfWeekGreek = $daysOfWeekGreek[$dayOfWeekNumeric];
+            $resp->day = $dayOfWeekGreek;
+
+            $time = DateTime::createFromFormat('Y-m-d H:i:s', $data["date"])->format('H:i');
+            $resp->time = $time;
+
+            $reformattedDate = DateTime::createFromFormat('Y-m-d H:i:s', $data["date"])->format('d-m-Y');
+            $resp->date = $reformattedDate;
         } else {
             $resp->presentation = false;
             echo json_encode($resp);
@@ -91,7 +112,7 @@ if (isset($_COOKIE["user"])) {
                     LEFT JOIN users c3 ON b3.username = c3.username
                     
                     WHERE diplomatiki.id = ?;
-"               
+"
         );
 
         $stmt->bind_param("i", $diplomatiki);
