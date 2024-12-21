@@ -18,6 +18,7 @@ window.addEventListener("load", professorPrivileges);
 window.addEventListener("load", getDraft);
 window.addEventListener("load", loadAnnouncement);
 window.addEventListener("load", getGradeable);
+window.addEventListener("load", checkPraktiko);
 
 const gradeButton = document.getElementById("enableButton");
 gradeButton.addEventListener("click", setGradeable);
@@ -351,6 +352,7 @@ async function saveGrade(event) {
             if (data.answer) {
                 gradeTable.innerHTML = "";
                 getGrades();
+                checkPraktiko();
                 gradeModal.hide();
             } else {
                 alert("ΠΡΟΒΛΗΜΑ! Προσπαθήστε ξανά");
@@ -408,6 +410,35 @@ async function getGrades() {
         ;
 }
 
+async function checkPraktiko() {
+    fetch(`../scripts/manage/eksetasi/checkPraktiko.php?thesisId=${thesisId}`, {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.graded) {
+                const praktikoDiv = document.getElementById("praktikoDiv");
+                praktikoDiv.hidden = false;
+            }
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
+
 async function createPraktiko() {
     fetch(`../scripts/manage/eksetasi/createPraktikoEksetasis.php?thesisId=${thesisId}`, {
         method: "GET",
@@ -415,7 +446,7 @@ async function createPraktiko() {
     })
         .then(response => {
             return response.text().then(text => {
-                console.log("Raw Response:", text);
+                // console.log("Raw Response:", text);
                 try {
                     return JSON.parse(text); // Try parsing the JSON
                 } catch (error) {
@@ -426,39 +457,9 @@ async function createPraktiko() {
         })
         .then(data => {
             if (data.answer) {
-                console.log("true");
                 const praktikoHtml = `
-                                <!DOCTYPE html>
-                                <html lang="el">
-                                <head>
-                                    <meta charset="UTF-8">
-                                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                                    <title>Πρακτικό Συνεδρίασης</title>
-                                    <style>
-                                        body {
-                                            font-family: Arial, sans-serif;
-                                            line-height: 1.6;
-                                        }
-                                        .center {
-                                            text-align: center;
-                                            margin: 20px 0;
-                                        }
-                                        .signature {
-                                            margin-top: 30px;
-                                        }
-                                        table {
-                                            width: 100%;
-                                            border-collapse: collapse;
-                                            margin: 20px 0;
-                                        }
-                                        th, td {
-                                            border: 1px solid black;
-                                            padding: 10px;
-                                            text-align: left;
-                                        }
-                                    </style>
-                                </head>
-                                <body>
+                               
+                                <div>
                                     <h3 class="center">ΠΡΟΓΡΑΜΜΑ ΣΠΟΥΔΩΝ</h3>
                                     <h4 class="center">«ΤΜΗΜΑΤΟΣ ΜΗΧΑΝΙΚΩΝ, ΗΛΕΚΤΡΟΝΙΚΩΝ ΥΠΟΛΟΓΙΣΤΩΝ ΚΑΙ ΠΛΗΡΟΦΟΡΙΚΗΣ»</h4>
                                     <h4 class="center">ΠΡΑΚΤΙΚΟ ΣΥΝΕΔΡΙΑΣΗΣ ΤΗΣ ΤΡΙΜΕΛΟΥΣ ΕΠΙΤΡΟΠΗΣ</h4>
@@ -522,6 +523,8 @@ async function createPraktiko() {
                                     </table>
 
                                     <p class="signature">Μετά την έγκριση και την απονομή του βαθμού ο κ. <span>${data.prof1_name}</span> παραδίδει το παρόν πρακτικό για την αρχειοθέτησή του.</p>
+                                </div>
+                                `;
                                 </body>
                                 </html>`;
 

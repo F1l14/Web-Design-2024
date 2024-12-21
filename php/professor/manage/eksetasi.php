@@ -107,7 +107,7 @@ updateActivity();
                             <button id="gradeButton" class="pageButton" data-bs-toggle="modal"
                                 data-bs-target="#gradeModal">Βαθμός</button>
                         </div>
-                        <div class="centeredDiv">
+                        <div id="praktikoDiv" class="centeredDiv" hidden>
                             <br><p>Δημιουργία Πρακτικού Εξέτασης:</p>
                             <button id="praktikoButton" class="pageButton">Δημιουργία</button>
                         </div>
