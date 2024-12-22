@@ -110,7 +110,7 @@ updateActivity();
                         <div id="praktikoDiv" class="centeredDiv" hidden>
                             <br>
                             <p>Δημιουργία Πρακτικού Εξέτασης:</p>
-                            <button id="praktikoButton" class="pageButton">Δημιουργία</button>
+                            <button id="praktikoButton" class="pageButton" title="Δημιουργία του πρακτικού εξέτασης σε html και pdf μορφή">Δημιουργία</button>
                         </div>
 
                     </div>
