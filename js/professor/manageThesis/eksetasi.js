@@ -18,6 +18,7 @@ window.addEventListener("load", professorPrivileges);
 window.addEventListener("load", getDraft);
 window.addEventListener("load", loadAnnouncement);
 window.addEventListener("load", getGradeable);
+window.addEventListener("load", praktikoExists);
 
 const gradeButton = document.getElementById("enableButton");
 gradeButton.addEventListener("click", setGradeable);
