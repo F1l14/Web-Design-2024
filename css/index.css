@@ -1,46 +1,34 @@
-
-#startDate, #endDate{
-  width: 11rem;
-}
-#toDate{
-  height: 2.5rem;
-  width: auto;
-  margin-right: 1rem;
-  margin-left: 1rem;
-}
 #calendar {
   position: relative;
   z-index: 1;
   height: 60vh;
-  /* background-color: black; */
-
-}
-
-#diplomatikiTable {
-
-  max-width: 100%;
-  max-height: 100%;
-  display: flow-root;
-  border-radius: 12px;
   overflow-y: auto;
-  overflow-x: hidden;
-
+  overflow-x: auto;
+  margin: 0 !important;
+  /* background-color: black; */
 }
 
 
+#calendarDiv {
+  height: max-content;
+}
 
 
+#calendarDateGroup{
+  margin: 1rem 0;
+  width: 40%;
+}
 
+#mainContainer{
+  padding: 0;
+}
 
-
-
-
-
-
-
-
-
-
+/* only on large screen */
+@media(min-width: 992px) {
+  #loginDiv {
+    padding: 0 3rem;
+  }
+}
 
 #accountCircle {
   display: block;
@@ -60,7 +48,7 @@
   position: relative;
   z-index: 1;
   padding-bottom: 2vh;
-  min-width: 375px;
+  /* min-width: 375px; */
   height: max-content;
 }
 
@@ -73,6 +61,7 @@
 }
 
 
+#mainContainer {}
 
 form button {
   display: flow-root;
