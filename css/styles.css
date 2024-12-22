@@ -281,3 +281,17 @@ textarea.form-control:focus {
   flex-direction: column;
   align-items: center;
 }
+.rounded {
+  display: block;
+  width: max-content;
+  border-radius: 50px !important;
+  min-height: max-content;
+  height: max-content;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  min-width: max-content;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
