@@ -144,7 +144,7 @@ function downloadFile(file) {
     document.body.removeChild(element);
 }
 
-async function praktikoExists() {
+async function praktikoExistsPeratomeni() {
     const gradeDiv = document.getElementById("gradeDiv");
     const gradeButton = document.getElementById("gradeButton");
     fetch(`scripts/manage/praktikoExists.php`, {

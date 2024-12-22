@@ -51,7 +51,7 @@ async function getState() {
                                 content.innerHTML = data;
                                 progressBar(states, 3);
                                 eksetasi();
-                                praktikoExists();
+                                praktikoExistsEksetasi();
                                 
                                 
 
@@ -64,7 +64,7 @@ async function getState() {
                                 content.innerHTML = data;
                                 progressBar(states, 4);
                                 loadDetails();
-                                praktikoExists();
+                                praktikoExistsPeratomeni();
                             })
                         break;
                 }
