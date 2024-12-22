@@ -438,6 +438,54 @@ async function checkPraktiko() {
         ;
 }
 
+async function praktikoExists() {
+    const gradeDiv = document.getElementById("gradeDiv");
+    const gradeButton = document.getElementById("gradeButton");
+    fetch(`../scripts/manage/eksetasi/praktikoExists.php?thesisId=${thesisId}`, {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                const viewPraktikoDiv = document.getElementById("viewPraktikoDiv");
+                viewPraktikoDiv.hidden = false;
+                const htmlButton = document.getElementById("praktikoHtml");
+                const pdfButton = document.getElementById("praktikoPdf");
+
+                htmlButton.disabled = false;
+                pdfButton.disabled = false;
+
+                htmlButton.addEventListener("click", getPraktikoHtml);
+                pdfButton.addEventListener("click", getPraktikoPdf);
+
+
+
+
+            } else {
+                gradeButton.disabled = false;
+                gradeDiv.hidden = false;
+            }
+
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
+
+
 async function createPraktiko() {
     fetch(`../scripts/manage/eksetasi/createPraktikoEksetasis.php?thesisId=${thesisId}`, {
         method: "GET",
