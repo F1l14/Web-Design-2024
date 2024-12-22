@@ -109,18 +109,22 @@ updateActivity();
                         </div>
                         <br>
                         <div id="praktikoDiv" class="centeredDiv" hidden>
-                            
+
                             <p>Δημιουργία Πρακτικού Εξέτασης:</p>
                             <button id="praktikoButton" class="pageButton"
                                 title="Δημιουργία του πρακτικού εξέτασης σε html και pdf μορφή">Δημιουργία</button>
                         </div>
                         <br>
                         <div id="viewPraktikoDiv" class="centeredDiv" hidden>
-                            
+
                             <p>Προβολή Πρακτικού Εξέτασης:</p>
                             <div class="d-flex">
-                                <button id="praktikoHtml" class="pageButton rounded" disabled>html</button>
-                                <button id="praktikoPdf" class="pageButton rounded" disabled>pdf</button>
+                                <button id="praktikoHtml" class="pageButton rounded" disabled> <img
+                                        src="/Web-Design-2024/icons/html.svg" />
+                                </button>
+                                <button id="praktikoPdf" class="pageButton rounded" disabled> <img
+                                        src="/Web-Design-2024/icons/pdf.svg" />
+                                </button>
                             </div>
 
                         </div>
