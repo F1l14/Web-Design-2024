@@ -504,6 +504,42 @@ async function savePraktikoHtml(html) {
         })
         ;
 }
+
+async function savePraktikoPdf(pdfblob) {
+    const formData = new FormData();
+    formData.append("pdf", pdfblob, "praktiko.pdf");
+    fetch(`../scripts/manage/eksetasi/savePraktikoPdf.php?thesisId=${thesisId}`, {
+        method: "POST",
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                console.log("Επιτυχής Αποθήκευση pdf");
+            } else {
+                alert("ΠΡΟΒΛΗΜΑ pdf! Προσπαθήστε Ξανά")
+                console.log(data.error);
+            }
+
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
+
 function calcFinalGrade(grades) {
     var gradeSum = 0;
     grades.forEach(grade => {
@@ -756,6 +792,9 @@ function generatePraktikoPdf(data) {
         }
     };
 
-    // Create and open the PDF
-    pdfMake.createPdf(docDefinition).open();
+    pdfMake.createPdf(docDefinition).getBlob().then((blob) => {
+        savePraktikoPdf(blob);
+    }, err => {
+        console.error(err);
+    });
 }
