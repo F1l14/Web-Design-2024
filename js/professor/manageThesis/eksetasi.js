@@ -18,7 +18,6 @@ window.addEventListener("load", professorPrivileges);
 window.addEventListener("load", getDraft);
 window.addEventListener("load", loadAnnouncement);
 window.addEventListener("load", getGradeable);
-window.addEventListener("load", checkPraktiko);
 
 const gradeButton = document.getElementById("enableButton");
 gradeButton.addEventListener("click", setGradeable);
@@ -130,6 +129,7 @@ async function professorPrivileges() {
                     generateButton.disabled = false;
                     quill.enable();
                     enableGradeTab();
+                    checkPraktiko();
                 }
             }
         })
@@ -352,7 +352,6 @@ async function saveGrade(event) {
             if (data.answer) {
                 gradeTable.innerHTML = "";
                 getGrades();
-                checkPraktiko();
                 gradeModal.hide();
             } else {
                 alert("ΠΡΟΒΛΗΜΑ! Προσπαθήστε ξανά");
