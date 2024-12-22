@@ -22,7 +22,7 @@ if (isset($_GET['thesisId']) && isset($_COOKIE["user"])) {
             }
         }
 
-        $filepath = $praktikaDir . "/" . $diplomatiki . ".html";
+        $filepath = $praktikaDir . "/" . "praktiko.html";
 
         try {
             file_put_contents($filepath, $html);
