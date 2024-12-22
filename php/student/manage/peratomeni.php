@@ -54,8 +54,11 @@
             <h4>Βαθμός</h4>
             <div id="grade">
                 <p>Έντυπο βαθμολόγησης:</p>
-                <button id="gradeFile" class="optionButton " disabled>
-                    <img src="/Web-Design-2024/icons/down.svg" />
+                <button id="peratomeniPraktikoHtml" class="optionButton " disabled>
+                    <img src="/Web-Design-2024/icons/html.svg" />
+                </button>
+                <button id="peratomeniPraktikoPdf" class="optionButton " disabled>
+                    <img src="/Web-Design-2024/icons/pdf.svg" />
                 </button>
             </div>
 
