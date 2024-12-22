@@ -2,28 +2,15 @@ BackEnd
 ========================================================
 -exam
     -15 days after peratwsh or something
--Thesis Details 
-    -Συνοψη
 -settings
     -address number
     -password
 -professor
-    -manageThesis
-        -eksetasi
-            -functionality
     -stats.php
     
--listThesisDetails
-    -fix download button
-    -make edit button that redirect to thesis management
 -login.php
     -calendar search
     
--insertUsers
-    -trigger for username from email
-    
-    
--settings on header
 -url
     hide full path
 
@@ -33,6 +20,7 @@ BackEnd
     -add fields to database
     -split json to students and professors
         -insert students, professors
+    -trigger for username from email
 
 -login.php
     -Token expiration date Trigger
@@ -42,8 +30,17 @@ BackEnd
     -refresh token if website is used
 -professor
     -createThesis.php
+     -manageThesis
+        -eksetasi
+            -functionality
 
-
+-listThesisDetails
+    -fix download button
+    -make edit button that redirect to thesis management
+    -Συνοψη
+    
+    
+-settings on header
     =====
     -red border one at a time
     -is file required?
@@ -58,16 +55,16 @@ BackEnd
     
 FrontEnd
 ========================================================
--loading spinner
--homepage
-    -navigation buttons
--menu
 
--listThesisDetails.php
-    -full FrontEnd
+
 
 ||COMPLETED||
 =============
+-listThesisDetails.php
+    -full FrontEnd
+
+-homepage
+    -navigation buttons
 -professor
     -createThesis.php / createThesisHandler.js 
         -fixed input position and styling
