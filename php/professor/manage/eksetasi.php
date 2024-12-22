@@ -102,10 +102,10 @@ updateActivity();
 
                     </div>
                     <div id="vathmosRow" class="row" hidden>
-                        <div class="centeredDiv">
+                        <div class="centeredDiv" id="gradeDiv" hidden>
                             <p>Καταχώρηση Βαθμού:</p>
                             <button id="gradeButton" class="pageButton" data-bs-toggle="modal"
-                                data-bs-target="#gradeModal">Βαθμός</button>
+                                data-bs-target="#gradeModal" disabled>Βαθμός</button>
                         </div>
                         <br>
                         <div id="praktikoDiv" class="centeredDiv" hidden>
