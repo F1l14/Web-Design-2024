@@ -470,7 +470,8 @@ async function praktikoExists() {
                 htmlButton.addEventListener("click", getPraktikoHtml);
                 pdfButton.addEventListener("click", getPraktikoPdf);
 
-
+                gradeButton.disabled = true;
+                gradeDiv.hidden = true;
 
 
             } else {
@@ -562,8 +563,13 @@ async function createPraktiko() {
             if (data.answer) {
                 const praktikoHtml = generatePraktikoHtml(data);
                 savePraktikoHtml(praktikoHtml);
+                generatePraktikoPdf(data)
+                    .then(() => {
+                        praktikoExists();
+                    });
 
-                generatePraktikoPdf(data);
+
+
             } else {
                 console.log(data.error);
             }
@@ -783,7 +789,7 @@ function generatePraktikoHtml(data) {
     return praktikoHtml;
 }
 
-function generatePraktikoPdf(data) {
+async function generatePraktikoPdf(data) {
     const finalGrade = calcFinalGrade(data.grades);
 
     var grades = [];
