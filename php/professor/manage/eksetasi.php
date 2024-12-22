@@ -107,12 +107,23 @@ updateActivity();
                             <button id="gradeButton" class="pageButton" data-bs-toggle="modal"
                                 data-bs-target="#gradeModal">Βαθμός</button>
                         </div>
+                        <br>
                         <div id="praktikoDiv" class="centeredDiv" hidden>
-                            <br>
+                            
                             <p>Δημιουργία Πρακτικού Εξέτασης:</p>
-                            <button id="praktikoButton" class="pageButton" title="Δημιουργία του πρακτικού εξέτασης σε html και pdf μορφή">Δημιουργία</button>
+                            <button id="praktikoButton" class="pageButton"
+                                title="Δημιουργία του πρακτικού εξέτασης σε html και pdf μορφή">Δημιουργία</button>
                         </div>
+                        <br>
+                        <div id="viewPraktikoDiv" class="centeredDiv" hidden>
+                            
+                            <p>Προβολή Πρακτικού Εξέτασης:</p>
+                            <div class="d-flex">
+                                <button id="praktikoHtml" class="pageButton rounded" disabled>html</button>
+                                <button id="praktikoPdf" class="pageButton rounded" disabled>pdf</button>
+                            </div>
 
+                        </div>
                     </div>
 
                 </div>

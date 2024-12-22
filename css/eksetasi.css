@@ -104,3 +104,7 @@
 #enableGradingDiv{
     height: max-content ;
 }
+
+#praktikoDiv, #viewPraktikoDiv{
+    margin-top: 1rem;
+}
