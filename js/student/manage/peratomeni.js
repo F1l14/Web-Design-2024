@@ -131,10 +131,6 @@ async function loadDetails() {
 
 
 function downloadFile(file) {
-
-    //creating an invisible element
-    console.log('Triggering download for:', file);
-
     let element = document.createElement('a');
     element.setAttribute('href', file);
 
