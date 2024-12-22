@@ -148,15 +148,7 @@ async function praktikoExists() {
 
                 pdfFile.disabled = false;
                 htmlFile.disabled = false;
-
-
-
-
-            } else {
-                gradeButton.disabled = false;
-                gradeDiv.hidden = false;
             }
-
         })
 
         .catch(error => {
