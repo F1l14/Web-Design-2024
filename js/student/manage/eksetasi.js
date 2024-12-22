@@ -416,3 +416,97 @@ async function saveExam(event) {
         })
         ;
 }
+
+async function praktikoExists() {
+    const gradeDiv = document.getElementById("gradeDiv");
+    const gradeButton = document.getElementById("gradeButton");
+    fetch(`scripts/manage/praktikoExists.php`, {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                //  console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                const htmlButton = document.getElementById("eksetasiPraktikoHtml");
+                const pdfButton  = document.getElementById("eksetasiPraktikoPdf");
+
+                htmlButton.disabled = false;
+                pdfButton.disabled = false;
+
+                htmlButton.addEventListener("click", getPraktikoHtml);
+                pdfButton.addEventListener("click", getPraktikoPdf);
+
+            }
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
+
+async function getPraktikoHtml() {
+    fetch(`scripts/manage/getPraktikoHtml.php`, {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                window.open(data.url, '_blank');
+            }
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
+
+async function getPraktikoPdf() {
+    fetch(`scripts/manage/getPraktikoPdf.php`, {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                window.open(data.url, '_blank');
+            }
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}

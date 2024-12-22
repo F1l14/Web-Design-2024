@@ -37,8 +37,11 @@
             <h3>Πρακτικό Εξέτασης</h3>
             <div class="eksetasiDiv">
                 <h5 id="provolh">Προβολή</h5>
-                <button class="pageButton rounded">
-                    <img src="/Web-Design-2024/icons/openNew.svg">
+                <button id="eksetasiPraktikoHtml" class="pageButton rounded" disabled>
+                    <img src="/Web-Design-2024/icons/html.svg">
+                </button>
+                <button id="eksetasiPraktikoPdf" class="pageButton rounded" disabled>
+                    <img src="/Web-Design-2024/icons/pdf.svg">
                 </button>
             </div>
 
