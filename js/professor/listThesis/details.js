@@ -5,7 +5,7 @@ const queryParams = new URLSearchParams(window.location.search);
 const thesisId = queryParams.get('thesisId');
 
 window.addEventListener("load", loadDetails)
-
+window.addEventListener("load", praktikoExists);
 async function loadDetails() {
     fetch(`../scripts/list/thesisDetails.php?thesisId=${thesisId}`, {
         method: "GET",
@@ -64,14 +64,6 @@ async function loadDetails() {
                 }
 
 
-
-                const gradeFilename = data.data[0]["grade_filename"];
-                const gradeFile = document.getElementById("gradeFile");
-                if (gradeFilename) {
-                    gradeFile.disabled = false;
-                    new bootstrap.Tooltip(gradeFile, { title: "IMPLEMENT GRADE FILES" })
-                }
-
                 const status = data.data[0]["status"];
                 const manageButton = document.getElementById("manageButton");
                 const manageDiv = document.getElementById("manageThesisDiv");
@@ -119,6 +111,110 @@ async function loadDetails() {
                 console.log("sqlError on insert thesis table");
             }
 
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
+
+
+async function praktikoExists() {
+    const gradeDiv = document.getElementById("gradeDiv");
+    const gradeButton = document.getElementById("gradeButton");
+    fetch(`../scripts/manage/eksetasi/praktikoExists.php?thesisId=${thesisId}`, {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                const pdfFile = document.getElementById("pdfFile");
+                const htmlFile = document.getElementById("htmlFile");
+
+                pdfFile.addEventListener("click", getPraktikoPdf);
+                htmlFile.addEventListener("click", getPraktikoHtml);
+
+                pdfFile.disabled = false;
+                htmlFile.disabled = false;
+
+
+
+
+            } else {
+                gradeButton.disabled = false;
+                gradeDiv.hidden = false;
+            }
+
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
+
+
+
+async function getPraktikoHtml() {
+    fetch(`../scripts/manage/eksetasi/getPraktikoHtml.php?thesisId=${thesisId}`, {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                window.open(data.url, '_blank');
+            }
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
+
+async function getPraktikoPdf() {
+    fetch(`../scripts/manage/eksetasi/getPraktikoPdf.php?thesisId=${thesisId}`, {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                window.open(data.url, '_blank');
+            }
         })
 
         .catch(error => {
