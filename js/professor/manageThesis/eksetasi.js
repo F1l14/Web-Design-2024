@@ -457,145 +457,10 @@ async function createPraktiko() {
         })
         .then(data => {
             if (data.answer) {
-                var gradeSum = 0;
-                data.grades.forEach(grade => {
-                    gradeSum += parseFloat(grade["grade"]);
-                })
-                var finalGrade = gradeSum / 3;
-                finalGrade = finalGrade.toFixed(1);
-
-                var grades = [];
-                data.grades.forEach(grade => {
-                    if (grade["professor"] == grade["prof1"]) {
-                        grades[0] = {
-                            name: `${grade["lastname"]} ${grade["firstname"]}`,
-                            role: "Επιβλέπων",
-                            grade: grade["grade"],
-                        }
-                    } else if (grade["professor"] == grade["prof2"]) {
-                        grades[1] = {
-                            name: `${grade["lastname"]} ${grade["firstname"]}`,
-                            role: "Μέλος",
-                            grade: grade["grade"],
-                        }
-                    } else if (grade["professor"] == grade["prof3"]) {
-                        grades[2] = {
-                            name: `${grade["lastname"]} ${grade["firstname"]}`,
-                            role: "Μέλος",
-                            grade: grade["grade"],
-                        }
-                    }
-                });
-
-                const praktikoHtml = `
-                               <!DOCTYPE html>
-                                <html lang="el">
-                                <head>
-                                    <meta charset="UTF-8">
-                                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                                    <title>Πρακτικό Συνεδρίασης</title>
-                                    <style>
-                                        body {
-                                            font-family: Arial, sans-serif;
-                                            line-height: 1.6;
-                                        }
-                                        .center {
-                                            text-align: center;
-                                            margin: 20px 0;
-                                        }
-                                        .signature {
-                                            margin-top: 30px;
-                                        }
-                                        table {
-                                            width: 100%;
-                                            border-collapse: collapse;
-                                            margin: 20px 0;
-                                        }
-                                        th, td {
-                                            border: 1px solid black;
-                                            padding: 10px;
-                                            text-align: left;
-                                        }
-                                    </style>
-                                </head>
-                                <body>
-                                    <h3 class="center">ΠΡΟΓΡΑΜΜΑ ΣΠΟΥΔΩΝ</h3>
-                                    <h4 class="center">«ΤΜΗΜΑΤΟΣ ΜΗΧΑΝΙΚΩΝ, ΗΛΕΚΤΡΟΝΙΚΩΝ ΥΠΟΛΟΓΙΣΤΩΝ ΚΑΙ ΠΛΗΡΟΦΟΡΙΚΗΣ»</h4>
-                                    <h4 class="center">ΠΡΑΚΤΙΚΟ ΣΥΝΕΔΡΙΑΣΗΣ ΤΗΣ ΤΡΙΜΕΛΟΥΣ ΕΠΙΤΡΟΠΗΣ</h4>
-                                    <h4 class="center">ΓΙΑ ΤΗΝ ΠΑΡΟΥΣΙΑΣΗ ΚΑΙ ΚΡΙΣΗ ΤΗΣ ΔΙΠΛΩΜΑΤΙΚΗΣ ΕΡΓΑΣΙΑΣ</h4>
-
-                                    <p>του/της φοιτητή/φοιτήτριας <span>${data.student_name}</span></p>
-
-                                    <p>Η συνεδρίαση πραγματοποιήθηκε στην αίθουσα <span>${data.location}</span> στις <span>${data.date}</span>, ημέρα <span>${data.day}</span>, και ώρα <span>${data.time}</span>.</p>
-
-                                    <p>Στην συνεδρίαση είναι παρόντα τα μέλη της Τριμελούς Επιτροπής:</p>
-                                    <ol>
-                                        <li><span>${data.prof1_name}</span></li>
-                                        <li><span>${data.prof2_name}</span></li>
-                                        <li><span>${data.prof3_name}</span></li>
-                                    </ol>
-
-                                    <p>οι οποίοι ορίσθηκαν από την Συνέλευση του ΤΜΗΥΠΗ, στην συνεδρίαση της με αριθμό <span>${data.episimi_anathesi}</span>.</p>
-
-                                    <p>Ο/Η φοιτητής/φοιτήτρια <span>${data.student_name}</span></p>
-                                    <p>της Διπλωματικής του/της Εργασίας, με τίτλο</p>
-                                    <p>«<span>${data.title}</span>»</p>
-
-                                    <p>Στην συνέχεια υποβλήθηκαν ερωτήσεις στον υποψήφιο από τα μέλη της Τριμελούς Επιτροπής και τους άλλους παρευρισκόμενους, προκειμένου να διαμορφώσουν σαφή άποψη για το περιεχόμενο της εργασίας και για την επιστημονική συγκρότηση του μεταπτυχιακού φοιτητή.</p>
-
-                                    <p>Μετά το τέλος της παρουσίασης της εργασίας του και των ερωτήσεων, ο υποψήφιος αποχώρησε.</p>
-
-                                    <p>Ο Επιβλέπων καθηγητής κ. <span>${data.prof1_name}</span> προτείνει στα μέλη της Τριμελούς Επιτροπής να ψηφίσουν για το αν εγκρίνουν ή όχι τη διπλωματική εργασία του υποψηφίου.</p>
-
-                                    <p>Τα μέλη της Τριμελούς Επιτροπής ψηφίζουν κατά αλφαβητική σειρά:</p>
-                                    <ol>
-                                        <li><span>${data.professors[0]["lastname_prof"]} ${data.professors[0]["firstname_prof"]}</span></li>
-                                        <li><span>${data.professors[1]["lastname_prof"]} ${data.professors[1]["firstname_prof"]}</span></li>
-                                        <li><span>${data.professors[2]["lastname_prof"]} ${data.professors[2]["firstname_prof"]}</span></li>
-                                    </ol>
-
-                                    <p>υπέρ της έγκρισης της Διπλωματικής Εργασίας του φοιτητή επειδή θεωρούν επιστημονικά επαρκή και το περιεχόμενο της ανταποκρίνεται στο θέμα που του δόθηκε.</p>
-
-                                    <p>Μετά την έγκριση, ο εισηγητής κ. <span>${data.prof1_name}</span> μέλη της Τριμελούς Επιτροπής να απονείμουν στον φοιτητή/τρια το βαθμό <span>${finalGrade}</span>.</p>
-
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>ΟΝΟΜΑΤΕΠΩΝΥΜΟ</th>
-                                                <th>ΙΔΙΟΤΗΤΑ</th>
-                                                <th>ΒΑΘΜΟΣ</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><span>${grades[0].name}</span></td>
-                                                <td><span>${grades[0].role}</span></td>
-                                                <td><span>${grades[0].grade}</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td><span>${grades[1].name}</span></td>
-                                                <td><span>${grades[1].role}</span></td>
-                                                <td><span>${grades[1].grade}</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td><span>${grades[2].name}</span></td>
-                                                <td><span>${grades[2].role}</span></td>
-                                                <td><span>${grades[2].grade}</span></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                    <p class="signature">Μετά την έγκριση και την απονομή του βαθμού ο κ. <span>${data.prof1_name}</span> παραδίδει το παρόν πρακτικό για την αρχειοθέτησή του.</p>
-                                </body>
-                                `;
-
-
-
+                const praktikoHtml = generatePraktikoHtml(data);
+                savePraktikoHtml(praktikoHtml);
 
                 generatePraktikoPdf(data);
-
-
-                savePraktiko(praktikoHtml);
             } else {
                 console.log(data.error);
             }
@@ -607,8 +472,8 @@ async function createPraktiko() {
         ;
 }
 
-async function savePraktiko(html) {
-    fetch(`../scripts/manage/eksetasi/savePraktiko.php?thesisId=${thesisId}`, {
+async function savePraktikoHtml(html) {
+    fetch(`../scripts/manage/eksetasi/savePraktikoHtml.php?thesisId=${thesisId}`, {
         method: "POST",
         body: JSON.stringify({ content: html }),
         headers: { 'Accept': 'application/json' }
@@ -626,7 +491,7 @@ async function savePraktiko(html) {
         })
         .then(data => {
             if (data.answer) {
-                console.log("Επιτυχής Αποθήκευση");
+                console.log("Επιτυχής Αποθήκευση HTML");
             } else {
                 alert("ΠΡΟΒΛΗΜΑ! Προσπαθήστε Ξανά")
                 console.log(data.error);
@@ -639,14 +504,148 @@ async function savePraktiko(html) {
         })
         ;
 }
-
-function generatePraktikoPdf(data) {
+function calcFinalGrade(grades) {
     var gradeSum = 0;
-    data.grades.forEach(grade => {
+    grades.forEach(grade => {
         gradeSum += parseFloat(grade["grade"]);
     });
     var finalGrade = gradeSum / 3;
     finalGrade = finalGrade.toFixed(1);
+    return finalGrade;
+}
+
+
+function generatePraktikoHtml(data) {
+    const finalGrade = calcFinalGrade(data.grades);
+    var grades = [];
+    data.grades.forEach(grade => {
+        if (grade["professor"] == grade["prof1"]) {
+            grades[0] = {
+                name: `${grade["lastname"]} ${grade["firstname"]}`,
+                role: "Επιβλέπων",
+                grade: grade["grade"],
+            }
+        } else if (grade["professor"] == grade["prof2"]) {
+            grades[1] = {
+                name: `${grade["lastname"]} ${grade["firstname"]}`,
+                role: "Μέλος",
+                grade: grade["grade"],
+            }
+        } else if (grade["professor"] == grade["prof3"]) {
+            grades[2] = {
+                name: `${grade["lastname"]} ${grade["firstname"]}`,
+                role: "Μέλος",
+                grade: grade["grade"],
+            }
+        }
+    });
+
+    const praktikoHtml = `
+                   <!DOCTYPE html>
+                    <html lang="el">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>Πρακτικό Συνεδρίασης</title>
+                        <style>
+                            body {
+                                font-family: Arial, sans-serif;
+                                line-height: 1.6;
+                            }
+                            .center {
+                                text-align: center;
+                                margin: 20px 0;
+                            }
+                            .signature {
+                                margin-top: 30px;
+                            }
+                            table {
+                                width: 100%;
+                                border-collapse: collapse;
+                                margin: 20px 0;
+                            }
+                            th, td {
+                                border: 1px solid black;
+                                padding: 10px;
+                                text-align: left;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <h3 class="center">ΠΡΟΓΡΑΜΜΑ ΣΠΟΥΔΩΝ</h3>
+                        <h4 class="center">«ΤΜΗΜΑΤΟΣ ΜΗΧΑΝΙΚΩΝ, ΗΛΕΚΤΡΟΝΙΚΩΝ ΥΠΟΛΟΓΙΣΤΩΝ ΚΑΙ ΠΛΗΡΟΦΟΡΙΚΗΣ»</h4>
+                        <h4 class="center">ΠΡΑΚΤΙΚΟ ΣΥΝΕΔΡΙΑΣΗΣ ΤΗΣ ΤΡΙΜΕΛΟΥΣ ΕΠΙΤΡΟΠΗΣ</h4>
+                        <h4 class="center">ΓΙΑ ΤΗΝ ΠΑΡΟΥΣΙΑΣΗ ΚΑΙ ΚΡΙΣΗ ΤΗΣ ΔΙΠΛΩΜΑΤΙΚΗΣ ΕΡΓΑΣΙΑΣ</h4>
+
+                        <p>του/της φοιτητή/φοιτήτριας <span>${data.student_name}</span></p>
+
+                        <p>Η συνεδρίαση πραγματοποιήθηκε στην αίθουσα <span>${data.location}</span> στις <span>${data.date}</span>, ημέρα <span>${data.day}</span>, και ώρα <span>${data.time}</span>.</p>
+
+                        <p>Στην συνεδρίαση είναι παρόντα τα μέλη της Τριμελούς Επιτροπής:</p>
+                        <ol>
+                            <li><span>${data.prof1_name}</span></li>
+                            <li><span>${data.prof2_name}</span></li>
+                            <li><span>${data.prof3_name}</span></li>
+                        </ol>
+
+                        <p>οι οποίοι ορίσθηκαν από την Συνέλευση του ΤΜΗΥΠΗ, στην συνεδρίαση της με αριθμό <span>${data.episimi_anathesi}</span>.</p>
+
+                        <p>Ο/Η φοιτητής/φοιτήτρια <span>${data.student_name}</span></p>
+                        <p>της Διπλωματικής του/της Εργασίας, με τίτλο</p>
+                        <p>«<span>${data.title}</span>»</p>
+
+                        <p>Στην συνέχεια υποβλήθηκαν ερωτήσεις στον υποψήφιο από τα μέλη της Τριμελούς Επιτροπής και τους άλλους παρευρισκόμενους, προκειμένου να διαμορφώσουν σαφή άποψη για το περιεχόμενο της εργασίας και για την επιστημονική συγκρότηση του μεταπτυχιακού φοιτητή.</p>
+
+                        <p>Μετά το τέλος της παρουσίασης της εργασίας του και των ερωτήσεων, ο υποψήφιος αποχώρησε.</p>
+
+                        <p>Ο Επιβλέπων καθηγητής κ. <span>${data.prof1_name}</span> προτείνει στα μέλη της Τριμελούς Επιτροπής να ψηφίσουν για το αν εγκρίνουν ή όχι τη διπλωματική εργασία του υποψηφίου.</p>
+
+                        <p>Τα μέλη της Τριμελούς Επιτροπής ψηφίζουν κατά αλφαβητική σειρά:</p>
+                        <ol>
+                            <li><span>${data.professors[0]["lastname_prof"]} ${data.professors[0]["firstname_prof"]}</span></li>
+                            <li><span>${data.professors[1]["lastname_prof"]} ${data.professors[1]["firstname_prof"]}</span></li>
+                            <li><span>${data.professors[2]["lastname_prof"]} ${data.professors[2]["firstname_prof"]}</span></li>
+                        </ol>
+
+                        <p>υπέρ της έγκρισης της Διπλωματικής Εργασίας του φοιτητή επειδή θεωρούν επιστημονικά επαρκή και το περιεχόμενο της ανταποκρίνεται στο θέμα που του δόθηκε.</p>
+
+                        <p>Μετά την έγκριση, ο εισηγητής κ. <span>${data.prof1_name}</span> μέλη της Τριμελούς Επιτροπής να απονείμουν στον φοιτητή/τρια το βαθμό <span>${finalGrade}</span>.</p>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ΟΝΟΜΑΤΕΠΩΝΥΜΟ</th>
+                                    <th>ΙΔΙΟΤΗΤΑ</th>
+                                    <th>ΒΑΘΜΟΣ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span>${grades[0].name}</span></td>
+                                    <td><span>${grades[0].role}</span></td>
+                                    <td><span>${grades[0].grade}</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span>${grades[1].name}</span></td>
+                                    <td><span>${grades[1].role}</span></td>
+                                    <td><span>${grades[1].grade}</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span>${grades[2].name}</span></td>
+                                    <td><span>${grades[2].role}</span></td>
+                                    <td><span>${grades[2].grade}</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p class="signature">Μετά την έγκριση και την απονομή του βαθμού ο κ. <span>${data.prof1_name}</span> παραδίδει το παρόν πρακτικό για την αρχειοθέτησή του.</p>
+                    </body>
+                    `;
+    return praktikoHtml;
+}
+
+function generatePraktikoPdf(data) {
+    const finalGrade = calcFinalGrade(data.grades);
 
     var grades = [];
     data.grades.forEach(grade => {
