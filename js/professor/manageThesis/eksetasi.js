@@ -11,7 +11,7 @@ const generateButton = document.getElementById("generatePresentation");
 generateButton.addEventListener("click", generateAnnouncement);
 
 const savePresentationButton = document.getElementById("savePresentation");
-savePresentationButton.addEventListener("click", saveAnnouncement)
+savePresentationButton.addEventListener("click", checkAnnouncement);
 
 
 window.addEventListener("load", professorPrivileges);
@@ -213,6 +213,39 @@ async function loadAnnouncement() {
         })
         ;
 }
+
+
+async function checkAnnouncement(){
+    fetch(`../scripts/manage/eksetasi/checkAnnouncement.php?thesisId=${thesisId}`, {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                saveAnnouncement();
+            } else {
+                alert("ΠΡΟΒΛΗΜΑ! Έχει παρέλθει το επιτρεπόμενο διάστημα αποθήκευσης");
+            }
+
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
+
 
 async function saveAnnouncement() {
     const html = quill.root.innerHTML;
