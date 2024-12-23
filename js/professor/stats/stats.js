@@ -118,6 +118,46 @@
         }
     });
 })();
+(async function(){
+    let epivlepon_plithos=0;
+    let epitroph_plithos=0;
+    const data = await getPlithosData();
+    if(data.epivlepon !== undefined){epivlepon_plithos=data.epivlepon["plithos"]};
+    if(data.epitroph!==undefined){epitroph_plithos=data.epitroph["plithos"]};
+    const plithos = document.getElementById("plithosCanvas");
+    new window.Chart(plithos, {
+        type: 'bar',
+
+        data: {
+            labels: [''],
+            datasets: [{
+                label: 'Επιβλέπων',
+                data: [epivlepon_plithos],
+                borderWidth: 1
+            },
+            {
+                label: 'Επιτροπή',
+                data: [epitroph_plithos],
+                borderWidth: 1
+            }
+            ]
+        },
+        options: {
+            
+            plugins: {
+                title: {
+                    display: true,
+                    text: "Πλήθος Περατωμένων"
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+})();
 
 async function getXronosData() {
     return fetch(`scripts/stats/getXronos.php`, {
@@ -164,7 +204,6 @@ async function getVathmosData() {
         })
         .then(data => {
             if (data.answer) {
-                console.log(data.epivlepon);
                 return data;
             }
         })
@@ -174,9 +213,30 @@ async function getVathmosData() {
         })
         ;
 }
-async function getVathmosData() {
-
-}
 async function getPlithosData() {
+    return fetch(`scripts/stats/getPlithos.php`, {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                return data;
+            }
+        })
 
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
 }
