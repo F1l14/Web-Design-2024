@@ -35,7 +35,8 @@ updateActivity();
 
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active blurTab" aria-current="page" data-bs-toggle="tab" href="#xronos">Χρόνος Περάτωσης</a>
+                    <a class="nav-link active blurTab" aria-current="page" data-bs-toggle="tab" href="#xronos">Χρόνος
+                        Περάτωσης</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#vathmos" data-bs-toggle="tab">Βαθμός</a>
@@ -51,21 +52,21 @@ updateActivity();
             <div class="tab-content w-100 container" id="TabContent">
                 <div class="tab-pane fade show active" id="xronos" role="tabpanel" aria-labelledby="keimeno-tab">
 
-                    <div>
+                    <div class="chart-container" style="position: relative; height:100%; width:100%">
                         <canvas id="xronosCanvas"></canvas>
                     </div>
 
                 </div>
                 <div class="tab-pane fade" id="vathmos" role="tabpanel" aria-labelledby="anakoinwsh-tab">
 
-                    <div>
+                    <div class="chart-container" style="position: relative; height:100%; width:100%">
                         <canvas id="vathmosCanvas"></canvas>
                     </div>
                 </div>
 
                 <div class="tab-pane fade" id="plithos" role="tabpanel" aria-labelledby="vathmos-tab">
 
-                    <div>
+                    <div class="chart-container" style="position: relative; height:100%; width:100%">
                         <canvas id="plithosCanvas"></canvas>
                     </div>
 
