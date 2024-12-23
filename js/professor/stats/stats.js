@@ -5,9 +5,19 @@
     let epivlepon_avg;
     let epitroph_avg;
     const data = await getXronosData();
-    epivlepon_avg = data.epivlepon.reduce((a, b) => a + b) / data.epivlepon.length;
-    epitroph_avg = data.epitroph.reduce((a, b) => a + b) / data.epitroph.length;
-    console.log(epivlepon_avg, epitroph_avg);
+    if (data.epivlepon !== undefined) {
+        epivlepon_avg = data.epivlepon.reduce((a, b) => a + b) / data.epivlepon.length;
+    }
+    else {
+        epivlepon_avg = 0;
+    }
+
+    if (data.epitroph !== undefined) {
+        epitroph_avg = data.epitroph.reduce((a, b) => a + b) / data.epitroph.length;
+    }
+    else {
+        epitroph_avg = 0;
+    }
     const xronos = document.getElementById('xronosCanvas');
     new window.Chart(xronos, {
         type: 'bar',
@@ -28,21 +38,21 @@
         },
         options: {
             plugins: {
-                title:{
+                title: {
                     display: true,
-                    text:"Μέσος Χρόνος Περάτωσης"
+                    text: "Μέσος Χρόνος Περάτωσης"
                 },
                 tooltip: {
                     callbacks: {
-                        label: function(context) {
+                        label: function (context) {
                             var label = context.dataset.label || '';
-    
+
                             if (label) {
                                 label += ': ';
                             }
                             if (context.parsed.y !== null) {
                                 label += context.parsed.y;
-                                label+= " ημέρες";
+                                label += " ημέρες";
                             }
                             return label;
                         }
