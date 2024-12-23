@@ -1,82 +1,54 @@
 
 
-const year = [2020, 2021, 2022, 2023, 2024];
-const values1 = [7.1, 8 , 3 ,4, 5];
-const values2 = [8, 8 , 3 ,4, 5];
-(async function(){
-    getXronosData();
+
+(async function () {
+    let epivlepon_avg;
+    let epitroph_avg;
+    const data = await getXronosData();
+    epivlepon_avg = data.epivlepon.reduce((a, b) => a + b) / data.epivlepon.length;
+    epitroph_avg = data.epitroph.reduce((a, b) => a + b) / data.epitroph.length;
+    console.log(epivlepon_avg, epitroph_avg);
     const xronos = document.getElementById('xronosCanvas');
     new window.Chart(xronos, {
         type: 'bar',
+
         data: {
-            labels: year,
+            labels: [''],
             datasets: [{
                 label: 'Επιβλέπων',
-                data: values1,
+                data: [epivlepon_avg],
                 borderWidth: 1
             },
             {
                 label: 'Επιτροπή',
-                data: values2,
+                data: [epitroph_avg],
                 borderWidth: 1
             }
-        ]
+            ]
         },
         options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+            plugins: {
+                title:{
+                    display: true,
+                    text:"Μέσος Χρόνος Περάτωσης"
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            var label = context.dataset.label || '';
+    
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed.y !== null) {
+                                label += context.parsed.y;
+                                label+= " ημέρες";
+                            }
+                            return label;
+                        }
+                    }
                 }
-            }
-        }
-    });
-})();
-(async function(){
-    const vathmos = document.getElementById('vathmosCanvas');
-    new window.Chart(vathmos, {
-        type: 'bar',
-        data: {
-            labels: year,
-            datasets: [{
-                label: 'Επιβλέπων',
-                data: values1,
-                borderWidth: 1
             },
-            {
-                label: 'Επιτροπή',
-                data: values2,
-                borderWidth: 1
-            }
-        ]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-})();
-(async function(){
-    const plithos = document.getElementById('plithosCanvas');
-    new window.Chart(plithos, {
-        type: 'bar',
-        data: {
-            labels: year,
-            datasets: [{
-                label: 'Επιβλέπων',
-                data: values1,
-                borderWidth: 1
-            },
-            {
-                label: 'Επιτροπή',
-                data: values2,
-                borderWidth: 1
-            }
-        ]
-        },
-        options: {
             scales: {
                 y: {
                     beginAtZero: true
@@ -88,12 +60,15 @@ const values2 = [8, 8 , 3 ,4, 5];
 
 async function getXronosData(){
     fetch(`scripts/stats/getXronos.php`, {
+
+async function getXronosData() {
+    return fetch(`scripts/stats/getXronos.php`, {
         method: "GET",
         headers: { 'Accept': 'application/json' }
     })
         .then(response => {
             return response.text().then(text => {
-                // console.log("Raw Response:", text);
+                console.log("Raw Response:", text);
                 try {
                     return JSON.parse(text); // Try parsing the JSON
                 } catch (error) {
@@ -104,7 +79,8 @@ async function getXronosData(){
         })
         .then(data => {
             if (data.answer) {
-               console.log(data.data);
+                console.log(data.epivlepon);
+                return data;
             }
         })
 
@@ -113,9 +89,9 @@ async function getXronosData(){
         })
         ;
 }
-async function getVathmosData(){
+async function getVathmosData() {
 
 }
-async function getPlithosData(){
+async function getPlithosData() {
 
 }
