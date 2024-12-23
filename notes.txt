@@ -5,9 +5,7 @@ BackEnd
 -settings
     -address number
     -password
--professor
-    -stats.php
-    
+  
 -login.php
     -calendar search
     
@@ -16,6 +14,9 @@ BackEnd
 
 ||COMPLETED||
 =============
+-professor
+    -stats.php
+  
 -insertUsers
     -add fields to database
     -split json to students and professors
