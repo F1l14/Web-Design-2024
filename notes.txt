@@ -1,19 +1,28 @@
 BackEnd
 ========================================================
--exam
-    -15 days after peratwsh or something
 -settings
-    -address number
     -password
   
 -login.php
-    -calendar search
+    -calendar table
+        -datetime instead of date
+        -export
+        -announcement Modal
+        -search
     
 -url
     hide full path
 
+-server
+    -cache settings
+
 ||COMPLETED||
 =============
+-settings
+    -letter on address
+-exam
+    -15 days after and 2 months before
+    -announcement at least 5 days before
 -professor
     -stats.php
   
