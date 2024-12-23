@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 18, 2024 at 08:32 PM
+-- Generation Time: Dec 23, 2024 at 05:39 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -44,6 +44,7 @@ INSERT INTO `address` (`username`, `city`, `street`, `number`, `zipcode`) VALUES
 ('apantelidis', 'Patras', 'Karaoli & Dimitriou', '5', 26222),
 ('apapadopoulos', 'Patras', 'Karaoli & Dimitriou', '5', 26222),
 ('danagnostopoulos', 'Patras', 'Karaoli & Dimitriou', '5', 26222),
+('dsklav', 'Peristeri', 'Filippiadow', '43', 12133),
 ('epapakostantinou', 'Patras', 'Karaoli & Dimitriou', '5', 26222),
 ('gstasinopoulos', 'Patras', 'Karaoli & Dimitriou', '5', 26222),
 ('kavram', 'Patras', 'Karaoli & Dimitriou', '5', 26222),
@@ -100,7 +101,7 @@ CREATE TABLE `diplomatiki` (
   `status` enum('energi','eksetasi','peratomeni','akiromeni','anathesi','diathesimi') NOT NULL DEFAULT 'diathesimi',
   `filename` varchar(255) DEFAULT NULL,
   `student_document` varchar(255) DEFAULT NULL,
-  `grade_filename` varchar(255) DEFAULT NULL,
+  `final_grade` decimal(3,1) DEFAULT NULL,
   `gradeable` tinyint(1) NOT NULL DEFAULT 0,
   `episimi_anathesi` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -109,13 +110,17 @@ CREATE TABLE `diplomatiki` (
 -- Dumping data for table `diplomatiki`
 --
 
-INSERT INTO `diplomatiki` (`id`, `title`, `description`, `professor`, `student`, `url`, `status`, `filename`, `student_document`, `grade_filename`, `gradeable`, `episimi_anathesi`) VALUES
-(234, 'test2', 'test2', 'apapadopoulos', 'up0000030', 'gsdffadsfads', 'eksetasi', NULL, NULL, 'fadsfadsf', 0, NULL),
+INSERT INTO `diplomatiki` (`id`, `title`, `description`, `professor`, `student`, `url`, `status`, `filename`, `student_document`, `final_grade`, `gradeable`, `episimi_anathesi`) VALUES
+(234, 'test2', 'test2', 'apapadopoulos', 'up0000030', 'gsdffadsfads', 'eksetasi', NULL, NULL, NULL, 0, NULL),
 (235, 'test3', 'test3', 'mkostopoulos', 'up0000013', 'a', 'eksetasi', NULL, 'sqlNotes.odt', NULL, 0, '1/10-12-2024'),
 (236, 'energi', 'energi', 'apapadopoulos', 'up0000024', NULL, 'energi', NULL, NULL, NULL, 0, '3/10-12-2024'),
 (239, 'Ndbf', 'Nebrr', 'kavram', NULL, NULL, 'diathesimi', NULL, NULL, NULL, 0, NULL),
 (240, 'qwert', 'qewrt', 'apapadopoulos', NULL, NULL, 'diathesimi', 'ekfonisi_web.pdf', NULL, NULL, 0, NULL),
-(242, 'qwert2', 'qwert2', 'apapadopoulos', 'up0000011', 'www.google.com', 'eksetasi', 'ekfonisi_web.pdf', 'kd-trees-sel-79-range.pdf', NULL, 0, NULL);
+(242, 'qwert2', 'qwert2', 'apapadopoulos', 'up0000011', 'www.google.com', 'eksetasi', 'ekfonisi_web.pdf', 'kd-trees-sel-79-range.pdf', NULL, 1, NULL),
+(245, 'mydiplomcatiki', 'thisisblabhab', 'danagnostopoulos', 'up0000013', 'dhjfgj', 'eksetasi', 'Typologio-D.E..pdf', NULL, 5.4, 1, '46/10-12-2024'),
+(246, 'DateDiff diplomatiki', 'asdfasdf', 'danagnostopoulos', 'up0000026', NULL, 'peratomeni', NULL, NULL, NULL, 1, NULL),
+(247, 'date vasilis', 'ffadsfas', 'apapadopoulos', 'up0000022', NULL, 'energi', NULL, NULL, NULL, 0, NULL),
+(248, 'MySecondDopliasd;flkj', 'asdfasdf', 'danagnostopoulos', 'up0000027', NULL, 'peratomeni', NULL, NULL, NULL, 1, NULL);
 
 --
 -- Triggers `diplomatiki`
@@ -183,101 +188,21 @@ CREATE TABLE `diplomatiki_log` (
 --
 
 INSERT INTO `diplomatiki_log` (`id`, `date`, `new_state`, `diplomatiki`) VALUES
-(209, '2024-12-05 22:35:50', 'diathesimi', 234),
-(211, '2024-12-05 22:36:04', 'anathesi', 234),
-(213, '2024-12-05 22:39:49', 'energi', 234),
-(214, '2024-12-05 22:43:20', 'diathesimi', 235),
-(215, '2024-12-05 22:43:29', 'anathesi', 235),
-(216, '2024-12-05 22:45:06', 'energi', 235),
-(217, '2024-12-05 22:48:00', 'eksetasi', 235),
-(218, '2024-12-05 22:48:01', 'eksetasi', 234),
-(219, '2024-12-09 22:43:10', 'diathesimi', 236),
-(220, '2024-12-09 22:43:16', 'anathesi', 236),
-(221, '2024-12-09 22:43:48', 'energi', 236),
-(222, '2024-12-09 23:43:44', 'peratomeni', 234),
-(223, '2024-12-09 23:47:56', 'energi', 234),
-(224, '2024-12-09 23:48:00', 'eksetasi', 234),
-(225, '2024-12-09 23:48:08', 'peratomeni', 234),
-(226, '2024-12-09 23:48:20', 'eksetasi', 234),
-(227, '2024-12-09 23:48:26', 'peratomeni', 234),
-(228, '2024-12-09 23:49:09', 'energi', 234),
-(229, '2024-12-09 23:49:11', 'eksetasi', 234),
-(230, '2024-12-09 23:49:14', 'peratomeni', 234),
-(231, '2024-12-09 23:49:56', 'eksetasi', 234),
-(232, '2024-12-09 23:50:22', 'peratomeni', 234),
-(233, '2024-12-09 23:55:38', 'eksetasi', 234),
-(234, '2024-12-10 00:03:53', 'energi', 235),
-(236, '2022-12-14 19:31:14', 'energi', 236),
-(238, '2024-12-10 19:36:12', 'energi', 236),
-(240, '2024-12-10 19:38:02', 'akiromeni', 236),
-(242, '2024-12-10 19:38:59', 'energi', 236),
-(243, '2024-12-10 19:39:11', 'akiromeni', 236),
-(246, '2024-12-10 19:40:27', 'energi', 236),
-(249, '2024-12-10 21:01:50', 'akiromeni', 236),
-(250, '2024-12-10 21:02:01', 'energi', 236),
-(255, '2024-12-10 21:16:45', 'akiromeni', 236),
-(256, '2024-12-10 21:17:00', 'energi', 236),
-(257, '2024-12-10 21:21:11', 'akiromeni', 236),
-(258, '2024-12-10 21:22:03', 'energi', 236),
-(259, '2024-12-11 17:44:57', 'akiromeni', 236),
-(260, '2024-12-11 17:52:14', 'energi', 236),
-(261, '2024-12-11 17:52:26', 'akiromeni', 236),
-(262, '2024-12-11 17:53:15', 'energi', 236),
-(263, '2024-12-11 17:53:43', 'akiromeni', 236),
-(264, '2024-12-11 17:54:29', 'energi', 236),
-(265, '2024-12-11 17:54:46', 'akiromeni', 236),
-(266, '2024-12-11 17:55:35', 'energi', 236),
-(269, '2024-12-11 22:54:35', 'diathesimi', 239),
-(270, '2024-12-11 23:34:23', 'diathesimi', 240),
-(271, '2024-12-12 17:15:04', 'anathesi', 240),
-(272, '2024-12-13 00:08:00', 'diathesimi', 240),
-(273, '2024-12-13 17:55:09', 'anathesi', 240),
-(274, '2024-12-13 18:04:06', 'diathesimi', 240),
-(275, '2024-12-13 18:04:25', 'anathesi', 240),
-(278, '2024-12-13 18:05:02', 'diathesimi', 240),
-(279, '2024-12-13 18:05:33', 'anathesi', 240),
-(280, '2024-12-13 18:06:31', 'diathesimi', 240),
-(281, '2024-12-13 18:06:53', 'diathesimi', 242),
-(282, '2024-12-13 18:07:15', 'anathesi', 242),
-(289, '2024-12-13 20:08:03', 'anathesi', 242),
-(290, '2024-12-13 20:08:08', 'energi', 242),
-(291, '2024-12-14 20:26:32', 'anathesi', 242),
-(292, '2024-12-14 20:28:06', 'energi', 242),
-(293, '2024-12-14 21:20:08', 'anathesi', 242),
-(294, '2024-12-14 22:07:33', 'energi', 242),
-(295, '2024-12-14 22:07:43', 'anathesi', 242),
-(296, '2024-12-14 23:17:53', 'anathesi', 235),
-(297, '2024-12-15 20:29:25', 'energi', 235),
-(298, '2024-12-15 20:30:05', 'energi', 242),
-(299, '2024-12-15 20:32:24', 'anathesi', 242),
-(300, '2024-12-15 22:13:55', 'energi', 242),
-(301, '2024-12-15 22:14:22', 'anathesi', 242),
-(302, '2024-12-15 22:21:34', 'eksetasi', 235),
-(303, '2024-12-15 22:23:58', 'energi', 242),
-(304, '2024-12-15 22:27:15', 'energi', 235),
-(305, '2024-12-16 03:13:42', 'peratomeni', 242),
-(306, '2024-12-16 03:17:36', 'energi', 242),
-(307, '2024-12-16 03:17:54', 'peratomeni', 242),
-(308, '2024-12-16 03:30:02', 'anathesi', 242),
-(309, '2024-12-16 03:30:29', 'peratomeni', 242),
-(310, '2024-12-16 04:43:40', 'energi', 242),
-(311, '2024-12-16 04:43:50', 'anathesi', 242),
-(312, '2024-12-16 04:45:04', 'peratomeni', 242),
-(313, '2024-12-16 05:55:25', 'anathesi', 242),
-(314, '2024-12-16 06:07:54', 'peratomeni', 242),
-(315, '2024-12-16 14:32:43', 'eksetasi', 235),
-(316, '2024-12-16 14:59:34', 'energi', 242),
-(317, '2024-12-16 15:00:09', 'eksetasi', 242),
-(318, '2024-12-16 21:17:35', 'anathesi', 242),
-(319, '2024-12-16 21:21:28', 'energi', 242),
-(320, '2024-12-16 21:21:45', 'eksetasi', 242),
-(323, '2024-12-16 23:31:35', 'peratomeni', 242),
-(324, '2024-12-16 23:33:47', 'anathesi', 242),
-(325, '2024-12-17 15:50:50', 'eksetasi', 242),
-(326, '2024-12-17 15:54:57', 'energi', 242),
-(327, '2024-12-17 15:55:31', 'eksetasi', 242),
-(328, '2024-12-18 17:39:00', 'energi', 234),
-(329, '2024-12-18 17:39:06', 'eksetasi', 234);
+(347, '2024-12-23 15:49:06', 'diathesimi', 246),
+(348, '2024-12-23 15:49:16', 'anathesi', 246),
+(349, '2020-12-15 15:49:59', 'energi', 246),
+(350, '2024-12-23 15:50:39', 'eksetasi', 246),
+(351, '2024-12-23 15:53:03', 'peratomeni', 246),
+(352, '2024-12-23 16:16:13', 'diathesimi', 247),
+(353, '2024-12-23 16:16:24', 'anathesi', 247),
+(354, '2024-12-23 16:16:26', 'diathesimi', 248),
+(355, '2024-12-23 16:16:38', 'anathesi', 248),
+(356, '2024-12-11 16:16:48', 'energi', 247),
+(357, '2024-12-01 16:17:06', 'energi', 248),
+(358, '2024-12-23 16:17:08', 'peratomeni', 247),
+(359, '2024-12-23 16:17:22', 'eksetasi', 248),
+(360, '2024-12-23 16:17:51', 'peratomeni', 248),
+(361, '2024-12-23 16:59:38', 'energi', 247);
 
 -- --------------------------------------------------------
 
@@ -302,7 +227,11 @@ INSERT INTO `epitroph` (`diplomatiki`, `prof1`, `prof2`, `prof3`) VALUES
 (236, 'apapadopoulos', 'danagnostopoulos', 'skaragiannis'),
 (239, 'kavram', NULL, NULL),
 (240, 'apapadopoulos', NULL, NULL),
-(242, 'apapadopoulos', 'danagnostopoulos', 'gstasinopoulos');
+(242, 'apapadopoulos', 'danagnostopoulos', 'gstasinopoulos'),
+(245, 'danagnostopoulos', 'apapadopoulos', 'mkostopoulos'),
+(246, 'danagnostopoulos', 'apapadopoulos', 'gstasinopoulos'),
+(247, 'apapadopoulos', NULL, 'kavram'),
+(248, 'danagnostopoulos', 'apapadopoulos', 'dsklav');
 
 --
 -- Triggers `epitroph`
@@ -419,9 +348,25 @@ INSERT INTO `epitroph_app_log` (`id`, `date`, `new_state`, `diplomatiki`, `invit
 CREATE TABLE `evaluation` (
   `diplomatiki` int(7) NOT NULL,
   `professor` varchar(30) NOT NULL,
-  `datetime` datetime NOT NULL,
+  `datetime` datetime NOT NULL DEFAULT current_timestamp(),
   `grade` decimal(3,1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `evaluation`
+--
+
+INSERT INTO `evaluation` (`diplomatiki`, `professor`, `datetime`, `grade`) VALUES
+(242, 'apapadopoulos', '2024-12-22 12:43:04', 6.0),
+(242, 'danagnostopoulos', '2024-12-22 12:42:58', 4.0),
+(242, 'gstasinopoulos', '2024-12-22 13:36:39', 7.0),
+(245, 'apapadopoulos', '2024-12-22 11:09:19', 0.5),
+(245, 'danagnostopoulos', '2024-12-20 21:49:36', 5.7),
+(245, 'mkostopoulos', '2024-12-21 11:03:24', 10.0),
+(246, 'apapadopoulos', '2024-12-23 15:51:09', 0.5),
+(246, 'danagnostopoulos', '2024-12-23 15:51:03', 1.5),
+(246, 'gstasinopoulos', '2024-12-23 15:51:30', 7.0),
+(248, 'danagnostopoulos', '2024-12-23 16:17:30', 5.0);
 
 -- --------------------------------------------------------
 
@@ -441,7 +386,9 @@ CREATE TABLE `presentation` (
 --
 
 INSERT INTO `presentation` (`diplomatiki`, `date`, `presentation_way`, `location`) VALUES
-(235, '2024-12-24 12:00:00', 'dia_zwsis', 'asdfasdf');
+(235, '2024-12-24 12:00:00', 'dia_zwsis', 'asdfasdf'),
+(242, '2024-12-31 12:00:00', 'eks_apostasews', 'www.google.com'),
+(245, '2024-12-21 13:51:09', 'dia_zwsis', 'E1');
 
 -- --------------------------------------------------------
 
@@ -464,6 +411,7 @@ CREATE TABLE `professor` (
 INSERT INTO `professor` (`username`, `tmhma`, `panepistimio`, `thema`, `status`) VALUES
 ('apapadopoulos', 'Computer Science', 'University of Patras', 'Artificial Intelligence', 'available'),
 ('danagnostopoulos', 'Computer Science', 'University of Patras', 'Artificial Intelligence', 'available'),
+('dsklav', 'Computer Science', 'University of Patras', 'Artificial Intelligence', 'available'),
 ('epapakostantinou', 'Computer Science', 'University of Patras', 'Artificial Intelligence', 'available'),
 ('gstasinopoulos', 'Computer Science', 'University of Patras', 'Artificial Intelligence', 'available'),
 ('kavram', 'Computer Science', 'University of Patras', 'Artificial Intelligence', 'available'),
@@ -499,12 +447,12 @@ INSERT INTO `student` (`username`, `am`, `etos_eisagwghs`, `status`) VALUES
 ('up0000019', '0000019', 2015, 'available'),
 ('up0000020', '0000020', 2015, 'available'),
 ('up0000021', '0000021', 2015, 'available'),
-('up0000022', '0000022', 2015, 'available'),
+('up0000022', '0000022', 2015, 'unavailable'),
 ('up0000023', '0000023', 2015, 'available'),
 ('up0000024', '0000024', 2015, 'unavailable'),
 ('up0000025', '0000025', 2015, 'available'),
-('up0000026', '0000026', 2015, 'available'),
-('up0000027', '0000027', 2015, 'available'),
+('up0000026', '0000026', 2015, 'unavailable'),
+('up0000027', '0000027', 2015, 'unavailable'),
 ('up0000028', '0000028', 2015, 'available'),
 ('up0000029', '0000029', 2015, 'available'),
 ('up0000030', '0000030', 2015, 'unavailable');
@@ -536,6 +484,7 @@ INSERT INTO `users` (`username`, `password`, `email`, `firstname`, `lastname`, `
 ('apantelidis', '$2y$10$c6lY7tK7MRXxFuCRVcWkDuYdvIHuboO0PSYE8uOFJOUZwLem6qRL6', 'apantelidis@ac.upatras.gr', 'Αλέξανδρος', 'Παντελίδης', 'Κωνσταντίνος', '6905234567', '2109555555', 'grammateia'),
 ('apapadopoulos', '$2y$10$tIDH1fzEbvUhFiCXJT8xUewiwb2Bxzb2bEVrOMAJJNHlitKAe0MzO', 'apapadopoulos@ac.upatras.gr', 'Αναστάσιος', 'Παπαδόπουλος', 'Γιώργος', '6901234567', '2109111111', 'professor'),
 ('danagnostopoulos', '$2y$10$ZsR4yY2PtacMVRKer3dWlOKHdCs7as1/oUzsqMZ5RGTT/V0yHtc1i', 'danagnostopoulos@ac.upatras.gr', 'Δημήτρης', 'Αναγνωστόπουλος', 'Σταύρος', '6904234567', '2109444444', 'professor'),
+('dsklav', '$2y$10$aAcUgCgLwk0qTeTGc25AGubFWfm.OARdpC2hw0eTiQnoE9E/rlDI2', 'dsklav@ac.upatras.gr', 'Δημήτριος', 'Σκλαβενίτης', 'Φιλιπάγγελος', '6901234567', '2109111111', 'professor'),
 ('epapakostantinou', '$2y$10$cO6/NihjObm.qyxxfA6.L.JFnRT.HGih14di5QH1qio4ENCcF07Gy', 'epapakostantinou@ac.upatras.gr', 'Ευάγγελος', 'Παπακωνσταντίνου', 'Αλέξανδρος', '6907234567', '2109777777', 'professor'),
 ('gstasinopoulos', '$2y$10$tqBUX63yjEyzOGSMG/s/HeAmbgsiWJ9JNYOSUMZ8ZfSo5bQAotR/6', 'gstasinopoulos@ac.upatras.gr', 'Γιάννης', 'Στασινόπουλος', 'Χρήστος', '6903234567', '2109333333', 'professor'),
 ('kavram', '$2y$10$6ijMk5ItqLCmKRfJeW.9Ke35MQbXdl5mZAPXQSldIrDQIIZjD5R/G', 'kavram@ac.upatras.gr', 'Κωνσταντίνος', 'Αβραάμ', 'Αντώνιος', '6908234567', '2109888888', 'professor'),
@@ -580,11 +529,14 @@ CREATE TABLE `user_tokens` (
 --
 
 INSERT INTO `user_tokens` (`token`, `user`, `expiration_date`) VALUES
+('38b9e52e1ec8626cdf1ba80e79f4b10c66fd42f013b9e2dd85a8473ed8216742', 'up0000013', '2024-12-22 16:25:27'),
+('44e098c2a1dfb9b4d745e9041f7176f13209f4a78566fd393af9d398d6798d11', 'dsklav', '2024-12-19 14:51:43'),
 ('7521cae13eae0eb681ee3d9bb7755ce74f194727553dd2d22414da7bd6faeff4', 'up0000030', '2024-12-13 19:35:45'),
-('85793070c843adc1a668ba7be145d815b903054f570dc8250eda314b7bd1be4a', 'akyriakidis', '2024-12-17 16:53:10'),
-('9f7d2cbaadbdd8d11c04d91806a2e50be55f0b0f1f9094ff4b9113d0c92b6095', 'up0000011', '2024-12-18 21:25:50'),
+('7dd2016ce73635c29ab889e48037faa23fdde381b99aa17521121e0512df42af', 'apapadopoulos', '2024-12-23 18:04:06'),
+('818cbaf7d772923f35ed26efd5eb84f7b5e633abaab0e64ce0363771764c944a', 'up0000011', '2024-12-22 16:29:36'),
 ('b24da33a04339611e26a9608966f6be4bb180625a153c1bfa2d98d5aede1ed61', 'grammateia2', '2024-12-05 15:11:33'),
-('b70c525d0b514d67ac13381cfe8896b1be7091b2344a84650879c105c1482159', 'up0000019', '2024-12-11 20:06:01');
+('b70c525d0b514d67ac13381cfe8896b1be7091b2344a84650879c105c1482159', 'up0000019', '2024-12-11 20:06:01'),
+('f3a398700c564cd492e886fd215a0c9129e6f547f02376b7eb9220e857f70da0', 'danagnostopoulos', '2024-12-23 18:39:15');
 
 --
 -- Indexes for dumped tables
@@ -652,7 +604,7 @@ ALTER TABLE `epitroph_app_log`
 -- Indexes for table `evaluation`
 --
 ALTER TABLE `evaluation`
-  ADD PRIMARY KEY (`diplomatiki`),
+  ADD PRIMARY KEY (`diplomatiki`,`professor`),
   ADD KEY `fk_professor_evaluation` (`professor`);
 
 --
@@ -700,13 +652,13 @@ ALTER TABLE `akiromeni_diplomatiki`
 -- AUTO_INCREMENT for table `diplomatiki`
 --
 ALTER TABLE `diplomatiki`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=249;
 
 --
 -- AUTO_INCREMENT for table `diplomatiki_log`
 --
 ALTER TABLE `diplomatiki_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=330;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=362;
 
 --
 -- AUTO_INCREMENT for table `epitroph_app_log`

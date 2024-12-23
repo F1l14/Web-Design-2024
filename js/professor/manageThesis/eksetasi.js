@@ -567,7 +567,7 @@ async function createPraktiko() {
                     .then(() => {
                         praktikoExists();
                     });
-
+                saveFinalGrade(data.grades);
 
 
             } else {
@@ -580,6 +580,42 @@ async function createPraktiko() {
         })
         ;
 }
+
+async function saveFinalGrade(grades){
+    const finalGrade = calcFinalGrade(grades);
+
+    fetch(`../scripts/manage/eksetasi/saveFinalGrade.php?thesisId=${thesisId}`, {
+        method: "POST",
+        body: JSON.stringify({ grade: finalGrade }),
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                console.log("Επιτυχής Αποθήκευση FinalGrade");
+            } else {
+                alert("ΠΡΟΒΛΗΜΑ! Προσπαθήστε Ξανά")
+                console.log(data.error);
+            }
+
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
+
 
 async function savePraktikoHtml(html) {
     fetch(`../scripts/manage/eksetasi/savePraktikoHtml.php?thesisId=${thesisId}`, {
