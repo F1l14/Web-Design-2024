@@ -78,7 +78,26 @@ async function getXronosData() {
     })
         .then(response => {
             return response.text().then(text => {
-                console.log("Raw Response:", text);
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    // console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                return data;
+            }
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
+}
                 try {
                     return JSON.parse(text); // Try parsing the JSON
                 } catch (error) {
