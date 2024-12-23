@@ -67,9 +67,57 @@
         }
     });
 })();
+(async function () {
+    let epivlepon_avg;
+    let epitroph_avg;
+    const data = await getVathmosData();
+    if (data.epivlepon !== undefined) {
+        epivlepon_avg = data.epivlepon.reduce((a, b) => a + b) / data.epivlepon.length;
+    }
+    else {
+        epivlepon_avg = 0;
+    }
 
-async function getXronosData(){
-    fetch(`scripts/stats/getXronos.php`, {
+    if (data.epitroph !== undefined) {
+        epitroph_avg = data.epitroph.reduce((a, b) => a + b) / data.epitroph.length;
+    }
+    else {
+        epitroph_avg = 0;
+    }
+    const vathmos = document.getElementById("vathmosCanvas");
+    new window.Chart(vathmos, {
+        type: 'bar',
+
+        data: {
+            labels: [''],
+            datasets: [{
+                label: 'Επιβλέπων',
+                data: [epivlepon_avg],
+                borderWidth: 1
+            },
+            {
+                label: 'Επιτροπή',
+                data: [epitroph_avg],
+                borderWidth: 1
+            }
+            ]
+        },
+        options: {
+            
+            plugins: {
+                title: {
+                    display: true,
+                    text: "Μέσος Βαθμός"
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+})();
 
 async function getXronosData() {
     return fetch(`scripts/stats/getXronos.php`, {
@@ -98,6 +146,14 @@ async function getXronosData() {
         })
         ;
 }
+async function getVathmosData() {
+    return fetch(`scripts/stats/getVathmos.php`, {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
                 try {
                     return JSON.parse(text); // Try parsing the JSON
                 } catch (error) {
