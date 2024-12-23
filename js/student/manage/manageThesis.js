@@ -52,8 +52,6 @@ async function getState() {
                                 progressBar(states, 3);
                                 eksetasi();
                                 praktikoExistsEksetasi();
-                                getOfficialDate();
-                                
 
                             })
                         break;

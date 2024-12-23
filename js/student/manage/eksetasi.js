@@ -67,12 +67,19 @@ function eksetasi() {
         saveUrls(ulUrl);
     })
 
-
-    flatpickr("#eksetasiDate", {
-        enableTime: true,
-        dateFormat: "d-m-Y H:i",
-        minDate: "today"
+    getMinMaxDate().then((date) => {
+        flatpickr("#eksetasiDate", {
+            enableTime: true,
+            dateFormat: "d-m-Y H:i",
+            minTime: "09:00",
+            maxTime: "21:00",
+            enable: [{
+                from: date.min,
+                to: date.max
+            }]
+        });
     });
+
 
 
     examRoom = document.getElementById("roomOption");
@@ -97,6 +104,34 @@ function eksetasi() {
     });
 
 
+}
+
+async function getMinMaxDate() {
+    return fetch("scripts/manage/eksetasi/getMinMaxDate.php", {
+        method: "GET",
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => {
+            return response.text().then(text => {
+                // console.log("Raw Response:", text);
+                try {
+                    return JSON.parse(text); // Try parsing the JSON
+                } catch (error) {
+                    console.error("JSON Parsing Error:", error);
+                    throw error; // Rethrow the error to be caught below
+                }
+            });
+        })
+        .then(data => {
+            if (data.answer) {
+                return data;
+            }
+        })
+
+        .catch(error => {
+            console.error("Error Occured:", error);
+        })
+        ;
 }
 
 async function saveLibUrl(event) {
@@ -438,7 +473,7 @@ async function praktikoExistsEksetasi() {
         .then(data => {
             if (data.answer) {
                 const htmlButton = document.getElementById("eksetasiPraktikoHtml");
-                const pdfButton  = document.getElementById("eksetasiPraktikoPdf");
+                const pdfButton = document.getElementById("eksetasiPraktikoPdf");
 
                 htmlButton.disabled = false;
                 pdfButton.disabled = false;
@@ -485,36 +520,6 @@ async function getPraktikoHtml() {
 
 async function getPraktikoPdf() {
     fetch(`scripts/manage/getPraktikoPdf.php`, {
-        method: "GET",
-        headers: { 'Accept': 'application/json' }
-    })
-        .then(response => {
-            return response.text().then(text => {
-                // console.log("Raw Response:", text);
-                try {
-                    return JSON.parse(text); // Try parsing the JSON
-                } catch (error) {
-                    console.error("JSON Parsing Error:", error);
-                    throw error; // Rethrow the error to be caught below
-                }
-            });
-        })
-        .then(data => {
-            if (data.answer) {
-                window.open(data.url, '_blank');
-            }
-        })
-
-        .catch(error => {
-            console.error("Error Occured:", error);
-        })
-        ;
-}
-
-
-
-async function getOfficialDate(){
-    fetch(`scripts/manage/eksetasi/getOfficialDate.php`, {
         method: "GET",
         headers: { 'Accept': 'application/json' }
     })
