@@ -4,7 +4,7 @@
   height: 60vh;
   overflow-y: auto;
   overflow-x: auto;
-  margin: 0 !important;
+  margin: 0 ;
   /* background-color: black; */
 }
 
@@ -16,11 +16,15 @@
 
 #calendarDateGroup{
   margin: 1rem 0;
-  width: 40%;
 }
 
 #mainContainer{
-  padding: 0;
+  /* padding: 0; */
+  display: flex;
+  flex-direction: row;
+}
+.row {
+  flex-grow: 1;
 }
 
 /* only on large screen */
@@ -30,6 +34,22 @@
   }
 }
 
+@media(max-width: 992px) {
+  #calendarDateGroup{
+    width: 100%;
+  }
+
+  #calendar{
+    margin-top: 2rem;
+  }
+
+  .exportButtons{
+    margin-bottom: 1rem;
+  }
+}
+
+
+/* ===== LOGIN ===== */
 #accountCircle {
   display: block;
   margin: auto;
@@ -60,8 +80,6 @@
   text-align: center;
 }
 
-
-#mainContainer {}
 
 form button {
   display: flow-root;
