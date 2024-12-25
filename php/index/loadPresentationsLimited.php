@@ -6,7 +6,7 @@ $resp->answer = false;
 
 try {
     $stmt = $conn->prepare(
-        "SELECT presentation.date, title, firstname, lastname
+        "SELECT presentation.diplomatiki, presentation.date, title, firstname, lastname
                     FROM presentation
                     INNER JOIN diplomatiki ON diplomatiki.id = presentation.diplomatiki
                     INNER JOIN student ON student.username = diplomatiki.student
