@@ -3,21 +3,27 @@ BackEnd
 -settings
     -password
   
+-url
+    hide full path
+
+-calendar
+    -clear
+
+||COMPLETED||
+=============
+-server
+    -cache settings
+        -cache
+        -preload
+        -gzip
+        
+
 -login.php
     -calendar table
         -datetime instead of date
         -export
         -announcement Modal
         -search
-    
--url
-    hide full path
-
--server
-    -cache settings
-
-||COMPLETED||
-=============
 -settings
     -letter on address
 -exam
