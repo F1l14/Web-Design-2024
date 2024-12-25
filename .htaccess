@@ -1,3 +1,63 @@
 RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Enable Cache-Control headers for caching
+<IfModule mod_headers.c>
+    # Prevent caching for PHP files
+    
+    
+    # HTML files – cache for 1 hour (dynamic content)
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "public, max-age=3600, must-revalidate"
+    </FilesMatch>
+
+    # CSS files – cache for 1 month (static content)
+    <FilesMatch "\.(css)$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+
+    # JavaScript files – cache for 1 month (static content)
+    <FilesMatch "\.(js)$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+
+    # SVG files – cache for 1 month (static content)
+    <FilesMatch "\.(svg)$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+
+     # Cache PDF files – cache for 5 minutes (static content)
+    <FilesMatch "\.(pdf)$">
+        Header set Cache-Control "public, max-age=300 "
+    </FilesMatch>
+</IfModule>
+
+# START DEFLATE COMPRESSION
+
+# Enable DEFLATE (GZIP compression) for text and related files
+<IfModule mod_deflate.c>
+    # Compress text-based files
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+
+    # Compress SVG files (SVG is XML-based and benefits from compression)
+    AddOutputFilterByType DEFLATE image/svg+xml
+
+    # Compress PDF files (might be useful in some cases)
+    AddOutputFilterByType DEFLATE application/pdf
+
+    # Exclude image files from compression (already compressed)
+    AddOutputFilterByType DEFLATE image/gif image/jpeg image/png image/webp
+
+    # Exclude already compressed files like Javascript (if they are already compressed)
+    AddOutputFilterByType DEFLATE application/x-javascript text/javascript
+</IfModule>
+
+# END DEFLATE COMPRESSION
+
+
+# START ENABLE KEEP ALIVE
+
+Header set Connection keep-alive
+
+# END ENABLE KEEP ALIVE
