@@ -160,10 +160,16 @@ async function loadAnnouncement(id, option = false) {
         ;
 }
 
-document.getElementById('download-json').addEventListener('click',async function () {
+document.getElementById('download-json').addEventListener('click', async function () {
     // Convert the array of objects to a JSON string
     const jsonData = await createJSONFeed();
     downloadFile(jsonData, 'Thesis_Announcements', 'application/json');
+});
+
+document.getElementById('download-xml').addEventListener('click', async function () {
+    // Convert the array of objects to a JSON string
+    const xmlData = await createXMLFeed();
+    downloadFile(xmlData, 'Thesis_Announcements', 'text/xml');
 });
 
 
@@ -179,7 +185,7 @@ async function createJSONFeed() {
     // Get all table rows inside the tbody
     const rows = calendarBody.querySelectorAll('tr');
 
-    for (const row of rows){
+    for (const row of rows) {
         if (window.getComputedStyle(row).display === 'none') {
             return; // Skip this row
         }
@@ -205,7 +211,77 @@ async function createJSONFeed() {
     // null = all properties, 4 = indentations
     return JSON.stringify(tableData, null, 4);
 }
- function downloadFile(data, filename, type) {
+
+async function createXMLFeed() {
+    // Create an XML document
+    const xmlDoc = document.implementation.createDocument("", "", null);
+
+    // Create XML Declaration
+    const xmlDecl = xmlDoc.createProcessingInstruction("xml", 'version="1.0" encoding="UTF-8"');
+    xmlDoc.insertBefore(xmlDecl, xmlDoc.firstChild);  // Insert declaration at the top
+
+    
+    // Root <feed> element
+    const feed = xmlDoc.createElement("feed");
+
+    const title = xmlDoc.createElement("title");
+    title.textContent = "Thesis Announcements XML Feed";
+    feed.appendChild(title);
+
+    const link = xmlDoc.createElement("link");
+    link.setAttribute("href", "https://localhost/Web-Design-2024/");
+    feed.appendChild(link);
+
+    // Get all table rows inside the tbody
+    const rows = calendarBody.querySelectorAll("tr");
+
+    for (const row of rows) {
+        if (window.getComputedStyle(row).display === "none") {
+            continue; // Skip this row
+        }
+
+        const dateText = row.querySelector("td:nth-child(1)").innerText;
+        const titleText = row.querySelector("td:nth-child(2)").innerText;
+        const student = row.querySelector("td:nth-child(3)").innerText;
+        const id = row.querySelector("td:nth-child(4) button").getAttribute("data-id");
+        const html = await loadAnnouncement(id, true);
+
+        const entry = xmlDoc.createElement("entry");
+
+        const entryId = xmlDoc.createElement("id");
+        entryId.textContent = id;
+        entry.appendChild(entryId);
+
+        const entryTitle = xmlDoc.createElement("title");
+        entryTitle.textContent = titleText;
+        entry.appendChild(entryTitle);
+
+        const entryStudent = xmlDoc.createElement("student");
+        entryStudent.textContent = student;
+        entry.appendChild(entryStudent);
+
+        const date = xmlDoc.createElement("date");
+        date.textContent = dateText;
+        entry.appendChild(date);
+
+        const content = xmlDoc.createElement("content");
+        content.setAttribute("type", "html");
+        content.textContent = html;
+        entry.appendChild(content);
+
+        // Append <entry> to <feed>
+        feed.appendChild(entry);
+    }
+
+    // Append the root element to the XML document
+    xmlDoc.appendChild(feed);
+
+    // Serialize the XML document to a string
+    const serializer = new XMLSerializer();
+    return serializer.serializeToString(xmlDoc);
+}
+
+function downloadFile(data, filename, type) {
     const blob = new Blob([data], { type });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
