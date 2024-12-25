@@ -30,7 +30,7 @@ if (isset($_COOKIE["user"])) {
     
     try {
         $stmt = $conn->prepare(
-            "SELECT diplomatiki.id, diplomatiki.professor, title, description, diplomatiki.status, filename, url, grade_filename, student, firstname, lastname, prof1, prof2, prof3, date, new_state FROM diplomatiki 
+            "SELECT diplomatiki.id, diplomatiki.professor, title, description, diplomatiki.status, filename, url, student, firstname, lastname, prof1, prof2, prof3, date, new_state FROM diplomatiki 
                         INNER JOIN epitroph ON diplomatiki.id = epitroph.diplomatiki
                         INNER JOIN diplomatiki_log ON diplomatiki.id = diplomatiki_log.diplomatiki
                         INNER JOIN student ON diplomatiki.student = student.username
