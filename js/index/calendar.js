@@ -22,11 +22,8 @@ function dateHandler(dateStr) {
         calendarBody.innerHTML = "";
         if (range.length == 1) {
             loadPresentationsInRange(range[0], range[0]);
-            console.log('single date: ', range[0]);
         } else {
             loadPresentationsInRange(range[0], range[1]);
-            console.log('first date: ', range[0]);
-            console.log('second date: ', range[1]);
         }
     }
 
