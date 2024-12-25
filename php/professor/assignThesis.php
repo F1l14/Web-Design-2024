@@ -62,7 +62,7 @@ updateActivity();
 
         <!-- Modal -->
         <div class="modal fade" id="assignModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="assignModalHeader">Ανάθεση Διπλωματικής Εργασίας</h1>
@@ -80,7 +80,7 @@ updateActivity();
                                         <label for="assignTitle" class="form-label">Τίτλος</label>
                                         <textarea id="assignTitle" class="form-control" readonly></textarea>
                                     </div>
-                                    <div class="col-lg-auto mx-auto my-auto">
+                                    <div class="col-lg-auto col-md-12 col-12 mx-auto my-auto d-flex justify-content-center">
                                         <img id="assignmentArrow"
                                             src="/Web-Design-2024/icons/trending_flat_right.svg" />
                                     </div>
