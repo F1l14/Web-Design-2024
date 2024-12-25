@@ -52,9 +52,9 @@ async function loadPresentationsLimited() {
             if (data.answer) {
 
                 data.data.forEach(element => {
-                   
+
                     insertThesisPresentation(element.diplomatiki, element.date, `${element.firstname} ${element.lastname}`, element.title);
-                    
+
                 });
 
             }
@@ -126,7 +126,7 @@ function insertThesisPresentation(id, date, student, title) {
 
     openButton.setAttribute("data-bs-toggle", "modal");
     openButton.setAttribute("data-bs-target", "#calendarModal");
-    // openButton.setAttribute("data-id", id);
+    openButton.setAttribute("data-id", id);
     openButton.addEventListener("click", function () {
         loadAnnouncement(id);
     });
@@ -136,8 +136,8 @@ function insertThesisPresentation(id, date, student, title) {
 }
 
 
-async function loadAnnouncement(id) {
-    fetch(`Data/announcements/${id}/${id}.html`)
+async function loadAnnouncement(id, option = false) {
+    return fetch(`Data/announcements/${id}/${id}.html`)
         .then(response => {
             if (!response.ok) {
                 throw new Error();
@@ -148,7 +148,9 @@ async function loadAnnouncement(id) {
         .then(data => {
             announcementBody.innerHTML = "";
             announcementBody.innerHTML = data;
-
+            if (option) {
+                return data;
+            }
         })
 
         .catch(error => {
@@ -156,4 +158,58 @@ async function loadAnnouncement(id) {
             announcementBody.innerHTML = "Δεν υπάρχει ακόμα λεπτομερής ανακοίνωση.";
         })
         ;
+}
+
+document.getElementById('download-json').addEventListener('click',async function () {
+    // Convert the array of objects to a JSON string
+    const jsonData = await createJSONFeed();
+    downloadFile(jsonData, 'Thesis_Announcements', 'application/json');
+});
+
+
+
+async function createJSONFeed() {
+    let tableData = {
+        version: "https://jsonfeed.org/version/1",
+        title: "Thesis Announcements JSON Feed",
+        home_page_url: "https://localhost/Web-Design-2024/",
+        items: []
+    };
+
+    // Get all table rows inside the tbody
+    const rows = calendarBody.querySelectorAll('tr');
+
+    for (const row of rows){
+        if (window.getComputedStyle(row).display === 'none') {
+            return; // Skip this row
+        }
+
+        const date = row.querySelector('td:nth-child(1)').innerText;
+        const title = row.querySelector('td:nth-child(2)').innerText;
+        const student = row.querySelector('td:nth-child(3)').innerText;
+        const id = row.querySelector('td:nth-child(4) button').getAttribute("data-id");
+        const html = await loadAnnouncement(id, true);
+        console.log(html);
+
+        // Push the extracted data as an object into the tableData array
+        tableData.items.push({
+            id: id,
+            date: date,
+            title: title,
+            student: student,
+            content_html: html,
+        });
+    }
+
+    // Convert the array of objects to a formatted JSON string
+    // null = all properties, 4 = indentations
+    return JSON.stringify(tableData, null, 4);
+}
+ function downloadFile(data, filename, type) {
+    const blob = new Blob([data], { type });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    link.click();
+    URL.revokeObjectURL(link.href);
 }
