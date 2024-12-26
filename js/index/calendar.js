@@ -1,11 +1,17 @@
 const calendarBody = document.getElementById("calendarBody");
 const dateRange = document.getElementById("calendarDate");
 const announcementBody = document.getElementById("announcementBody");
+const clearButton = document.getElementById("clearCalendar");
 
+clearButton.addEventListener("click", function(){
+    flatpickrInstance.clear();
+    loadPresentationsLimited();
+    clearButton.hidden = true;
+});
 
 window.addEventListener("load", loadPresentationsLimited);
 
-flatpickr("#calendarDate", {
+const flatpickrInstance = flatpickr("#calendarDate", {
     mode: "range",
     dateFormat: "d-m-Y",
     onClose: function (selectedDates, dateStr) {
@@ -17,8 +23,8 @@ function dateHandler(dateStr) {
 
     const range = dateStr.split(" to ");
 
-
     if (range[0] !== "") {
+        clearButton.hidden=false;
         calendarBody.innerHTML = "";
         if (range.length == 1) {
             loadPresentationsInRange(range[0], range[0]);
