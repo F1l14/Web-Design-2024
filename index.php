@@ -64,6 +64,9 @@
               <span class="input-group-text">
                 <img src="/Web-Design-2024/icons/calendar.svg" alt="">
               </span>
+              <button class="btn btn-outline-secondary" type="button" id="clearCalendar" hidden>
+                <img src="/Web-Design-2024/icons/x.svg" alt="">
+              </button>
             </div>
           </div>
           <div class="exportButtons col-lg-3 col-md-3 col-6 align-content-center text-center">
