@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 25, 2024 at 08:34 PM
+-- Generation Time: Jan 12, 2025 at 09:45 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -160,19 +160,6 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `diplomatiki_app`
---
-
-CREATE TABLE `diplomatiki_app` (
-  `diplomatiki` int(7) NOT NULL,
-  `student` varchar(30) NOT NULL,
-  `datetime` datetime NOT NULL DEFAULT current_timestamp(),
-  `status` enum('accepted','rejected','waiting') NOT NULL DEFAULT 'waiting'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `diplomatiki_log`
 --
 
@@ -207,7 +194,9 @@ INSERT INTO `diplomatiki_log` (`id`, `date`, `new_state`, `diplomatiki`) VALUES
 (363, '2024-12-23 18:39:44', 'energi', 242),
 (364, '2024-12-23 18:39:44', 'eksetasi', 235),
 (365, '2024-12-23 18:39:59', 'eksetasi', 242),
-(369, '2024-12-25 20:18:55', 'diathesimi', 250);
+(369, '2024-12-25 20:18:55', 'diathesimi', 250),
+(370, '2025-01-12 20:47:01', 'anathesi', 240),
+(371, '2025-01-12 20:47:21', 'diathesimi', 240);
 
 -- --------------------------------------------------------
 
@@ -529,17 +518,6 @@ CREATE TABLE `user_tokens` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `user_tokens`
---
-
-INSERT INTO `user_tokens` (`token`, `user`, `expiration_date`) VALUES
-('3484ad0fd4c900e2d18f0000901f27e5a92fbe68ca306c21ee503fa605aebbb2', 'danagnostopoulos', '2024-12-25 21:28:53'),
-('7521cae13eae0eb681ee3d9bb7755ce74f194727553dd2d22414da7bd6faeff4', 'up0000030', '2024-12-13 19:35:45'),
-('aec0bdb63b2b4a33d1f20d1cfdb97c9f068bc69b81fe2805a77711f4699846ac', 'up0000028', '2024-12-24 18:30:05'),
-('b24da33a04339611e26a9608966f6be4bb180625a153c1bfa2d98d5aede1ed61', 'grammateia2', '2024-12-05 15:11:33'),
-('b70c525d0b514d67ac13381cfe8896b1be7091b2344a84650879c105c1482159', 'up0000019', '2024-12-11 20:06:01');
-
---
 -- Indexes for dumped tables
 --
 
@@ -562,13 +540,6 @@ ALTER TABLE `diplomatiki`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_diplomatiki_student` (`student`),
   ADD KEY `fk_professor_diplomatiki` (`professor`);
-
---
--- Indexes for table `diplomatiki_app`
---
-ALTER TABLE `diplomatiki_app`
-  ADD PRIMARY KEY (`diplomatiki`,`student`),
-  ADD KEY `fk_diplomatiki_app_student` (`student`);
 
 --
 -- Indexes for table `diplomatiki_log`
@@ -659,7 +630,7 @@ ALTER TABLE `diplomatiki`
 -- AUTO_INCREMENT for table `diplomatiki_log`
 --
 ALTER TABLE `diplomatiki_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=370;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=372;
 
 --
 -- AUTO_INCREMENT for table `epitroph_app_log`
@@ -743,6 +714,12 @@ ALTER TABLE `professor`
 --
 ALTER TABLE `student`
   ADD CONSTRAINT `fk_student_users` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `user_tokens`
+--
+ALTER TABLE `user_tokens`
+  ADD CONSTRAINT `user_tokens_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 DELIMITER $$
 --
