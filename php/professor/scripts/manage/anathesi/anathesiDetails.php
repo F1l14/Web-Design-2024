@@ -9,7 +9,7 @@ if (isset($_GET['thesisId']) && isset($_COOKIE["user"])) {
     $id = intval($_GET['thesisId']);
     try {
         $stmt = $conn->prepare(
-            "SELECT title, student, firstname, lastname, prof1, prof2, prof3 FROM diplomatiki 
+            "SELECT title, description, student, firstname, lastname, prof1, prof2, prof3 FROM diplomatiki 
                         INNER JOIN epitroph ON diplomatiki.id = epitroph.diplomatiki
                         INNER JOIN student ON diplomatiki.student = student.username
                         INNER JOIN users ON student.username = users.username

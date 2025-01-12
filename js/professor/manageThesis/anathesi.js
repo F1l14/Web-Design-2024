@@ -33,6 +33,10 @@ async function loadDetails() {
                 const titleInput = document.getElementById("titleInput");
                 titleInput.value = title;
 
+                description = data.data[0]["description"];
+                const descriptionInput = document.getElementById("descriptionInput");
+                descriptionInput.value = description;
+
                 student = `${data.data[0]["student"]} | ${data.data[0]["firstname"]} ${data.data[0]["lastname"]}`;
                 const studentInput = document.getElementById("studentInput");
                 studentInput.value = student;
