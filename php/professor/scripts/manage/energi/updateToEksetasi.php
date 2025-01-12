@@ -18,9 +18,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $stmt->bind_param("i", $id);
             $stmt->execute();
             $result = $stmt->get_result();
-            $result = $result->fetch_assoc()['episimi_anathesi'];
-            if ($result->num_rows > 0 && $result !== null) {
-                $episimi_anathesi = true;
+            $episimi_anathesi_num = $result->fetch_assoc()['episimi_anathesi'];
+            if ($result->num_rows > 0 && $episimi_anathesi_num != null) {
+                $resp->episimi_anathesi = true;
             }else{
                 echo json_encode($resp);
                 return;
