@@ -37,21 +37,6 @@ updateActivity();
                     <div id="notepad" class="centeredDiv">
                         <div id="scrollable">
                             <ol id="noteList">
-                                <!-- <li>
-
-                                    <div class="noteWrapper">
-                                        <textarea id="1" class="form-control note"
-                                            placeholder="Γράψτε τις σημειώσεις σας εδώ..." maxlength="300"></textarea>
-
-                                        <span id="current">0</span>
-                                        <span id="max">/300</span>
-                                        <span>
-                                            <img class="deleteNote" src="/Web-Design-2024/icons/delete.svg" />
-                                        </span>
-                                    </div>
-
-
-                                </li> -->
                             </ol>
                             <button id="add" class="button-6 btn ">
                                 <img id="addIcon" src="/Web-Design-2024/icons/add.svg" />
