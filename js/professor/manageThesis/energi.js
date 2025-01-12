@@ -145,7 +145,10 @@ async function eksetasi() {
                 });
             })
             .then(data => {
-                if (data.state != "SQL Error") {
+                if(!data.episimi_anathesi){
+                    alert("Δεν έχει οριστεί αριθμός Πρωτοκόλλου");
+                }
+                else if (data.state != "SQL Error" ) {
                     window.location.href = '/Web-Design-2024/php/professor/manageThesis.php';
                 } else if (data.message == "SQL Error") {
                     console.log(data.message);
