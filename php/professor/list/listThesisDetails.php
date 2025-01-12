@@ -29,12 +29,12 @@ updateActivity();
     <div id="mainContainer" class="container align-items-center justify-content-center">
         <div id="innerContainer" class="container box">
             <div class="row g-0">
-                <div id="titleDiv" class="col centeredDiv">
+                <div id="titleDiv" class="col-12 centeredDiv">
                     <h4>Τίτλος</h4>
                     <textarea class="form-control" name="titleInput" id="titleInput" readonly></textarea>
 
                 </div>
-                <div id="descriptionDiv" class="col centeredDiv">
+                <div id="descriptionDiv" class="col-12 centeredDiv">
                     <h4>Σύνοψη</h4>
                     <textarea class="form-control" name="descriptionInput" id="descriptionInput" readonly></textarea>
 
