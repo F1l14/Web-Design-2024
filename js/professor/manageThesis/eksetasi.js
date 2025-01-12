@@ -802,7 +802,7 @@ function generatePraktikoHtml(data) {
                             <li><span>${data.prof3_name}</span></li>
                         </ol>
 
-                        <p>οι οποίοι ορίσθηκαν από την Συνέλευση του ΤΜΗΥΠΗ, στην συνεδρίαση της με αριθμό <span>${data.episimi_anathesi}</span>.</p>
+                        <p>οι οποίοι ορίσθηκαν από την Συνέλευση του ΤΜΗΥΠ, στην συνεδρίαση της με αριθμό <span>${data.episimi_anathesi}</span>.</p>
 
                         <p>Ο/Η φοιτητής/φοιτήτρια <span>${data.student_name}</span></p>
                         <p>της Διπλωματικής του/της Εργασίας, με τίτλο</p>
