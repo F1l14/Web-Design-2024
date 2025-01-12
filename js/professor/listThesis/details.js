@@ -31,7 +31,7 @@ async function loadDetails() {
 
                 description = data.data[0]["description"];
                 const descriptionInput = document.getElementById("descriptionInput");
-                descriptionInput.value = title;
+                descriptionInput.value = description;
 
                 student = `${data.data[0]["student"]} | ${data.data[0]["firstname"]} ${data.data[0]["lastname"]}`;
                 const studentInput = document.getElementById("studentInput");
