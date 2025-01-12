@@ -12,7 +12,7 @@ try {
                     INNER JOIN student ON student.username = diplomatiki.student
                     INNER JOIN users ON users.username = student.username
                     INNER JOIN epitroph ON epitroph.diplomatiki = diplomatiki.id
-                    ORDER BY presentation.date LIMIT 20;"
+                    ORDER BY presentation.date DESC LIMIT 20;"
     );
 
     $stmt->execute();
