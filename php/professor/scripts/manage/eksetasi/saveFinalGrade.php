@@ -23,14 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $stmt->bind_param("di", $grade, $diplomatiki);
             $stmt->execute();
-            
-            if($conn->affected_rows>0){
-                $resp->answer = true;
-                echo json_encode($resp);
-            }else{
-                $resp->error = "no affected rows";
-                echo json_encode($resp);
-            }
+
+            $resp->answer = true;
+            echo json_encode($resp);
         } catch (mysqli_sql_exception $e) {
 
             $resp->error = $conn->error; // Log the specific error message
