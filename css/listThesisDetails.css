@@ -95,6 +95,7 @@ tr {
 #descriptionInput {
   width: 75%;
   overflow: auto;
+  height: 7rem;
 }
 
 button {
