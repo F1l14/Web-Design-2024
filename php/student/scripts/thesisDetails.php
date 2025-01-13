@@ -7,7 +7,7 @@ if (isset($_COOKIE["user"])) {
     $username = json_decode($_COOKIE['user'])->username;
     try {
         $stmt = $conn->prepare(
-            "SELECT id, title, filename, student, firstname, lastname, prof1, prof2, prof3, diplomatiki.status FROM diplomatiki 
+            "SELECT id, title, description, filename, student, firstname, lastname, prof1, prof2, prof3, diplomatiki.status FROM diplomatiki 
                         INNER JOIN epitroph ON diplomatiki.id = epitroph.diplomatiki
                         INNER JOIN student ON diplomatiki.student = student.username
                         INNER JOIN users ON student.username = users.username
