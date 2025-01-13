@@ -3,31 +3,29 @@ RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Enable Cache-Control headers for caching
-<IfModule mod_headers.c>
-    # Prevent caching for PHP files
-    
+<IfModule mod_headers.c> 
     
     # HTML files – cache for 1 hour (dynamic content)
     <FilesMatch "\.(html|htm)$">
         Header set Cache-Control "public, max-age=3600, must-revalidate"
     </FilesMatch>
 
-    # CSS files – cache for 1 month (static content)
+    # CSS files – cache for 1 month
     <FilesMatch "\.(css)$">
         Header set Cache-Control "public, max-age=2592000"
     </FilesMatch>
 
-    # JavaScript files – cache for 1 month (static content)
+    # JavaScript files – cache for 1 month
     <FilesMatch "\.(js)$">
         Header set Cache-Control "public, max-age=2592000"
     </FilesMatch>
 
-    # SVG files – cache for 1 month (static content)
+    # SVG files – cache for 1 month
     <FilesMatch "\.(svg)$">
         Header set Cache-Control "public, max-age=2592000"
     </FilesMatch>
 
-     # Cache PDF files – cache for 5 minutes (static content)
+     # PDF files – cache for 5 minutes
     <FilesMatch "\.(pdf)$">
         Header set Cache-Control "public, max-age=300 "
     </FilesMatch>
