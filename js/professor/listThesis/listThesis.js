@@ -1,15 +1,6 @@
 thesisTbody = document.getElementById("thesisTbody");
 
 window.addEventListener("load", loadThesis);
-// window.addEventListener("load", function () {
-//     insert("Titlos", "myrole", "energi", 4);
-//     insert("asdf", "myrole", "epeksergasia", 4);
-//     insert("fffffff", "myrole", "peratomeni", 4);
-//     insert("ggggggggggg", "myrole", "akiromeni", 4);
-//     insert("hhhhhhhhhhh", "myrole", "anathesi", 4);
-//     const loadedEvent = new CustomEvent("tableLoaded");
-//     window.dispatchEvent(loadedEvent);
-// });
 
 async function loadThesis() {
     fetch("scripts/list/listProfessorsThesis.php", {
@@ -20,7 +11,7 @@ async function loadThesis() {
 
         .then(response => {
             return response.text().then(text => {
-                console.log("Raw Response:", text);
+                // console.log("Raw Response:", text);
                 try {
                     return JSON.parse(text); // Try parsing the JSON
                 } catch (error) {
