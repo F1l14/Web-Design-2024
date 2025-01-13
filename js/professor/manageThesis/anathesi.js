@@ -74,11 +74,29 @@ async function loadDetails() {
                         const row = logTable.insertRow();
                         date = row.insertCell(0);
                         date.textContent = entry["date"];
+
+                        var gr_status = '';
+                        switch (entry["new_state"]) {
+                            case 'waiting':
+                                gr_status = 'Αναμονή'
+                                break;
+                    
+                            case 'accepted':
+                                gr_status = 'Αποδοχή'
+                                break;
+                    
+                            case 'rejected':
+                                gr_status = 'Απόρριψη'
+                                break;
+                    
+                            default:
+                                break;
+                        }
                         katastasi = row.insertCell(1);
-                        katastasi.textContent = entry["new_state"];
+                        katastasi.textContent = gr_status;
 
                         professor = row.insertCell(2);
-                        professor.textContent = entry["invited_professor"];
+                        professor.textContent = entry["firstname"] + " " + entry["lastname"];
                     });
                 }
 
