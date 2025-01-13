@@ -94,7 +94,7 @@
                 <div class="input-group mb-3 d-flex  smaller">
 
 
-                    <input id="eksetasiDate" name="eksetasiDate" class="form-control " type="date">
+                    <input id="eksetasiDate" name="eksetasiDate" class="form-control ">
                     <span class="input-group-text">
                         <img src="/Web-Design-2024/icons/calendarClock.svg">
                     </span>
