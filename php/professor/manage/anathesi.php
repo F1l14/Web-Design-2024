@@ -73,17 +73,19 @@ updateActivity();
                 </div>
                 <div id="logDiv" class="col centeredDiv">
                     <h4>Χρονολόγιο Προσκλήσεων</h4>
-                    <table class="table-striped table " id="logTable">
-                        <thead>
-                            <tr>
-                                <th scope="col">Ημερομηνία</th>
-                                <th scope="col">Κατάσταση</th>
-                                <th scope="col">Προσκεκλημένος</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+                    <div class="tableWrapper">
+                        <table class="table-striped table" id="logTable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Ημερομηνία</th>
+                                    <th scope="col">Κατάσταση</th>
+                                    <th scope="col">Προσκεκλημένος</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
