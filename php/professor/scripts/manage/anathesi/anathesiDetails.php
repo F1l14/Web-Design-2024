@@ -44,9 +44,11 @@ if (isset($_GET['thesisId']) && isset($_COOKIE["user"])) {
 
     try {
         $stmt = $conn->prepare(
-            "SELECT epitroph_app_log.date, epitroph_app_log.new_state, epitroph_app_log.invited_professor FROM diplomatiki 
+            "SELECT epitroph_app_log.date, epitroph_app_log.new_state, users.firstname, users.lastname 
+                        FROM diplomatiki
                         INNER JOIN epitroph ON diplomatiki.id = epitroph.diplomatiki
                         INNER JOIN epitroph_app_log ON diplomatiki.id = epitroph_app_log.diplomatiki
+                        INNER JOIN users ON epitroph_app_log.invited_professor = users.username
                         WHERE diplomatiki.id = ? AND ? IN (prof1, prof2, prof3) AND diplomatiki.status = 'anathesi'
                         ORDER BY epitroph_app_log.date DESC;"
         );
