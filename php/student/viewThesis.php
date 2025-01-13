@@ -80,7 +80,7 @@ updateActivity();
             <div class="row g-0">
                 <div class="col-lg-6 col-sm-12 centeredDiv">
                     <h4>Αναλυτική Περιγραφή</h4>
-                    <div id="descriptionDiv" class="centeredDiv">
+                    <div id="descriptionFileDiv" class="centeredDiv">
 
                         <p>Λήψη</p>
                         <button id="downloadDescription" class="optionButton" disabled>
