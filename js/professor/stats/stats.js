@@ -33,6 +33,11 @@
                 label: 'Επιτροπή',
                 data: [epitroph_avg],
                 borderWidth: 1
+            },
+            {
+                label: 'Συνολικά',
+                data: [(epivlepon_avg + epitroph_avg)/2],
+                borderWidth: 1
             }
             ]
         },
@@ -99,6 +104,11 @@
                 label: 'Επιτροπή',
                 data: [epitroph_avg],
                 borderWidth: 1
+            },
+            {
+                label: 'Συνολικά',
+                data: [(epivlepon_avg + epitroph_avg)/2],
+                borderWidth: 1
             }
             ]
         },
@@ -138,6 +148,11 @@
             {
                 label: 'Επιτροπή',
                 data: [epitroph_plithos],
+                borderWidth: 1
+            },
+            {
+                label: 'Συνολικά',
+                data: [epivlepon_plithos + epitroph_plithos],
                 borderWidth: 1
             }
             ]
