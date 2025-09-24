@@ -1,6 +1,6 @@
-PEM pass phrase: ThesisDBDecrypt
+Thesis management website for students and university personnel, created for the course "Programming & Systems in the World Wide Web" - 7th Semester CEID 
 
-if file is not saved do:  chmod 0777 Data/ThesisDescriptions
+<em>if the thesis-description-file is not saved do:  chmod 0777 Data/ThesisDescriptions</em>
 
 ![plot](./screenshots/loginpage.png)
 ![plot](./screenshots/professorHome.png)
